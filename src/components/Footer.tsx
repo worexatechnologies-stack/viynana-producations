@@ -1,6 +1,4 @@
-"use client";
-
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -53,7 +51,7 @@ export default function Footer() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        
+
         {/* Top Callout Bar */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 sm:gap-6 pb-6 sm:pb-12 mb-8 sm:mb-16 border-b border-white/10">
           <div className="flex items-center gap-2.5">
@@ -75,10 +73,17 @@ export default function Footer() {
 
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-8 mb-10 sm:mb-20">
-          
+
           {/* Brand Column */}
           <div className="lg:col-span-5 space-y-5 sm:space-y-6">
             <div>
+              <div className="mb-5">
+                <img
+                  src="/logo-white.png"
+                  alt="Viyana Productions Logo"
+                  className="h-10 sm:h-12 w-auto object-contain filter brightness-110 select-none pointer-events-none"
+                />
+              </div>
               <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] text-brand-grey font-mono block mb-2">
                 CREATIVE AD AGENCY &amp; PRODUCTION STUDIO
               </span>
@@ -123,7 +128,7 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href}
+                    to={item.href}
                     className="text-white/70 hover:text-white transition-colors py-1 inline-block"
                   >
                     {item.name}
@@ -152,7 +157,7 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href}
+                    to={item.href}
                     className="text-white/70 hover:text-white transition-colors py-1 inline-block"
                   >
                     {item.name}
@@ -196,17 +201,6 @@ export default function Footer() {
                     <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
                       <polygon points="10 15 15 12 10 9 10 15" fill="currentColor" stroke="none" />
-                    </svg>
-                  )
-                },
-                {
-                  name: "LinkedIn",
-                  href: "https://linkedin.com",
-                  icon: (
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                      <rect width="4" height="12" x="2" y="9" />
-                      <circle cx="4" cy="4" r="2" />
                     </svg>
                   )
                 },
@@ -263,10 +257,10 @@ export default function Footer() {
           </p>
 
           <div className="flex space-x-6">
-            <Link href="/privacy" className="hover:text-white transition-colors py-1">
+            <Link to="/privacy" className="hover:text-white transition-colors py-1">
               Privacy
             </Link>
-            <Link href="/terms" className="hover:text-white transition-colors py-1">
+            <Link to="/terms" className="hover:text-white transition-colors py-1">
               Terms
             </Link>
           </div>

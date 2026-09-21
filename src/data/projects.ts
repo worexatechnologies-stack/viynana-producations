@@ -67,13 +67,12 @@ export const projects: Project[] = [
     client: "Vanguard Mobility & Tech",
     director: "Elena Rostova",
     deliverableType: "High-Conversion Multi-Platform Advertisement Campaign",
-    thumbnail: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "/images/vanguard-mobility-tech.jpg",
     description: "A dynamic advertising campaign engineered for high consumer conversion across digital, social, and broadcast platforms. Combining sharp visual effects, fast camera moves, and compelling value hooks.",
     scope: ["Campaign Creative Strategy", "Dynamic Product & Automotive Rigging", "Motion Control CineBot", "Multi-Aspect Deliverables (16:9, 9:16, 1:1)"],
     impact: "+310% Engagement and record click-through across national digital launches",
     gallery: [
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop"
+      "/images/vanguard-mobility-tech.jpg"
     ]
   },
   {

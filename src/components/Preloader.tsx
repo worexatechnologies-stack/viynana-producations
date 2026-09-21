@@ -1,7 +1,4 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 export default function Preloader() {
   const [progress, setProgress] = useState(0);
@@ -9,7 +6,6 @@ export default function Preloader() {
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
-    // Disable preloader completely on mobile / touch devices or if already shown in session
     const isMobile = typeof window !== "undefined" && (window.innerWidth < 768 || window.matchMedia("(pointer: coarse)").matches);
     const hasSeenPreloader = typeof window !== "undefined" && sessionStorage.getItem("viyana_preloaded");
 
@@ -27,7 +23,7 @@ export default function Preloader() {
     }
 
     const startTime = performance.now();
-    const duration = 900; // Fast & smooth 0.9s intro on desktop
+    const duration = 900;
 
     let animationFrameId: number;
 
@@ -49,7 +45,6 @@ export default function Preloader() {
 
     animationFrameId = requestAnimationFrame(updateProgress);
 
-    // Hard fallback safety timer
     const safetyTimer = setTimeout(() => {
       setProgress(100);
       setIsFading(true);
@@ -85,20 +80,14 @@ export default function Preloader() {
 
       {/* Center Cinematic Brand Logo & Name */}
       <div className="flex flex-col items-center justify-center text-center space-y-4 my-auto">
-        <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden border border-white/30 bg-brand-dark mb-2 shadow-[0_0_40px_rgba(255,255,255,0.15)] animate-pulse">
-          <Image
-            src="/logo.jpg"
-            alt="Viyana Logo"
-            fill
-            sizes="64px"
-            className="object-cover"
-            priority
+        <div className="relative mb-2">
+          <img
+            src="/logo-white.png"
+            alt="Viyana Productions Logo"
+            className="w-auto h-24 sm:h-32 object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.25)] filter brightness-110"
           />
         </div>
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif tracking-tighter uppercase text-white">
-          VIYANA
-        </h1>
-        <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-white/70 font-mono">
+        <p className="text-[10px] sm:text-xs uppercase tracking-[0.35em] text-white/70 font-mono">
           Creative Ad Agency × Production Studio
         </p>
 

@@ -1,14 +1,12 @@
-"use client";
-
 import { ReactLenis, useLenis, type LenisRef } from "lenis/react";
 import "lenis/dist/lenis.css";
 import { ReactNode, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { useLocation } from "react-router-dom";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 function ScrollBridge() {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
   const lenis = useLenis();
 
   // Instant scroll reset on route change without frame locks
@@ -75,4 +73,3 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     </ReactLenis>
   );
 }
-
