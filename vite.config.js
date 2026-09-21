@@ -23,9 +23,9 @@ export default defineConfig({
         host: true,
         port: 4173,
     },
-    base: "./",
+    base: "/",
     build: {
-        outDir: "dist",
+        outDir: "build",
         assetsDir: "assets",
         rollupOptions: {
             output: {

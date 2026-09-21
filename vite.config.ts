@@ -24,7 +24,7 @@ export default defineConfig({
     host: true,
     port: 4173,
   },
-  base: "./",
+  base: "/",
   build: {
     outDir: "build",
     assetsDir: "assets",
