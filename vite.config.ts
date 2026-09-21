@@ -26,7 +26,7 @@ export default defineConfig({
   },
   base: "./",
   build: {
-    outDir: "dist",
+    outDir: "build",
     assetsDir: "assets",
     rollupOptions: {
       output: {
