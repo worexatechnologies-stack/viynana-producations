@@ -57,10 +57,20 @@ export default function ContactPage() {
         }),
       });
 
-      const data = await res.json();
+      const text = await res.text();
+      let data: { success?: boolean; error?: string } = {};
+
+      try {
+        data = JSON.parse(text);
+      } catch {
+        // If server returns HTML instead of JSON (e.g. 404 or 500), handle gracefully
+        if (!res.ok) {
+          throw new Error("Unable to connect to contact server right now.");
+        }
+      }
 
       if (!res.ok || !data.success) {
-        throw new Error(data.error || "Failed to send message.");
+        throw new Error(data.error || "Failed to send message. Please reach us directly via WhatsApp or Email.");
       }
 
       setSubmitted(true);
