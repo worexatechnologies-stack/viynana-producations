@@ -52,8 +52,8 @@ function AppRoutes() {
           <Route path="/press" element={<PressPage />} />
           <Route path="/producers" element={<ProducersPage />} />
           <Route path="/original-content" element={<OriginalContentPage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPage />} />
+          <Route path="/terms-and-conditions" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </SmoothScroll>

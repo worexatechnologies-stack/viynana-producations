@@ -158,14 +158,14 @@ export default function ContactPage() {
                   Phone / WhatsApp
                 </span>
                 <a
-                  href="tel:+919187233616"
+                  href="tel:+919187233615"
                   className="text-xl sm:text-2xl font-mono text-white hover:text-brand-light transition-colors block"
                 >
-                  +91 91872 33616
+                  +91 91872 33615
                 </a>
                 <div className="pt-1">
                   <a
-                    href="https://wa.me/919187233616?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20discuss%20a%20project."
+                    href="https://wa.me/919187233615?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20discuss%20a%20project."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white border border-white/20 text-xs font-mono uppercase tracking-wider transition-colors w-full sm:w-auto"
@@ -184,9 +184,10 @@ export default function ContactPage() {
                 <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10">
                   <h3 className="text-sm font-serif uppercase text-white mb-1">Bengaluru</h3>
                   <p className="text-xs text-brand-grey leading-relaxed">
-                    3rd Phase, Banashankari 3rd Stage,<br />
-                    Banashankari, Bengaluru,<br />
-                    Karnataka 560085
+                    4th floor, Gopalan Workspace,<br />
+                    Kathriguppe Main Rd, 3rd Phase,<br />
+                    Banashankari 3rd Stage, Banashankari,<br />
+                    Bengaluru, Karnataka 560085
                   </p>
                 </div>
               </div>
@@ -357,12 +358,12 @@ export default function ContactPage() {
                         <p className="text-[11px] text-red-200/70">
                           Need instant assistance? Reach us directly on WhatsApp at{" "}
                           <a
-                            href="https://wa.me/919187233616"
+                            href="https://wa.me/919187233615"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="underline text-white font-medium"
                           >
-                            +91 91872 33616
+                            +91 91872 33615
                           </a>
                         </p>
                       </div>
@@ -412,7 +413,7 @@ export default function ContactPage() {
               </h2>
             </div>
             <a
-              href="https://www.google.com/maps?q=3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
+              href="https://www.google.com/maps?q=4th+floor,+Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white hover:text-black active:scale-95 text-white text-xs font-sans uppercase tracking-widest font-semibold border border-white/20 transition-all shadow-md w-full sm:w-auto justify-center"
@@ -428,7 +429,7 @@ export default function ContactPage() {
               {/* Embedded Google Map */}
               <iframe
                 title="Viyana Productions Studio Location"
-                src="https://maps.google.com/maps?q=3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Bengaluru,+Karnataka+560085&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -450,14 +451,15 @@ export default function ContactPage() {
                   Viyana Productions
                 </h3>
                 <p className="text-xs text-brand-grey leading-relaxed mb-3">
-                  3rd Phase, Banashankari 3rd Stage,<br />
-                  Banashankari, Bengaluru,<br />
-                  Karnataka 560085
+                  4th floor, Gopalan Workspace,<br />
+                  Kathriguppe Main Rd, 3rd Phase,<br />
+                  Banashankari 3rd Stage, Banashankari,<br />
+                  Bengaluru, Karnataka 560085
                 </p>
                 <div className="flex items-center justify-between pt-2.5 border-t border-white/10 text-[11px] text-white/70">
                   <span>Mon – Sat: 9:30 AM – 7:30 PM</span>
                   <a
-                    href="https://www.google.com/maps?q=3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
+                    href="https://www.google.com/maps?q=4th+floor,+Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white hover:underline font-medium"
@@ -480,12 +482,12 @@ export default function ContactPage() {
                 Viyana Productions
               </h3>
               <p className="text-xs text-brand-grey leading-relaxed mb-3">
-                3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
+                4th floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
               </p>
               <div className="flex items-center justify-between pt-2.5 border-t border-white/10 text-xs text-white/80">
                 <span>Mon – Sat: 9:30 AM – 7:30 PM</span>
                 <a
-                  href="https://www.google.com/maps?q=3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
+                  href="https://www.google.com/maps?q=4th+floor,+Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-mono font-medium underline underline-offset-2"

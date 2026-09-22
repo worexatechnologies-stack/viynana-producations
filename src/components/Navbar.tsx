@@ -319,8 +319,8 @@ export default function Navbar() {
                 <a href="mailto:info.viyanaproductions@gmail.com" className="text-sm font-sans text-white/80 hover:text-white">
                   info.viyanaproductions@gmail.com
                 </a>
-                <a href="tel:+919187233616" className="text-sm font-sans text-white/80 hover:text-white">
-                  +91 91872 33616
+                <a href="tel:+919187233615" className="text-sm font-sans text-white/80 hover:text-white">
+                  +91 91872 33615
                 </a>
               </div>
               <div className="flex gap-4">

@@ -126,9 +126,9 @@ export default function DirectorsPage() {
 
             {/* Monumental Headline */}
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tight uppercase leading-[0.92] text-white mb-8">
-              A DISTINCT POINT <br />
+              STORIES SHAPED <br />
               <span className="italic font-normal text-white">
-                OF VIEW FOR EVERY STORY.
+                BY DISTINCTIVE VISION.
               </span>
             </h1>
 
@@ -136,7 +136,7 @@ export default function DirectorsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pt-2">
               <div className="lg:col-span-8 space-y-6">
                 <p className="text-base sm:text-xl text-brand-grey font-light leading-relaxed max-w-2xl">
-                  Explore our directors by discipline, each bringing a unique visual language, creative perspective, and storytelling approach to every production.
+                  A curated roster of directors bringing unique creative perspectives, visual language, and storytelling techniques to every production.
                 </p>
                 <a
                   href="#director-roster"
@@ -764,7 +764,7 @@ export default function DirectorsPage() {
               <div className="pt-6 border-t border-white/10 space-y-3">
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
-                    href={`https://wa.me/919187233616?text=${encodeURIComponent(
+                    href={`https://wa.me/919187233615?text=${encodeURIComponent(
                       `Hello Viyana Productions! I would like to check availability and treatment details for director ${selectedDirectorForDrawer.name}.`
                     )}`}
                     target="_blank"
@@ -796,23 +796,23 @@ export default function DirectorsPage() {
 
         <div className="container mx-auto max-w-4xl space-y-6 relative z-10">
           <span className="text-xs font-mono uppercase tracking-[0.3em] text-white/60 block">
-            NEED A DIRECTORIAL RECOMMENDATION?
+            TELL US ABOUT YOUR PROJECT.
           </span>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-syne font-bold text-white uppercase tracking-tight">
-            Match your brief with the ideal filmmaker.
+            Have a story in mind?
           </h2>
           <p className="text-sm sm:text-base text-brand-grey font-light max-w-lg mx-auto">
-            Our executive producers analyze your script, visual ambitions, and budget parameters to recommend the perfect directorial approach.
+            Tell us a little about your project, and let&apos;s explore how we can bring it to life.
           </p>
           <div className="pt-4 flex flex-wrap justify-center gap-4">
             <Link
               to="/contact"
               className="px-8 py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-brand-light transition-all shadow-xl hover:scale-105"
             >
-              Start Director Inquiry →
+              START A CONVERSATION →
             </Link>
             <a
-              href="https://wa.me/919187233616?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20consult%20with%20an%20executive%20producer%20about%20your%20directing%20roster."
+              href="https://wa.me/919187233615?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20consult%20with%20an%20executive%20producer%20about%20your%20directing%20roster."
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/25 font-mono text-xs uppercase tracking-widest transition-colors inline-flex items-center gap-2"

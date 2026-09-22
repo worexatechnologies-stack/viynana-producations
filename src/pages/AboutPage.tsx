@@ -14,140 +14,52 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-const disciplines = [
+const pillarsOfImpact = [
   {
     num: "01",
     slug: "the-next-move",
-    title: "Commercial Ads",
-    tagline: "High-impact commercial films built to convert.",
-    desc: "We create full-scale commercial advertising campaigns combining cinematic film, dynamic camera choreography, and high-impact visual narrative engineered for TV broadcast and global digital channels.",
+    title: "Advertising & Creative Strategy",
+    tagline: "Ideas built to move brands forward.",
+    desc: "We develop advertising concepts and creative strategies that connect brand objectives with compelling storytelling. From campaign thinking to multi-channel execution, we create ideas designed to reach the right audience and create meaningful impact.",
     deliverables: [
-      "National TVCs & Commercial Films",
-      "Digital Ad Campaigns",
-      "Campaign Creative Direction",
-      "Paid Social Video Creatives",
-      "High-Impact Commercial Spots",
-      "Multi-Channel Ad Rollout Plans",
+      "Cinematic Commercial Scriptwriting",
+      "Creative Concept & Campaign Strategy",
+      "Brand Narrative & Art Direction",
+      "Digital & Multi-Channel Campaigns",
+      "Social & Performance Creative",
+      "Integrated Campaign Rollout Plans",
     ],
   },
   {
     num: "02",
     slug: "silent-echo",
-    title: "Cinematic Content Shoot",
-    tagline: "Atmospheric brand films and cinematic visual storytelling.",
-    desc: "We produce luxury cinematic content shoots and brand narratives that merge poetic cinematography with immersive sound design to elevate brand equity and forge lasting emotional resonance.",
+    title: "Film & Video Production",
+    tagline: "Stories brought to life, frame by frame.",
+    desc: "We produce films that combine strong storytelling with cinematic craft. From commercials and brand films to documentaries and fashion content, our production approach is built around creating visuals that people want to watch and remember.",
     deliverables: [
-      "Cinematic Content Direction",
-      "Luxury Fashion & Lifestyle Shoots",
-      "Corporate Vision & Culture Films",
-      "Product Philosophy Narratives",
-      "Anamorphic Lighting & Grading",
-      "Global Brand Campaign Shoots",
+      "National TVCs & Digital Commercials",
+      "Brand Films & Documentaries",
+      "Fashion & Lifestyle Films",
+      "Corporate & Promotional Films",
+      "Cinematography & Production",
+      "Editing & Post-Production",
+      "Colour Grading & Finishing",
     ],
   },
   {
     num: "03",
-    slug: "lumina-prime",
-    title: "Advertisement",
-    tagline: "High-converting multi-platform advertising campaigns.",
-    desc: "Dynamic, fast-paced commercial advertisements designed to drive brand recall and high conversion rates across national television, digital streaming, and multi-format social platforms.",
-    deliverables: [
-      "TV & OTT Commercial Ads",
-      "Digital Growth Ad Creatives",
-      "Automotive & Tech Rigging",
-      "High-Conversion Social Hooks",
-      "Multi-Aspect Video Formats",
-      "Paid Media Campaign Assets",
-    ],
-  },
-  {
-    num: "04",
-    slug: "vogue-silhouette",
-    title: "Models Portfolio Shoots",
-    tagline: "High-fashion lookbooks and agency model portfolios.",
-    desc: "Editorial model portfolio productions tailored for international agencies, high-fashion brands, and model lookbooks. Sculpted studio lighting, couture aesthetics, and high-end beauty finishing.",
-    deliverables: [
-      "High-Fashion Lookbooks & Editorials",
-      "Agency Model Comp Card Suites",
-      "Studio & Outdoor Portraiture",
-      "Couture Styling & Art Direction",
-      "High-End Skin Retouching",
-      "Magazine Cover & Editorial Delivery",
-    ],
-  },
-  {
-    num: "05",
-    slug: "neon-horizons",
-    title: "Vertical Series",
-    tagline: "9:16 mobile-first episodic storytelling.",
-    desc: "A breakthrough medium designed natively for smartphone screens. We engineer gripping episodic micro-series combining fast-paced narratives, cyber visual effects, and mobile-optimized sound design.",
-    deliverables: [
-      "9:16 Mobile-First Episodic Direction",
-      "Vertical Micro-Drama Scripts",
-      "Short-Form Episodic VFX",
-      "Mobile Audio Mixing & Sound",
-      "Social-First Series Production",
-      "High-Retention Vertical Framing",
-    ],
-  },
-  {
-    num: "06",
-    slug: "hyper-dimension",
-    title: "Web Series",
-    tagline: "Episodic digital originals for OTT streaming.",
-    desc: "Full-scale episodic digital series exploring rich narrative worlds. From multi-episode sci-fi and thrillers to character-driven drama, engineered for digital streaming platforms.",
-    deliverables: [
-      "Showrunning & Narrative Direction",
-      "Multi-Episode Digital Series",
-      "Virtual Production & VFX",
-      "4K HDR OTT Mastering",
-      "Soundtrack & Full Audio Post",
-      "Streaming Platform Packaging",
-    ],
-  },
-  {
-    num: "07",
-    slug: "made-to-be-seen",
-    title: "Short Films",
-    tagline: "Auteur cinema and festival-grade storytelling.",
-    desc: "We write, direct, and produce narrative short films that explore human complexity through evocative optical cinematography, tactile sound, and profound thematic depth.",
-    deliverables: [
-      "Original Screenwriting & Development",
-      "Festival-Grade Cinematography",
-      "Auteur Directorial Vision",
-      "Colour Timing & Finishing",
-      "Festival Circuit Strategy",
-      "Theatrical Master Delivery",
-    ],
-  },
-  {
-    num: "08",
-    slug: "beyond-the-horizon",
-    title: "Film Production",
-    tagline: "Full-scale cinematic feature productions.",
-    desc: "From principal cinematography and large-scale practical sets to executive co-productions, we deliver feature film projects built for theatrical release and global distribution.",
-    deliverables: [
-      "Theatrical Feature Co-Production",
-      "Executive & Line Production",
-      "Principal 65mm & 4K Cinematography",
-      "Large-Scale Production Logistics",
-      "Theatrical Dolby Atmos Mixing",
-      "Global Distribution Deliverables",
-    ],
-  },
-  {
-    num: "09",
     slug: "genesis",
-    title: "Graphic Design",
-    tagline: "Visual brand identities and key visuals.",
-    desc: "We engineer cohesive visual systems, custom typography, 3D key visual artwork, and editorial design that establish unforgettable brand iconography.",
+    title: "Graphic & Visual Design",
+    tagline: "Visual identities built to be remembered.",
+    desc: "Design is more than aesthetics. It's how a brand becomes recognisable. We create visual systems that bring consistency and personality across every touchpoint — from brand identity and campaigns to digital platforms, packaging, and social media.",
     deliverables: [
       "Visual Identity & Brand Systems",
-      "Key Visuals & Campaign Artwork",
-      "Typography & Editorial Systems",
+      "Logo & Brand Identity Design",
+      "Typography & Editorial Design",
       "Print, Packaging & OOH Billboards",
-      "Motion Graphics & Title Design",
-      "Brand Guidelines & Design Kits",
+      "Digital & Social Media Design",
+      "Campaign Creative & Art Direction",
+      "Presentation & Marketing Collateral",
     ],
   },
 ];
@@ -417,7 +329,7 @@ export default function AboutPage() {
               className="flex items-center gap-3 text-xs font-mono uppercase tracking-[0.3em] text-white/50 mb-4"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span>WHAT WE DO</span>
+              <span>THREE PILLARS OF IMPACT</span>
             </motion.div>
 
             {/* Headline matching user design */}
@@ -425,10 +337,10 @@ export default function AboutPage() {
               variants={headerRevealVariants}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-syne font-bold text-white uppercase tracking-tight leading-[1.08] mb-5"
             >
-              NINE PILLARS OF{" "}
+              THREE PILLARS OF{" "}
               <br className="hidden sm:inline" />
               <span className="relative inline-block text-white">
-                PRODUCTION<span className="text-white">.</span>
+                IMPACT<span className="text-white">.</span>
                 <motion.span 
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
@@ -443,7 +355,7 @@ export default function AboutPage() {
               variants={headerRevealVariants}
               className="text-sm sm:text-base md:text-lg text-brand-grey font-light leading-relaxed max-w-3xl"
             >
-              We engineer commercial ads, cinematic content shoots, high-conversion advertisements, models portfolio shoots, mobile vertical series, OTT web series, festival short films, theatrical feature film production, and complete graphic design systems.
+              We bring together advertising strategy, cinematic video production, and visual design to create communication that captures attention, builds brands, and drives impact.
             </motion.p>
           </motion.div>
 
@@ -455,7 +367,7 @@ export default function AboutPage() {
             viewport={{ once: true, amount: 0.08 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           >
-            {disciplines.map((d) => {
+            {pillarsOfImpact.map((d) => {
               return (
                 <motion.div
                   key={d.num}
@@ -578,7 +490,7 @@ export default function AboutPage() {
                 Based in Bangalore, India.
               </h2>
               <p className="text-xs sm:text-sm text-brand-grey font-light leading-relaxed max-w-lg">
-                Located at 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085 — our creative space operates as our central hub for creative development, post-production, sound engineering, and visual design.
+                Located at 4th floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085 — our creative space operates as our central hub for creative development, post-production, sound engineering, and visual design.
               </p>
               <div className="pt-2 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-4 text-xs font-mono text-white/70">
                 <span className="flex items-center gap-1.5">
@@ -600,7 +512,7 @@ export default function AboutPage() {
                 <span>Initiate A Brief →</span>
               </Link>
               <a
-                href="https://wa.me/919187233616?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20discuss%20a%20project."
+                href="https://wa.me/919187233615?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 font-mono text-xs uppercase tracking-widest active:scale-95 transition-colors"
@@ -617,26 +529,26 @@ export default function AboutPage() {
       <section className="py-16 sm:py-28 px-4 sm:px-10 lg:px-16 border-t border-white/10 bg-brand-dark/50 text-center">
         <div className="container mx-auto max-w-4xl space-y-4 sm:space-y-6">
           <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] text-white/50 block">
-            READY TO COLLABORATE?
+            CTA
           </span>
           <h2 className="text-2xl sm:text-5xl md:text-6xl font-syne font-bold text-white uppercase tracking-tight">
-            Let&apos;s build something memorable.
+            HAVE A PROJECT IN MIND?
           </h2>
-          <p className="text-xs sm:text-base text-brand-grey font-light max-w-lg mx-auto">
-            Whether a full-scale commercial campaign, video project, or brand rebrand, we&apos;re ready to bring your vision to life.
+          <p className="text-sm sm:text-xl font-serif italic text-brand-light max-w-lg mx-auto">
+            LET&apos;S CREATE
           </p>
           <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 w-full sm:w-auto max-w-xs sm:max-w-none mx-auto">
             <Link
               to="/contact"
               className="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-semibold hover:bg-brand-light active:scale-95 transition-all shadow-xl text-center"
             >
-              Get In Touch →
+              START A PROJECT →
             </Link>
             <Link
               to="/work"
               className="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-mono text-xs uppercase tracking-widest active:scale-95 transition-colors text-center"
             >
-              Explore Our Work
+              EXPLORE OUR WORK
             </Link>
           </div>
         </div>

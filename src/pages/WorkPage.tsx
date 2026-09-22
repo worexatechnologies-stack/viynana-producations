@@ -7,6 +7,15 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Tv, Video, Camera, Clapperboard, Palette } from "lucide-react";
+
+const coreCapabilities = [
+  { name: "Advertisement & management", icon: Tv },
+  { name: "Production and shoot", icon: Video },
+  { name: "Photo & video shoot", icon: Camera },
+  { name: "Production house", icon: Clapperboard },
+  { name: "Branding", icon: Palette },
+];
 
 interface DisciplineGroup {
   id: string;
@@ -317,37 +326,120 @@ export default function WorkPage() {
 
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="flex flex-col">
-            {/* Top Tagline & Index */}
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-10 h-px bg-white/40" />
-              <span className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-brand-grey font-mono font-medium">
-                PORTFOLIO &amp; ARCHIVE
+            {/* Top Brand Banner */}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-5 text-[10px] sm:text-xs font-mono tracking-widest uppercase text-white/70">
+              <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-semibold">
+                VIYANA PRODUCTIONS
+              </span>
+              <span className="text-white/30 hidden sm:inline">•</span>
+              <span className="text-white/60">
+                CREATIVE ADVERTISING × VIDEO PRODUCTION × GRAPHIC DESIGN × BRANDING × PHOTO &amp; VIDEO SHOOT
               </span>
             </div>
 
-            {/* Stepped Title: 'WORK' starts precisely under the letter 'T' in 'SELECTED' */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8vw] font-serif tracking-tighter uppercase leading-[0.88] text-white select-none mb-6">
+            {/* Stepped Title: SELECTED WORK */}
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7.5vw] font-serif tracking-tighter uppercase leading-[0.88] text-white select-none mb-6">
               <span className="block hover:text-brand-light transition-colors">SELECTED</span>
-              <span className="flex items-baseline text-brand-light/90 italic font-serif">
+              <span className="flex items-baseline text-brand-light/95 italic font-serif">
                 <span className="invisible select-none opacity-0 pointer-events-none" aria-hidden="true">SELEC</span>
-                <span>WORK</span>
+                <span>WORK.</span>
               </span>
             </h1>
 
-            {/* Editorial Overview & Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-6 border-t border-white/10 items-end">
-              <div className="md:col-span-8">
-                <p className="text-sm sm:text-base md:text-lg font-light text-brand-grey max-w-2xl leading-relaxed">
-                  A curated archive of commercial campaigns, luxury brand films, and visual identity systems crafted with cinematic fidelity.
-                </p>
+            {/* Headline Subtitle & Capabilities */}
+            <div className="space-y-6 pt-2 pb-6 border-b border-white/10">
+              <p className="text-base sm:text-lg md:text-2xl font-light text-white/90 max-w-3xl leading-relaxed">
+                We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
+              </p>
+
+              {/* Core Capabilities Pills */}
+              <div className="flex flex-wrap gap-2 sm:gap-3">
+                {coreCapabilities.map((cap) => {
+                  const Icon = cap.icon;
+                  return (
+                    <span
+                      key={cap.name}
+                      className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full bg-white/[0.04] border border-white/15 hover:border-white/40 text-white/90 text-xs font-mono uppercase tracking-wider transition-colors"
+                    >
+                      <Icon className="w-3.5 h-3.5 text-white/70" />
+                      <span>{cap.name}</span>
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Creative Philosophy & About Viyana Card */}
+            <div className="mt-8 p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-white/[0.02] border border-white/15 backdrop-blur-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
+
+              {/* Philosophy Header */}
+              <div className="flex items-center gap-2.5 text-xs font-mono uppercase tracking-[0.25em] text-white/60 mb-6">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                <span>OUR CREATIVE PHILOSOPHY</span>
               </div>
 
-              <div className="md:col-span-4 flex md:justify-end items-center gap-4 sm:gap-6 text-xs uppercase font-mono tracking-widest text-brand-grey">
+              {/* 3 Pillars */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pb-8 mb-8 border-b border-white/10">
+                <div className="space-y-2">
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block">[ 01 ]</span>
+                  <h3 className="text-2xl sm:text-3xl font-syne font-bold uppercase tracking-tight text-white">
+                    IDEAS FIRST.
+                  </h3>
+                </div>
+                <div className="space-y-2">
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block">[ 02 ]</span>
+                  <h3 className="text-2xl sm:text-3xl font-syne font-bold uppercase tracking-tight text-white">
+                    VISUALS WITH PURPOSE.
+                  </h3>
+                </div>
+                <div className="space-y-2">
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block">[ 03 ]</span>
+                  <h3 className="text-2xl sm:text-3xl font-syne font-bold uppercase tracking-tight text-white">
+                    STORIES THAT STAY.
+                  </h3>
+                </div>
+              </div>
+
+              {/* About Viyana Sub-Block */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-start">
+                <div className="lg:col-span-5 space-y-2">
+                  <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/50 block">
+                    ABOUT VIYANA
+                  </span>
+                  <h4 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white tracking-tight uppercase leading-tight">
+                    We Turn Ideas Into <br />
+                    <span className="italic font-normal text-white">Visual Experiences.</span>
+                  </h4>
+                </div>
+
+                <div className="lg:col-span-7 space-y-4 text-xs sm:text-sm md:text-base text-brand-grey font-light leading-relaxed">
+                  <p>
+                    Viyana Productions is a creative production and advertising agency focused on helping ambitious brands communicate through powerful visuals.
+                  </p>
+                  <p>
+                    We combine creative thinking, advertising strategy, storytelling, video production, and graphic design to create content that doesn&apos;t just look good it has a purpose.
+                  </p>
+                  <p className="text-white/80">
+                    Whether you&apos;re launching a new product, promoting a service, building a brand, or running an advertising campaign, we help transform your vision into content that people notice.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Archive Filter Stats Strip */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-8 text-xs uppercase font-mono tracking-widest text-brand-grey">
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-px bg-white/30" />
+                <span className="text-white font-medium">CURATED ARCHIVE &amp; CASE STUDIES</span>
+              </div>
+              <div className="flex items-center gap-4 sm:gap-6">
                 <span>TOTAL // <strong className="text-white font-normal">0{projects.length} CASE STUDIES</strong></span>
                 <span className="text-white/20">•</span>
                 <span className="text-white font-semibold">ALL DISCIPLINES</span>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -492,22 +584,72 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* 4. BOTTOM STUDIO CTA */}
-      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-12 bg-brand-dark text-center border-t border-white/10 mt-10 sm:mt-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
-        <div className="container mx-auto max-w-4xl relative z-10">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-syne font-bold uppercase tracking-tight mb-4 text-white">
-            HAVE A PROJECT IN MIND?
+      {/* 4. ABOUT VIYANA - IDEAS INTO VISUAL STORIES */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-brand-dark/40 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none rounded-full" />
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent border border-white/15 backdrop-blur-xl grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+            <div className="lg:col-span-5 space-y-4">
+              <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/50 block">
+                ABOUT VIYANA
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-serif uppercase tracking-tight text-white leading-tight">
+                IDEAS INTO <br />
+                <span className="italic font-normal text-white">VISUAL STORIES.</span>
+              </h2>
+              <div className="pt-2">
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-brand-light active:scale-95 transition-all shadow-lg"
+                >
+                  <span>MORE ABOUT VIYANA →</span>
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 space-y-4">
+              <p className="text-base sm:text-lg text-white/95 font-light leading-relaxed">
+                Viyana Productions creates advertising, films, and visual experiences for brands that want to stand out.
+              </p>
+              <p className="text-sm sm:text-base text-brand-grey font-light leading-relaxed">
+                From the first concept to the final frame, we combine creative thinking with cinematic production and purposeful design to create work that people notice and remember.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. BOTTOM CTA: HAVE A STORY TO TELL? */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 bg-brand-dark text-center border-t border-white/10 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04)_0%,transparent_70%)] pointer-events-none rounded-full" />
+        <div className="container mx-auto max-w-4xl relative z-10 space-y-6">
+          <span className="text-xs font-mono uppercase tracking-[0.3em] text-white/60 block">
+            HAVE A STORY TO TELL?
+          </span>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-syne font-bold uppercase tracking-tight text-white">
+            Let&apos;s give it the frame it deserves.
           </h2>
-          <p className="text-xs sm:text-sm md:text-base text-brand-grey max-w-lg mx-auto mb-6 font-light">
-            We partner with ambitious brands across advertising campaigns, commercial films, and visual design.
+          <p className="text-sm sm:text-base text-brand-grey max-w-xl mx-auto font-light leading-relaxed">
+            We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
           </p>
-          <Link
-            to="/contact"
-            className="w-full sm:w-auto max-w-xs sm:max-w-none inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-brand-light text-brand-black text-xs uppercase tracking-widest font-semibold hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl"
-          >
-            <span>START THE CONVERSATION →</span>
-          </Link>
+
+          <div className="pt-3 flex flex-col sm:flex-row justify-center gap-4">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-brand-light hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl"
+            >
+              <span>START A PROJECT →</span>
+            </Link>
+          </div>
+
+          <div className="pt-10 mt-8 border-t border-white/10 flex flex-col items-center gap-2 text-center">
+            <span className="text-xs font-mono uppercase tracking-widest text-white/40 font-semibold">
+              VIYANA PRODUCTIONS
+            </span>
+            <p className="text-[11px] sm:text-xs font-mono text-white/60 uppercase tracking-wider max-w-2xl leading-relaxed">
+              CREATIVE ADVERTISING × VIDEO PRODUCTION × GRAPHIC DESIGN × BRANDING × PHOTO &amp; VIDEO SHOOT
+            </p>
+          </div>
         </div>
       </section>
 

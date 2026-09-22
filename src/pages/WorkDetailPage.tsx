@@ -186,6 +186,11 @@ export default function ProjectDetail() {
                 </div>
 
                 <div className="space-y-4 text-brand-grey font-light text-sm sm:text-base leading-relaxed border-t border-white/10 pt-6">
+                  {project.fullDescription && (
+                    <p className="text-white/90">
+                      {project.fullDescription}
+                    </p>
+                  )}
                   <p>
                     Engineered from core conceptual strategy to final master delivery, this {project.category.toLowerCase()} production encapsulates Viyana&apos;s full-pipeline discipline: marrying strategic narrative, bold visual aesthetics, and uncompromising execution.
                   </p>
@@ -194,11 +199,59 @@ export default function ProjectDetail() {
                   </p>
                 </div>
 
+                {/* Creative Approach Callout */}
+                {project.creativeApproach && (
+                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/15 space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/50 block">
+                      CREATIVE APPROACH
+                    </span>
+                    <p className="text-sm sm:text-base text-white/90 font-light leading-relaxed">
+                      {project.creativeApproach}
+                    </p>
+                  </div>
+                )}
+
+                {/* Project Highlights Grid */}
+                {project.highlights && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    {project.highlights.map((h, hIdx) => (
+                      <div key={hIdx} className="p-4 rounded-2xl bg-white/[0.03] border border-white/15 space-y-1">
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-white block">
+                          {h.title}
+                        </span>
+                        <span className="text-xs text-brand-grey font-light block">
+                          {h.subtitle}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Key Features Badges */}
+                {project.keyFeatures && (
+                  <div className="space-y-3 pt-2">
+                    <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
+                      KEY FEATURES
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {project.keyFeatures.map((feat, fIdx) => (
+                        <div
+                          key={fIdx}
+                          className="px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 text-xs font-mono text-white/90 flex items-center gap-2"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Scope Badges */}
                 {project.scope && (
                   <div className="space-y-3 pt-2">
                     <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
-                      DELIVERABLE SCOPE &amp; PIPELINE
+                      DELIVERABLES &amp; PRODUCTION SCOPE
                     </span>
                     <div className="flex flex-wrap gap-2.5">
                       {project.scope.map((item, idx) => (
@@ -221,7 +274,7 @@ export default function ProjectDetail() {
                   <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.03] border border-white/20 shadow-2xl space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-white/80 block font-semibold">
-                        CAMPAIGN PERFORMANCE
+                        PROJECT IMPACT &amp; REACH
                       </span>
                       <span className="text-xs font-mono text-white/40">VERIFIED</span>
                     </div>
@@ -242,39 +295,55 @@ export default function ProjectDetail() {
                   </span>
 
                   <div className="divide-y divide-white/10 text-xs font-mono">
-                    <div className="py-2.5 flex justify-between">
-                      <span className="text-brand-grey">STUDIO</span>
-                      <span className="text-white font-medium">Viyana Productions</span>
-                    </div>
-                    <div className="py-2.5 flex justify-between">
-                      <span className="text-brand-grey">CLIENT</span>
-                      <span className="text-white font-medium">{project.client}</span>
-                    </div>
-                    <div className="py-2.5 flex justify-between">
-                      <span className="text-brand-grey">DIRECTOR</span>
-                      <span className="text-white font-medium">{project.director || "Viyana Creative Lab"}</span>
-                    </div>
-                    <div className="py-2.5 flex justify-between">
-                      <span className="text-brand-grey">CAPTURE FORMAT</span>
-                      <span className="text-white font-medium">4K DCI Large Format</span>
-                    </div>
-                    <div className="py-2.5 flex justify-between">
-                      <span className="text-brand-grey">COLOR PIPELINE</span>
-                      <span className="text-white font-medium">ACEScc • 16-Bit Float</span>
-                    </div>
-                    <div className="py-2.5 flex justify-between">
-                      <span className="text-brand-grey">RELEASE YEAR</span>
-                      <span className="text-white font-medium">{project.year}</span>
-                    </div>
+                    {project.credits ? (
+                      Object.entries(project.credits).map(([key, val]) => (
+                        <div key={key} className="py-2.5 flex justify-between gap-3">
+                          <span className="text-brand-grey uppercase tracking-wider text-[11px] shrink-0">{key}</span>
+                          <span className="text-white font-medium text-right">{val}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <>
+                        <div className="py-2.5 flex justify-between">
+                          <span className="text-brand-grey">STUDIO</span>
+                          <span className="text-white font-medium">Viyana Productions</span>
+                        </div>
+                        <div className="py-2.5 flex justify-between">
+                          <span className="text-brand-grey">CLIENT</span>
+                          <span className="text-white font-medium">{project.client}</span>
+                        </div>
+                        <div className="py-2.5 flex justify-between">
+                          <span className="text-brand-grey">DIRECTOR</span>
+                          <span className="text-white font-medium">{project.director || "Viyana Creative Lab"}</span>
+                        </div>
+                        <div className="py-2.5 flex justify-between">
+                          <span className="text-brand-grey">CAPTURE FORMAT</span>
+                          <span className="text-white font-medium">4K DCI Large Format</span>
+                        </div>
+                        <div className="py-2.5 flex justify-between">
+                          <span className="text-brand-grey">RELEASE YEAR</span>
+                          <span className="text-white font-medium">{project.year}</span>
+                        </div>
+                      </>
+                    )}
                   </div>
+
+                  {/* Tagline if provided */}
+                  {project.tagline && (
+                    <div className="pt-2 text-center border-t border-white/10">
+                      <p className="text-[11px] font-mono uppercase tracking-widest text-white/70">
+                        {project.tagline}
+                      </p>
+                    </div>
+                  )}
 
                   {/* Commission Project CTA */}
                   <div className="pt-3">
                     <Link
                       to="/contact"
-                      className="w-full py-3.5 px-4 rounded-xl bg-white text-black hover:bg-brand-light font-mono text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-white/20"
+                      className="w-full py-3.5 px-4 rounded-xl bg-white text-black hover:bg-brand-light font-mono text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-white/20 active:scale-95"
                     >
-                      <span>COMMISSION {project.category}</span>
+                      <span>{project.ctaText || `COMMISSION ${project.category}`}</span>
                       <span>→</span>
                     </Link>
                   </div>
