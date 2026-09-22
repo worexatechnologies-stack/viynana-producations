@@ -129,7 +129,7 @@ function ProjectCard({
       className="group relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-14 items-center border-b border-white/10 pb-12 sm:pb-20 last:border-b-0"
     >
       {/* Background Watermark Index */}
-      <div className="absolute -top-8 sm:-top-12 left-0 right-0 pointer-events-none select-none text-[10vw] font-serif font-bold uppercase tracking-tighter text-white/[0.018] whitespace-nowrap overflow-hidden z-0">
+      <div className="absolute -top-8 sm:-top-12 left-0 right-0 pointer-events-none select-none text-[10vw] font-display font-extrabold uppercase tracking-tighter text-white/[0.018] whitespace-nowrap overflow-hidden z-0">
         {project.title} • {group.name}
       </div>
 
@@ -215,7 +215,7 @@ function ProjectCard({
 
         {/* Title & Deliverable Type */}
         <div>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight uppercase text-white group-hover:text-brand-light transition-colors mb-2 leading-none">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight uppercase text-white group-hover:text-brand-light transition-colors mb-2 leading-none">
             <Link to={`/work/${project.slug}`}>{project.title}</Link>
           </h3>
           <p className="text-xs font-mono text-white/70 uppercase tracking-wider font-semibold">
@@ -338,9 +338,9 @@ export default function WorkPage() {
             </div>
 
             {/* Stepped Title: SELECTED WORK */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7.5vw] font-serif tracking-tighter uppercase leading-[0.88] text-white select-none mb-6">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7.5vw] font-display font-extrabold tracking-tight uppercase leading-[0.88] text-white select-none mb-6">
               <span className="block hover:text-brand-light transition-colors">SELECTED</span>
-              <span className="flex items-baseline text-brand-light/95 italic font-serif">
+              <span className="flex items-baseline text-white">
                 <span className="invisible select-none opacity-0 pointer-events-none" aria-hidden="true">SELEC</span>
                 <span>WORK.</span>
               </span>
@@ -407,9 +407,9 @@ export default function WorkPage() {
                   <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/50 block">
                     ABOUT VIYANA
                   </span>
-                  <h4 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white tracking-tight uppercase leading-tight">
+                  <h4 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white tracking-tight uppercase leading-tight">
                     We Turn Ideas Into <br />
-                    <span className="italic font-normal text-white">Visual Experiences.</span>
+                    <span className="font-bold text-white">Visual Experiences.</span>
                   </h4>
                 </div>
 
@@ -593,9 +593,9 @@ export default function WorkPage() {
               <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/50 block">
                 ABOUT VIYANA
               </span>
-              <h2 className="text-3xl sm:text-5xl font-serif uppercase tracking-tight text-white leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
                 IDEAS INTO <br />
-                <span className="italic font-normal text-white">VISUAL STORIES.</span>
+                <span className="font-bold text-white">VISUAL STORIES.</span>
               </h2>
               <div className="pt-2">
                 <Link

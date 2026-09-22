@@ -201,7 +201,7 @@ export default function HomePage() {
           <div className="flex flex-col items-center justify-center pointer-events-none z-10 px-2 sm:px-6 text-center">
             <TextReveal
               text="WE DON'T JUST MAKE FILMS. WE CREATE PERSPECTIVES."
-              className="text-2xl sm:text-4xl md:text-6xl lg:text-[7vw] leading-[1.15] font-serif tracking-tight uppercase text-balance text-brand-light justify-center"
+              className="text-2xl sm:text-4xl md:text-6xl lg:text-[7vw] leading-[1.15] font-display font-extrabold tracking-tight uppercase text-balance text-brand-light justify-center"
             />
           </div>
         </div>
@@ -213,7 +213,7 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-8 sm:gap-16">
             <div className="md:w-1/3 flex flex-col">
               <span className="text-xs uppercase tracking-widest text-brand-grey mb-4 sm:mb-8 font-mono">01 / ABOUT VIYANA</span>
-              <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif leading-tight tracking-tight mb-4 sm:mb-8 text-white">
+              <h3 className="text-2xl sm:text-4xl md:text-5xl font-display font-bold leading-tight tracking-tight mb-4 sm:mb-8 text-white uppercase">
                 IDEAS INTO<br />VISUAL STORIES.
               </h3>
               <p className="text-brand-grey text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-12 max-w-sm font-light">
@@ -264,7 +264,7 @@ export default function HomePage() {
               <span className="text-xs sm:text-base font-mono tracking-widest text-white/60 group-hover:text-white transition-colors">
                 [ 02 ]
               </span>
-              <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-serif uppercase tracking-tight text-white group-hover:text-brand-light transition-colors">
+              <h3 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white group-hover:text-brand-light transition-colors">
                 SELECTED WORK
               </h3>
               <span className="text-lg sm:text-2xl text-white/40 group-hover:text-white group-hover:translate-x-1.5 transition-all duration-300">
@@ -339,7 +339,7 @@ export default function HomePage() {
                     <span className="text-[11px] sm:text-sm font-mono text-white/80 block mb-1 tracking-wider uppercase">
                       {project.client} • {project.year}
                     </span>
-                    <h4 className="text-lg sm:text-2xl md:text-3xl lg:text-[2.2rem] font-serif text-white tracking-tight leading-tight group-hover:text-brand-light transition-colors line-clamp-1 mb-1.5 sm:mb-2">
+                    <h4 className="text-lg sm:text-2xl md:text-3xl lg:text-[2.2rem] font-display font-bold text-white tracking-tight leading-tight group-hover:text-brand-light transition-colors line-clamp-1 mb-1.5 sm:mb-2 uppercase">
                       {project.title}
                     </h4>
                     <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-white/60">
@@ -362,7 +362,7 @@ export default function HomePage() {
                 <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-brand-grey group-hover:text-white transition-colors">
                   PORTFOLIO
                 </span>
-                <span className="text-xl sm:text-3xl md:text-4xl font-serif tracking-tight text-white group-hover:text-brand-grey transition-colors">
+                <span className="text-xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight uppercase text-white group-hover:text-brand-grey transition-colors">
                   EXPLORE ALL WORKS ⟶
                 </span>
                 <span className="text-[10px] sm:text-xs font-mono text-brand-grey mt-1">
@@ -389,7 +389,7 @@ export default function HomePage() {
           <span className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-white/50 font-sans font-medium mb-3 sm:mb-4 block">
             LET&apos;S COLLABORATE
           </span>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-normal tracking-tight uppercase text-white mb-4 sm:mb-6 leading-[1.1]">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold tracking-tight uppercase text-white mb-4 sm:mb-6 leading-[1.1]">
             HAVE A STORY<br />TO TELL?
           </h2>
           <p className="text-white/60 text-xs sm:text-sm tracking-[0.18em] uppercase mb-7 sm:mb-10 font-sans font-normal max-w-lg">

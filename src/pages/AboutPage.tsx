@@ -165,9 +165,9 @@ export default function AboutPage() {
             </div>
 
             {/* Monumental Headline */}
-            <h1 className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tight uppercase leading-[0.95] sm:leading-[0.92] text-white mb-6 sm:mb-8">
+            <h1 className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight uppercase leading-[0.95] sm:leading-[0.92] text-white mb-6 sm:mb-8">
               ABOUT <br />
-              <span className="italic font-normal text-white">
+              <span className="text-white">
                 VIYANA PRODUCTIONS.
               </span>
             </h1>
@@ -175,12 +175,12 @@ export default function AboutPage() {
             {/* Core Matter */}
             <div className="space-y-6 sm:space-y-8 pt-1">
               <div className="max-w-4xl space-y-3 sm:space-y-4">
-                <h2 className="text-xl sm:text-3xl md:text-4xl font-syne font-bold text-white uppercase tracking-tight leading-snug">
+                <h2 className="text-xl sm:text-3xl md:text-4xl font-display font-bold text-white uppercase tracking-tight leading-snug">
                   WHERE HIGH-IMPACT STRATEGY MEETS <br className="hidden sm:inline" />
-                  <span className="text-white italic font-normal">CINEMA-GRADE CRAFT.</span>
+                  <span className="text-white">CINEMA-GRADE CRAFT.</span>
                 </h2>
                 
-                <p className="text-lg sm:text-2xl font-serif text-white/90 italic pt-0.5 sm:pt-1">
+                <p className="text-lg sm:text-2xl font-display font-medium text-white/90 uppercase tracking-tight pt-0.5 sm:pt-1">
                   We exist to make brands impossible to ignore.
                 </p>
 
@@ -195,9 +195,9 @@ export default function AboutPage() {
                   <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/80 block">
                     OUR ECOSYSTEM
                   </span>
-                  <h3 className="text-xl sm:text-3xl font-serif uppercase text-white tracking-tight leading-snug">
+                  <h3 className="text-xl sm:text-3xl font-display font-bold uppercase text-white tracking-tight leading-snug">
                     One creative partner. <br />
-                    <span className="text-white/60 italic font-normal">One unified vision.</span>
+                    <span className="text-white/60">One unified vision.</span>
                   </h3>
                   <div className="pt-2 flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full sm:w-auto">
                     <Link
@@ -458,7 +458,7 @@ export default function AboutPage() {
                   <span className="text-xs font-mono text-white/80 font-bold block">
                     STEP // {step.step}
                   </span>
-                  <h3 className="text-xl font-serif uppercase tracking-tight text-white">
+                  <h3 className="text-xl font-display font-bold uppercase tracking-tight text-white">
                     {step.title}
                   </h3>
                   <p className="text-xs font-mono text-white/60 uppercase tracking-wide">

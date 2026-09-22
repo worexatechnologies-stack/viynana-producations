@@ -100,7 +100,7 @@ export default function ContactPage() {
             <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/50 block mb-3 sm:mb-4">
               CONTACT US
             </span>
-            <h1 className="text-3xl sm:text-6xl md:text-7xl font-serif text-white uppercase tracking-tight leading-tight mb-4 sm:mb-6">
+            <h1 className="text-3xl sm:text-6xl md:text-7xl font-display font-extrabold text-white uppercase tracking-tight leading-tight mb-4 sm:mb-6">
               Let&apos;s Work Together.
             </h1>
             <p className="text-xs sm:text-base md:text-xl text-brand-grey max-w-2xl font-light leading-relaxed">
@@ -408,7 +408,7 @@ export default function ContactPage() {
               <span className="text-[10px] sm:text-xs font-sans uppercase tracking-[0.25em] text-white/50 block mb-1.5 sm:mb-2 font-medium">
                 STUDIO HEADQUARTERS // BENGALURU
               </span>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif text-white uppercase tracking-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-tight">
                 Find Our Studio.
               </h2>
             </div>

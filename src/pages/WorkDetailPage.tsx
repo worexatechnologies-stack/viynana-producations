@@ -85,7 +85,7 @@ export default function ProjectDetail() {
             </div>
 
             {/* Monumental Title */}
-            <h1 className="text-3xl sm:text-6xl md:text-7xl lg:text-[6.5vw] font-serif tracking-tight uppercase leading-[0.95] sm:leading-[0.9] text-white mb-3 sm:mb-4 select-none">
+            <h1 className="text-3xl sm:text-6xl md:text-7xl lg:text-[6.5vw] font-display font-extrabold tracking-tight uppercase leading-[0.95] sm:leading-[0.9] text-white mb-3 sm:mb-4 select-none">
               {project.title}
             </h1>
 
@@ -386,8 +386,8 @@ export default function ProjectDetail() {
               to={`/work/${nextProject.slug}`}
               className="group/title block mb-6 max-w-2xl"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-normal uppercase tracking-tight text-white group-hover/title:text-brand-light transition-colors leading-tight">
-                <span className="italic font-serif">{nextProject.title}</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white group-hover/title:text-brand-light transition-colors leading-tight">
+                <span>{nextProject.title}</span>
               </h2>
             </Link>
 

@@ -94,11 +94,11 @@ export default function Navbar() {
               />
             </div>
             <div className={`flex flex-col overflow-hidden transition-all duration-500 ${isScrolled ? "w-0 opacity-0 sm:w-auto sm:opacity-100" : "w-auto opacity-100"}`}>
-              <span className="text-[13px] sm:text-sm font-sans tracking-tight font-semibold text-white group-hover:text-white/80 transition-colors leading-none">
+              <span className="text-[14px] sm:text-base font-display tracking-tight font-bold text-white group-hover:text-white/80 transition-colors leading-none uppercase">
                 VIYANA
               </span>
-              <span className="text-[9px] uppercase tracking-[0.15em] text-white/50 font-mono mt-0.5">
-                Productions
+              <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-white/70 font-display font-semibold mt-0.5">
+                PRODUCTIONS
               </span>
             </div>
           </Link>

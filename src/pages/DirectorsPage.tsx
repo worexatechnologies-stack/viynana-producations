@@ -125,9 +125,9 @@ export default function DirectorsPage() {
             </div>
 
             {/* Monumental Headline */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tight uppercase leading-[0.92] text-white mb-8">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight uppercase leading-[0.92] text-white mb-8">
               STORIES SHAPED <br />
-              <span className="italic font-normal text-white">
+              <span className="text-white">
                 BY DISTINCTIVE VISION.
               </span>
             </h1>
@@ -426,7 +426,7 @@ export default function DirectorsPage() {
                               <span className="w-2 h-2 rounded-full bg-white" />
                               <span>{director.category} DIRECTORIAL ROSTER</span>
                             </div>
-                            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif uppercase tracking-tight text-white leading-tight">
+                            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold uppercase tracking-tight text-white leading-tight">
                               {director.name}
                             </h2>
                             <p className="text-sm sm:text-base font-mono text-white/80 uppercase tracking-wide mt-2">
@@ -529,7 +529,7 @@ export default function DirectorsPage() {
                             <span className={`text-[11px] font-mono uppercase tracking-[0.2em] ${theme.badgeText} font-semibold block mb-1 drop-shadow`}>
                               {director.category}
                             </span>
-                            <h3 className="text-3xl font-serif uppercase tracking-tight text-white leading-none group-hover:text-brand-light transition-colors drop-shadow-md">
+                            <h3 className="text-3xl font-display font-bold uppercase tracking-tight text-white leading-none group-hover:text-brand-light transition-colors drop-shadow-md">
                               {director.name}
                             </h3>
                           </div>
@@ -592,7 +592,7 @@ export default function DirectorsPage() {
                     </div>
 
                     <div className="md:col-span-4 space-y-1">
-                      <h3 className="text-2xl sm:text-3xl font-serif uppercase tracking-tight text-white group-hover:text-brand-light transition-colors">
+                      <h3 className="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-white group-hover:text-brand-light transition-colors">
                         {director.name}
                       </h3>
                       <span className={`text-xs font-mono ${theme.badgeText} block`}>

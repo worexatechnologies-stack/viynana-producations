@@ -25,7 +25,7 @@ export default function PrivacyPage() {
               <span>DPDP FRAMEWORK INDIA</span>
             </div>
             
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif uppercase tracking-tight text-white mb-6">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight text-white mb-6">
               PRIVACY POLICY
             </h1>
 
