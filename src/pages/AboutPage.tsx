@@ -62,6 +62,34 @@ const pillarsOfImpact = [
       "Presentation & Marketing Collateral",
     ],
   },
+  {
+    num: "04",
+    slug: "product-shoot",
+    title: "Product Shoot",
+    tagline: "Clear & attractive photos and videos.",
+    desc: "We take clear and attractive photos and videos of your products. Whether it's for an online store or social media, our visuals are designed to help your customers fall in love with your product and drive sales.",
+    deliverables: [
+      "Online Store Photos",
+      "Lifestyle Photos",
+      "Product Videos",
+      "HD Photos & Reels",
+      "E-commerce Ready Images",
+    ],
+  },
+  {
+    num: "05",
+    slug: "influencer-shoot",
+    title: "Influencer Shoot",
+    tagline: "Stylish videos & photos for personal brands.",
+    desc: "Stand out in a crowded digital landscape with striking visuals. We provide professional shooting services for models, influencers, and YouTubers looking to elevate their personal brand and secure more deals.",
+    deliverables: [
+      "Instagram Reels",
+      "Model Photos",
+      "Brand Collab Shoots",
+      "Short Form Videos",
+      "Viral Content Creation",
+    ],
+  },
 ];
 
 
@@ -329,7 +357,7 @@ export default function AboutPage() {
               className="flex items-center gap-3 text-xs font-mono uppercase tracking-[0.3em] text-white/50 mb-4"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span>THREE PILLARS OF IMPACT</span>
+              <span>FIVE PILLARS OF IMPACT</span>
             </motion.div>
 
             {/* Headline matching user design */}
@@ -337,7 +365,7 @@ export default function AboutPage() {
               variants={headerRevealVariants}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-syne font-bold text-white uppercase tracking-tight leading-[1.08] mb-5"
             >
-              THREE PILLARS OF{" "}
+              FIVE PILLARS OF{" "}
               <br className="hidden sm:inline" />
               <span className="relative inline-block text-white">
                 IMPACT<span className="text-white">.</span>

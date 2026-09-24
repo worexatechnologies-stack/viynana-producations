@@ -16,6 +16,8 @@ const services = [
   "Short Films",
   "Film Production",
   "Graphic Design",
+  "Product Shoot",
+  "Influencer Shoot",
 ];
 
 export default function ContactPage() {

@@ -291,5 +291,153 @@ export const services: ServiceItem[] = [
         includes: ["15+ Figma Editable Social Templates", "Motion Graphic Post Bumpers", "Story & Carousel Grid Systems", "Custom Iconography & Badge Set"]
       }
     ]
+  },
+  {
+    id: "04",
+    number: "04",
+    slug: "product-shoot",
+    pillar: "PRODUCT SHOOT",
+    title: "CLEAR & ATTRACTIVE PHOTOS AND VIDEOS.",
+    tagline: "Online Store Photos × Lifestyle Photos × Product Videos",
+    description: "We take clear and attractive photos and videos of your products. It helps your customers to like your product and buy it.",
+    longDescription: "High-quality imagery is crucial for e-commerce success. We specialize in capturing the essence of your products through clear, attractive photos and compelling videos. Whether you are a dress brand, beauty product line, food vendor, or tech gadget company, our visuals are designed to make your customers fall in love with your product and drive sales. We handle everything from pristine online store shots on clean backgrounds to aspirational lifestyle photos that tell a story.",
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2000&auto=format&fit=crop",
+    gallery: [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2000&auto=format&fit=crop"
+    ],
+    video: "/showreel-video-4k-h264.mp4",
+    services: [
+      "Online store photos",
+      "Lifestyle photos",
+      "Product videos"
+    ],
+    deliverables: [
+      "HD Photos",
+      "High-Quality Reels",
+      "E-commerce ready images"
+    ],
+    tools: ["Professional Lighting", "High-End Cameras", "Photo Editing Software"],
+    metrics: [
+      { label: "Ideal For", value: "Dress brands, Beauty products, Food, Gadgets" },
+      { label: "Turnaround", value: "1-2 Weeks" },
+      { label: "Output Format", value: "HD, 4K" }
+    ],
+    ctaText: "START PRODUCT SHOOT →",
+    workflow: [
+      {
+        number: "01",
+        title: "PRODUCT ANALYSIS",
+        description: "Understanding your brand guidelines, target audience, and the key features of the product.",
+        output: "Shoot Plan & Moodboard"
+      },
+      {
+        number: "02",
+        title: "SET DESIGN & LIGHTING",
+        description: "Preparing the optimal setting, backdrops, and lighting setups to highlight the product's best angles.",
+        output: "Ready Set"
+      },
+      {
+        number: "03",
+        title: "PRODUCTION",
+        description: "Executing the shoot for e-commerce, lifestyle, and video requirements.",
+        output: "Raw Assets"
+      },
+      {
+        number: "04",
+        title: "RETOUCHING & DELIVERY",
+        description: "Professional editing, color correction, and formatting for various digital platforms.",
+        output: "Final HD Photos and Reels"
+      }
+    ],
+    packages: [
+      {
+        name: "E-COMMERCE STARTER",
+        duration: "1 Week",
+        idealFor: "New product launches",
+        includes: ["Standard White Background Photos", "Basic Lifestyle Shots", "High-Res Image Delivery"]
+      },
+      {
+        name: "FULL PRODUCT CAMPAIGN",
+        duration: "2 Weeks",
+        idealFor: "Seasonal collections and major launches",
+        includes: ["Premium E-commerce Photos", "Advanced Lifestyle Shots", "Product Video Reels", "Full Retouching"]
+      }
+    ]
+  },
+  {
+    id: "05",
+    number: "05",
+    slug: "influencer-shoot",
+    pillar: "INFLUENCER SHOOT",
+    title: "STYLISH VIDEOS & PHOTOS.",
+    tagline: "Instagram Reels × Model Photos × Brand Collab Shoots",
+    description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",
+    longDescription: "Stand out in a crowded digital landscape with striking visuals. We provide professional shooting services for models, influencers, and YouTubers looking to elevate their personal brand. From viral Instagram Reels to high-fashion model portfolios and brand collaboration shoots, we capture your unique personality and style. Our content is designed to maximize engagement, attract more followers, and help you secure lucrative brand partnerships.",
+    image: "https://images.unsplash.com/photo-1516575334481-bea2089ba96a?q=80&w=2070&auto=format&fit=crop",
+    gallery: [
+      "https://images.unsplash.com/photo-1516575334481-bea2089ba96a?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=2000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop"
+    ],
+    video: "/showreel-video-4k-h264.mp4",
+    services: [
+      "Instagram Reels",
+      "Model Photos",
+      "Brand Collab Shoots"
+    ],
+    deliverables: [
+      "High-Quality Reels",
+      "Professional Photos",
+      "Short Form Videos"
+    ],
+    tools: ["Cinema Cameras", "Gimbals & Stabilizers", "Creative Lighting"],
+    metrics: [
+      { label: "Ideal For", value: "Models, Influencers, Youtubers" },
+      { label: "Turnaround", value: "3-5 Days" },
+      { label: "Output Format", value: "9:16 Vertical, 4K/HD" }
+    ],
+    ctaText: "START INFLUENCER SHOOT →",
+    workflow: [
+      {
+        number: "01",
+        title: "CONCEPT & TREND RESEARCH",
+        description: "Identifying current viral trends and developing a personalized concept that fits your aesthetic.",
+        output: "Creative Treatment"
+      },
+      {
+        number: "02",
+        title: "ON-LOCATION SHOOT",
+        description: "Dynamic filming and photography at selected locations with professional direction and styling guidance.",
+        output: "Raw Footage & Images"
+      },
+      {
+        number: "03",
+        title: "FAST-TRACK EDITING",
+        description: "Quick turnaround editing optimized for social media algorithms and high engagement.",
+        output: "First Drafts"
+      },
+      {
+        number: "04",
+        title: "FINAL DELIVERY",
+        description: "Providing polished, ready-to-post Reels, photos, and short videos.",
+        output: "Social Media Ready Assets"
+      }
+    ],
+    packages: [
+      {
+        name: "SOCIAL MEDIA QUICK BOOST",
+        duration: "3 Days",
+        idealFor: "Frequent content updates",
+        includes: ["3 Instagram Reels", "10 Retouched Photos", "Trend-based Editing"]
+      },
+      {
+        name: "BRAND COLLAB PREMIUM",
+        duration: "1 Week",
+        idealFor: "Sponsored posts and major campaigns",
+        includes: ["High-End Promotional Video", "Extensive Photo Gallery", "Custom Color Grading", "Priority Delivery"]
+      }
+    ]
   }
 ];
