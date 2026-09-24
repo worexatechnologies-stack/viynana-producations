@@ -88,6 +88,20 @@ const disciplineGroups: DisciplineGroup[] = [
     name: "GRAPHIC DESIGN",
     heading: "GRAPHIC DESIGN",
     subtitle: "Visual Brand Identities • 3D Key Visuals • Motion Typography",
+  },
+  {
+    id: "product-shoot",
+    number: "10",
+    name: "PRODUCT SHOOT",
+    heading: "PRODUCT SHOOT",
+    subtitle: "Online store photos • Lifestyle photos • Product videos",
+  },
+  {
+    id: "influencer-shoot",
+    number: "11",
+    name: "INFLUENCER SHOOT",
+    heading: "INFLUENCER SHOOT",
+    subtitle: "Instagram Reels • Model Photos • Brand Collab Shoots",
   }
 ];
 
@@ -102,6 +116,8 @@ const filterOptions = [
   "SHORT FILMS",
   "FILM PRODUCTION",
   "GRAPHIC DESIGN",
+  "PRODUCT SHOOT",
+  "INFLUENCER SHOOT",
 ] as const;
 
 interface ProjectCardProps {

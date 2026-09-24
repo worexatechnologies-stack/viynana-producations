@@ -7,7 +7,9 @@ export type ProjectCategory =
   | "WEB SERIES"
   | "SHORT FILMS"
   | "FILM PRODUCTION"
-  | "GRAPHIC DESIGN";
+  | "GRAPHIC DESIGN"
+  | "PRODUCT SHOOT"
+  | "INFLUENCER SHOOT";
 
 export interface Project {
   slug: string;
@@ -369,6 +371,62 @@ export const projects: Project[] = [
     impact: "Visual consistency & digital-first creative across all physical and digital touchpoints",
     gallery: [
       "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop"
+    ]
+  },
+  {
+    slug: "product-shoot",
+    title: "PRODUCT SHOOT",
+    category: "PRODUCT SHOOT",
+    year: "2026",
+    client: "Various Brands",
+    director: "Viyana Creative Lab",
+    deliverableType: "HD Photos and Reels",
+    thumbnail: "/images/product-shoot.jpg",
+    description: "We take clear and attractive photos and videos of your products. It helps your customers to like your product and buy it.",
+    fullDescription: "We do: Online store photos, Lifestyle photos, Product videos. For: Dress brands, Beauty products, Food, Gadgets.",
+    scope: [
+      "Online store photos",
+      "Lifestyle photos",
+      "Product videos"
+    ],
+    impact: "Helps your customers to like your product and buy it",
+    credits: {
+      "STUDIO": "Viyana Productions",
+      "DELIVERABLES": "HD Photos and Reels",
+      "FOR": "Dress brands, Beauty products, Food, Gadgets"
+    },
+    ctaText: "BOOK A PRODUCT SHOOT",
+    tagline: "CLEAR & ATTRACTIVE PHOTOS AND VIDEOS.",
+    gallery: [
+      "/images/product-shoot.jpg"
+    ]
+  },
+  {
+    slug: "influencer-shoot",
+    title: "INFLUENCER SHOOT",
+    category: "INFLUENCER SHOOT",
+    year: "2026",
+    client: "Influencers & Creators",
+    director: "Viyana Creative Lab",
+    deliverableType: "Reels, Photos and Short Videos",
+    thumbnail: "https://images.unsplash.com/photo-1516575334481-bea2089ba96a?q=80&w=2070&auto=format&fit=crop",
+    description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",
+    fullDescription: "We do: Instagram Reels, Model Photos, Brand Collab Shoots. For: Models, Influencers, Youtubers.",
+    scope: [
+      "Instagram Reels",
+      "Model Photos",
+      "Brand Collab Shoots"
+    ],
+    impact: "Helps you to get more followers and brand deals",
+    credits: {
+      "STUDIO": "Viyana Productions",
+      "DELIVERABLES": "Reels, Photos and Short Videos",
+      "FOR": "Models, Influencers, Youtubers"
+    },
+    ctaText: "BOOK AN INFLUENCER SHOOT",
+    tagline: "STYLISH VIDEOS & PHOTOS.",
+    gallery: [
+      "https://images.unsplash.com/photo-1516575334481-bea2089ba96a?q=80&w=2070&auto=format&fit=crop"
     ]
   }
 ];

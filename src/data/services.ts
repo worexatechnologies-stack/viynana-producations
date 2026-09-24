@@ -301,9 +301,9 @@ export const services: ServiceItem[] = [
     tagline: "Online Store Photos × Lifestyle Photos × Product Videos",
     description: "We take clear and attractive photos and videos of your products. It helps your customers to like your product and buy it.",
     longDescription: "High-quality imagery is crucial for e-commerce success. We specialize in capturing the essence of your products through clear, attractive photos and compelling videos. Whether you are a dress brand, beauty product line, food vendor, or tech gadget company, our visuals are designed to make your customers fall in love with your product and drive sales. We handle everything from pristine online store shots on clean backgrounds to aspirational lifestyle photos that tell a story.",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2000&auto=format&fit=crop",
+    image: "/images/product-shoot.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2000&auto=format&fit=crop",
+      "/images/product-shoot.jpg",
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2000&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2000&auto=format&fit=crop"
     ],
