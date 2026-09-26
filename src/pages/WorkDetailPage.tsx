@@ -136,13 +136,24 @@ export default function ProjectDetail() {
         <section className="py-4 sm:py-10 px-4 sm:px-6 lg:px-12">
           <div className="container mx-auto max-w-7xl">
             <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-brand-dark shadow-[0_20px_70px_rgba(0,0,0,0.95)]">
-              <img
-                src={heroImage}
-                alt={`${project.title} - ${project.category} Master Visual`}
-                
-                
-                className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95"
-              />
+              {project.video ? (
+                <video
+                  src={project.video}
+                  poster={heroImage}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={heroImage}
+                  alt={`${project.title} - ${project.category} Master Visual`}
+                  className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95"
+                />
+              )}
               {/* Subtle cinematic gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
 
@@ -158,11 +169,11 @@ export default function ProjectDetail() {
               <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-6 sm:right-6 flex justify-between items-end text-xs font-mono text-white/80 z-10 pointer-events-none">
                 <div className="flex items-center gap-2 max-w-[70%]">
                   <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md border border-white/15 text-[10px] sm:text-[11px] font-semibold text-white truncate">
-                    {project.title} // STILL
+                    {project.title} // {project.video ? "4K FILM" : "STILL"}
                   </span>
                 </div>
                 <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md border border-white/20 text-[10px] sm:text-[11px] text-white/90 font-mono shrink-0">
-                  4K DCI • HDR
+                  {project.video ? "4K DCI • MOTION" : "4K DCI • HDR"}
                 </span>
               </div>
             </div>

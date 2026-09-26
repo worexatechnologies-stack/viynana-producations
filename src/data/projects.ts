@@ -410,6 +410,8 @@ export const projects: Project[] = [
     director: "Viyana Creative Lab",
     deliverableType: "Reels, Photos and Short Videos",
     thumbnail: "https://images.unsplash.com/photo-1516575334481-bea2089ba96a?q=80&w=2070&auto=format&fit=crop",
+    video: "/showreel-video-4k-h264.mp4",
+    videoDuration: "1:30",
     description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",
     fullDescription: "We do: Instagram Reels, Model Photos, Brand Collab Shoots. For: Models, Influencers, Youtubers.",
     scope: [

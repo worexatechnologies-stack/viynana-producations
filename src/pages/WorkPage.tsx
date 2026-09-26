@@ -135,6 +135,8 @@ function ProjectCard({
 }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const heroImage = project.thumbnail || project.gallery[0];
+  const isInfluencer = project.slug === "influencer-shoot" || project.category === "INFLUENCER SHOOT";
+  const videoSrc = isInfluencer ? (project.video || "/showreel-video-4k-h264.mp4") : undefined;
 
   return (
     <motion.article
@@ -149,7 +151,7 @@ function ProjectCard({
         {project.title} • {group.name}
       </div>
 
-      {/* 1. Curated Visual Image Column (Zero Video Overhead, Ultra Fast) */}
+      {/* 1. Curated Visual Column (Video for Influencer Shoot, High-Performance Image for others) */}
       <div
         className={`lg:col-span-7 flex flex-col relative z-10 ${isEven ? "lg:order-1" : "lg:order-2"
           }`}
@@ -160,13 +162,26 @@ function ProjectCard({
           onMouseLeave={() => setIsHovered(false)}
           className="relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-brand-dark border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-white/50 group-hover:shadow-[0_25px_80px_rgba(255,255,255,0.12)] transition-all duration-500 cursor-pointer"
         >
-          {/* Main Related Category Image */}
+          {/* Main Visual: Video for Influencer Shoot, Curated Image for other categories */}
           <div className="relative w-full h-full overflow-hidden">
-            <img
-              src={heroImage}
-              alt={`${project.title} - ${project.category}`}
-              className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
-            />
+            {videoSrc ? (
+              <video
+                src={videoSrc}
+                poster={heroImage}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+            ) : (
+              <img
+                src={heroImage}
+                alt={`${project.title} - ${project.category}`}
+                className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+            )}
           </div>
 
           {/* Luxury Ambient Vignette */}
@@ -204,7 +219,7 @@ function ProjectCard({
               {project.deliverableType}
             </span>
             <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 text-[10px] text-white/80 uppercase tracking-wider">
-              ACES HDR
+              {videoSrc ? "4K VIDEO" : "ACES HDR"}
             </span>
           </div>
         </Link>
