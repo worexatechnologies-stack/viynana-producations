@@ -760,8 +760,46 @@ export default function WorkPage() {
               PODCAST PRODUCTION • VIYANA PRODUCTIONS
             </div>
 
-            {/* LEFT: Info column */}
-            <div className="lg:col-span-5 flex flex-col justify-between space-y-6 relative z-10 lg:order-1">
+            {/* LEFT: Image */}
+            <div className="lg:col-span-7 relative z-10 lg:order-1">
+              <Link
+                to="/podcast"
+                className="relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-brand-dark border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-white/50 group-hover:shadow-[0_25px_80px_rgba(255,255,255,0.12)] transition-all duration-500"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop"
+                  alt="Viyana Podcast Production"
+                  className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
+                {/* Badges */}
+                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 pointer-events-none">
+                  <span className="text-[10px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/20 font-mono shadow-lg">PODCAST PRODUCTION</span>
+                  <span className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/25 font-mono font-semibold shadow-md">07</span>
+                </div>
+                {/* Corner brackets */}
+                <div className="absolute inset-4 pointer-events-none z-20">
+                  <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                  <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                  <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                  <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                </div>
+                {/* Hover CTA */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 bg-black/30 backdrop-blur-[2px]">
+                  <span className="px-5 py-2 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold shadow-2xl flex items-center gap-2 group-hover:scale-105 transition-transform">
+                    <span>EXPLORE PODCASTS</span><span className="text-sm">→</span>
+                  </span>
+                </div>
+                {/* Bottom bar */}
+                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end text-xs font-mono text-white/80 z-10 pointer-events-none">
+                  <span className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/15 text-[11px]">Multi-Camera Studio</span>
+                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 text-[10px] uppercase tracking-wider">4K AUDIO+VIDEO</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* RIGHT: Info column */}
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-6 relative z-10 lg:order-2">
               <div className="flex items-center justify-between text-xs font-mono tracking-widest text-brand-grey border-b border-white/10 pb-3">
                 <div className="flex items-center gap-3">
                   <span className="text-white font-bold bg-white/10 px-2.5 py-0.5 rounded-md border border-white/15">[ 07 ]</span>
@@ -806,44 +844,6 @@ export default function WorkPage() {
                   <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
                 </Link>
               </div>
-            </div>
-
-            {/* RIGHT: Image */}
-            <div className="lg:col-span-7 relative z-10 lg:order-2">
-              <Link
-                to="/podcast"
-                className="relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-brand-dark border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-white/50 group-hover:shadow-[0_25px_80px_rgba(255,255,255,0.12)] transition-all duration-500"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop"
-                  alt="Viyana Podcast Production"
-                  className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
-                {/* Badges */}
-                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 pointer-events-none">
-                  <span className="text-[10px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/20 font-mono shadow-lg">PODCAST PRODUCTION</span>
-                  <span className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/25 font-mono font-semibold shadow-md">07</span>
-                </div>
-                {/* Corner brackets */}
-                <div className="absolute inset-4 pointer-events-none z-20">
-                  <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                  <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                  <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                  <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                </div>
-                {/* Hover CTA */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 bg-black/30 backdrop-blur-[2px]">
-                  <span className="px-5 py-2 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold shadow-2xl flex items-center gap-2 group-hover:scale-105 transition-transform">
-                    <span>EXPLORE PODCASTS</span><span className="text-sm">→</span>
-                  </span>
-                </div>
-                {/* Bottom bar */}
-                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end text-xs font-mono text-white/80 z-10 pointer-events-none">
-                  <span className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/15 text-[11px]">Multi-Camera Studio</span>
-                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 text-[10px] uppercase tracking-wider">4K AUDIO+VIDEO</span>
-                </div>
-              </Link>
             </div>
           </motion.article>
         </div>
