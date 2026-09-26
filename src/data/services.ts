@@ -439,5 +439,178 @@ export const services: ServiceItem[] = [
         includes: ["High-End Promotional Video", "Extensive Photo Gallery", "Custom Color Grading", "Priority Delivery"]
       }
     ]
+  },
+  {
+    id: "06",
+    number: "06",
+    slug: "studio-rental",
+    pillar: "STUDIO RENTAL",
+    title: "PROFESSIONAL STUDIO SPACES FOR EVERY CREATIVE.",
+    tagline: "Photography & Video Studio × Brand Shoots × Interview & Green Screen",
+    description: "A versatile production studio designed for photography, video production, brand shoots, interviews, and creative projects. From controlled lighting to flexible setups, our studio gives you the space and production environment to bring your ideas to life.",
+    longDescription: "Our professional studio is built for creators who refuse to compromise. Fully equipped with cinema-grade lighting, flexible set configurations, green screen capability, and interview-ready multi-camera rigs — every shoot at Viyana Studio is set up for success from the first frame to the last. Whether you are photographing a product, shooting a brand film, conducting an interview, or executing a full creative editorial, our space adapts to your vision.",
+    image: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop",
+    gallery: [
+      "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=2070&auto=format&fit=crop"
+    ],
+    services: [
+      "Photography & Video Studio",
+      "Professional Lighting Setup",
+      "Product & Brand Shoots",
+      "Interview Setup",
+      "Green Screen Setup",
+      "Creative & Editorial Shoots",
+      "Flexible Studio Configurations",
+      "Production Support"
+    ],
+    deliverables: [
+      "Full-Day & Half-Day Studio Booking",
+      "Lighting & Equipment Access",
+      "Multi-Camera Interview Setup",
+      "Green Screen & Backdrop Options",
+      "On-Site Production Crew Support"
+    ],
+    tools: ["Professional Strobes", "LED Panels", "Softboxes & Modifiers", "Backdrop Systems", "Cinema Cameras"],
+    metrics: [
+      { label: "Studio Type", value: "Full Production Space" },
+      { label: "Booking", value: "Half-Day / Full-Day" },
+      { label: "Camera Ready", value: "4K & Cinema Grade" }
+    ],
+    ctaText: "BOOK THE STUDIO →",
+    workflow: [
+      {
+        number: "01",
+        title: "BRIEF & BOOKING",
+        description: "Share your shoot requirements, preferred date, and setup needs. We confirm availability and prepare the studio.",
+        output: "Studio Booking Confirmation"
+      },
+      {
+        number: "02",
+        title: "STUDIO SETUP",
+        description: "Our team rigs the lighting, sets up backdrops, configures camera systems, and preps the space to your specifications.",
+        output: "Production-Ready Studio"
+      },
+      {
+        number: "03",
+        title: "SHOOT DAY",
+        description: "You arrive, shoot, and create. On-site support is available throughout to adjust lighting, rigs, or configuration.",
+        output: "Raw Footage & Images"
+      },
+      {
+        number: "04",
+        title: "WRAP & HANDOVER",
+        description: "Clean wrap-up, equipment check, and optional post-production referral for editing, grading, or retouching.",
+        output: "Completed Session Handover"
+      }
+    ],
+    packages: [
+      {
+        name: "HALF-DAY STUDIO",
+        duration: "4 Hours",
+        idealFor: "Quick shoots, interviews & product photography",
+        includes: ["4hr Studio Access", "Basic Lighting Rig", "1 Backdrop Setup", "On-Site Support"]
+      },
+      {
+        name: "FULL-DAY STUDIO",
+        duration: "8 Hours",
+        idealFor: "Brand films, editorial shoots & multi-setup productions",
+        includes: ["8hr Studio Access", "Full Lighting Package", "Multiple Backdrop Options", "Green Screen Setup", "Dedicated On-Site Crew"]
+      },
+      {
+        name: "STUDIO + PRODUCTION",
+        duration: "Custom",
+        idealFor: "Full productions needing both space and crew",
+        includes: ["Studio Rental", "Director & Camera Crew", "Lighting Direction", "Post-Production Pipeline", "Final Delivery Package"]
+      }
+    ]
+  },
+  {
+    id: "07",
+    number: "07",
+    slug: "podcast-production",
+    pillar: "PODCAST PRODUCTION",
+    title: "YOUR VOICE. YOUR STORY. YOUR PLATFORM.",
+    tagline: "Studio Recording × Multi-Camera × Professional Audio × Final Delivery",
+    description: "A complete podcast production setup built for creators, brands, entrepreneurs, and businesses. From studio recording and multi-camera production to professional audio, editing, and final delivery — we help turn conversations into engaging content.",
+    longDescription: "Podcasting is the most powerful long-form platform of our time. At Viyana, we give your show the production quality it deserves. From our acoustically treated recording studio and multi-camera cinematic capture to professional audio engineering, sharp editing, and ready-to-publish delivery — every episode is handled with the same precision we bring to our commercial productions. Whether you are launching a business podcast, interview show, talk show, or YouTube series, we are your full production partner.",
+    image: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop",
+    gallery: [
+      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop"
+    ],
+    services: [
+      "Podcast Studio Rental",
+      "Multi-Camera Recording",
+      "Professional Audio Recording",
+      "Video Podcast Production",
+      "Interview & Talk Shows",
+      "Podcast Editing",
+      "Reels & Short-Form Clips",
+      "YouTube Podcast Production"
+    ],
+    deliverables: [
+      "Full Episode Audio (Mastered MP3 / WAV)",
+      "Multi-Camera Video Episode (4K MP4)",
+      "Social Reels & Short-Form Clips",
+      "Intro / Outro & Lower Thirds",
+      "Thumbnail Design & Chapter Markers"
+    ],
+    tools: ["Studio-Grade Microphones", "Multi-Camera Rig", "Audio Interface & Mixer", "Acoustic Treatment", "DaVinci Resolve"],
+    metrics: [
+      { label: "Video Output", value: "Up to 4K Multi-Cam" },
+      { label: "Audio Quality", value: "Studio Mastered" },
+      { label: "Delivery", value: "Audio + Video + Clips" }
+    ],
+    ctaText: "START YOUR PODCAST →",
+    workflow: [
+      {
+        number: "01",
+        title: "BRIEF & PLANNING",
+        description: "We understand your show format, episode structure, audience, and brand tone to plan the perfect session.",
+        output: "Show Format Plan & Session Schedule"
+      },
+      {
+        number: "02",
+        title: "STUDIO SESSION",
+        description: "Record in our acoustically treated, multi-camera studio with professional audio capture and live monitoring.",
+        output: "Raw Multi-Camera Footage & Audio Stems"
+      },
+      {
+        number: "03",
+        title: "POST-PRODUCTION",
+        description: "Our editors cut, sync, clean audio, master levels, add graphics, intros, and titles for a broadcast-ready episode.",
+        output: "Polished Full-Length Episode"
+      },
+      {
+        number: "04",
+        title: "FINAL DELIVERY",
+        description: "You receive all formats — mastered audio, 4K video episode, social reels, and platform-optimised clips, ready to publish.",
+        output: "Complete Episode Asset Package"
+      }
+    ],
+    packages: [
+      {
+        name: "SINGLE EPISODE",
+        duration: "1 Day",
+        idealFor: "Standalone episodes, pilots & guest interviews",
+        includes: ["Studio Session (up to 2hrs)", "Multi-Camera Recording", "Audio Mastering", "1x Full Episode Video", "2x Social Reels"]
+      },
+      {
+        name: "PODCAST SERIES",
+        duration: "Monthly",
+        idealFor: "Regular shows, branded podcasts & ongoing series",
+        includes: ["4 Episodes Per Month", "Full Studio Access", "Professional Audio & Video", "Short-Form Clips Per Episode", "YouTube Thumbnail & Chapter Markers"]
+      },
+      {
+        name: "FULL PRODUCTION RETAINER",
+        duration: "Ongoing",
+        idealFor: "Brands & media companies scaling content output",
+        includes: ["Unlimited Studio Sessions", "Dedicated Production Team", "Full Post-Production Pipeline", "Social Content Strategy", "Priority Scheduling & Fast Delivery"]
+      }
+    ]
   }
 ];
+
