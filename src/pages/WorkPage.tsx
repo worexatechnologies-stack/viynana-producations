@@ -598,187 +598,242 @@ export default function WorkPage() {
 
       {/* 4. STUDIO RENTAL SECTION */}
       <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 relative overflow-hidden bg-brand-black">
-        {/* Ambient glow */}
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-white/[0.015] rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-[80px] pointer-events-none translate-x-1/3 translate-y-1/3" />
-
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-white/[0.02] rounded-full blur-[100px] pointer-events-none" />
         <div className="container mx-auto max-w-7xl relative z-10">
-          {/* Section label */}
+
+          {/* Label */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-8 sm:mb-12"
+            className="flex items-center gap-3 mb-10 sm:mb-14"
           >
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
             <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/50">SERVICES / 01</span>
           </motion.div>
 
-          {/* Two-column hero layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-20 items-start mb-14 sm:mb-20">
-            {/* Left: headline + description */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 flex flex-col justify-between gap-8"
-            >
-              <div>
-                <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/40 block mb-4">STUDIO RENTAL</span>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold uppercase tracking-tight leading-[0.88] text-white mb-6">
-                  PROFESSIONAL<br />
-                  <span className="text-white/40">STUDIO SPACES</span><br />
-                  FOR EVERY<br />
-                  CREATIVE.
-                </h2>
-                <p className="text-sm sm:text-base text-brand-grey leading-relaxed font-light max-w-sm">
-                  A versatile production studio designed for photography, video production, brand shoots, interviews, and creative projects. From controlled lighting to flexible setups, our studio gives you the space and production environment to bring your ideas to life.
-                </p>
-              </div>
+          {/* ProjectCard layout */}
+          <motion.article
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="group relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-14 items-center"
+          >
+            {/* Background watermark */}
+            <div className="absolute -top-8 left-0 right-0 pointer-events-none select-none text-[10vw] font-display font-extrabold uppercase tracking-tighter text-white/[0.018] whitespace-nowrap overflow-hidden z-0">
+              STUDIO RENTAL • VIYANA PRODUCTIONS
+            </div>
+
+            {/* LEFT: Image */}
+            <div className="lg:col-span-7 relative z-10 lg:order-1">
               <Link
                 to="/studio"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-brand-light hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] w-full sm:w-auto"
-                id="explore-studio-btn"
+                className="relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-brand-dark border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-white/50 group-hover:shadow-[0_25px_80px_rgba(255,255,255,0.12)] transition-all duration-500"
               >
-                <span>EXPLORE STUDIO</span>
-                <span className="group-hover:translate-x-1 transition-transform font-bold">→</span>
+                <img
+                  src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop"
+                  alt="Viyana Studio Rental"
+                  className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
+                {/* Badges */}
+                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 pointer-events-none">
+                  <span className="text-[10px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/20 font-mono shadow-lg">STUDIO RENTAL</span>
+                  <span className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/25 font-mono font-semibold shadow-md">06</span>
+                </div>
+                {/* Corner brackets */}
+                <div className="absolute inset-4 pointer-events-none z-20 transition-opacity duration-300">
+                  <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                  <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                  <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                  <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                </div>
+                {/* Hover CTA */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 bg-black/30 backdrop-blur-[2px]">
+                  <span className="px-5 py-2 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold shadow-2xl flex items-center gap-2 group-hover:scale-105 transition-transform">
+                    <span>EXPLORE STUDIO</span><span className="text-sm">→</span>
+                  </span>
+                </div>
+                {/* Bottom bar */}
+                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end text-xs font-mono text-white/80 z-10 pointer-events-none">
+                  <span className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/15 text-[11px]">Full Production Space</span>
+                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 text-[10px] uppercase tracking-wider">4K READY</span>
+                </div>
               </Link>
-            </motion.div>
+            </div>
 
-            {/* Right: feature grid */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              className="lg:col-span-7"
-            >
-              <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
-                {[
-                  { num: "01", title: "Photography & Video Studio", desc: "Full-spec controlled environment" },
-                  { num: "02", title: "Professional Lighting Setup", desc: "Strobes, softboxes & LED arrays" },
-                  { num: "03", title: "Product & Brand Shoots", desc: "Tabletop to full-scale product" },
-                  { num: "04", title: "Interview Setup", desc: "Multi-cam dialogue ready" },
-                  { num: "05", title: "Green Screen Setup", desc: "Chroma key & VFX composite" },
-                  { num: "06", title: "Creative & Editorial", desc: "Fashion, editorial & conceptual" },
-                  { num: "07", title: "Flexible Configurations", desc: "Modular layout for any brief" },
-                  { num: "08", title: "Production Support", desc: "On-site crew & equipment" },
-                ].map((feature, i) => (
-                  <motion.div
-                    key={feature.num}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.06 }}
-                    className="group p-4 sm:p-5 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.07] hover:border-white/25 transition-all duration-300 cursor-default"
-                  >
-                    <span className="text-[10px] font-mono text-white/30 block mb-2 tracking-widest">[{feature.num}]</span>
-                    <h4 className="text-sm sm:text-base font-display font-bold text-white uppercase tracking-tight leading-tight mb-1 group-hover:text-brand-light transition-colors">{feature.title}</h4>
-                    <p className="text-[11px] sm:text-xs text-brand-grey font-light leading-snug">{feature.desc}</p>
-                  </motion.div>
+            {/* RIGHT: Info column */}
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-6 relative z-10 lg:order-2">
+              <div className="flex items-center justify-between text-xs font-mono tracking-widest text-brand-grey border-b border-white/10 pb-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-white font-bold bg-white/10 px-2.5 py-0.5 rounded-md border border-white/15">[ 06 ]</span>
+                  <span className="text-white/30">•</span>
+                  <span className="text-white/90 font-medium">VIYANA STUDIO</span>
+                </div>
+                <span className="text-white font-semibold">BANGALORE</span>
+              </div>
+
+              <div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight uppercase text-white group-hover:text-brand-light transition-colors mb-2 leading-none">
+                  STUDIO RENTAL
+                </h2>
+                <p className="text-xs font-mono text-white/70 uppercase tracking-wider font-semibold">Photography & Video Studio × Brand Shoots × Interview & Green Screen</p>
+              </div>
+
+              <p className="text-xs sm:text-sm text-brand-grey leading-relaxed font-light">
+                A versatile production studio designed for photography, video production, brand shoots, interviews, and creative projects. From controlled lighting to flexible setups, our studio gives you the space and production environment to bring your ideas to life.
+              </p>
+
+              <div className="flex flex-wrap gap-2 pt-1">
+                {["Photography & Video Studio", "Professional Lighting Setup", "Product & Brand Shoots", "Interview Setup", "Green Screen Setup", "Creative & Editorial Shoots", "Flexible Configurations", "Production Support"].map((item) => (
+                  <span key={item} className="text-xs uppercase font-mono px-3.5 py-1.5 rounded-md bg-white/5 text-white/90 border border-white/10 hover:border-white/30 transition-colors cursor-default tracking-wider font-medium">{item}</span>
                 ))}
               </div>
-            </motion.div>
-          </div>
 
-          {/* Bottom divider line */}
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.04] border border-white/20 text-white text-xs sm:text-sm font-mono">
+                <span className="font-medium tracking-wide">Half-Day & Full-Day bookings available — crew, lighting, and sets included</span>
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-white/10 pt-4 sm:pt-5 text-xs font-mono">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 w-fit">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span className="text-white/80 text-xs uppercase tracking-widest font-mono font-medium">STUDIO RENTAL</span>
+                </div>
+                <Link
+                  to="/studio"
+                  id="explore-studio-btn"
+                  className="group/link inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:py-2.5 rounded-full bg-white text-black hover:bg-brand-light font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 w-full sm:w-auto"
+                >
+                  <span>EXPLORE STUDIO</span>
+                  <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
+                </Link>
+              </div>
+            </div>
+          </motion.article>
         </div>
       </section>
 
       {/* 5. PODCAST PRODUCTION SECTION */}
       <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 relative overflow-hidden bg-brand-dark/30">
-        {/* Ambient glow */}
-        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-white/[0.015] rounded-full blur-[100px] pointer-events-none translate-x-1/3 -translate-y-1/2" />
-        <div className="absolute bottom-0 left-1/4 w-[350px] h-[350px] bg-white/[0.018] rounded-full blur-[80px] pointer-events-none" />
-
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-white/[0.02] rounded-full blur-[100px] pointer-events-none" />
         <div className="container mx-auto max-w-7xl relative z-10">
-          {/* Section label */}
+
+          {/* Label */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-8 sm:mb-12"
+            className="flex items-center gap-3 mb-10 sm:mb-14"
           >
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
             <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/50">SERVICES / 02</span>
           </motion.div>
 
-          {/* Two-column hero layout   reversed */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-20 items-start mb-14 sm:mb-20">
-            {/* Left: feature grid */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              className="lg:col-span-7 order-2 lg:order-1"
-            >
-              <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
-                {[
-                  { num: "01", title: "Podcast Studio Rental", desc: "Acoustically treated pro space" },
-                  { num: "02", title: "Multi-Camera Recording", desc: "Cinematic multi-angle capture" },
-                  { num: "03", title: "Professional Audio", desc: "Studio-grade mics & mixing" },
-                  { num: "04", title: "Video Podcast Production", desc: "Full-production video podcasts" },
-                  { num: "05", title: "Interview & Talk Shows", desc: "Guest & panel formats" },
-                  { num: "06", title: "Podcast Editing", desc: "Post-production & mastering" },
-                  { num: "07", title: "Reels & Short-Form Clips", desc: "Social-ready clip delivery" },
-                  { num: "08", title: "YouTube Podcast Production", desc: "Long-form YouTube ready" },
-                ].map((feature, i) => (
-                  <motion.div
-                    key={feature.num}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.06 }}
-                    className="group p-4 sm:p-5 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.07] hover:border-white/25 transition-all duration-300 cursor-default"
-                  >
-                    <span className="text-[10px] font-mono text-white/30 block mb-2 tracking-widest">[{feature.num}]</span>
-                    <h4 className="text-sm sm:text-base font-display font-bold text-white uppercase tracking-tight leading-tight mb-1 group-hover:text-brand-light transition-colors">{feature.title}</h4>
-                    <p className="text-[11px] sm:text-xs text-brand-grey font-light leading-snug">{feature.desc}</p>
-                  </motion.div>
+          {/* ProjectCard layout — reversed */}
+          <motion.article
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="group relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-14 items-center"
+          >
+            {/* Background watermark */}
+            <div className="absolute -top-8 left-0 right-0 pointer-events-none select-none text-[10vw] font-display font-extrabold uppercase tracking-tighter text-white/[0.018] whitespace-nowrap overflow-hidden z-0">
+              PODCAST PRODUCTION • VIYANA PRODUCTIONS
+            </div>
+
+            {/* LEFT: Info column */}
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-6 relative z-10 lg:order-1">
+              <div className="flex items-center justify-between text-xs font-mono tracking-widest text-brand-grey border-b border-white/10 pb-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-white font-bold bg-white/10 px-2.5 py-0.5 rounded-md border border-white/15">[ 07 ]</span>
+                  <span className="text-white/30">•</span>
+                  <span className="text-white/90 font-medium">VIYANA STUDIO</span>
+                </div>
+                <span className="text-white font-semibold">BANGALORE</span>
+              </div>
+
+              <div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight uppercase text-white group-hover:text-brand-light transition-colors mb-2 leading-none">
+                  PODCAST PRODUCTION
+                </h2>
+                <p className="text-xs font-mono text-white/70 uppercase tracking-wider font-semibold">Studio Recording × Multi-Camera × Professional Audio × Final Delivery</p>
+              </div>
+
+              <p className="text-xs sm:text-sm text-brand-grey leading-relaxed font-light">
+                A complete podcast production setup built for creators, brands, entrepreneurs, and businesses. From studio recording and multi-camera production to professional audio, editing, and final delivery — we help turn conversations into engaging content.
+              </p>
+
+              <div className="flex flex-wrap gap-2 pt-1">
+                {["Podcast Studio Rental", "Multi-Camera Recording", "Professional Audio", "Video Podcast Production", "Interview & Talk Shows", "Podcast Editing", "Reels & Short-Form Clips", "YouTube Podcast Production"].map((item) => (
+                  <span key={item} className="text-xs uppercase font-mono px-3.5 py-1.5 rounded-md bg-white/5 text-white/90 border border-white/10 hover:border-white/30 transition-colors cursor-default tracking-wider font-medium">{item}</span>
                 ))}
               </div>
-            </motion.div>
 
-            {/* Right: headline + description */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 flex flex-col justify-between gap-8 order-1 lg:order-2"
-            >
-              <div>
-                <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/40 block mb-4">PODCAST PRODUCTION</span>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold uppercase tracking-tight leading-[0.88] text-white mb-6">
-                  YOUR VOICE.<br />
-                  <span className="text-white/40">YOUR STORY.</span><br />
-                  YOUR<br />
-                  PLATFORM.
-                </h2>
-                <p className="text-sm sm:text-base text-brand-grey leading-relaxed font-light max-w-sm">
-                  A complete podcast production setup built for creators, brands, entrepreneurs, and businesses. From studio recording and multi-camera production to professional audio, editing, and final delivery   we help turn conversations into engaging content.
-                </p>
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.04] border border-white/20 text-white text-xs sm:text-sm font-mono">
+                <span className="font-medium tracking-wide">Studio-grade audio & 4K multi-camera video — from recording to final delivery</span>
               </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-white/10 pt-4 sm:pt-5 text-xs font-mono">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 w-fit">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span className="text-white/80 text-xs uppercase tracking-widest font-mono font-medium">PODCAST PRODUCTION</span>
+                </div>
+                <Link
+                  to="/podcast"
+                  id="explore-podcasts-btn"
+                  className="group/link inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:py-2.5 rounded-full bg-white text-black hover:bg-brand-light font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 w-full sm:w-auto"
+                >
+                  <span>EXPLORE PODCASTS</span>
+                  <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* RIGHT: Image */}
+            <div className="lg:col-span-7 relative z-10 lg:order-2">
               <Link
                 to="/podcast"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-brand-light hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] w-full sm:w-auto"
-                id="explore-podcasts-btn"
+                className="relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-brand-dark border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-white/50 group-hover:shadow-[0_25px_80px_rgba(255,255,255,0.12)] transition-all duration-500"
               >
-                <span>EXPLORE PODCASTS</span>
-                <span className="group-hover:translate-x-1 transition-transform font-bold">→</span>
+                <img
+                  src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop"
+                  alt="Viyana Podcast Production"
+                  className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
+                {/* Badges */}
+                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 pointer-events-none">
+                  <span className="text-[10px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/20 font-mono shadow-lg">PODCAST PRODUCTION</span>
+                  <span className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/25 font-mono font-semibold shadow-md">07</span>
+                </div>
+                {/* Corner brackets */}
+                <div className="absolute inset-4 pointer-events-none z-20">
+                  <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                  <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                  <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                  <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
+                </div>
+                {/* Hover CTA */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 bg-black/30 backdrop-blur-[2px]">
+                  <span className="px-5 py-2 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold shadow-2xl flex items-center gap-2 group-hover:scale-105 transition-transform">
+                    <span>EXPLORE PODCASTS</span><span className="text-sm">→</span>
+                  </span>
+                </div>
+                {/* Bottom bar */}
+                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end text-xs font-mono text-white/80 z-10 pointer-events-none">
+                  <span className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/15 text-[11px]">Multi-Camera Studio</span>
+                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 text-[10px] uppercase tracking-wider">4K AUDIO+VIDEO</span>
+                </div>
               </Link>
-            </motion.div>
-          </div>
-
-          {/* Bottom divider line */}
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            </div>
+          </motion.article>
         </div>
       </section>
+      
 
       {/* 6. ABOUT VIYANA - IDEAS INTO VISUAL STORIES */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-brand-dark/40 relative overflow-hidden">
