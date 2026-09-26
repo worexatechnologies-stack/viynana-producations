@@ -433,13 +433,13 @@ export default function ContactPage() {
               {/* Embedded Google Map */}
               <iframe
                 title="Viyana Productions Studio Location"
-                src="https://maps.google.com/maps?q=Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Bengaluru,+Karnataka+560085&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7104147210457!2d77.54835817484063!3d12.926324587384869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3fa67d6a9eef%3A0xc01f7a6dbaefbc19!2sViyana%20Productions!5e0!3m2!1sen!2sin!4v1790415624332!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
-                allowFullScreen={false}
+                allowFullScreen={true}
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="strict-origin-when-cross-origin"
                 className="w-full h-full filter contrast-[1.05] brightness-[0.88] grayscale-[30%] hover:grayscale-0 transition-all duration-700"
               />
 
