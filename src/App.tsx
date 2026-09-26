@@ -21,6 +21,7 @@ import ProducersPage from "@/pages/ProducersPage";
 import OriginalContentPage from "@/pages/OriginalContentPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import TermsPage from "@/pages/TermsPage";
+import PodcastPage from "@/pages/PodcastPage";
 import NotFoundPage from "@/pages/NotFoundPage";
 
 function ScrollToTop() {
@@ -54,6 +55,7 @@ function AppRoutes() {
           <Route path="/original-content" element={<OriginalContentPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-and-conditions" element={<TermsPage />} />
+          <Route path="/podcast" element={<PodcastPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </SmoothScroll>

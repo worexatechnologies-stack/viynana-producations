@@ -214,7 +214,7 @@ export const services: ServiceItem[] = [
     title: "MAKE THE IDEA LOOK AS GOOD AS IT SOUNDS.",
     tagline: "Visual Identity × Key Visuals × Brand Art Direction",
     description: "Unforgettable graphic design systems, 3D typography, campaign key visuals, digital brand assets, and editorial print work crafted to give brands a commanding, world-class presence.",
-    longDescription: "Visual identity is the permanent signature of your brand. We build graphic design systems with radical precision and artistic boldness—ranging from monumental typography and dimensional 3D CGI key visuals to luxury packaging and frictionless digital design tokens that ensure your brand looks unmistakable everywhere it appears.",
+    longDescription: "Visual identity is the permanent signature of your brand. We build graphic design systems with radical precision and artistic boldness ranging from monumental typography and dimensional 3D CGI key visuals to luxury packaging and frictionless digital design tokens that ensure your brand looks unmistakable everywhere it appears.",
     image: "/images/neon-horizons.png",
     gallery: [
       "/images/neon-horizons.png",

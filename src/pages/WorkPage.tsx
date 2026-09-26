@@ -151,9 +151,8 @@ function ProjectCard({
 
       {/* 1. Curated Visual Image Column (Zero Video Overhead, Ultra Fast) */}
       <div
-        className={`lg:col-span-7 flex flex-col relative z-10 ${
-          isEven ? "lg:order-1" : "lg:order-2"
-        }`}
+        className={`lg:col-span-7 flex flex-col relative z-10 ${isEven ? "lg:order-1" : "lg:order-2"
+          }`}
       >
         <Link
           to={`/work/${project.slug}`}
@@ -213,9 +212,8 @@ function ProjectCard({
 
       {/* 2. Editorial Information Column */}
       <div
-        className={`lg:col-span-5 flex flex-col justify-between space-y-6 relative z-10 ${
-          isEven ? "lg:order-2" : "lg:order-1"
-        }`}
+        className={`lg:col-span-5 flex flex-col justify-between space-y-6 relative z-10 ${isEven ? "lg:order-2" : "lg:order-1"
+          }`}
       >
         {/* Meta header */}
         <div className="flex items-center justify-between text-xs font-mono tracking-widest text-brand-grey border-b border-white/10 pb-3">
@@ -332,7 +330,7 @@ export default function WorkPage() {
       <Navbar />
 
       {/* 1. HERO HEADER */}
-      <section 
+      <section
         ref={headerRef}
         className="relative pt-24 sm:pt-28 md:pt-36 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-12 border-b border-white/10 overflow-hidden bg-gradient-to-b from-brand-dark/90 via-brand-black to-brand-black"
       >
@@ -463,7 +461,7 @@ export default function WorkPage() {
       {/* 2. STICKY FILTER BAR */}
       <section className="sticky top-16 sm:top-20 z-30 py-2.5 sm:py-3 px-3 sm:px-6 lg:px-8 bg-brand-black/95 backdrop-blur-2xl border-y border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.7)] transition-all duration-300">
         <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between gap-3 lg:gap-6">
-          
+
           {/* Left: Discipline Indicator */}
           <div className="hidden lg:flex items-center gap-2.5 shrink-0">
             <div className="flex flex-col">
@@ -486,11 +484,10 @@ export default function WorkPage() {
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`relative text-[11px] uppercase tracking-wider px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full transition-all duration-200 font-mono flex items-center gap-1.5 cursor-pointer shrink-0 whitespace-nowrap active:scale-95 group ${
-                      isActive
+                    className={`relative text-[11px] uppercase tracking-wider px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full transition-all duration-200 font-mono flex items-center gap-1.5 cursor-pointer shrink-0 whitespace-nowrap active:scale-95 group ${isActive
                         ? "text-black font-bold"
                         : "text-white/60 hover:text-white hover:bg-white/[0.06]"
-                    }`}
+                      }`}
                   >
                     {isActive && (
                       <motion.div
@@ -501,11 +498,10 @@ export default function WorkPage() {
                     )}
                     <span className="relative z-10">{cat}</span>
                     <span
-                      className={`relative z-10 text-[9px] px-1.5 py-0.5 rounded-full font-mono transition-colors ${
-                        isActive
+                      className={`relative z-10 text-[9px] px-1.5 py-0.5 rounded-full font-mono transition-colors ${isActive
                           ? "bg-black/15 text-black font-bold"
                           : "bg-white/[0.08] text-white/50 group-hover:bg-white/15 group-hover:text-white border border-white/10"
-                      }`}
+                        }`}
                     >
                       {count}
                     </span>
@@ -547,7 +543,7 @@ export default function WorkPage() {
 
                 return (
                   <div key={group.id} id={group.id} className="scroll-mt-28">
-                    
+
                     {/* DISCIPLINE SECTION HEADING */}
                     <div className="border-b border-white/15 pb-5 mb-8 sm:mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                       <div>
@@ -600,7 +596,191 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* 4. ABOUT VIYANA - IDEAS INTO VISUAL STORIES */}
+      {/* 4. STUDIO RENTAL SECTION */}
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 relative overflow-hidden bg-brand-black">
+        {/* Ambient glow */}
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-white/[0.015] rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-[80px] pointer-events-none translate-x-1/3 translate-y-1/3" />
+
+        <div className="container mx-auto max-w-7xl relative z-10">
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-3 mb-8 sm:mb-12"
+          >
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/50">SERVICES / 01</span>
+          </motion.div>
+
+          {/* Two-column hero layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-20 items-start mb-14 sm:mb-20">
+            {/* Left: headline + description */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 flex flex-col justify-between gap-8"
+            >
+              <div>
+                <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/40 block mb-4">STUDIO RENTAL</span>
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold uppercase tracking-tight leading-[0.88] text-white mb-6">
+                  PROFESSIONAL<br />
+                  <span className="text-white/40">STUDIO SPACES</span><br />
+                  FOR EVERY<br />
+                  CREATIVE.
+                </h2>
+                <p className="text-sm sm:text-base text-brand-grey leading-relaxed font-light max-w-sm">
+                  A versatile production studio designed for photography, video production, brand shoots, interviews, and creative projects. From controlled lighting to flexible setups, our studio gives you the space and production environment to bring your ideas to life.
+                </p>
+              </div>
+              <Link
+                to="/studio"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-brand-light hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] w-full sm:w-auto"
+                id="explore-studio-btn"
+              >
+                <span>EXPLORE STUDIO</span>
+                <span className="group-hover:translate-x-1 transition-transform font-bold">→</span>
+              </Link>
+            </motion.div>
+
+            {/* Right: feature grid */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="lg:col-span-7"
+            >
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
+                {[
+                  { num: "01", title: "Photography & Video Studio", desc: "Full-spec controlled environment" },
+                  { num: "02", title: "Professional Lighting Setup", desc: "Strobes, softboxes & LED arrays" },
+                  { num: "03", title: "Product & Brand Shoots", desc: "Tabletop to full-scale product" },
+                  { num: "04", title: "Interview Setup", desc: "Multi-cam dialogue ready" },
+                  { num: "05", title: "Green Screen Setup", desc: "Chroma key & VFX composite" },
+                  { num: "06", title: "Creative & Editorial", desc: "Fashion, editorial & conceptual" },
+                  { num: "07", title: "Flexible Configurations", desc: "Modular layout for any brief" },
+                  { num: "08", title: "Production Support", desc: "On-site crew & equipment" },
+                ].map((feature, i) => (
+                  <motion.div
+                    key={feature.num}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.06 }}
+                    className="group p-4 sm:p-5 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.07] hover:border-white/25 transition-all duration-300 cursor-default"
+                  >
+                    <span className="text-[10px] font-mono text-white/30 block mb-2 tracking-widest">[{feature.num}]</span>
+                    <h4 className="text-sm sm:text-base font-display font-bold text-white uppercase tracking-tight leading-tight mb-1 group-hover:text-brand-light transition-colors">{feature.title}</h4>
+                    <p className="text-[11px] sm:text-xs text-brand-grey font-light leading-snug">{feature.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom divider line */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        </div>
+      </section>
+
+      {/* 5. PODCAST PRODUCTION SECTION */}
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 relative overflow-hidden bg-brand-dark/30">
+        {/* Ambient glow */}
+        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-white/[0.015] rounded-full blur-[100px] pointer-events-none translate-x-1/3 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-1/4 w-[350px] h-[350px] bg-white/[0.018] rounded-full blur-[80px] pointer-events-none" />
+
+        <div className="container mx-auto max-w-7xl relative z-10">
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-3 mb-8 sm:mb-12"
+          >
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/50">SERVICES / 02</span>
+          </motion.div>
+
+          {/* Two-column hero layout   reversed */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-20 items-start mb-14 sm:mb-20">
+            {/* Left: feature grid */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="lg:col-span-7 order-2 lg:order-1"
+            >
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
+                {[
+                  { num: "01", title: "Podcast Studio Rental", desc: "Acoustically treated pro space" },
+                  { num: "02", title: "Multi-Camera Recording", desc: "Cinematic multi-angle capture" },
+                  { num: "03", title: "Professional Audio", desc: "Studio-grade mics & mixing" },
+                  { num: "04", title: "Video Podcast Production", desc: "Full-production video podcasts" },
+                  { num: "05", title: "Interview & Talk Shows", desc: "Guest & panel formats" },
+                  { num: "06", title: "Podcast Editing", desc: "Post-production & mastering" },
+                  { num: "07", title: "Reels & Short-Form Clips", desc: "Social-ready clip delivery" },
+                  { num: "08", title: "YouTube Podcast Production", desc: "Long-form YouTube ready" },
+                ].map((feature, i) => (
+                  <motion.div
+                    key={feature.num}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.06 }}
+                    className="group p-4 sm:p-5 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.07] hover:border-white/25 transition-all duration-300 cursor-default"
+                  >
+                    <span className="text-[10px] font-mono text-white/30 block mb-2 tracking-widest">[{feature.num}]</span>
+                    <h4 className="text-sm sm:text-base font-display font-bold text-white uppercase tracking-tight leading-tight mb-1 group-hover:text-brand-light transition-colors">{feature.title}</h4>
+                    <p className="text-[11px] sm:text-xs text-brand-grey font-light leading-snug">{feature.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right: headline + description */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 flex flex-col justify-between gap-8 order-1 lg:order-2"
+            >
+              <div>
+                <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/40 block mb-4">PODCAST PRODUCTION</span>
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold uppercase tracking-tight leading-[0.88] text-white mb-6">
+                  YOUR VOICE.<br />
+                  <span className="text-white/40">YOUR STORY.</span><br />
+                  YOUR<br />
+                  PLATFORM.
+                </h2>
+                <p className="text-sm sm:text-base text-brand-grey leading-relaxed font-light max-w-sm">
+                  A complete podcast production setup built for creators, brands, entrepreneurs, and businesses. From studio recording and multi-camera production to professional audio, editing, and final delivery   we help turn conversations into engaging content.
+                </p>
+              </div>
+              <Link
+                to="/podcast"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-brand-light hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] w-full sm:w-auto"
+                id="explore-podcasts-btn"
+              >
+                <span>EXPLORE PODCASTS</span>
+                <span className="group-hover:translate-x-1 transition-transform font-bold">→</span>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Bottom divider line */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        </div>
+      </section>
+
+      {/* 6. ABOUT VIYANA - IDEAS INTO VISUAL STORIES */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-brand-dark/40 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none rounded-full" />
         <div className="container mx-auto max-w-6xl relative z-10">
@@ -635,7 +815,7 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* 5. BOTTOM CTA: HAVE A STORY TO TELL? */}
+      {/* 7. BOTTOM CTA: HAVE A STORY TO TELL? */}
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 bg-brand-dark text-center border-t border-white/10 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04)_0%,transparent_70%)] pointer-events-none rounded-full" />
         <div className="container mx-auto max-w-4xl relative z-10 space-y-6">

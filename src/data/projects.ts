@@ -45,7 +45,7 @@ export const projects: Project[] = [
     director: "Elena Rostova",
     deliverableType: "Full-Scale Commercial Production & TVC",
     thumbnail: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
-    description: "A full-scale commercial production crafted to bring powerful brand stories to life — combining cinematic visuals, dynamic camera movement, and high-impact storytelling for television, digital platforms, and social media. Built around a strong creative concept, every frame is designed to capture attention, communicate the brand message, and create a lasting visual impression.",
+    description: "A full-scale commercial production crafted to bring powerful brand stories to life   combining cinematic visuals, dynamic camera movement, and high-impact storytelling for television, digital platforms, and social media. Built around a strong creative concept, every frame is designed to capture attention, communicate the brand message, and create a lasting visual impression.",
     fullDescription: "Working closely with our creative and production team, Viyana Productions brings together direction, cinematography, production design, editing, and post-production to create a distinctive visual experience.",
     scope: [
       "Commercial Films",
@@ -94,7 +94,7 @@ export const projects: Project[] = [
       "POST-PRODUCTION": "Editing • Color Grading • Sound Design"
     },
     ctaText: "COMMISSION A CINEMATIC CONTENT SHOOT",
-    tagline: "VINAYA PRODUCTIONS — Crafting stories. Creating visual experiences.",
+    tagline: "VINAYA PRODUCTIONS   Crafting stories. Creating visual experiences.",
     impact: "Premiered across luxury channels & festival showcases",
     gallery: [
       "/images/cinematic-content-shoot.jpg"

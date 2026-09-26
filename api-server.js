@@ -1,4 +1,4 @@
-// api-server.js — Lightweight Express API for Viyana Productions Contact Form
+// api-server.js   Lightweight Express API for Viyana Productions Contact Form
 // Run alongside Vite dev server: node api-server.js
 const express = require("express");
 const cors = require("cors");
@@ -135,7 +135,7 @@ app.post("/api/contact", async (req, res) => {
 </body>
 </html>`;
 
-  const textContent = `New Project Enquiry — Viyana Productions
+  const textContent = `New Project Enquiry   Viyana Productions
 ------------------------------------------
 Service: ${service || "General Inquiry"}
 Name: ${name}

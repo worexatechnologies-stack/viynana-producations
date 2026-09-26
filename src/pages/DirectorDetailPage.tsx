@@ -64,7 +64,7 @@ export default function DirectorProfilePage() {
   const openShowreelModal = (title?: string) => {
     setSelectedVideo({
       src: director.reelSrc || "/showreel-video-4k-h264.mp4",
-      title: title || `${director.name} — Directorial Showreel`,
+      title: title || `${director.name}   Directorial Showreel`,
       category: `${director.specialization} • ${director.filmFormat.split("//")[0]}`,
     });
     setIsVideoModalOpen(true);
@@ -105,7 +105,7 @@ export default function DirectorProfilePage() {
 
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
+
             {/* Left: Director Image Card */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
@@ -116,12 +116,12 @@ export default function DirectorProfilePage() {
               <img
                 src={director.image}
                 alt={director.name}
-                
-                
+
+
                 className="object-cover w-full h-full absolute inset-0 object-top filter brightness-[0.9] contrast-[1.05] group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-              
+
               {/* Image Badges */}
               <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-[10px] font-mono uppercase tracking-wider z-10">
                 <span className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white/90">
@@ -207,7 +207,7 @@ export default function DirectorProfilePage() {
       {/* 2. RELATED SECTION 1: SHOWREEL & FEATURED WORK */}
       <section className="py-16 sm:py-20 px-6 sm:px-10 lg:px-16 border-t border-white/10 bg-brand-dark/40 relative">
         <div className="container mx-auto max-w-6xl space-y-10">
-          
+
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
             <div>
               <span className={`text-xs font-mono uppercase tracking-[0.25em] ${theme.accent} block mb-1`}>
@@ -217,7 +217,7 @@ export default function DirectorProfilePage() {
                 Showreel &amp; Campaigns
               </h2>
             </div>
-            
+
             <button
               type="button"
               onClick={toggleInlineAudio}
@@ -264,7 +264,7 @@ export default function DirectorProfilePage() {
             {director.sampleCampaigns.map((camp) => (
               <div
                 key={camp.title}
-                onClick={() => openShowreelModal(`${camp.title} — ${camp.client}`)}
+                onClick={() => openShowreelModal(`${camp.title}   ${camp.client}`)}
                 className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/25 hover:bg-white/[0.04] transition-all cursor-pointer group space-y-3"
               >
                 <div className={`flex items-center justify-between text-xs font-mono ${theme.accent}`}>
@@ -289,7 +289,7 @@ export default function DirectorProfilePage() {
       {/* 3. RELATED SECTION 2: CINEMA CRAFT & NEXT DIRECTOR */}
       <section className="py-16 sm:py-20 px-6 sm:px-10 lg:px-16 border-t border-white/10">
         <div className="container mx-auto max-w-6xl space-y-12">
-          
+
           <div>
             <span className={`text-xs font-mono uppercase tracking-[0.25em] ${theme.accent} block mb-1`}>
               PRODUCTION DETAILS

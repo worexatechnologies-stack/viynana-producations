@@ -18,6 +18,8 @@ const services = [
   "Graphic Design",
   "Product Shoot",
   "Influencer Shoot",
+  "Studio Rental",
+  "Podcast Production",
 ];
 
 export default function ContactPage() {

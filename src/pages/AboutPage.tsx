@@ -51,7 +51,7 @@ const pillarsOfImpact = [
     slug: "genesis",
     title: "Graphic & Visual Design",
     tagline: "Visual identities built to be remembered.",
-    desc: "Design is more than aesthetics. It's how a brand becomes recognisable. We create visual systems that bring consistency and personality across every touchpoint — from brand identity and campaigns to digital platforms, packaging, and social media.",
+    desc: "Design is more than aesthetics. It's how a brand becomes recognisable. We create visual systems that bring consistency and personality across every touchpoint from brand identity and campaigns to digital platforms, packaging, and social media.",
     deliverables: [
       "Visual Identity & Brand Systems",
       "Logo & Brand Identity Design",
@@ -207,7 +207,7 @@ export default function AboutPage() {
                   WHERE HIGH-IMPACT STRATEGY MEETS <br className="hidden sm:inline" />
                   <span className="text-white">CINEMA-GRADE CRAFT.</span>
                 </h2>
-                
+
                 <p className="text-lg sm:text-2xl font-display font-medium text-white/90 uppercase tracking-tight pt-0.5 sm:pt-1">
                   We exist to make brands impossible to ignore.
                 </p>
@@ -306,7 +306,7 @@ export default function AboutPage() {
             <img
               src="/images/website-video-2-poster.jpg"
               alt="Viyana Productions Master Showreel"
-              
+
               className="object-cover w-full h-full absolute inset-0 object-center filter contrast-[1.05] group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-black/40 to-black/20" />
@@ -343,8 +343,8 @@ export default function AboutPage() {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[400px] bg-emerald-500/[0.03] blur-[150px] pointer-events-none rounded-full" />
 
         <div className="container mx-auto max-w-6xl relative z-10">
-          
-          <motion.div 
+
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
@@ -352,7 +352,7 @@ export default function AboutPage() {
             className="max-w-4xl mb-14 sm:mb-20"
           >
             {/* Animated Eyebrow */}
-            <motion.div 
+            <motion.div
               variants={headerRevealVariants}
               className="flex items-center gap-3 text-xs font-mono uppercase tracking-[0.3em] text-white/50 mb-4"
             >
@@ -361,7 +361,7 @@ export default function AboutPage() {
             </motion.div>
 
             {/* Headline matching user design */}
-            <motion.h2 
+            <motion.h2
               variants={headerRevealVariants}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-syne font-bold text-white uppercase tracking-tight leading-[1.08] mb-5"
             >
@@ -369,7 +369,7 @@ export default function AboutPage() {
               <br className="hidden sm:inline" />
               <span className="relative inline-block text-white">
                 IMPACT<span className="text-white">.</span>
-                <motion.span 
+                <motion.span
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
@@ -379,7 +379,7 @@ export default function AboutPage() {
               </span>
             </motion.h2>
 
-            <motion.p 
+            <motion.p
               variants={headerRevealVariants}
               className="text-sm sm:text-base md:text-lg text-brand-grey font-light leading-relaxed max-w-3xl"
             >
@@ -388,7 +388,7 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Staggered Grid of Pillar Cards */}
-          <motion.div 
+          <motion.div
             variants={pillarsContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -461,7 +461,7 @@ export default function AboutPage() {
       {/* 4. CREATIVE PROCESS (HOW WE WORK) */}
       <section className="py-16 sm:py-24 px-6 sm:px-10 lg:px-16 border-t border-white/10">
         <div className="container mx-auto max-w-6xl">
-          
+
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16 gap-4">
             <div>
               <span className="text-xs font-mono uppercase tracking-[0.3em] text-white/50 block mb-2">
@@ -508,7 +508,7 @@ export default function AboutPage() {
       <section className="py-12 sm:py-24 px-4 sm:px-10 lg:px-16 border-t border-white/10">
         <div className="container mx-auto max-w-6xl">
           <div className="p-5 sm:p-12 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/15 backdrop-blur-sm grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
-            
+
             <div className="lg:col-span-7 space-y-3 sm:space-y-4">
               <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/80 flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-white" />
@@ -518,7 +518,7 @@ export default function AboutPage() {
                 Based in Bangalore, India.
               </h2>
               <p className="text-xs sm:text-sm text-brand-grey font-light leading-relaxed max-w-lg">
-                Located at 4th floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085 — our creative space operates as our central hub for creative development, post-production, sound engineering, and visual design.
+                Located at 4th floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085   our creative space operates as our central hub for creative development, post-production, sound engineering, and visual design.
               </p>
               <div className="pt-2 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-4 text-xs font-mono text-white/70">
                 <span className="flex items-center gap-1.5">
