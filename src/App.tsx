@@ -1,28 +1,30 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { clsx } from "clsx";
 import SmoothScroll from "@/components/SmoothScroll";
 import Preloader from "@/components/Preloader";
 
-// Pages
+// Keep HomePage eager for instant homepage rendering
 import HomePage from "@/pages/HomePage";
-import AboutPage from "@/pages/AboutPage";
-import WorkPage from "@/pages/WorkPage";
-import WorkDetailPage from "@/pages/WorkDetailPage";
-import ShowreelPage from "@/pages/ShowreelPage";
-import DirectorsPage from "@/pages/DirectorsPage";
-import DirectorDetailPage from "@/pages/DirectorDetailPage";
-import ContactPage from "@/pages/ContactPage";
-import StillsPage from "@/pages/StillsPage";
-import StudioPage from "@/pages/StudioPage";
-import JournalPage from "@/pages/JournalPage";
-import PressPage from "@/pages/PressPage";
-import ProducersPage from "@/pages/ProducersPage";
-import OriginalContentPage from "@/pages/OriginalContentPage";
-import PrivacyPage from "@/pages/PrivacyPage";
-import TermsPage from "@/pages/TermsPage";
-import PodcastPage from "@/pages/PodcastPage";
-import NotFoundPage from "@/pages/NotFoundPage";
+
+// Code-split all other routes to keep initial bundle ultra-fast & lightweight
+const AboutPage = lazy(() => import("@/pages/AboutPage"));
+const WorkPage = lazy(() => import("@/pages/WorkPage"));
+const WorkDetailPage = lazy(() => import("@/pages/WorkDetailPage"));
+const ShowreelPage = lazy(() => import("@/pages/ShowreelPage"));
+const DirectorsPage = lazy(() => import("@/pages/DirectorsPage"));
+const DirectorDetailPage = lazy(() => import("@/pages/DirectorDetailPage"));
+const ContactPage = lazy(() => import("@/pages/ContactPage"));
+const StillsPage = lazy(() => import("@/pages/StillsPage"));
+const StudioPage = lazy(() => import("@/pages/StudioPage"));
+const JournalPage = lazy(() => import("@/pages/JournalPage"));
+const PressPage = lazy(() => import("@/pages/PressPage"));
+const ProducersPage = lazy(() => import("@/pages/ProducersPage"));
+const OriginalContentPage = lazy(() => import("@/pages/OriginalContentPage"));
+const PrivacyPage = lazy(() => import("@/pages/PrivacyPage"));
+const TermsPage = lazy(() => import("@/pages/TermsPage"));
+const PodcastPage = lazy(() => import("@/pages/PodcastPage"));
+const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -38,26 +40,28 @@ function AppRoutes() {
       <ScrollToTop />
       <Preloader />
       <SmoothScroll>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/work" element={<WorkPage />} />
-          <Route path="/work/:slug" element={<WorkDetailPage />} />
-          <Route path="/showreel" element={<ShowreelPage />} />
-          <Route path="/directors" element={<DirectorsPage />} />
-          <Route path="/directors/:id" element={<DirectorDetailPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/stills" element={<StillsPage />} />
-          <Route path="/studio" element={<StudioPage />} />
-          <Route path="/journal" element={<JournalPage />} />
-          <Route path="/press" element={<PressPage />} />
-          <Route path="/producers" element={<ProducersPage />} />
-          <Route path="/original-content" element={<OriginalContentPage />} />
-          <Route path="/privacy-policy" element={<PrivacyPage />} />
-          <Route path="/terms-and-conditions" element={<TermsPage />} />
-          <Route path="/podcast" element={<PodcastPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen bg-brand-black" />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/work" element={<WorkPage />} />
+            <Route path="/work/:slug" element={<WorkDetailPage />} />
+            <Route path="/showreel" element={<ShowreelPage />} />
+            <Route path="/directors" element={<DirectorsPage />} />
+            <Route path="/directors/:id" element={<DirectorDetailPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/stills" element={<StillsPage />} />
+            <Route path="/studio" element={<StudioPage />} />
+            <Route path="/journal" element={<JournalPage />} />
+            <Route path="/press" element={<PressPage />} />
+            <Route path="/producers" element={<ProducersPage />} />
+            <Route path="/original-content" element={<OriginalContentPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPage />} />
+            <Route path="/terms-and-conditions" element={<TermsPage />} />
+            <Route path="/podcast" element={<PodcastPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
       </SmoothScroll>
     </>
   );

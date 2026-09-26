@@ -95,8 +95,9 @@ export default function HomePage() {
             muted
             loop
             playsInline
+            preload="metadata"
             className="w-full h-full object-cover scale-105"
-            poster="https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=2070&auto=format&fit=crop"
+            poster="/images/hero-poster.jpg"
           >
             <source src="/13232-246463976_medium.mp4" type="video/mp4" />
           </video>
@@ -144,6 +145,10 @@ export default function HomePage() {
             <img
               src="/logo-white.png"
               alt="Viyana Productions"
+              width="970"
+              height="435"
+              fetchPriority="high"
+              decoding="async"
               className="w-auto h-28 sm:h-40 md:h-52 lg:h-64 max-w-[90vw] object-contain drop-shadow-[0_10px_50px_rgba(0,0,0,0.95)] filter brightness-110 select-none pointer-events-none"
             />
           </motion.div>
@@ -230,8 +235,12 @@ export default function HomePage() {
 
             <div className="md:w-2/3 relative w-full aspect-[16/10] sm:aspect-[4/5] md:aspect-[16/9] overflow-hidden group rounded-2xl border border-white/10 shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1200&auto=format&fit=crop"
                 alt="Behind the scenes at Viyana"
+                loading="lazy"
+                decoding="async"
+                width="1200"
+                height="675"
                 className="object-cover w-full h-full absolute inset-0 w-full h-full transition-transform duration-1000 group-hover:scale-105 filter contrast-[1.05]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -319,6 +328,10 @@ export default function HomePage() {
                   <img
                     src={project.thumbnail}
                     alt={`${project.title} - ${project.category}`}
+                    loading="lazy"
+                    decoding="async"
+                    width="500"
+                    height="500"
                     className="object-cover w-full h-full absolute inset-0 w-full h-full filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/10 group-hover:opacity-85 transition-opacity duration-500 pointer-events-none"></div>

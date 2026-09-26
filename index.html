@@ -8,16 +8,34 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <!-- Google Fonts: Bold Modern Brand Typography Stack -->
+    <!-- Google Fonts: Asynchronous Non-Blocking Modern Brand Typography Stack -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+      />
+    </noscript>
 
-    <!-- Default SEO (overridden per-page by react-helmet-async) -->
+    <!-- Critical Preloads for Hero & Logo -->
+    <link rel="preload" as="image" href="/logo-white.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/hero-poster.jpg" fetchpriority="high" />
+
+    <!-- Default SEO & Canonical -->
     <title>Viyana Productions | Creative Ad Agency &amp; Production Studio</title>
+    <link rel="canonical" href="https://viyana.productions/" />
     <meta
       name="description"
       content="Viyana Productions is a creative advertising and production studio specializing in ad campaigns, commercial videos, content creation and graphic design."
@@ -27,10 +45,60 @@
     <meta property="og:title" content="Viyana Productions | Creative Ad Agency &amp; Production Studio" />
     <meta property="og:description" content="Bold campaigns, cinematic videos, digital content and visual identities for brands that want to stand out." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://viyana.productions/" />
+    <meta property="og:image" content="https://viyana.productions/logo-white.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Viyana Productions | Creative Ad Agency &amp; Production Studio" />
     <meta name="twitter:description" content="Bold campaigns, cinematic videos, digital content and visual identities for brands that want to stand out." />
+    <meta name="twitter:image" content="https://viyana.productions/logo-white.png" />
     <meta name="robots" content="index, follow" />
+
+    <!-- Schema.org JSON-LD Structured Data for SEO & Agentic Browsing -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://viyana.productions/#organization",
+          "name": "Viyana Productions",
+          "url": "https://viyana.productions",
+          "logo": "https://viyana.productions/logo-white.png",
+          "description": "Creative advertising and cinematic production studio specializing in commercial ads, branded content, model portfolios, and theatrical films.",
+          "email": "info.viyanaproductions@gmail.com",
+          "telephone": "+91-91872-33615",
+          "sameAs": [
+            "https://www.instagram.com/viyana.productions/reels/",
+            "https://www.facebook.com/profile.php?id=61594256189978"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://viyana.productions/#website",
+          "url": "https://viyana.productions",
+          "name": "Viyana Productions",
+          "publisher": {
+            "@id": "https://viyana.productions/#organization"
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://viyana.productions/#service",
+          "name": "Viyana Productions",
+          "url": "https://viyana.productions",
+          "image": "https://viyana.productions/logo-white.png",
+          "priceRange": "$$$$",
+          "telephone": "+91-91872-33615",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bangalore",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="antialiased bg-brand-black text-brand-light selection:bg-brand-light selection:text-brand-black font-sans">
     <div id="root"></div>
