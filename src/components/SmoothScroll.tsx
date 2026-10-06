@@ -59,13 +59,15 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       root
       autoRaf={true}
       options={{
-        lerp: 0.08,
-        duration: 1.2,
+        lerp: 0.1,
+        duration: 1.4,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        wheelMultiplier: 1.0,
-        touchMultiplier: 1.2,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.5,
         infinite: false,
+        orientation: "vertical",
+        gestureOrientation: "vertical",
       }}
     >
       <ScrollBridge />

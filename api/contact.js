@@ -1,65 +1,34 @@
-// api-server.js   Lightweight Express API for Viyana Productions Contact Form
-// Run alongside Vite dev server: node api-server.js
-const express = require("express");
-const cors = require("cors");
+// api/contact.js - Serverless function for Vercel / serverless deployments
 const nodemailer = require("nodemailer");
-const path = require("path");
 
-// Load .env.local manually (Vite doesn't load it for Node scripts)
-const fs = require("fs");
-const envPath = path.join(__dirname, ".env.local");
-if (fs.existsSync(envPath)) {
-  fs.readFileSync(envPath, "utf8")
-    .split("\n")
-    .forEach((line) => {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) return;
-      const [key, ...rest] = trimmed.split("=");
-      if (key && rest.length) {
-        process.env[key.trim()] = rest.join("=").trim();
-      }
-    });
-  console.log("✅ Loaded .env.local");
-}
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-const PORT = 3001;
-
-const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
-const smtpPort = parseInt(process.env.SMTP_PORT || "465");
-const smtpSecure = process.env.SMTP_SECURE !== "false";
-const smtpUser = process.env.SMTP_USER;
-const smtpPass = process.env.SMTP_PASS;
-const receiverEmail =
-  process.env.CONTACT_RECEIVER_EMAIL || smtpUser;
-const fromName = process.env.SMTP_FROM_NAME || "Viyana Productions Web";
-
-const transporter = nodemailer.createTransport({
-  host: smtpHost,
-  port: smtpPort,
-  secure: smtpSecure,
-  auth: { user: smtpUser, pass: smtpPass },
-});
-
-transporter.verify((err) => {
-  if (err) {
-    console.error("❌ SMTP verification failed:", err.message);
-  } else {
-    console.log(`✅ SMTP ready → will send to: ${receiverEmail}`);
+module.exports = async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ success: false, error: "Method not allowed" });
   }
-});
 
-app.post("/api/contact", async (req, res) => {
-  const { name, email, phone, service, message } = req.body;
+  const { name, email, phone, service, message } = req.body || {};
 
   if (!name || !email || !phone || !message) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Name, email, phone number, and message are required." });
+    return res.status(400).json({
+      success: false,
+      error: "Name, email, phone number, and message are required.",
+    });
   }
+
+  const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
+  const smtpPort = parseInt(process.env.SMTP_PORT || "465");
+  const smtpSecure = process.env.SMTP_SECURE !== "false";
+  const smtpUser = process.env.SMTP_USER || "info.viyanaproductions@gmail.com";
+  const smtpPass = process.env.SMTP_PASS || "rterfgoevjnrqztg";
+  const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || smtpUser;
+  const fromName = process.env.SMTP_FROM_NAME || "Viyana Productions Web";
+
+  const transporter = nodemailer.createTransport({
+    host: smtpHost,
+    port: smtpPort,
+    secure: smtpSecure,
+    auth: { user: smtpUser, pass: smtpPass },
+  });
 
   const formattedDate = new Date().toLocaleString("en-IN", {
     timeZone: "Asia/Kolkata",
@@ -135,7 +104,7 @@ app.post("/api/contact", async (req, res) => {
 </body>
 </html>`;
 
-  const textContent = `New Project Enquiry   Viyana Productions
+  const textContent = `New Project Enquiry — Viyana Productions
 ------------------------------------------
 Service: ${service || "General Inquiry"}
 Name: ${name}
@@ -158,17 +127,12 @@ Reply to: ${email}`;
       html: htmlContent,
     });
 
-    res.json({ success: true, message: "Your message has been sent successfully." });
+    return res.status(200).json({ success: true, message: "Your message has been sent successfully." });
   } catch (error) {
-    console.error("❌ [SMTP ERROR]:", error);
-    res.status(500).json({
+    console.error("Vercel / Serverless API Error:", error);
+    return res.status(500).json({
       success: false,
-      error: "Unable to send your message. Please email us directly at info.viyanaproductions@gmail.com",
+      error: error.message || "Failed to send email.",
     });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`🚀 Viyana API server running on http://localhost:${PORT}`);
-  console.log(`   POST /api/contact → sends via SMTP to ${receiverEmail}`);
-});
+};

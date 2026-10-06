@@ -375,10 +375,10 @@ export const services: ServiceItem[] = [
     tagline: "Instagram Reels × Model Photos × Brand Collab Shoots",
     description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",
     longDescription: "Stand out in a crowded digital landscape with striking visuals. We provide professional shooting services for models, influencers, and YouTubers looking to elevate their personal brand. From viral Instagram Reels to high-fashion model portfolios and brand collaboration shoots, we capture your unique personality and style. Our content is designed to maximize engagement, attract more followers, and help you secure lucrative brand partnerships.",
-    image: "https://images.unsplash.com/photo-1516575334481-bea2089ba96a?q=80&w=2070&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2070&auto=format&fit=crop",
     gallery: [
-      "https://images.unsplash.com/photo-1516575334481-bea2089ba96a?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=2000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop"
     ],
     video: "/showreel-video-4k-h264.mp4",

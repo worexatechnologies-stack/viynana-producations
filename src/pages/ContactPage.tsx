@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { MessageSquare, ArrowUpRight, Check, Copy, Loader2, AlertCircle } from "lucide-react";
+import { MessageSquare, ArrowUpRight, Check, Copy, Loader2, AlertCircle, ChevronDown, MapPin, Phone } from "lucide-react";
 
 const services = [
   "Commercial Ads",
@@ -24,7 +24,9 @@ const services = [
 
 export default function ContactPage() {
   const [selectedService, setSelectedService] = useState("Commercial Ads");
-  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
+  const [copiedPhone, setCopiedPhone] = useState(false);
+  const [copiedAddress, setCopiedAddress] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -35,12 +37,18 @@ export default function ContactPage() {
     message: "",
   });
 
-  const copyEmail = () => {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText("info.viyanaproductions@gmail.com");
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2000);
+  const handleEmailAction = (email: string) => {
+    if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(email);
+      setCopiedEmail(email);
+      setTimeout(() => {
+        setCopiedEmail((prev) => (prev === email ? null : prev));
+      }, 2500);
     }
+  };
+
+  const copyEmail = () => {
+    handleEmailAction("info.viyanaproductions@gmail.com");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,18 +56,37 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setErrorMessage(null);
 
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      service: selectedService,
+      message: formData.message,
+    };
+
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          service: selectedService,
-          message: formData.message,
-        }),
-      });
+      let res: Response;
+      try {
+        res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      } catch (networkErr) {
+        // If relative URL fails during local dev, fallback to direct API port 3001
+        if (
+          typeof window !== "undefined" &&
+          (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+        ) {
+          res = await fetch("http://localhost:3001/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+        } else {
+          throw networkErr;
+        }
+      }
 
       const text = await res.text();
       let data: { success?: boolean; error?: string } = {};
@@ -67,7 +94,6 @@ export default function ContactPage() {
       try {
         data = JSON.parse(text);
       } catch {
-        // If server returns HTML instead of JSON (e.g. 404 or 500), handle gracefully
         if (!res.ok) {
           throw new Error("Unable to connect to contact server right now.");
         }
@@ -127,73 +153,210 @@ export default function ContactPage() {
               className="lg:col-span-5 space-y-8 sm:space-y-10"
             >
               {/* Email */}
-              <div className="space-y-2">
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
-                  Email
-                </span>
-                <a
-                  href="mailto:info.viyanaproductions@gmail.com"
-                  className="text-lg sm:text-2xl font-serif text-white hover:text-brand-light transition-colors block break-all"
-                >
-                  info.viyanaproductions@gmail.com
-                </a>
-                <button
-                  type="button"
-                  onClick={copyEmail}
-                  className="text-xs font-mono text-white/70 hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1.5 py-1"
-                >
-                  {copiedEmail ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-400 font-semibold">Copied to clipboard</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>Copy email</span>
-                    </>
-                  )}
-                </button>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
+                    Direct Email Desks
+                  </span>
+                  <span className="text-[9px] font-mono text-white/40 lowercase">
+                    click to email &amp; copy
+                  </span>
+                </div>
+                <div className="space-y-2">
+                  {[
+                    { label: "Creative", email: "creative@viyana.productions" },
+                    { label: "Director", email: "director@viyana.productions" },
+                    { label: "Production", email: "head.production@viyana.productions" },
+                    { label: "General", email: "info.viyanaproductions@gmail.com" },
+                  ].map((item) => (
+                    <div
+                      key={item.email}
+                      className="group flex items-center justify-between p-2.5 sm:p-3 -mx-2.5 sm:-mx-3 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-white/15 transition-all"
+                    >
+                      <a
+                        href={`mailto:${item.email}`}
+                        onClick={() => handleEmailAction(item.email)}
+                        className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 cursor-pointer"
+                        title={`Click to email ${item.email} (auto-copies address)`}
+                      >
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-white/40 w-20 sm:w-22 shrink-0">
+                          {item.label}
+                        </span>
+                        <span className="text-xs sm:text-sm font-mono text-white group-hover:text-brand-light group-hover:underline underline-offset-4 transition-colors truncate">
+                          {item.email}
+                        </span>
+                      </a>
+
+                      <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                        {copiedEmail === item.email ? (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-medium animate-in fade-in">
+                            <Check className="w-3 h-3 text-emerald-400 stroke-[2.5]" />
+                            <span>COPIED!</span>
+                          </span>
+                        ) : (
+                          <>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleEmailAction(item.email);
+                              }}
+                              className="p-1.5 rounded-lg hover:bg-white/10 text-white/30 hover:text-white transition-colors cursor-pointer"
+                              title="Copy email address"
+                            >
+                              <Copy className="w-3.5 h-3.5" />
+                            </button>
+                            <a
+                              href={`mailto:${item.email}`}
+                              onClick={() => handleEmailAction(item.email)}
+                              className="p-1.5 rounded-lg hover:bg-white/10 text-white/30 hover:text-white transition-colors cursor-pointer"
+                              title="Send email via default client"
+                            >
+                              <ArrowUpRight className="w-3.5 h-3.5" />
+                            </a>
+                            <a
+                              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${item.email}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hidden sm:inline-flex text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-white/5 hover:bg-white/15 text-white/50 hover:text-white transition-colors"
+                              title="Compose in Gmail Web"
+                            >
+                              GMAIL
+                            </a>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Phone & WhatsApp */}
               <div className="space-y-3">
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
-                  Phone / WhatsApp
-                </span>
-                <a
-                  href="tel:+919187233615"
-                  className="text-xl sm:text-2xl font-mono text-white hover:text-brand-light transition-colors block"
-                >
-                  +91 91872 33615
-                </a>
-                <div className="pt-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
+                    Phone / WhatsApp
+                  </span>
+                  <span className="text-[9px] font-mono text-white/40 lowercase">
+                    click to call / chat / copy
+                  </span>
+                </div>
+                
+                <div className="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-white/15 transition-all">
+                  <a
+                    href="tel:+919187233615"
+                    className="flex items-center gap-2.5 text-lg sm:text-xl font-mono text-white hover:text-brand-light transition-colors cursor-pointer group"
+                    title="Click to call +91 91872 33615"
+                  >
+                    <Phone className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
+                    <span className="group-hover:underline underline-offset-4">+91 91872 33615</span>
+                  </a>
+
+                  <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                    {copiedPhone ? (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-medium animate-in fade-in">
+                        <Check className="w-3 h-3 text-emerald-400 stroke-[2.5]" />
+                        <span>COPIED!</span>
+                      </span>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+                            navigator.clipboard.writeText("+919187233615");
+                            setCopiedPhone(true);
+                            setTimeout(() => setCopiedPhone(false), 2000);
+                          }
+                        }}
+                        className="p-1.5 rounded-lg hover:bg-white/10 text-white/40 hover:text-white transition-colors cursor-pointer"
+                        title="Copy phone number"
+                      >
+                        <Copy className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <div className="pt-1 flex flex-wrap gap-2.5">
+                  <a
+                    href="tel:+919187233615"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white border border-white/20 text-xs font-mono uppercase tracking-wider transition-colors"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>Call Now</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+
                   <a
                     href="https://wa.me/919187233615?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20discuss%20a%20project."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white border border-white/20 text-xs font-mono uppercase tracking-wider transition-colors w-full sm:w-auto"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 active:scale-95 text-emerald-400 hover:text-emerald-300 border border-emerald-500/30 text-xs font-mono uppercase tracking-wider transition-colors"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Chat on WhatsApp ↗</span>
+                    <span>Chat on WhatsApp</span>
+                    <ArrowUpRight className="w-3 h-3" />
                   </a>
                 </div>
               </div>
 
-              {/* Studio */}
+              {/* Studio Location - Clickable Google Maps Link */}
               <div className="space-y-3 pt-6 border-t border-white/10">
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
-                  Studio Location
-                </span>
-                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10">
-                  <h3 className="text-sm font-serif uppercase text-white mb-1">Bengaluru</h3>
-                  <p className="text-xs text-brand-grey leading-relaxed">
-                    4th floor, Gopalan Workspace,<br />
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
+                    Studio Location
+                  </span>
+                  <div className="flex items-center gap-2">
+                    {copiedAddress ? (
+                      <span className="text-[10px] font-mono text-emerald-400">Address Copied!</span>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+                            navigator.clipboard.writeText("4th Floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085");
+                            setCopiedAddress(true);
+                            setTimeout(() => setCopiedAddress(false), 2000);
+                          }
+                        }}
+                        className="text-[10px] font-mono text-white/40 hover:text-white transition-colors cursor-pointer"
+                        title="Copy Studio Address"
+                      >
+                        [copy address]
+                      </button>
+                    )}
+                    <span className="text-[10px] font-mono text-white/40 lowercase">click for map</span>
+                  </div>
+                </div>
+
+                <a
+                  href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block p-4 sm:p-5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/10 hover:border-white/30 transition-all cursor-pointer shadow-sm"
+                  title="Open Bengaluru Studio on Google Maps"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-white/60 group-hover:text-white transition-colors" />
+                      <h3 className="text-sm font-serif uppercase text-white group-hover:text-white transition-colors">
+                        Bengaluru Studio
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-white/40 group-hover:text-white transition-colors">
+                      <span>Google Maps</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </div>
+                  <p className="text-xs text-brand-grey group-hover:text-white/80 leading-relaxed transition-colors">
+                    4th Floor, Gopalan Workspace,<br />
                     Kathriguppe Main Rd, 3rd Phase,<br />
                     Banashankari 3rd Stage, Banashankari,<br />
                     Bengaluru, Karnataka 560085
                   </p>
-                </div>
+                </a>
               </div>
 
               {/* Socials */}
@@ -205,8 +368,7 @@ export default function ContactPage() {
                   {[
                     { name: "Instagram", href: "https://www.instagram.com/viyana.productions/reels/" },
                     { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61594256189978" },
-                    { name: "YouTube", href: "https://youtube.com" },
-                    { name: "LinkedIn", href: "https://linkedin.com" },
+                    { name: "YouTube", href: "https://www.youtube.com/@viyana.productions/shorts" },
                   ].map((s) => (
                     <a
                       key={s.name}
@@ -255,29 +417,31 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-                  {/* Service Selection */}
-                  <div className="space-y-2.5 sm:space-y-3">
+                  {/* Service Selection Dropdown */}
+                  <div className="space-y-1.5 sm:space-y-2">
                     <label className="block text-xs font-mono uppercase tracking-widest text-white/70">
-                      I&apos;m interested in
+                      I&apos;m interested in *
                     </label>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {services.map((service) => {
-                        const isSelected = selectedService === service;
-                        return (
-                          <button
+                    <div className="relative">
+                      <select
+                        name="service"
+                        value={selectedService}
+                        onChange={(e) => setSelectedService(e.target.value)}
+                        className="w-full bg-brand-black border border-white/15 hover:border-white/35 focus:border-white rounded-xl px-4 sm:px-5 py-3.5 text-xs sm:text-sm text-white font-mono uppercase tracking-wider focus:outline-none focus:ring-1 focus:ring-white/20 transition-all appearance-none cursor-pointer pr-12 shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
+                      >
+                        {services.map((service, index) => (
+                          <option
                             key={service}
-                            type="button"
-                            onClick={() => setSelectedService(service)}
-                            className={`text-[11px] sm:text-xs font-mono uppercase px-3.5 py-2 sm:px-4 sm:py-2 rounded-full border transition-all cursor-pointer min-h-[38px] flex items-center justify-center ${
-                              isSelected
-                                ? "bg-white text-black border-white font-semibold shadow-md"
-                                : "bg-transparent text-white/70 border-white/15 hover:border-white/40 hover:text-white"
-                            }`}
+                            value={service}
+                            className="bg-[#111111] text-white py-2.5 text-xs sm:text-sm font-mono uppercase"
                           >
-                            {service}
-                          </button>
-                        );
-                      })}
+                            {String(index + 1).padStart(2, "0")} • {service.toUpperCase()}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/60">
+                        <ChevronDown className="w-4 h-4" />
+                      </div>
                     </div>
                   </div>
 
@@ -321,10 +485,11 @@ export default function ContactPage() {
                   {/* Phone */}
                   <div className="space-y-1.5 sm:space-y-2">
                     <label className="block text-xs font-mono uppercase tracking-wider text-white/60">
-                      Phone Number (Optional)
+                      Phone Number *
                     </label>
                     <input
                       type="tel"
+                      required
                       disabled={isSubmitting}
                       value={formData.phone}
                       onChange={(e) => {
@@ -355,22 +520,27 @@ export default function ContactPage() {
 
                   {/* Error Alert if any */}
                   {errorMessage && (
-                    <div className="p-3.5 sm:p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-xs sm:text-sm flex items-start gap-2.5">
-                      <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                      <div className="space-y-1">
-                        <p className="font-medium text-red-300">{errorMessage}</p>
-                        <p className="text-[11px] text-red-200/70">
-                          Need instant assistance? Reach us directly on WhatsApp at{" "}
-                          <a
-                            href="https://wa.me/919187233615"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="underline text-white font-medium"
-                          >
-                            +91 91872 33615
-                          </a>
-                        </p>
+                    <div className="p-3.5 sm:p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-xs sm:text-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                      <div className="flex items-start gap-2.5">
+                        <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                        <div className="space-y-0.5">
+                          <p className="font-medium text-red-300">{errorMessage}</p>
+                          <p className="text-[11px] text-red-200/70">
+                            You can also reach our team immediately on WhatsApp:
+                          </p>
+                        </div>
                       </div>
+                      <a
+                        href={`https://wa.me/919187233615?text=${encodeURIComponent(
+                          `Hello Viyana Productions,\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${selectedService}\n\nProject Brief:\n${formData.message}`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-[11px] font-semibold flex items-center gap-1.5 transition-colors shadow"
+                      >
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        Send via WhatsApp →
+                      </a>
                     </div>
                   )}
 
@@ -417,7 +587,7 @@ export default function ContactPage() {
               </h2>
             </div>
             <a
-              href="https://www.google.com/maps?q=4th+floor,+Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
+              href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white hover:text-black active:scale-95 text-white text-xs font-sans uppercase tracking-widest font-semibold border border-white/20 transition-all shadow-md w-full sm:w-auto justify-center"
@@ -454,16 +624,22 @@ export default function ContactPage() {
                 <h3 className="text-base sm:text-lg font-serif text-white uppercase tracking-tight mb-1">
                   Viyana Productions
                 </h3>
-                <p className="text-xs text-brand-grey leading-relaxed mb-3">
-                  4th floor, Gopalan Workspace,<br />
+                <a
+                  href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-xs text-brand-grey hover:text-white leading-relaxed mb-3 transition-colors group/addr"
+                  title="Open in Google Maps"
+                >
+                  4th Floor, Gopalan Workspace,<br />
                   Kathriguppe Main Rd, 3rd Phase,<br />
                   Banashankari 3rd Stage, Banashankari,<br />
                   Bengaluru, Karnataka 560085
-                </p>
+                </a>
                 <div className="flex items-center justify-between pt-2.5 border-t border-white/10 text-[11px] text-white/70">
                   <span>Mon – Sat: 9:30 AM – 7:30 PM</span>
                   <a
-                    href="https://www.google.com/maps?q=4th+floor,+Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
+                    href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white hover:underline font-medium"
@@ -485,13 +661,19 @@ export default function ContactPage() {
               <h3 className="text-base font-serif text-white uppercase tracking-tight mb-1">
                 Viyana Productions
               </h3>
-              <p className="text-xs text-brand-grey leading-relaxed mb-3">
-                4th floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
-              </p>
+              <a
+                href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-xs text-brand-grey hover:text-white leading-relaxed mb-3 transition-colors"
+                title="Open in Google Maps"
+              >
+                4th Floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
+              </a>
               <div className="flex items-center justify-between pt-2.5 border-t border-white/10 text-xs text-white/80">
                 <span>Mon – Sat: 9:30 AM – 7:30 PM</span>
                 <a
-                  href="https://www.google.com/maps?q=4th+floor,+Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
+                  href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-mono font-medium underline underline-offset-2"

@@ -1,13 +1,20 @@
 "use client";
 
-import { useState, useRef, useMemo, useEffect } from "react";
-import { projects, Project } from "@/data/projects";
-
+import { useRef } from "react";
+import { projects } from "@/data/projects";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Tv, Video, Camera, Clapperboard, Palette } from "lucide-react";
+import {
+  Tv,
+  Video,
+  Camera,
+  Clapperboard,
+  Palette,
+  ArrowRight,
+  ArrowUpRight
+} from "lucide-react";
 
 const coreCapabilities = [
   { name: "Advertisement & management", icon: Tv },
@@ -17,380 +24,75 @@ const coreCapabilities = [
   { name: "Branding", icon: Palette },
 ];
 
-interface DisciplineGroup {
-  id: string;
-  number: string;
-  name: string;
-  heading: string;
-  subtitle: string;
-}
-
-const disciplineGroups: DisciplineGroup[] = [
-  {
-    id: "commercial-ads",
-    number: "01",
-    name: "COMMERCIAL ADS",
-    heading: "COMMERCIAL ADS",
-    subtitle: "High-Impact Commercial Films • National TVCs • Brand Launch Spots",
-  },
-  {
-    id: "cinematic-content-shoot",
-    number: "02",
-    name: "CINEMATIC CONTENT SHOOT",
-    heading: "CINEMATIC CONTENT SHOOT",
-    subtitle: "Atmospheric Cinema Shoots • Luxury Brand Films • Poetic Visuals",
-  },
-  {
-    id: "advertisement",
-    number: "03",
-    name: "ADVERTISEMENT",
-    heading: "ADVERTISEMENT",
-    subtitle: "High-Conversion Multi-Platform Campaigns • Digital & Social Commercials",
-  },
-  {
-    id: "models-portfolio-shoots",
-    number: "04",
-    name: "MODELS PORTFOLIO SHOOTS",
-    heading: "MODELS PORTFOLIO SHOOTS",
-    subtitle: "High-Fashion Editorial Lookbooks • Agency Model Portfolios • Studio Sessions",
-  },
-  {
-    id: "vertical-series",
-    number: "05",
-    name: "VERTICAL SERIES",
-    heading: "VERTICAL SERIES",
-    subtitle: "Mobile-First Narrative • 9:16 Episodic Content • Cyber Dramas",
-  },
-  {
-    id: "web-series",
-    number: "06",
-    name: "WEB SERIES",
-    heading: "WEB SERIES",
-    subtitle: "Episodic Digital Originals • OTT Streaming Series • Narrative Worlds",
-  },
-  {
-    id: "short-films",
-    number: "07",
-    name: "SHORT FILMS",
-    heading: "SHORT FILMS",
-    subtitle: "Festival Selection • Cinematic Drama • Auteur Storytelling",
-  },
-  {
-    id: "film-production",
-    number: "08",
-    name: "FILM PRODUCTION",
-    heading: "FILM PRODUCTION",
-    subtitle: "Full-Scale Cinema Feature Productions • Theatrical Releases",
-  },
-  {
-    id: "graphic-design",
-    number: "09",
-    name: "GRAPHIC DESIGN",
-    heading: "GRAPHIC DESIGN",
-    subtitle: "Visual Brand Identities • 3D Key Visuals • Motion Typography",
-  },
-  {
-    id: "product-shoot",
-    number: "10",
-    name: "PRODUCT SHOOT",
-    heading: "PRODUCT SHOOT",
-    subtitle: "Online store photos • Lifestyle photos • Product videos",
-  },
-  {
-    id: "influencer-shoot",
-    number: "11",
-    name: "INFLUENCER SHOOT",
-    heading: "INFLUENCER SHOOT",
-    subtitle: "Instagram Reels • Model Photos • Brand Collab Shoots",
-  }
-];
-
-const filterOptions = [
-  "ALL",
-  "COMMERCIAL ADS",
-  "CINEMATIC CONTENT SHOOT",
-  "ADVERTISEMENT",
-  "MODELS PORTFOLIO SHOOTS",
-  "VERTICAL SERIES",
-  "WEB SERIES",
-  "SHORT FILMS",
-  "FILM PRODUCTION",
-  "GRAPHIC DESIGN",
-  "PRODUCT SHOOT",
-  "INFLUENCER SHOOT",
-] as const;
-
-interface ProjectCardProps {
-  project: Project;
-  idx: number;
-  group: DisciplineGroup;
-  isEven: boolean;
-}
-
-function ProjectCard({
-  project,
-  idx,
-  group,
-  isEven,
-}: ProjectCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-  const heroImage = project.thumbnail || project.gallery[0];
-  const isInfluencer = project.slug === "influencer-shoot" || project.category === "INFLUENCER SHOOT";
-  const videoSrc = isInfluencer ? (project.video || "/showreel-video-4k-h264.mp4") : undefined;
-
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-14 items-center border-b border-white/10 pb-12 sm:pb-20 last:border-b-0"
-    >
-      {/* Background Watermark Index */}
-      <div className="absolute -top-8 sm:-top-12 left-0 right-0 pointer-events-none select-none text-[10vw] font-display font-extrabold uppercase tracking-tighter text-white/[0.018] whitespace-nowrap overflow-hidden z-0">
-        {project.title} • {group.name}
-      </div>
-
-      {/* 1. Curated Visual Column (Video for Influencer Shoot, High-Performance Image for others) */}
-      <div
-        className={`lg:col-span-7 flex flex-col relative z-10 ${isEven ? "lg:order-1" : "lg:order-2"
-          }`}
-      >
-        <Link
-          to={`/work/${project.slug}`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className="relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-brand-dark border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-white/50 group-hover:shadow-[0_25px_80px_rgba(255,255,255,0.12)] transition-all duration-500 cursor-pointer"
-        >
-          {/* Main Visual: Video for Influencer Shoot, Curated Image for other categories */}
-          <div className="relative w-full h-full overflow-hidden">
-            {videoSrc ? (
-              <video
-                src={videoSrc}
-                poster={heroImage}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
-            ) : (
-              <img
-                src={heroImage}
-                alt={`${project.title} - ${project.category}`}
-                className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
-            )}
-          </div>
-
-          {/* Luxury Ambient Vignette */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
-
-          {/* Top Badges: Category & Year */}
-          <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 pointer-events-none">
-            <span className="text-[10px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/20 font-mono shadow-lg transition-transform group-hover:scale-105">
-              {project.category}
-            </span>
-            <span className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/25 font-mono font-semibold shadow-md">
-              {project.year}
-            </span>
-          </div>
-
-          {/* Corner Framing Brackets */}
-          <div className="absolute inset-4 pointer-events-none z-20 transition-opacity duration-300">
-            <span className={`absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 transition-all duration-300 ${isHovered ? "border-white w-6 h-6" : "border-white/20"}`} />
-            <span className={`absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 transition-all duration-300 ${isHovered ? "border-white w-6 h-6" : "border-white/20"}`} />
-            <span className={`absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 transition-all duration-300 ${isHovered ? "border-white w-6 h-6" : "border-white/20"}`} />
-            <span className={`absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 transition-all duration-300 ${isHovered ? "border-white w-6 h-6" : "border-white/20"}`} />
-          </div>
-
-          {/* Hover Center Indicator */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 bg-black/30 backdrop-blur-[2px]">
-            <span className="px-5 py-2 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold shadow-2xl flex items-center gap-2 transform group-hover:scale-105 transition-transform">
-              <span>EXPLORE CASE STUDY</span>
-              <span className="text-sm">→</span>
-            </span>
-          </div>
-
-          {/* Bottom Title Bar on Image for quick glance */}
-          <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end text-xs font-mono text-white/80 z-10 pointer-events-none">
-            <span className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/15 text-[11px] truncate max-w-[70%]">
-              {project.deliverableType}
-            </span>
-            <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 text-[10px] text-white/80 uppercase tracking-wider">
-              {videoSrc ? "4K VIDEO" : "ACES HDR"}
-            </span>
-          </div>
-        </Link>
-      </div>
-
-      {/* 2. Editorial Information Column */}
-      <div
-        className={`lg:col-span-5 flex flex-col justify-between space-y-6 relative z-10 ${isEven ? "lg:order-2" : "lg:order-1"
-          }`}
-      >
-        {/* Meta header */}
-        <div className="flex items-center justify-between text-xs font-mono tracking-widest text-brand-grey border-b border-white/10 pb-3">
-          <div className="flex items-center gap-3">
-            <span className="text-white font-bold bg-white/10 px-2.5 py-0.5 rounded-md border border-white/15">
-              [ {group.number}.0{idx + 1} ]
-            </span>
-            <span className="text-white/30">•</span>
-            <span className="text-white/90 font-medium">{project.client}</span>
-          </div>
-          <span className="text-white font-semibold">{project.year}</span>
-        </div>
-
-        {/* Title & Deliverable Type */}
-        <div>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight uppercase text-white group-hover:text-brand-light transition-colors mb-2 leading-none">
-            <Link to={`/work/${project.slug}`}>{project.title}</Link>
-          </h3>
-          <p className="text-xs font-mono text-white/70 uppercase tracking-wider font-semibold">
-            {project.deliverableType}
-          </p>
-        </div>
-
-        {/* Description */}
-        <p className="text-xs sm:text-sm text-brand-grey leading-relaxed font-light">
-          {project.description}
-        </p>
-
-        {/* Scope Tags */}
-        {project.scope && (
-          <div className="flex flex-wrap gap-2 pt-1">
-            {project.scope.map((item, sIdx) => (
-              <span
-                key={sIdx}
-                className="text-xs sm:text-[13px] uppercase font-mono px-3.5 py-1.5 rounded-md bg-white/5 text-white/90 border border-white/10 hover:border-white/30 transition-colors cursor-default tracking-wider font-medium"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Campaign Results Badge */}
-        {project.impact && (
-          <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.04] border border-white/20 text-white text-xs sm:text-sm font-mono flex items-center gap-3">
-            <span className="font-medium tracking-wide">{project.impact}</span>
-          </div>
-        )}
-
-        {/* Action Trigger */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-white/10 pt-4 sm:pt-5 mt-1 text-xs font-mono">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 w-fit">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span className="text-white/80 text-xs uppercase tracking-widest font-mono font-medium">
-              {project.category}
-            </span>
-          </div>
-
-          <Link
-            to={`/work/${project.slug}`}
-            className="group/link inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:py-2.5 rounded-full bg-white text-black hover:bg-brand-light font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 w-full sm:w-auto"
-          >
-            <span>VIEW CASE STUDY</span>
-            <span className="group-hover/link:translate-x-1 transition-transform duration-300">
-              →
-            </span>
-          </Link>
-        </div>
-      </div>
-    </motion.article>
-  );
-}
-
 export default function WorkPage() {
-  const [activeCategory, setActiveCategory] = useState<string>("ALL");
   const headerRef = useRef<HTMLDivElement>(null);
-
-  // Sync active category from URL hash if navigating directly to a discipline
-  useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (hash) {
-        const found = disciplineGroups.find(g => g.id === hash);
-        if (found) {
-          setActiveCategory(found.name);
-          const el = document.getElementById(found.id);
-          if (el) {
-            setTimeout(() => {
-              el.scrollIntoView({ behavior: "smooth" });
-            }, 100);
-          }
-        }
-      }
-    };
-
-    handleHash();
-    window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
-  }, []);
-
-  const getCategoryCount = (cat: string) => {
-    if (cat === "ALL") return projects.length;
-    return projects.filter(p => p.category === cat).length;
-  };
-
-  // Filter groups depending on active tab
-  const displayedGroups = useMemo(() => {
-    if (activeCategory === "ALL") return disciplineGroups;
-    return disciplineGroups.filter(g => g.name === activeCategory);
-  }, [activeCategory]);
 
   return (
     <main className="min-h-screen bg-brand-black text-brand-light relative overflow-x-hidden selection:bg-white selection:text-black">
       <Navbar />
 
-      {/* 1. HERO HEADER */}
+      {/* 1. HERO HEADER (REDESIGNED CINEMATIC ARCHITECTURE) */}
       <section
         ref={headerRef}
-        className="relative pt-24 sm:pt-28 md:pt-36 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-12 border-b border-white/10 overflow-hidden bg-gradient-to-b from-brand-dark/90 via-brand-black to-brand-black"
+        className="relative pt-28 sm:pt-36 md:pt-44 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 border-b border-white/10 overflow-hidden bg-[#060606]"
       >
-        {/* Ambient background glow & subtle mesh */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-white/[0.02] rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0d_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
+        {/* Ambient background glows & tactical dot matrix */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-white/[0.025] rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/4 right-10 w-[500px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none rounded-full" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-60" />
 
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="flex flex-col">
-            {/* Top Brand Banner */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-5 text-[10px] sm:text-xs font-mono tracking-widest uppercase text-white/70">
-              <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-semibold">
-                VIYANA PRODUCTIONS
-              </span>
-              <span className="text-white/30 hidden sm:inline">•</span>
-              <span className="text-white/60">
+            
+            {/* Top Brand & Discipline Status Strip */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6 sm:mb-8">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white font-semibold">
+                  VIYANA PRODUCTIONS
+                </span>
+                <span className="text-white/20 hidden sm:inline">•</span>
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/60 hidden sm:inline">
+                  STUDIO ARCHIVE
+                </span>
+              </div>
+
+              <div className="text-[10px] sm:text-xs font-mono tracking-widest uppercase text-white/50 overflow-hidden text-ellipsis whitespace-nowrap">
                 CREATIVE ADVERTISING × VIDEO PRODUCTION × GRAPHIC DESIGN × BRANDING × PHOTO &amp; VIDEO SHOOT
-              </span>
+              </div>
             </div>
 
-            {/* Stepped Title: SELECTED WORK */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7.5vw] font-display font-extrabold tracking-tight uppercase leading-[0.88] text-white select-none mb-6">
-              <span className="block hover:text-brand-light transition-colors">SELECTED</span>
-              <span className="flex items-baseline text-white">
-                <span className="invisible select-none opacity-0 pointer-events-none" aria-hidden="true">SELEC</span>
-                <span>WORK.</span>
+            {/* Monumental Headline: SELECTED WORK. */}
+            <div className="mb-6 sm:mb-10">
+              <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-white/40 block mb-2 sm:mb-3">
+                [ 01 // PORTFOLIO ARCHIVE ]
               </span>
-            </h1>
+              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold tracking-tight uppercase leading-[0.9] text-white">
+                SELECTED <br />
+                <span className="text-white/40 hover:text-white transition-colors duration-500">
+                  WORK.
+                </span>
+              </h1>
+            </div>
 
-            {/* Headline Subtitle & Capabilities */}
-            <div className="space-y-6 pt-2 pb-6 border-b border-white/10">
-              <p className="text-base sm:text-lg md:text-2xl font-light text-white/90 max-w-3xl leading-relaxed">
-                We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
-              </p>
+            {/* Headline Subtitle & Core Capabilities Deck */}
+            <div className="space-y-6 pt-2 pb-8 border-b border-white/10">
+              <div className="border-l-2 border-white/60 pl-4 sm:pl-6 py-1">
+                <p className="text-base sm:text-xl md:text-2xl font-light text-white/90 max-w-3xl leading-relaxed">
+                  We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
+                </p>
+              </div>
 
               {/* Core Capabilities Pills */}
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+              <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-2">
                 {coreCapabilities.map((cap) => {
                   const Icon = cap.icon;
                   return (
                     <span
                       key={cap.name}
-                      className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full bg-white/[0.04] border border-white/15 hover:border-white/40 text-white/90 text-xs font-mono uppercase tracking-wider transition-colors"
+                      className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/[0.035] hover:bg-white/[0.08] border border-white/10 hover:border-white/30 text-white text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-sm hover:scale-[1.02]"
                     >
-                      <Icon className="w-3.5 h-3.5 text-white/70" />
+                      <Icon className="w-3.5 h-3.5 text-white/80" />
                       <span>{cap.name}</span>
                     </span>
                   );
@@ -398,33 +100,44 @@ export default function WorkPage() {
               </div>
             </div>
 
-            {/* Creative Philosophy & About Viyana Card */}
-            <div className="mt-8 p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-white/[0.02] border border-white/15 backdrop-blur-xl relative overflow-hidden">
+            {/* Creative Philosophy & About Viyana Architectural Card */}
+            <div className="mt-8 sm:mt-12 p-6 sm:p-10 md:p-12 rounded-3xl bg-gradient-to-br from-white/[0.045] via-white/[0.02] to-transparent border border-white/15 backdrop-blur-xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+              {/* Corner Viewfinder Brackets */}
+              <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-white/30 pointer-events-none" />
+              <div className="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-white/30 pointer-events-none" />
+              <div className="absolute bottom-3 left-3 w-3 h-3 border-b-2 border-l-2 border-white/30 pointer-events-none" />
+              <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-white/30 pointer-events-none" />
+
               <div className="absolute top-0 right-0 w-80 h-80 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
 
-              {/* Philosophy Header */}
-              <div className="flex items-center gap-2.5 text-xs font-mono uppercase tracking-[0.25em] text-white/60 mb-6">
+              {/* Philosophy Header Badge */}
+              <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-[0.25em] text-white/80 mb-6 sm:mb-8 w-fit">
                 <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 <span>OUR CREATIVE PHILOSOPHY</span>
               </div>
 
-              {/* 3 Pillars */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pb-8 mb-8 border-b border-white/10">
-                <div className="space-y-2">
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block">[ 01 ]</span>
-                  <h3 className="text-2xl sm:text-3xl font-syne font-bold uppercase tracking-tight text-white">
+              {/* 3 Pillars in Elevated Glass Panels */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pb-8 mb-8 border-b border-white/10">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.025] hover:bg-white/[0.05] border border-white/10 hover:border-white/25 transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-white/50 transition-all duration-500" />
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block mb-2">[ 01 ]</span>
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-syne font-bold uppercase tracking-tight text-white group-hover:text-brand-light transition-colors">
                     IDEAS FIRST.
                   </h3>
                 </div>
-                <div className="space-y-2">
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block">[ 02 ]</span>
-                  <h3 className="text-2xl sm:text-3xl font-syne font-bold uppercase tracking-tight text-white">
+
+                <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.025] hover:bg-white/[0.05] border border-white/10 hover:border-white/25 transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-white/50 transition-all duration-500" />
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block mb-2">[ 02 ]</span>
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-syne font-bold uppercase tracking-tight text-white group-hover:text-brand-light transition-colors">
                     VISUALS WITH PURPOSE.
                   </h3>
                 </div>
-                <div className="space-y-2">
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block">[ 03 ]</span>
-                  <h3 className="text-2xl sm:text-3xl font-syne font-bold uppercase tracking-tight text-white">
+
+                <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.025] hover:bg-white/[0.05] border border-white/10 hover:border-white/25 transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-white/50 transition-all duration-500" />
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block mb-2">[ 03 ]</span>
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-syne font-bold uppercase tracking-tight text-white group-hover:text-brand-light transition-colors">
                     STORIES THAT STAY.
                   </h3>
                 </div>
@@ -432,17 +145,17 @@ export default function WorkPage() {
 
               {/* About Viyana Sub-Block */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-start">
-                <div className="lg:col-span-5 space-y-2">
+                <div className="lg:col-span-5 space-y-3">
                   <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/50 block">
                     ABOUT VIYANA
                   </span>
                   <h4 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white tracking-tight uppercase leading-tight">
                     We Turn Ideas Into <br />
-                    <span className="font-bold text-white">Visual Experiences.</span>
+                    <span className="font-bold text-white/90">Visual Experiences.</span>
                   </h4>
                 </div>
 
-                <div className="lg:col-span-7 space-y-4 text-xs sm:text-sm md:text-base text-brand-grey font-light leading-relaxed">
+                <div className="lg:col-span-7 space-y-4 text-xs sm:text-sm md:text-base text-brand-grey font-light leading-relaxed border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-10">
                   <p>
                     Viyana Productions is a creative production and advertising agency focused on helping ambitious brands communicate through powerful visuals.
                   </p>
@@ -456,16 +169,18 @@ export default function WorkPage() {
               </div>
             </div>
 
-            {/* Archive Filter Stats Strip */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-8 text-xs uppercase font-mono tracking-widest text-brand-grey">
+            {/* Total 13 Services Stats Strip */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-8 sm:pt-10 text-xs uppercase font-mono tracking-widest text-brand-grey">
               <div className="flex items-center gap-3">
                 <span className="w-8 h-px bg-white/30" />
-                <span className="text-white font-medium">CURATED ARCHIVE &amp; CASE STUDIES</span>
+                <span className="text-white font-medium">13 SPECIALIZED SERVICES &amp; DISCIPLINES</span>
               </div>
-              <div className="flex items-center gap-4 sm:gap-6">
-                <span>TOTAL // <strong className="text-white font-normal">0{projects.length} CASE STUDIES</strong></span>
+              <div className="flex items-center gap-3 sm:gap-6">
+                <span>
+                  TOTAL // <strong className="text-white font-normal">{String(projects.length).padStart(2, "0")} SERVICES</strong>
+                </span>
                 <span className="text-white/20">•</span>
-                <span className="text-white font-semibold">ALL DISCIPLINES</span>
+                <span className="text-white font-semibold">CLICK ANY CARD TO VIEW FULL EXPLANATION</span>
               </div>
             </div>
 
@@ -473,448 +188,165 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* 2. STICKY FILTER BAR */}
-      <section className="sticky top-16 sm:top-20 z-30 py-2.5 sm:py-3 px-3 sm:px-6 lg:px-8 bg-brand-black/95 backdrop-blur-2xl border-y border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.7)] transition-all duration-300">
-        <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between gap-3 lg:gap-6">
-
-          {/* Left: Discipline Indicator */}
-          <div className="hidden lg:flex items-center gap-2.5 shrink-0">
-            <div className="flex flex-col">
-              <span className="text-[10px] uppercase font-mono tracking-[0.22em] text-white/40 leading-tight">
-                FILTER ARCHIVE
-              </span>
-              <span className="text-xs font-mono text-white font-medium">
-                {activeCategory === "ALL" ? "ALL DISCIPLINES" : activeCategory}
-              </span>
-            </div>
-          </div>
-
-          {/* Center: Sleek Horizontal Segmented Capsule Track with touch momentum and edge indicator */}
-          <div className="relative w-full flex-1 overflow-hidden">
-            <div className="flex items-center p-1 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-xl shadow-inner overflow-x-auto no-scrollbar touch-scroll-momentum flex-nowrap gap-1 w-full pr-8">
-              {filterOptions.map((cat) => {
-                const count = getCategoryCount(cat);
-                const isActive = activeCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveCategory(cat)}
-                    className={`relative text-[11px] uppercase tracking-wider px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full transition-all duration-200 font-mono flex items-center gap-1.5 cursor-pointer shrink-0 whitespace-nowrap active:scale-95 group ${isActive
-                        ? "text-black font-bold"
-                        : "text-white/60 hover:text-white hover:bg-white/[0.06]"
-                      }`}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeCategoryPill"
-                        className="absolute inset-0 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.35)]"
-                        transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                      />
-                    )}
-                    <span className="relative z-10">{cat}</span>
-                    <span
-                      className={`relative z-10 text-[9px] px-1.5 py-0.5 rounded-full font-mono transition-colors ${isActive
-                          ? "bg-black/15 text-black font-bold"
-                          : "bg-white/[0.08] text-white/50 group-hover:bg-white/15 group-hover:text-white border border-white/10"
-                        }`}
-                    >
-                      {count}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-            {/* Subtle Right Fade for mobile scroll discoverability */}
-            <div className="absolute top-0 right-0 bottom-0 w-8 bg-gradient-to-l from-brand-black/95 via-brand-black/60 to-transparent pointer-events-none sm:hidden" />
-          </div>
-
-          {/* Right: Showing Counter Stats */}
-          <div className="hidden 2xl:flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-brand-grey shrink-0">
-            <span className="text-white/40">SHOWING:</span>
-            <span className="text-white font-semibold bg-white/10 px-2.5 py-0.5 rounded-md border border-white/20">
-              {activeCategory === "ALL" ? `0${projects.length} CASE STUDIES` : `0${getCategoryCount(activeCategory)} CASE STUDY`}
-            </span>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. DISCIPLINE SHOWCASE WITH FAST HIGH-QUALITY IMAGERY */}
-      <section className="py-10 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-12 relative">
+      {/* 2. THE 13 SERVICES GRID & SHOWCASE */}
+      <section className="py-14 sm:py-24 px-4 sm:px-6 lg:px-12 relative bg-brand-black">
         <div className="container mx-auto max-w-7xl">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-              className="space-y-16 sm:space-y-24"
-            >
-              {displayedGroups.map((group) => {
-                const groupProjects = projects.filter(p => p.category === group.name);
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+            <div>
+              <div className="flex items-center gap-2.5 mb-3">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                <span className="text-[11px] font-mono uppercase tracking-[0.28em] text-white/60 font-semibold">
+                  OUR 13 SERVICES
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight text-white leading-none">
+                THE 13 SERVICES.
+              </h2>
+              <p className="text-xs sm:text-sm font-mono text-brand-grey mt-3 max-w-2xl leading-relaxed">
+                Click any of our 13 services to inspect the full explanation, deliverables, specifications, and complete case study.
+              </p>
+            </div>
 
-                if (groupProjects.length === 0) return null;
+            <div className="flex items-center gap-3 font-mono text-xs text-white/60 shrink-0">
+              <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white font-semibold">
+                13 DISCIPLINES
+              </span>
+            </div>
+          </div>
 
-                return (
-                  <div key={group.id} id={group.id} className="scroll-mt-28">
+          {/* 13 Services Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+            {projects.map((service, index) => {
+              const heroImg = service.thumbnail || service.gallery[0];
 
-                    {/* DISCIPLINE SECTION HEADING */}
-                    <div className="border-b border-white/15 pb-5 mb-8 sm:mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+              return (
+                <motion.div
+                  key={service.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.03, duration: 0.4 }}
+                  className="h-full"
+                >
+                  <Link
+                    to={`/work/${service.slug}`}
+                    className="group relative h-full rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/40 shadow-lg hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(255,255,255,0.08)] hover:-translate-y-1.5 flex flex-col justify-between transition-all duration-300 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer overflow-hidden block"
+                    aria-label={`View full explanation and case study for ${service.title}`}
+                  >
+                    {/* Top Thumbnail Image */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                      <img
+                        src={heroImg}
+                        alt={service.title}
+                        className="object-cover w-full h-full filter brightness-90 contrast-105 group-hover:scale-105 group-hover:brightness-105 transition-all duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10 pointer-events-none" />
+
+                      {/* Badge & Number */}
+                      <div className="absolute top-3 left-3 right-3 flex justify-between items-center text-xs font-mono pointer-events-none">
+                        <span className="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white font-bold text-[10px] tracking-wider">
+                          [ {String(index + 1).padStart(2, "0")} ]
+                        </span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/80 text-[10px] tracking-widest uppercase">
+                          {service.year}
+                        </span>
+                      </div>
+
+                      {/* Hover Prompt */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
+                        <span className="px-4 py-2 rounded-full bg-white text-black font-mono text-[11px] uppercase tracking-widest font-bold shadow-xl flex items-center gap-1.5 transform group-hover:scale-105 transition-transform">
+                          <span>FULL EXPLANATION</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+
+                      {/* Bottom Deliverable Tag */}
+                      <div className="absolute bottom-2.5 left-3 right-3 pointer-events-none text-[10px] font-mono text-white/80 truncate">
+                        {service.deliverableType}
+                      </div>
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 gap-4">
                       <div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <span className="text-[11px] font-mono tracking-widest text-white px-2.5 py-0.5 rounded-full bg-white/10 border border-white/20">
-                            DISCIPLINE {group.number}
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
+                          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/50">
+                            {service.category}
                           </span>
-                          <span className="text-[11px] uppercase tracking-[0.25em] text-white/60 font-mono">
-                            {groupProjects.length} {groupProjects.length === 1 ? "PROJECT ARCHIVED" : "PROJECTS ARCHIVED"}
-                          </span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-white/30 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                         </div>
-                        <h2 className="text-2xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-white">
-                          {group.heading}
-                        </h2>
-                        <p className="text-xs sm:text-sm font-mono text-brand-grey mt-1">
-                          {group.subtitle}
+                        <h3 className="text-lg sm:text-xl font-display font-bold uppercase text-white group-hover:text-brand-light transition-colors tracking-tight line-clamp-1">
+                          {service.title}
+                        </h3>
+                        <p className="text-xs text-brand-grey font-light line-clamp-2 mt-1.5 leading-relaxed">
+                          {service.description}
                         </p>
                       </div>
 
-                      <Link
-                        to="/contact"
-                        className="text-xs font-mono uppercase tracking-widest text-brand-light hover:text-white flex items-center gap-2 group/link px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 hover:border-white transition-colors shrink-0"
-                      >
-                        <span>COMMISSION {group.name} →</span>
-                      </Link>
+                      {/* Scope Pills */}
+                      {service.scope && (
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {service.scope.slice(0, 3).map((item, i) => (
+                            <span
+                              key={i}
+                              className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-white/80 border border-white/10 truncate max-w-full"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                          {service.scope.length > 3 && (
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 text-white/40">
+                              +{service.scope.length - 3} more
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </div>
-
-                    {/* PROJECTS IN THIS DISCIPLINE */}
-                    <div className="flex flex-col gap-10 sm:gap-14 md:gap-16">
-                      {groupProjects.map((project, idx) => {
-                        const isEven = idx % 2 === 0;
-
-                        return (
-                          <ProjectCard
-                            key={project.slug}
-                            project={project}
-                            idx={idx}
-                            group={group}
-                            isEven={isEven}
-                          />
-                        );
-                      })}
-                    </div>
-
-                  </div>
-                );
-              })}
-            </motion.div>
-          </AnimatePresence>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* 4. STUDIO RENTAL SECTION */}
-      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 relative overflow-hidden bg-brand-black">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-white/[0.02] rounded-full blur-[100px] pointer-events-none" />
-        <div className="container mx-auto max-w-7xl relative z-10">
-
-          {/* Label */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-10 sm:mb-14"
-          >
-            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-            <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/50">SERVICES / 01</span>
-          </motion.div>
-
-          {/* ProjectCard layout */}
-          <motion.article
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-14 items-center"
-          >
-            {/* Background watermark */}
-            <div className="absolute -top-8 left-0 right-0 pointer-events-none select-none text-[10vw] font-display font-extrabold uppercase tracking-tighter text-white/[0.018] whitespace-nowrap overflow-hidden z-0">
-              STUDIO RENTAL • VIYANA PRODUCTIONS
-            </div>
-
-            {/* LEFT: Image */}
-            <div className="lg:col-span-7 relative z-10 lg:order-1">
-              <Link
-                to="/studio"
-                className="relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-brand-dark border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-white/50 group-hover:shadow-[0_25px_80px_rgba(255,255,255,0.12)] transition-all duration-500"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop"
-                  alt="Viyana Studio Rental"
-                  className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
-                {/* Badges */}
-                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 pointer-events-none">
-                  <span className="text-[10px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/20 font-mono shadow-lg">STUDIO RENTAL</span>
-                  <span className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/25 font-mono font-semibold shadow-md">06</span>
-                </div>
-                {/* Corner brackets */}
-                <div className="absolute inset-4 pointer-events-none z-20 transition-opacity duration-300">
-                  <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                  <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                  <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                  <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                </div>
-                {/* Hover CTA */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 bg-black/30 backdrop-blur-[2px]">
-                  <span className="px-5 py-2 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold shadow-2xl flex items-center gap-2 group-hover:scale-105 transition-transform">
-                    <span>EXPLORE STUDIO</span><span className="text-sm">→</span>
-                  </span>
-                </div>
-                {/* Bottom bar */}
-                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end text-xs font-mono text-white/80 z-10 pointer-events-none">
-                  <span className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/15 text-[11px]">Full Production Space</span>
-                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 text-[10px] uppercase tracking-wider">4K READY</span>
-                </div>
-              </Link>
-            </div>
-
-            {/* RIGHT: Info column */}
-            <div className="lg:col-span-5 flex flex-col justify-between space-y-6 relative z-10 lg:order-2">
-              <div className="flex items-center justify-between text-xs font-mono tracking-widest text-brand-grey border-b border-white/10 pb-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-white font-bold bg-white/10 px-2.5 py-0.5 rounded-md border border-white/15">[ 06 ]</span>
-                  <span className="text-white/30">•</span>
-                  <span className="text-white/90 font-medium">VIYANA STUDIO</span>
-                </div>
-                <span className="text-white font-semibold">BANGALORE</span>
-              </div>
-
-              <div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight uppercase text-white group-hover:text-brand-light transition-colors mb-2 leading-none">
-                  STUDIO RENTAL
-                </h2>
-                <p className="text-xs font-mono text-white/70 uppercase tracking-wider font-semibold">Photography & Video Studio × Brand Shoots × Interview & Green Screen</p>
-              </div>
-
-              <p className="text-xs sm:text-sm text-brand-grey leading-relaxed font-light">
-                A versatile production studio designed for photography, video production, brand shoots, interviews, and creative projects. From controlled lighting to flexible setups, our studio gives you the space and production environment to bring your ideas to life.
-              </p>
-
-              <div className="flex flex-wrap gap-2 pt-1">
-                {["Photography & Video Studio", "Professional Lighting Setup", "Product & Brand Shoots", "Interview Setup", "Green Screen Setup", "Creative & Editorial Shoots", "Flexible Configurations", "Production Support"].map((item) => (
-                  <span key={item} className="text-xs uppercase font-mono px-3.5 py-1.5 rounded-md bg-white/5 text-white/90 border border-white/10 hover:border-white/30 transition-colors cursor-default tracking-wider font-medium">{item}</span>
-                ))}
-              </div>
-
-              <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.04] border border-white/20 text-white text-xs sm:text-sm font-mono">
-                <span className="font-medium tracking-wide">Half-Day & Full-Day bookings available — crew, lighting, and sets included</span>
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-white/10 pt-4 sm:pt-5 text-xs font-mono">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 w-fit">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  <span className="text-white/80 text-xs uppercase tracking-widest font-mono font-medium">STUDIO RENTAL</span>
-                </div>
-                <Link
-                  to="/studio"
-                  id="explore-studio-btn"
-                  className="group/link inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:py-2.5 rounded-full bg-white text-black hover:bg-brand-light font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 w-full sm:w-auto"
-                >
-                  <span>EXPLORE STUDIO</span>
-                  <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
-                </Link>
-              </div>
-            </div>
-          </motion.article>
-        </div>
-      </section>
-
-      {/* 5. PODCAST PRODUCTION SECTION */}
-      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 relative overflow-hidden bg-brand-dark/30">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-white/[0.02] rounded-full blur-[100px] pointer-events-none" />
-        <div className="container mx-auto max-w-7xl relative z-10">
-
-          {/* Label */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-10 sm:mb-14"
-          >
-            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-            <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/50">SERVICES / 02</span>
-          </motion.div>
-
-          {/* ProjectCard layout — reversed */}
-          <motion.article
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-14 items-center"
-          >
-            {/* Background watermark */}
-            <div className="absolute -top-8 left-0 right-0 pointer-events-none select-none text-[10vw] font-display font-extrabold uppercase tracking-tighter text-white/[0.018] whitespace-nowrap overflow-hidden z-0">
-              PODCAST PRODUCTION • VIYANA PRODUCTIONS
-            </div>
-
-            {/* LEFT: Image */}
-            <div className="lg:col-span-7 relative z-10 lg:order-1">
-              <Link
-                to="/podcast"
-                className="relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-brand-dark border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group-hover:border-white/50 group-hover:shadow-[0_25px_80px_rgba(255,255,255,0.12)] transition-all duration-500"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop"
-                  alt="Viyana Podcast Production"
-                  className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
-                {/* Badges */}
-                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 pointer-events-none">
-                  <span className="text-[10px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/20 font-mono shadow-lg">PODCAST PRODUCTION</span>
-                  <span className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white border border-white/25 font-mono font-semibold shadow-md">07</span>
-                </div>
-                {/* Corner brackets */}
-                <div className="absolute inset-4 pointer-events-none z-20">
-                  <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                  <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                  <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                  <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/20 group-hover:border-white group-hover:w-6 group-hover:h-6 transition-all duration-300" />
-                </div>
-                {/* Hover CTA */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 bg-black/30 backdrop-blur-[2px]">
-                  <span className="px-5 py-2 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold shadow-2xl flex items-center gap-2 group-hover:scale-105 transition-transform">
-                    <span>EXPLORE PODCASTS</span><span className="text-sm">→</span>
-                  </span>
-                </div>
-                {/* Bottom bar */}
-                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end text-xs font-mono text-white/80 z-10 pointer-events-none">
-                  <span className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/15 text-[11px]">Multi-Camera Studio</span>
-                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 text-[10px] uppercase tracking-wider">4K AUDIO+VIDEO</span>
-                </div>
-              </Link>
-            </div>
-
-            {/* RIGHT: Info column */}
-            <div className="lg:col-span-5 flex flex-col justify-between space-y-6 relative z-10 lg:order-2">
-              <div className="flex items-center justify-between text-xs font-mono tracking-widest text-brand-grey border-b border-white/10 pb-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-white font-bold bg-white/10 px-2.5 py-0.5 rounded-md border border-white/15">[ 07 ]</span>
-                  <span className="text-white/30">•</span>
-                  <span className="text-white/90 font-medium">VIYANA STUDIO</span>
-                </div>
-                <span className="text-white font-semibold">BANGALORE</span>
-              </div>
-
-              <div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight uppercase text-white group-hover:text-brand-light transition-colors mb-2 leading-none">
-                  PODCAST PRODUCTION
-                </h2>
-                <p className="text-xs font-mono text-white/70 uppercase tracking-wider font-semibold">Studio Recording × Multi-Camera × Professional Audio × Final Delivery</p>
-              </div>
-
-              <p className="text-xs sm:text-sm text-brand-grey leading-relaxed font-light">
-                A complete podcast production setup built for creators, brands, entrepreneurs, and businesses. From studio recording and multi-camera production to professional audio, editing, and final delivery — we help turn conversations into engaging content.
-              </p>
-
-              <div className="flex flex-wrap gap-2 pt-1">
-                {["Podcast Studio Rental", "Multi-Camera Recording", "Professional Audio", "Video Podcast Production", "Interview & Talk Shows", "Podcast Editing", "Reels & Short-Form Clips", "YouTube Podcast Production"].map((item) => (
-                  <span key={item} className="text-xs uppercase font-mono px-3.5 py-1.5 rounded-md bg-white/5 text-white/90 border border-white/10 hover:border-white/30 transition-colors cursor-default tracking-wider font-medium">{item}</span>
-                ))}
-              </div>
-
-              <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.04] border border-white/20 text-white text-xs sm:text-sm font-mono">
-                <span className="font-medium tracking-wide">Studio-grade audio & 4K multi-camera video — from recording to final delivery</span>
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-white/10 pt-4 sm:pt-5 text-xs font-mono">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 w-fit">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  <span className="text-white/80 text-xs uppercase tracking-widest font-mono font-medium">PODCAST PRODUCTION</span>
-                </div>
-                <Link
-                  to="/podcast"
-                  id="explore-podcasts-btn"
-                  className="group/link inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:py-2.5 rounded-full bg-white text-black hover:bg-brand-light font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 w-full sm:w-auto"
-                >
-                  <span>EXPLORE PODCASTS</span>
-                  <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
-                </Link>
-              </div>
-            </div>
-          </motion.article>
-        </div>
-      </section>
-      
-
-      {/* 6. ABOUT VIYANA - IDEAS INTO VISUAL STORIES */}
+      {/* 4. ABOUT VIYANA - IDEAS INTO VISUAL STORIES (WHITE CARD CANVAS) */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-brand-dark/40 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none rounded-full" />
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent border border-white/15 backdrop-blur-xl grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
-            <div className="lg:col-span-5 space-y-4">
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/50 block">
+          {/* Floating White Card */}
+          <div className="p-8 sm:p-14 rounded-3xl bg-white text-black border border-black/10 shadow-[0_25px_60px_rgba(0,0,0,0.25)] grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center relative overflow-hidden selection:bg-black selection:text-white">
+            {/* Subtle tactile dot pattern inside white card */}
+            <div className="absolute inset-0 bg-[radial-gradient(#0000000d_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
+            <div className="lg:col-span-5 space-y-4 relative z-10">
+              <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-600 block font-semibold">
                 ABOUT VIYANA
               </span>
-              <h2 className="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-display font-extrabold uppercase tracking-tight text-black leading-tight">
                 IDEAS INTO <br />
-                <span className="font-bold text-white">VISUAL STORIES.</span>
+                <span className="font-extrabold text-black">VISUAL STORIES.</span>
               </h2>
               <div className="pt-2">
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-brand-light active:scale-95 transition-all shadow-lg"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-black text-white font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-800 active:scale-95 transition-all shadow-[0_4px_14px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)] hover:scale-[1.02]"
                 >
-                  <span>MORE ABOUT VIYANA →</span>
+                  <span>MORE ABOUT VIYANA</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
 
-            <div className="lg:col-span-7 space-y-4">
-              <p className="text-base sm:text-lg text-white/95 font-light leading-relaxed">
-                Viyana Productions creates advertising, films, and visual experiences for brands that want to stand out.
+            <div className="lg:col-span-7 space-y-4 text-xs sm:text-sm md:text-base text-neutral-600 font-normal leading-relaxed border-t lg:border-t-0 lg:border-l border-black/10 pt-6 lg:pt-0 lg:pl-10 relative z-10">
+              <p>
+                From commercial advertising and cinema shoots to mobile-first vertical series and full-scale film productions, Viyana Productions operates at the intersection of creative strategy, technical craft, and modern cultural relevance.
               </p>
-              <p className="text-sm sm:text-base text-brand-grey font-light leading-relaxed">
-                From the first concept to the final frame, we combine creative thinking with cinematic production and purposeful design to create work that people notice and remember.
+              <p className="text-neutral-900 font-medium">
+                Every project is directed and finished to international master standards — combining large format sensors, precision cinema lighting, and industry-grade DaVinci Resolve ACES color pipelines.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. BOTTOM CTA: HAVE A STORY TO TELL? */}
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 bg-brand-dark text-center border-t border-white/10 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04)_0%,transparent_70%)] pointer-events-none rounded-full" />
-        <div className="container mx-auto max-w-4xl relative z-10 space-y-6">
-          <span className="text-xs font-mono uppercase tracking-[0.3em] text-white/60 block">
-            HAVE A STORY TO TELL?
-          </span>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-syne font-bold uppercase tracking-tight text-white">
-            Let&apos;s give it the frame it deserves.
-          </h2>
-          <p className="text-sm sm:text-base text-brand-grey max-w-xl mx-auto font-light leading-relaxed">
-            We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
-          </p>
-
-          <div className="pt-3 flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-brand-light hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl"
-            >
-              <span>START A PROJECT →</span>
-            </Link>
-          </div>
-
-          <div className="pt-10 mt-8 border-t border-white/10 flex flex-col items-center gap-2 text-center">
-            <span className="text-xs font-mono uppercase tracking-widest text-white/40 font-semibold">
-              VIYANA PRODUCTIONS
-            </span>
-            <p className="text-[11px] sm:text-xs font-mono text-white/60 uppercase tracking-wider max-w-2xl leading-relaxed">
-              CREATIVE ADVERTISING × VIDEO PRODUCTION × GRAPHIC DESIGN × BRANDING × PHOTO &amp; VIDEO SHOOT
-            </p>
           </div>
         </div>
       </section>

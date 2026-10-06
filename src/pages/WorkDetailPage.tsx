@@ -1,163 +1,167 @@
-import { useParams } from "react-router-dom";
-"use client";
-
-import { projects } from "@/data/projects";
-import { Navigate } from "react-router-dom";
-
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { use } from "react";
+import { useState, useEffect } from "react";
+import { useParams, Navigate, Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { projects } from "@/data/projects";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
   
-  const project = projects.find((p) => p.slug === slug);
+  const project = projects.find((p) => p.slug === slug || p.aliases?.includes(slug!));
 
   if (!project) {
     return <Navigate to="/not-found" />;
   }
 
-  const currentIdx = projects.findIndex((p) => p.slug === slug);
-  const nextProjectIdx = (currentIdx + 1) % projects.length;
-  const prevProjectIdx = (currentIdx - 1 + projects.length) % projects.length;
-  const nextProject = projects[nextProjectIdx];
-  const prevProject = projects[prevProjectIdx];
+  if (project.slug !== slug) {
+    return <Navigate to={`/work/${project.slug}`} replace />;
+  }
 
-  const heroImage = project.thumbnail || project.gallery[0];
+  const currentIdx = projects.findIndex((p) => p.slug === project.slug);
+  const nextProjectIdx = (currentIdx + 1) % projects.length;
+  const nextProject = projects[nextProjectIdx];
+
+  const images = project.gallery && project.gallery.length > 0 ? project.gallery : [project.thumbnail];
+  const [activeImageIdx, setActiveImageIdx] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Reset active image index whenever the slug changes
+  useEffect(() => {
+    setActiveImageIdx(0);
+  }, [slug]);
+
+  // Automatic scrolling interval (cycles every 3 seconds unless hovered or playing video)
+  useEffect(() => {
+    if (!isAutoPlaying || isHovered) return;
+    if (project.video && activeImageIdx === 0) return;
+
+    const interval = setInterval(() => {
+      setActiveImageIdx((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images.length, isAutoPlaying, isHovered, activeImageIdx, project.video]);
+
+  const handleNext = () => {
+    setActiveImageIdx((prev) => (prev + 1) % images.length);
+  };
+
+  const handlePrev = () => {
+    setActiveImageIdx((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
     <main className="bg-[#080808] text-brand-light min-h-screen selection:bg-white selection:text-black overflow-x-hidden">
       <Navbar />
 
       <article className="relative">
-        {/* 1. TOP BREADCRUMB & CONTROLS (Docks smoothly below fixed Navbar) */}
-        <section className="pt-20 sm:pt-28 pb-3 sm:pb-4 px-3.5 sm:px-6 lg:px-12 border-b border-white/10 bg-brand-black/95 backdrop-blur-2xl sticky top-[56px] sm:top-[72px] z-30 transition-all">
-          <div className="container mx-auto flex flex-row justify-between items-center gap-2 sm:gap-4">
-            <Link
-              to="/work"
-              className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono uppercase tracking-[0.18em] sm:tracking-[0.2em] text-white/80 hover:text-white transition-colors group shrink-0"
-            >
-              <span className="transition-transform group-hover:-translate-x-1 font-bold">←</span>
-              <span>ALL WORK</span>
-            </Link>
-
-            <div className="flex items-center gap-2 sm:gap-4 text-xs font-mono shrink-0">
-              <span className="hidden md:inline-block px-3 py-1 rounded-full bg-white/[0.06] border border-white/15 text-white/90 uppercase tracking-widest text-[11px]">
-                {project.category}
-              </span>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <Link
-                  to={`/work/${prevProject.slug}`}
-                  className="px-2.5 py-1.5 rounded-lg border border-white/20 text-white/70 hover:text-white hover:border-white/40 active:bg-white/15 transition-colors text-[10px] sm:text-xs font-semibold"
-                  title={`Previous: ${prevProject.title}`}
-                >
-                  PREV
-                </Link>
-                <span className="text-white/40 tracking-wider text-[10px] sm:text-xs px-1">
-                  0{currentIdx + 1}/0{projects.length}
-                </span>
-                <Link
-                  to={`/work/${nextProject.slug}`}
-                  className="px-2.5 py-1.5 rounded-lg border border-white/20 text-white/70 hover:text-white hover:border-white/40 active:bg-white/15 transition-colors text-[10px] sm:text-xs font-semibold"
-                  title={`Next: ${nextProject.title}`}
-                >
-                  NEXT
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 2. CATEGORY LANDING HEADER */}
-        <section className="pt-8 sm:pt-16 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-12">
+        {/* 1. CATEGORY LANDING HEADER */}
+        <section className="pt-28 sm:pt-36 md:pt-40 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-12">
           <div className="container mx-auto max-w-7xl">
-            {/* Category Tag & Year */}
-            <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
-              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white/90 font-semibold">
-                {project.category}
-              </span>
-              <span className="text-white/30">•</span>
-              <span className="text-[11px] sm:text-xs font-mono tracking-widest text-white/60">
-                {project.year} ARCHIVE
-              </span>
-            </div>
-
             {/* Monumental Title */}
-            <h1 className="text-3xl sm:text-6xl md:text-7xl lg:text-[6.5vw] font-display font-extrabold tracking-tight uppercase leading-[0.95] sm:leading-[0.9] text-white mb-3 sm:mb-4 select-none">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5vw] font-display font-extrabold tracking-tight uppercase leading-[0.95] sm:leading-[0.9] text-white mb-3 sm:mb-4 select-none">
               {project.title}
             </h1>
 
             {/* Deliverable Sub-Badge */}
-            <p className="text-xs sm:text-sm md:text-base font-mono text-white/80 font-normal tracking-wider uppercase mb-6 sm:mb-8">
+            <p className="text-xs sm:text-sm md:text-base font-mono text-white/80 font-normal tracking-wider uppercase">
               {project.deliverableType}
             </p>
-
-            {/* Luxury Glassmorphic Meta Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white/[0.04] backdrop-blur-2xl border border-white/15 shadow-2xl">
-              <div>
-                <span className="text-[9px] sm:text-[10px] font-mono tracking-widest uppercase text-white/40 block mb-1">
-                  CLIENT
-                </span>
-                <p className="text-xs sm:text-sm font-sans font-semibold text-white truncate">
-                  {project.client}
-                </p>
-              </div>
-              <div>
-                <span className="text-[9px] sm:text-[10px] font-mono tracking-widest uppercase text-white/40 block mb-1">
-                  DIRECTOR / STUDIO
-                </span>
-                <p className="text-xs sm:text-sm font-sans font-semibold text-white truncate">
-                  {project.director || "Viyana Creative Lab"}
-                </p>
-              </div>
-              <div>
-                <span className="text-[9px] sm:text-[10px] font-mono tracking-widest uppercase text-white/40 block mb-1">
-                  COLOR &amp; PIPELINE
-                </span>
-                <p className="text-xs sm:text-sm font-sans font-semibold text-white truncate">
-                  ACEScc • 16-Bit
-                </p>
-              </div>
-              <div>
-                <span className="text-[9px] sm:text-[10px] font-mono tracking-widest uppercase text-white/40 block mb-1">
-                  FORMAT &amp; SENSOR
-                </span>
-                <p className="text-xs sm:text-sm font-sans font-semibold text-white truncate">
-                  4K DCI • Large Format
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* 3. ONLY ONE DEDICATED MASTER PRODUCTION IMAGE */}
-        <section className="py-4 sm:py-10 px-4 sm:px-6 lg:px-12">
+        {/* 2. CINEMATIC 3-FRAME INTERACTIVE AUTOMATIC SCROLLING SHOWCASE */}
+        <section
+          className="py-4 sm:py-8 px-4 sm:px-6 lg:px-12"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div className="container mx-auto max-w-7xl">
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-brand-dark shadow-[0_20px_70px_rgba(0,0,0,0.95)]">
-              {project.video ? (
-                <video
-                  src={project.video}
-                  poster={heroImage}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls
-                  className="w-full h-full object-cover"
+            {/* Gallery Control Bar */}
+            <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4 px-1">
+              <div className="flex items-center gap-2.5">
+                <span
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    isAutoPlaying && !isHovered
+                      ? "bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"
+                      : "bg-white/40"
+                  }`}
                 />
-              ) : (
-                <img
-                  src={heroImage}
-                  alt={`${project.title} - ${project.category} Master Visual`}
-                  className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95"
-                />
-              )}
-              {/* Subtle cinematic gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.22em] text-white/70">
+                  PRODUCTION VISUALS // FRAME {String(activeImageIdx + 1).padStart(2, "0")} OF {String(images.length).padStart(2, "0")}
+                </span>
+                <span className="hidden sm:inline-block text-[9px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/50">
+                  {isHovered ? "PAUSED ON HOVER" : "AUTO-SCROLLING"}
+                </span>
+              </div>
+              
+              {/* Controls: Auto-Play Toggle & Pagination */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                  className="px-2.5 py-1.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 active:scale-95 transition-all text-[10px] font-mono text-white/70 hover:text-white flex items-center gap-1 cursor-pointer"
+                  title={isAutoPlaying ? "Pause Auto-scroll" : "Resume Auto-scroll"}
+                >
+                  <span>{isAutoPlaying ? "❚❚" : "▶"}</span>
+                  <span className="hidden md:inline">{isAutoPlaying ? "AUTO" : "PAUSED"}</span>
+                </button>
+                <button
+                  onClick={handlePrev}
+                  className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 hover:bg-white hover:text-black active:scale-95 transition-all text-xs font-mono flex items-center gap-1.5 cursor-pointer shadow-md"
+                  aria-label="Previous image"
+                >
+                  <span>←</span>
+                  <span className="hidden sm:inline">PREV</span>
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 hover:bg-white hover:text-black active:scale-95 transition-all text-xs font-mono flex items-center gap-1.5 cursor-pointer shadow-md"
+                  aria-label="Next image"
+                >
+                  <span className="hidden sm:inline">NEXT</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
 
-              {/* Optical Corner Brackets */}
+            {/* Main Stage Viewport */}
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-brand-dark shadow-[0_20px_70px_rgba(0,0,0,0.95)] group">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeImageIdx}
+                  initial={{ opacity: 0, scale: 1.02 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-full h-full absolute inset-0"
+                >
+                  {project.video && activeImageIdx === 0 ? (
+                    <video
+                      src={project.video}
+                      poster={images[0]}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      controls
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={images[activeImageIdx]}
+                      alt={`${project.title} - Frame ${activeImageIdx + 1}`}
+                      className="object-cover w-full h-full filter contrast-[1.05] brightness-95"
+                    />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Subtle cinematic gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent pointer-events-none" />
+
+              {/* Viewfinder Optical Corner Brackets */}
               <div className="absolute inset-3 sm:inset-5 pointer-events-none z-10">
                 <span className="absolute top-0 left-0 w-4 h-4 sm:w-6 sm:h-6 border-t-2 border-l-2 border-white/60" />
                 <span className="absolute top-0 right-0 w-4 h-4 sm:w-6 sm:h-6 border-t-2 border-r-2 border-white/60" />
@@ -165,17 +169,51 @@ export default function ProjectDetail() {
                 <span className="absolute bottom-0 right-0 w-4 h-4 sm:w-6 sm:h-6 border-b-2 border-r-2 border-white/60" />
               </div>
 
-              {/* Bottom Meta Overlay */}
-              <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-6 sm:right-6 flex justify-between items-end text-xs font-mono text-white/80 z-10 pointer-events-none">
-                <div className="flex items-center gap-2 max-w-[70%]">
-                  <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md border border-white/15 text-[10px] sm:text-[11px] font-semibold text-white truncate">
-                    {project.title} // {project.video ? "4K FILM" : "STILL"}
+              {/* Floating Large Nav Arrows on Master Frame */}
+              <button
+                onClick={handlePrev}
+                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100 shadow-2xl cursor-pointer active:scale-90"
+                aria-label="Previous slide"
+              >
+                ←
+              </button>
+              <button
+                onClick={handleNext}
+                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100 shadow-2xl cursor-pointer active:scale-90"
+                aria-label="Next slide"
+              >
+                →
+              </button>
+
+              {/* Bottom Meta & Pagination Overlay */}
+              <div className="absolute bottom-4 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex justify-between items-center text-xs font-mono text-white/80 z-20 pointer-events-none">
+                <div className="flex items-center gap-2 max-w-[50%]">
+                  <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/15 text-[10px] sm:text-[11px] font-semibold text-white truncate shadow-lg">
+                    {project.title} // SHOT {String(activeImageIdx + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md border border-white/20 text-[10px] sm:text-[11px] text-white/90 font-mono shrink-0">
-                  {project.video ? "4K DCI • MOTION" : "4K DCI • HDR"}
+
+                {/* Interactive Pagination Dots */}
+                <div className="pointer-events-auto flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-lg">
+                  {images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveImageIdx(idx)}
+                      className={`transition-all duration-300 rounded-full cursor-pointer ${
+                        idx === activeImageIdx
+                          ? "w-6 h-1.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                          : "w-1.5 h-1.5 bg-white/40 hover:bg-white/80"
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/20 text-[10px] sm:text-[11px] text-white/90 font-mono shrink-0 shadow-lg">
+                  {project.video && activeImageIdx === 0 ? "4K DCI • MOTION" : "4K DCI • RAW STILL"}
                 </span>
               </div>
+
             </div>
           </div>
         </section>
@@ -366,7 +404,52 @@ export default function ProjectDetail() {
           </div>
         </section>
 
-        {/* 5. NEXT DISCIPLINE SHOWCASE WITH REALISTIC PRODUCTION BACKDROP */}
+        {/* 5. QUICK 13 SERVICES SELECTOR STRIP */}
+        <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-black/60">
+          <div className="container mx-auto max-w-7xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/50 block mb-1">
+                  EXPLORE ALL DISCIPLINES
+                </span>
+                <h3 className="text-lg sm:text-xl font-display font-bold uppercase text-white tracking-tight">
+                  13 Core Services
+                </h3>
+              </div>
+              <Link
+                to="/work"
+                className="text-xs font-mono uppercase tracking-widest text-white/70 hover:text-white flex items-center gap-1.5 transition-colors"
+              >
+                <span>VIEW COMPLETE SERVICES OVERVIEW</span>
+                <span>→</span>
+              </Link>
+            </div>
+
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
+              {projects.map((p, pIdx) => {
+                const isCurrent = p.slug === slug;
+                return (
+                  <Link
+                    key={p.slug}
+                    to={`/work/${p.slug}`}
+                    className={`shrink-0 px-3.5 py-2.5 rounded-xl border text-xs font-mono flex items-center gap-2.5 transition-all duration-300 ${
+                      isCurrent
+                        ? "bg-white text-black border-white font-bold shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                        : "bg-white/[0.03] text-white/70 border-white/10 hover:border-white/30 hover:text-white hover:bg-white/[0.08]"
+                    }`}
+                  >
+                    <span className={`text-[10px] ${isCurrent ? "text-black/60 font-bold" : "text-white/40"}`}>
+                      {String(pIdx + 1).padStart(2, "0")}
+                    </span>
+                    <span className="whitespace-nowrap uppercase tracking-wider">{p.title}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* 6. NEXT DISCIPLINE SHOWCASE WITH REALISTIC PRODUCTION BACKDROP */}
         <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 overflow-hidden bg-brand-dark group/next">
           {/* Realistic Film Production Atmospheric Backdrop */}
           <div className="absolute inset-0 z-0 opacity-25 group-hover/next:opacity-35 transition-opacity duration-700 pointer-events-none">
@@ -383,7 +466,7 @@ export default function ProjectDetail() {
             {/* Top Status Header */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 mb-4 shadow-xl">
               <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/80">
-                NEXT DISCIPLINE // 0{nextProjectIdx + 1} OF 0{projects.length}
+                NEXT DISCIPLINE // {String(nextProjectIdx + 1).padStart(2, "0")} OF {String(projects.length).padStart(2, "0")}
               </span>
             </div>
 

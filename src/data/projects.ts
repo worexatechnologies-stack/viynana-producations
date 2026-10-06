@@ -9,10 +9,13 @@ export type ProjectCategory =
   | "FILM PRODUCTION"
   | "GRAPHIC DESIGN"
   | "PRODUCT SHOOT"
-  | "INFLUENCER SHOOT";
+  | "INFLUENCER SHOOT"
+  | "STUDIO RENTAL"
+  | "PODCAST PRODUCTION";
 
 export interface Project {
   slug: string;
+  aliases?: string[];
   title: string;
   category: ProjectCategory;
   year: string;
@@ -37,7 +40,8 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "the-next-move",
+    slug: "commercial-ads",
+    aliases: ["the-next-move"],
     title: "COMMERCIAL ADS",
     category: "COMMERCIAL ADS",
     year: "2026",
@@ -65,11 +69,14 @@ export const projects: Project[] = [
     tagline: "YOUR STORY. OUR FRAME. LET'S CREATE",
     impact: "Broadcast on National TV Networks • Multi-Platform Digital Distribution",
     gallery: [
-      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   {
-    slug: "silent-echo",
+    slug: "cinematic-content-shoot",
+    aliases: ["silent-echo"],
     title: "CINEMATIC CONTENT SHOOT",
     category: "CINEMATIC CONTENT SHOOT",
     year: "2026",
@@ -97,23 +104,26 @@ export const projects: Project[] = [
     tagline: "VINAYA PRODUCTIONS   Crafting stories. Creating visual experiences.",
     impact: "Premiered across luxury channels & festival showcases",
     gallery: [
-      "/images/cinematic-content-shoot.jpg"
+      "/images/cinematic-content-shoot.jpg",
+      "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   {
-    slug: "lumina-prime",
+    slug: "advertisement",
+    aliases: ["lumina-prime"],
     title: "ADVERTISEMENT",
     category: "ADVERTISEMENT",
     year: "2026",
     client: "Viyana Productions",
     director: "Elena Rostova",
     deliverableType: "High-Impact Advertising Campaign",
-    thumbnail: "/images/vanguard-mobility-tech.jpg",
+    thumbnail: "/images/advertisement-campaign.jpg",
     description: "A high-impact advertising campaign crafted to capture attention, strengthen brand presence, and drive audience engagement across digital, social, and broadcast platforms. Combining strategic storytelling, cinematic visuals, dynamic camera movements, and compelling creative direction, the campaign was designed to turn brand messages into memorable experiences.",
     scope: [
       "Campaign Creative Strategy",
       "Advertising Film Production",
-      "Dynamic Product & Automotive Visuals",
+      "Dynamic Commercial & Brand Visuals",
       "Motion-Control Cinematography",
       "Multi-Aspect Deliverables",
       "Post-Production & Visual Finishing"
@@ -130,11 +140,14 @@ export const projects: Project[] = [
     },
     ctaText: "LET'S CREATE",
     gallery: [
-      "/images/vanguard-mobility-tech.jpg"
+      "/images/advertisement-campaign.jpg",
+      "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   {
-    slug: "vogue-silhouette",
+    slug: "models-portfolio-shoots",
+    aliases: ["models-portfolio", "vogue-silhouette"],
     title: "MODEL PORTFOLIO SHOOTS",
     category: "MODELS PORTFOLIO SHOOTS",
     year: "2026",
@@ -161,11 +174,14 @@ export const projects: Project[] = [
     },
     ctaText: "LET'S CREATE",
     gallery: [
-      "/images/models-portfolio-shoots.jpg"
+      "/images/models-portfolio-shoots.jpg",
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2076&auto=format&fit=crop"
     ]
   },
   {
-    slug: "neon-horizons",
+    slug: "vertical-series",
+    aliases: ["neon-horizons"],
     title: "VERTICAL SERIES",
     category: "VERTICAL SERIES",
     year: "2026",
@@ -212,11 +228,14 @@ export const projects: Project[] = [
     ctaText: "LET'S CREATE",
     tagline: "VIYANA PRODUCTIONS",
     gallery: [
-      "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2071&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2071&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=2047&auto=format&fit=crop"
     ]
   },
   {
-    slug: "hyper-dimension",
+    slug: "web-series",
+    aliases: ["hyper-dimension"],
     title: "WEB SERIES",
     category: "WEB SERIES",
     year: "2026",
@@ -251,11 +270,14 @@ export const projects: Project[] = [
     },
     impact: "Full OTT & digital delivery workflows engineered for modern streaming platforms",
     gallery: [
-      "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?q=80&w=2069&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   {
-    slug: "made-to-be-seen",
+    slug: "short-films",
+    aliases: ["made-to-be-seen"],
     title: "SHORT FILMS",
     category: "SHORT FILMS",
     year: "2026",
@@ -291,11 +313,14 @@ export const projects: Project[] = [
     tagline: "CREATE STORIES. CRAFT CINEMA. VIYANA PRODUCTIONS",
     impact: "Suitable for film festivals, digital platforms, independent releases, and creative showcases",
     gallery: [
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?q=80&w=2028&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   {
-    slug: "beyond-the-horizon",
+    slug: "film-production",
+    aliases: ["feature-film-production", "beyond-the-horizon"],
     title: "FEATURE FILM PRODUCTION",
     category: "FILM PRODUCTION",
     year: "2026",
@@ -328,11 +353,14 @@ export const projects: Project[] = [
     ctaText: "EXPLORE THE PRODUCTION",
     impact: "Large-Format Cinema • Planned theatrical distribution across 14+ territories",
     gallery: [
-      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=2074&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop"
     ]
   },
   {
-    slug: "genesis",
+    slug: "graphic-design",
+    aliases: ["graphic-design-visual-identity", "genesis"],
     title: "GRAPHIC DESIGN & VISUAL IDENTITY",
     category: "GRAPHIC DESIGN",
     year: "2026",
@@ -370,7 +398,9 @@ export const projects: Project[] = [
     tagline: "DESIGNED TO BE SEEN. BUILT TO BE REMEMBERED. VIYANA PRODUCTIONS",
     impact: "Visual consistency & digital-first creative across all physical and digital touchpoints",
     gallery: [
-      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop"
     ]
   },
   {
@@ -398,7 +428,9 @@ export const projects: Project[] = [
     ctaText: "BOOK A PRODUCT SHOOT",
     tagline: "CLEAR & ATTRACTIVE PHOTOS AND VIDEOS.",
     gallery: [
-      "/images/product-shoot.jpg"
+      "/images/product-shoot.jpg",
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   {
@@ -409,7 +441,7 @@ export const projects: Project[] = [
     client: "Influencers & Creators",
     director: "Viyana Creative Lab",
     deliverableType: "Reels, Photos and Short Videos",
-    thumbnail: "https://images.unsplash.com/photo-1516575334481-bea2089ba96a?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2070&auto=format&fit=crop",
     video: "/showreel-video-4k-h264.mp4",
     videoDuration: "1:30",
     description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",
@@ -428,7 +460,114 @@ export const projects: Project[] = [
     ctaText: "BOOK AN INFLUENCER SHOOT",
     tagline: "STYLISH VIDEOS & PHOTOS.",
     gallery: [
-      "https://images.unsplash.com/photo-1516575334481-bea2089ba96a?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop"
+    ]
+  },
+  {
+    slug: "studio-rental",
+    title: "STUDIO RENTAL",
+    category: "STUDIO RENTAL",
+    year: "2026",
+    client: "Viyana Studio Bangalore",
+    director: "Viyana Studio Crew",
+    deliverableType: "Photography & Video Studio × Brand Shoots × Interview & Green Screen",
+    thumbnail: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop",
+    description: "A versatile production studio designed for photography, video production, brand shoots, interviews, and creative projects. From controlled lighting to flexible setups, our studio gives you the space and production environment to bring your ideas to life.",
+    fullDescription: "Our professional studio is built for creators who refuse to compromise. Fully equipped with cinema-grade lighting, flexible set configurations, green screen capability, and interview-ready multi-camera rigs — every shoot at Viyana Studio is set up for success from the first frame to the last. Whether you are photographing a product, shooting a brand film, conducting an interview, or executing a full creative editorial, our space adapts to your vision.",
+    creativeApproach: "A versatile production space tailored for commercial photography, high-end video shoots, fashion lookbooks, and broadcast interviews with controlled lighting and modular setups.",
+    highlights: [
+      { title: "FULL PRODUCTION SPACE", subtitle: "Equipped with professional strobes, continuous LED lighting, and modifiers" },
+      { title: "HALF & FULL DAY BOOKINGS", subtitle: "Flexible slots with lighting packages, backdrop systems, and crew support" }
+    ],
+    keyFeatures: [
+      "Photography & Video Studio",
+      "Professional Lighting Setup",
+      "Product & Brand Shoots",
+      "Interview Setup",
+      "Green Screen Setup",
+      "Creative & Editorial Shoots",
+      "Flexible Configurations",
+      "Production Support"
+    ],
+    scope: [
+      "Photography & Video Studio",
+      "Professional Lighting Setup",
+      "Product & Brand Shoots",
+      "Interview Setup",
+      "Green Screen Setup",
+      "Creative & Editorial Shoots",
+      "Flexible Studio Configurations",
+      "Production Support"
+    ],
+    impact: "Full Production Space • 4K & Cinema Grade Ready • Half-Day & Full-Day Bookings",
+    credits: {
+      "STUDIO": "Viyana Productions",
+      "LOCATION": "Bangalore",
+      "TYPE": "Full Production Space",
+      "FORMAT": "4K & Cinema Grade Ready",
+      "BOOKING": "Half-Day & Full-Day Bookings Available"
+    },
+    ctaText: "BOOK THE STUDIO",
+    tagline: "PROFESSIONAL STUDIO SPACES FOR EVERY CREATIVE.",
+    gallery: [
+      "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=2070&auto=format&fit=crop"
+    ]
+  },
+  {
+    slug: "podcast-production",
+    title: "PODCAST PRODUCTION",
+    category: "PODCAST PRODUCTION",
+    year: "2026",
+    client: "Viyana Studio Bangalore",
+    director: "Viyana Audio & Video Engineers",
+    deliverableType: "Studio Recording × Multi-Camera × Professional Audio × Final Delivery",
+    thumbnail: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop",
+    video: "/showreel-video-4k-h264.mp4",
+    description: "A complete podcast production setup built for creators, brands, entrepreneurs, and businesses. From studio recording and multi-camera production to professional audio, editing, and final delivery — we help turn conversations into engaging content.",
+    fullDescription: "Podcasting is the most powerful long-form platform of our time. At Viyana, we give your show the production quality it deserves. From our acoustically treated recording studio and multi-camera cinematic capture to professional audio engineering, sharp editing, and ready-to-publish delivery — every episode is handled with the same precision we bring to our commercial productions. Whether you are launching a business podcast, interview show, talk show, or YouTube series, we are your full production partner.",
+    creativeApproach: "Turn conversations into engaging, broadcast-grade episodic content with multi-camera 4K visual capture, high-fidelity acoustic engineering, and viral short-form cutdowns.",
+    highlights: [
+      { title: "STUDIO-GRADE AUDIO", subtitle: "Acoustically treated studio with broadcast microphones and real-time monitoring" },
+      { title: "4K MULTI-CAMERA RIG", subtitle: "Dynamic angle switching, professional lighting, and complete post-production mastering" }
+    ],
+    keyFeatures: [
+      "Podcast Studio Rental",
+      "Multi-Camera Recording",
+      "Professional Audio Recording",
+      "Video Podcast Production",
+      "Interview & Talk Shows",
+      "Podcast Editing",
+      "Reels & Short-Form Clips",
+      "YouTube Podcast Production"
+    ],
+    scope: [
+      "Podcast Studio Rental",
+      "Multi-Camera Recording",
+      "Professional Audio",
+      "Video Podcast Production",
+      "Interview & Talk Shows",
+      "Podcast Editing",
+      "Reels & Short-Form Clips",
+      "YouTube Podcast Production"
+    ],
+    impact: "Up to 4K Multi-Cam Video • Studio Mastered Audio • Audio + Video + Viral Social Clips",
+    credits: {
+      "STUDIO": "Viyana Productions",
+      "LOCATION": "Bangalore",
+      "AUDIO": "Studio Mastered Audio",
+      "VIDEO": "4K Multi-Camera Studio",
+      "DELIVERY": "Full Audio + Video + Viral Short-Form Clips"
+    },
+    ctaText: "START YOUR PODCAST",
+    tagline: "YOUR VOICE. YOUR STORY. YOUR PLATFORM.",
+    gallery: [
+      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop"
     ]
   }
 ];
@@ -454,3 +593,6 @@ export const projectsArchive: Project[] = [
     ]
   }
 ];
+
+
+

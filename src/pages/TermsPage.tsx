@@ -208,9 +208,15 @@ export default function TermsPage() {
                 
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-white/60 shrink-0" />
-                  <a href="mailto:info.viyanaproductions@gmail.com" className="text-white hover:underline">
-                    info.viyanaproductions@gmail.com
-                  </a>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <a href="mailto:creative@viyana.productions" className="text-white hover:underline">
+                      creative@viyana.productions
+                    </a>
+                    <span className="hidden sm:inline text-white/30">•</span>
+                    <a href="mailto:director@viyana.productions" className="text-white hover:underline">
+                      director@viyana.productions
+                    </a>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -222,9 +228,15 @@ export default function TermsPage() {
 
                 <div className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 text-white/60 shrink-0 mt-0.5" />
-                  <span className="text-white/80">
-                    4th floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
-                  </span>
+                  <a
+                    href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/80 hover:text-white hover:underline underline-offset-4 transition-colors"
+                    title="Open in Google Maps"
+                  >
+                    4th Floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085 ↗
+                  </a>
                 </div>
               </div>
             </div>

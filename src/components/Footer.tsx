@@ -1,285 +1,410 @@
+"use client";
+
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  MessageCircle,
+  Mail,
+  MapPin,
+  Check,
+  Copy
+} from "lucide-react";
+
+function InstagramIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
+function YouTubeIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+      <polygon points="10 15 15 12 10 9 10 15" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  );
+}
+
+const navigationLinks = [
+  { name: "About Studio", href: "/about" },
+  { name: "Selected Work", href: "/work" },
+  { name: "Directors Roster", href: "/directors" },
+  { name: "4K Showreel", href: "/showreel" },
+  { name: "Studio Rental", href: "/studio" },
+  { name: "Podcast Studio", href: "/podcast" },
+  { name: "Commission Brief", href: "/contact" },
+];
+
+const legalLinks = [
+  { name: "Privacy Policy", href: "/privacy-policy" },
+  { name: "Terms & Conditions", href: "/terms-and-conditions" },
+  { name: "Studio Press", href: "/press" },
+  { name: "Stills Archive", href: "/stills" },
+  { name: "Studio Journal", href: "/journal" },
+];
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
-  const [time, setTime] = useState("");
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
 
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTime(
-        now.toLocaleTimeString("en-US", {
-          timeZone: "Asia/Kolkata",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        })
-      );
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const copyEmail = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText("info.viyanaproductions@gmail.com");
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+  const handleEmailAction = (email: string) => {
+    if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(email);
+      setCopiedEmail(email);
+      setTimeout(() => {
+        setCopiedEmail((prev) => (prev === email ? null : prev));
+      }, 2500);
     }
   };
 
-  return (
-    <footer className="w-full bg-brand-black text-brand-light pt-12 sm:pt-24 pb-12 pb-safe relative overflow-hidden border-t border-white/15">
-      {/* Decorative gradient flare */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-80 sm:w-96 h-80 sm:h-96 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
+  const copyEmail = () => {
+    handleEmailAction("info.viyanaproductions@gmail.com");
+  };
 
-      {/* Kinetic Infinite Marquee Ribbon */}
-      <div className="relative w-full overflow-hidden border-y border-white/15 py-3 sm:py-4 mb-10 sm:mb-16 bg-white/[0.035] backdrop-blur-sm">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, ease: "linear", duration: 28 }}
-          className="flex whitespace-nowrap text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] sm:tracking-[0.28em] text-white/85 font-medium w-max select-none"
-        >
-          <span>VIYANA PRODUCTIONS <span className="text-white/70 px-2">✦</span> COMMERCIAL ADS <span className="text-white/40 px-2">•</span> CINEMATIC CONTENT SHOOT <span className="text-white/40 px-2">•</span> ADVERTISEMENT <span className="text-white/40 px-2">•</span> MODELS PORTFOLIO SHOOTS <span className="text-white/40 px-2">•</span> VERTICAL SERIES <span className="text-white/40 px-2">•</span> WEB SERIES <span className="text-white/40 px-2">•</span> SHORT FILMS <span className="text-white/40 px-2">•</span> FILM PRODUCTION <span className="text-white/40 px-2">•</span> BANGALORE <span className="text-white/70 px-2">✦</span> </span>
-          <span>VIYANA PRODUCTIONS <span className="text-white/70 px-2">✦</span> COMMERCIAL ADS <span className="text-white/40 px-2">•</span> CINEMATIC CONTENT SHOOT <span className="text-white/40 px-2">•</span> ADVERTISEMENT <span className="text-white/40 px-2">•</span> MODELS PORTFOLIO SHOOTS <span className="text-white/40 px-2">•</span> VERTICAL SERIES <span className="text-white/40 px-2">•</span> WEB SERIES <span className="text-white/40 px-2">•</span> SHORT FILMS <span className="text-white/40 px-2">•</span> FILM PRODUCTION <span className="text-white/40 px-2">•</span> BANGALORE <span className="text-white/70 px-2">✦</span> </span>
-        </motion.div>
+  return (
+    <footer className="w-full bg-[#050505] text-brand-light relative overflow-hidden border-t border-white/10 selection:bg-white selection:text-black">
+      {/* Ambient Radial Lights */}
+      <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[700px] h-[350px] bg-white/[0.015] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[300px] bg-white/[0.012] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
+
+      {/* Top Border Glow Line */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+
+      {/* ── 1. HERO CTA BANNER (WHITE HIGH-IMPACT EDITORIAL SECTION) ─── */}
+      <div className="bg-white text-black pt-16 sm:pt-24 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-12 border-b border-black/10 relative z-10 selection:bg-black selection:text-white">
+        {/* Subtle architectural dot grid pattern for luxury texture */}
+        <div className="absolute inset-0 bg-[radial-gradient(#0000000d_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+
+            {/* Left: Monumental Invitation */}
+            <div className="lg:col-span-7 space-y-5">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/10 shadow-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-black"></span>
+                </span>
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-neutral-800 font-semibold">
+                  COMMISSION BRIEFING // 2026 CALENDAR
+                </span>
+              </div>
+
+              <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight uppercase leading-[0.92] text-black">
+                LET&apos;S CREATE <br />
+                <span className="text-black/35 hover:text-black transition-colors duration-500">
+                  SOMETHING UNFORGETTABLE.
+                </span>
+              </h2>
+
+              <p className="text-xs sm:text-sm text-neutral-600 font-normal max-w-xl leading-relaxed">
+                Have a campaign, film, series, brand shoot, or creative project in mind? We partner with ambitious brands and creators to engineer visual stories that command attention.
+              </p>
+            </div>
+
+            {/* Right: Interactive Contact Action Deck */}
+            <div className="lg:col-span-5 flex flex-col gap-3.5">
+              {/* Primary Direct Commission Button */}
+              <Link
+                to="/contact"
+                className="group relative flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-black text-white hover:bg-neutral-900 font-display font-bold uppercase tracking-wider text-sm sm:text-base transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.25)] hover:scale-[1.01] active:scale-[0.99] border border-black"
+              >
+                <div>
+                  <span className="block leading-none text-white">START A PROJECT</span>
+                  <span className="text-[10px] font-mono tracking-widest text-neutral-400 font-medium lowercase">
+                    quick response within 24 hours
+                  </span>
+                </div>
+                <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 shadow-sm">
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                </div>
+              </Link>
+
+              {/* Direct Quick Channels Card */}
+              <div className="flex flex-col gap-2.5">
+                <div className="rounded-2xl bg-neutral-50 border border-neutral-200 overflow-hidden shadow-sm divide-y divide-neutral-200/80">
+                  {[
+                    { role: "Creative", email: "creative@viyana.productions" },
+                    { role: "Director", email: "director@viyana.productions" },
+                    { role: "Production", email: "head.production@viyana.productions" },
+                    { role: "General", email: "info.viyanaproductions@gmail.com" },
+                  ].map((item) => (
+                    <div
+                      key={item.email}
+                      className="flex items-center justify-between px-3.5 sm:px-4 py-2.5 hover:bg-white transition-all duration-200 group"
+                    >
+                      <a
+                        href={`mailto:${item.email}`}
+                        onClick={() => handleEmailAction(item.email)}
+                        className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 cursor-pointer"
+                        title={`Click to email ${item.email} (auto-copies address)`}
+                      >
+                        <Mail className="w-3.5 h-3.5 text-neutral-400 group-hover:text-black transition-colors shrink-0" />
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 font-semibold w-20 sm:w-24 shrink-0">
+                          {item.role}
+                        </span>
+                        <span className="text-xs font-mono text-neutral-900 group-hover:text-black font-medium select-all truncate">
+                          {item.email}
+                        </span>
+                      </a>
+
+                      <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                        {copiedEmail === item.email ? (
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-mono font-semibold animate-in fade-in">
+                            <Check className="w-3 h-3 text-emerald-600 stroke-[2.5]" />
+                            <span>COPIED!</span>
+                          </span>
+                        ) : (
+                          <>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleEmailAction(item.email);
+                              }}
+                              className="p-1 rounded hover:bg-neutral-200 text-neutral-400 hover:text-black transition-colors cursor-pointer"
+                              title="Copy email address"
+                            >
+                              <Copy className="w-3.5 h-3.5" />
+                            </button>
+                            <a
+                              href={`mailto:${item.email}`}
+                              onClick={() => handleEmailAction(item.email)}
+                              className="p-1 rounded hover:bg-neutral-200 text-neutral-400 hover:text-black transition-colors cursor-pointer"
+                              title="Send email via default client"
+                            >
+                              <ArrowUpRight className="w-3.5 h-3.5" />
+                            </a>
+                            <a
+                              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${item.email}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hidden sm:inline-flex text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-neutral-200/70 hover:bg-neutral-300 text-neutral-600 hover:text-black transition-colors font-medium"
+                              title="Compose in Gmail Web"
+                            >
+                              GMAIL
+                            </a>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Direct WhatsApp Callout */}
+                <a
+                  href="https://wa.me/919187233615?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20discuss%20a%20project."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between px-3.5 sm:px-4 py-3 rounded-2xl bg-neutral-50 hover:bg-white border border-neutral-200 hover:border-neutral-300 transition-all duration-200 group shadow-sm hover:shadow"
+                >
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <MessageCircle className="w-4 h-4 text-emerald-600 group-hover:text-emerald-700 transition-colors shrink-0" />
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block font-medium">Chat Live via WhatsApp</span>
+                      <span className="text-xs font-mono text-neutral-900 font-semibold">+91 91872 33615</span>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+      {/* ── 2. MAIN NAVIGATION MATRIX & STUDIO DATA ──────────────────── */}
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 relative z-10">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-8">
 
-        {/* Top Callout Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 sm:gap-6 pb-6 sm:pb-12 mb-8 sm:mb-16 border-b border-white/10">
-          <div className="flex items-center gap-2.5">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-            </span>
-            <span className="text-[10px] sm:text-xs uppercase font-mono tracking-widest text-brand-light">
-              NOW ACCEPTING COMMISSIONS FOR 2026
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-[10px] sm:text-xs font-mono tracking-widest text-brand-grey">
-            <span>STUDIO TIME (IST): <strong className="text-white font-normal">{time || "12:00:00 PM"}</strong></span>
-            <span className="text-white/20">•</span>
-            <span>BANGALORE</span>
-          </div>
-        </div>
-
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-8 mb-10 sm:mb-20">
-
-          {/* Brand Column */}
-          <div className="lg:col-span-5 space-y-5 sm:space-y-6">
-            <div>
-              <div className="mb-5">
+            {/* Brand Signature Column */}
+            <div className="lg:col-span-5 space-y-6">
+              <Link to="/" className="inline-block group" aria-label="Viyana Productions Home">
                 <img
                   src="/logo-white.png"
-                  alt="Viyana Productions Logo"
-                  className="h-10 sm:h-12 w-auto object-contain filter brightness-110 select-none pointer-events-none"
+                  alt="Viyana Productions"
+                  className="h-10 sm:h-12 w-auto object-contain filter brightness-110 group-hover:opacity-90 transition-opacity drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                 />
-              </div>
-              <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] text-brand-grey font-mono block mb-2">
-                CREATIVE AD AGENCY &amp; PRODUCTION STUDIO
-              </span>
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-syne font-bold leading-[0.92] sm:leading-[0.9] tracking-tight uppercase mb-3 text-white">
-                VIYANA<br />PRODUCTIONS
-              </h2>
-              <p className="text-[10px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.18em] text-white/80 font-medium font-mono leading-relaxed mb-3 sm:mb-4">
-                COMMERCIAL ADS • CINEMATIC CONTENT SHOOT • ADVERTISEMENT • MODELS PORTFOLIO SHOOTS • VERTICAL SERIES • WEB SERIES • SHORT FILMS • FILM PRODUCTION
-              </p>
-              <p className="text-xs sm:text-sm text-brand-grey max-w-sm leading-relaxed font-light">
-                Crafting cinematic commercials, editorial fashion shoots, episodic series, and theatrical feature film productions for ambitious brands and global audiences.
-              </p>
-            </div>
+              </Link>
 
-            {/* Quick Email Copy Button */}
-            <div className="pt-1">
-              <button
-                onClick={copyEmail}
-                type="button"
-                className="w-full sm:w-auto inline-flex items-center justify-between sm:justify-start gap-3 px-4 py-3 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white text-xs font-mono tracking-wider transition-all duration-300 cursor-pointer active:scale-95"
+              <p className="text-xs sm:text-sm text-brand-grey font-light leading-relaxed max-w-md">
+                Full-scale creative ad agency and cinematic production studio based in Bangalore. Engineering commercials, original series, fashion editorials, and feature films crafted with intent.
+              </p>
+
+              {/* Clickable Studio Address Card */}
+              <a
+                href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-white/25 transition-all max-w-md shadow-sm"
+                title="Open Studio Location on Google Maps"
               >
-                <span className="text-white truncate">info.viyanaproductions@gmail.com</span>
-                <span className={`text-[10px] font-semibold shrink-0 ${copied ? "text-emerald-400" : "text-white/60"}`}>
-                  {copied ? "✓ COPIED" : "COPY"}
-                </span>
-              </button>
+                <div className="flex items-center justify-between text-white/80 mb-2 font-mono text-xs">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-3.5 h-3.5 text-white/50 group-hover:text-white transition-colors" />
+                    <span className="font-semibold tracking-wider text-[11px] uppercase text-white/90 group-hover:text-white transition-colors">
+                      STUDIO ADDRESS
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 text-[10px] text-white/40 group-hover:text-white transition-colors">
+                    <span>GOOGLE MAPS</span>
+                    <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                </div>
+                <p className="text-xs text-white/65 group-hover:text-white/90 leading-relaxed font-sans transition-colors">
+                  4th Floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
+                </p>
+              </a>
             </div>
-          </div>
 
-          {/* Navigation Links Column */}
-          <div className="lg:col-span-2">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-brand-grey block mb-4 sm:mb-6 font-semibold font-mono">
-              [ NAVIGATION ]
-            </span>
-            <ul className="flex flex-col space-y-2.5 sm:space-y-3 text-xs uppercase tracking-widest font-medium">
-              {[
-                { name: "About", href: "/about" },
-                { name: "Work", href: "/work" },
-                { name: "Showreel", href: "/showreel" },
-                { name: "Directors", href: "/directors" },
-                { name: "Contact", href: "/contact" },
-              ].map((item) => (
-                <li key={item.name}>
-                  <Link
-                    to={item.href}
-                    className="text-white/70 hover:text-white transition-colors py-1 inline-block"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Disciplines Column */}
-          <div className="lg:col-span-3">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-white/50 block mb-4 sm:mb-6 font-semibold font-mono">
-              [ DISCIPLINES ]
-            </span>
-            <ul className="flex flex-col space-y-2 text-xs uppercase tracking-wider font-medium">
-              {[
-                { name: "01 // Commercial Ads", href: "/work#commercial-ads" },
-                { name: "02 // Cinematic Content Shoot", href: "/work#cinematic-content-shoot" },
-                { name: "03 // Advertisement", href: "/work#advertisement" },
-                { name: "04 // Models Portfolio Shoots", href: "/work#models-portfolio-shoots" },
-                { name: "05 // Vertical Series", href: "/work#vertical-series" },
-                { name: "06 // Web Series", href: "/work#web-series" },
-                { name: "07 // Short Films", href: "/work#short-films" },
-                { name: "08 // Film Production", href: "/work#film-production" },
-                { name: "09 // Graphic Design", href: "/work#graphic-design" },
-              ].map((item) => (
-                <li key={item.name}>
-                  <Link
-                    to={item.href}
-                    className="text-white/70 hover:text-white transition-colors py-1 inline-block"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Connect & Social Column */}
-          <div className="lg:col-span-2">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-brand-grey block mb-4 sm:mb-6 font-semibold font-mono">
-              [ CONNECT ]
-            </span>
-            <ul className="flex flex-col space-y-2 text-xs uppercase tracking-wider font-medium">
-              {[
-                {
-                  name: "Instagram",
-                  href: "https://www.instagram.com/viyana.productions/reels/",
-                  icon: (
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                    </svg>
-                  )
-                },
-                {
-                  name: "Facebook",
-                  href: "https://www.facebook.com/profile.php?id=61594256189978",
-                  icon: (
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                  )
-                },
-                {
-                  name: "YouTube",
-                  href: "https://youtube.com",
-                  icon: (
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-                      <polygon points="10 15 15 12 10 9 10 15" fill="currentColor" stroke="none" />
-                    </svg>
-                  )
-                },
-                {
-                  name: "WhatsApp",
-                  href: "https://wa.me/919187233615?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20discuss%20a%20project.",
-                  icon: (
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                    </svg>
-                  )
-                },
-                {
-                  name: "Email Us",
-                  href: "mailto:info.viyanaproductions@gmail.com",
-                  icon: (
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect width="20" height="16" x="2" y="4" rx="2" />
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                    </svg>
-                  )
-                },
-              ].map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    target={item.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                    className="text-brand-grey hover:text-white transition-all duration-300 inline-flex items-center justify-between w-full group py-1.5 px-2.5 -mx-2.5 rounded-lg hover:bg-white/5"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <span className="text-white/60 group-hover:text-white transition-colors">
-                        {item.icon}
+            {/* Quick Links Column */}
+            <div className="lg:col-span-3 space-y-4">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/40 block font-semibold">
+                [ NAVIGATION ]
+              </span>
+              <ul className="space-y-2.5 text-xs font-mono uppercase tracking-wider">
+                {navigationLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      to={link.href}
+                      className="text-white/70 hover:text-white flex items-center justify-between py-1 group transition-colors"
+                    >
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                        {link.name}
                       </span>
-                      <span className="group-hover:translate-x-0.5 transition-transform">
-                        {item.name}
+                      <span className="text-white/20 group-hover:text-white transition-colors">
+                        →
                       </span>
-                    </span>
-                    <span className="text-[10px] text-white/40 group-hover:text-white transition-colors">
-                      ↗
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Legal & Policies Column */}
+            <div className="lg:col-span-2 space-y-4">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/40 block font-semibold">
+                [ LEGAL &amp; DOCS ]
+              </span>
+              <ul className="space-y-2.5 text-xs font-mono uppercase tracking-wider">
+                {legalLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      to={link.href}
+                      className="text-white/70 hover:text-white flex items-center justify-between py-1 group transition-colors"
+                    >
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                        {link.name}
+                      </span>
+                      <span className="text-white/20 group-hover:text-white transition-colors">
+                        →
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Social Channels Column */}
+            <div className="lg:col-span-2 space-y-4">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/40 block font-semibold">
+                [ CHANNELS ]
+              </span>
+              <ul className="space-y-2 text-xs font-mono">
+                {[
+                  {
+                    name: "Instagram",
+                    handle: "@viyana.productions",
+                    href: "https://www.instagram.com/viyana.productions/reels/",
+                    icon: InstagramIcon,
+                  },
+                  {
+                    name: "WhatsApp",
+                    handle: "+91 91872 33615",
+                    href: "https://wa.me/919187233615",
+                    icon: MessageCircle,
+                  },
+                  {
+                    name: "YouTube",
+                    handle: "@viyana.productions",
+                    href: "https://www.youtube.com/@viyana.productions/shorts",
+                    icon: YouTubeIcon,
+                  },
+                  {
+                    name: "Facebook",
+                    handle: "Viyana Productions",
+                    href: "https://www.facebook.com/profile.php?id=61594256189978",
+                    icon: FacebookIcon,
+                  },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 -mx-2.5 rounded-xl hover:bg-white/[0.05] border border-transparent hover:border-white/10 transition-all flex items-center justify-between group"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <Icon className="w-3.5 h-3.5 text-white/50 group-hover:text-white transition-colors" />
+                          <span className="text-white/80 group-hover:text-white uppercase tracking-wider text-[11px] font-medium">
+                            {item.name}
+                          </span>
+                        </div>
+                        <ArrowUpRight className="w-3 h-3 text-white/30 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* ── 4. BOTTOM UTILITY & BACK TO TOP BAR ──────────────────────── */}
+      <div className="py-5 sm:py-6 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-black/80 relative z-20">
+        <div className="container mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 text-xs font-mono text-white/60">
+
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 text-center sm:text-left">
+            <span>© 2026 VIYANA PRODUCTIONS.</span>
+            <span className="text-white/20 hidden sm:inline">•</span>
+            <span>ALL RIGHTS RESERVED.</span>
+            <span className="text-white/20 hidden sm:inline">•</span>
+            <a
+              href="https://worexatechnologies.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors group/dev font-medium py-0.5"
+            >
+              <span>DEVELOPED BY</span>
+              <span className="text-white underline decoration-white/40 underline-offset-4 group-hover/dev:decoration-white transition-all font-semibold">
+                WOREXA TECHNOLOGIES
+              </span>
+              <ArrowUpRight className="w-3 h-3 text-white/40 group-hover/dev:text-white group-hover/dev:translate-x-0.5 group-hover/dev:-translate-y-0.5 transition-transform" />
+            </a>
           </div>
 
         </div>
-
-        {/* Bottom Legal & Back to Top */}
-        <div className="flex flex-col sm:flex-row justify-between items-center border-t border-white/10 pt-8 text-[11px] text-brand-grey uppercase tracking-widest gap-4 font-mono">
-          <p className="text-center sm:text-left text-white/70">
-            2026 Viyana Productions. All Rights Reserved.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] text-white/70">
-            <Link to="/privacy-policy" className="hover:text-white transition-colors py-1">
-              Privacy Policy
-            </Link>
-            <span className="text-white/20">|</span>
-            <Link to="/terms-and-conditions" className="hover:text-white transition-colors py-1">
-              Terms &amp; Conditions
-            </Link>
-            <span className="text-white/20">|</span>
-            <Link to="/contact" className="hover:text-white transition-colors py-1">
-              Contact
-            </Link>
-          </div>
-
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            type="button"
-            className="hover:text-white transition-colors flex items-center gap-2 cursor-pointer py-1"
-          >
-            <span>BACK TO TOP</span>
-            <span>↑</span>
-          </button>
-        </div>
-
       </div>
     </footer>
   );

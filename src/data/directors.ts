@@ -13,11 +13,11 @@ export interface Director {
   representation: string;
   reelSrc: string;
   filmFormat: string;
-  cameraPackage: string;
   lensChoice: string;
   colorPipeline: string;
   lightingPhilosophy: string;
   sampleCampaigns: { title: string; client: string; year: string }[];
+  cameraPackage: string;
 }
 
 export const directors: Director[] = [
