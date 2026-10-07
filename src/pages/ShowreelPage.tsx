@@ -37,6 +37,14 @@ export default function ShowreelPage() {
   const [controlsVisible, setControlsVisible] = useState(true);
   const [hasInteracted, setHasInteracted] = useState(false);
 
+  // Framing mode: "auto" (default: 16:9 covers, 9:16 contains for maximum crispness), "cover" (fill screen), or "contain" (fit entire frame)
+  const [fitPreference, setFitPreference] = useState<"auto" | "cover" | "contain">("auto");
+
+  const effectiveFitMode =
+    fitPreference === "auto"
+      ? (activeReel.aspectRatio === "9:16" ? "contain" : "cover")
+      : fitPreference;
+
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-hide controls after 3s of no interaction when playing
@@ -278,7 +286,11 @@ export default function ShowreelPage() {
               setIsMuted(videoRef.current.muted);
             }
           }}
-          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none z-10"
+          className={`absolute inset-0 w-full h-full pointer-events-none z-10 transition-all duration-500 ${
+            effectiveFitMode === "contain"
+              ? "object-contain object-center"
+              : "object-cover object-center"
+          }`}
         >
           <source src={activeReel.src} type="video/mp4" />
           {activeReel.fallbackSrc && <source src={activeReel.fallbackSrc} type="video/mp4" />}
@@ -325,29 +337,45 @@ export default function ShowreelPage() {
               : "opacity-0 translate-y-4 pointer-events-none"
           }`}
         >
-          {/* Sound On / Mute toggle */}
-          <button
-            type="button"
-            onClick={toggleMute}
-            className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full border text-xs sm:text-sm font-mono uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center gap-2 shadow-2xl backdrop-blur-md ${
-              isMuted
-                ? "bg-black/60 text-red-300 border-red-500/50 hover:bg-black/80 hover:border-red-400"
-                : "bg-black/60 text-white border-white/40 hover:bg-white hover:text-black hover:border-white"
-            }`}
-            aria-label={isMuted ? "Unmute audio" : "Mute audio"}
-          >
-            {isMuted ? (
-              <>
-                <VolumeX className="w-4 h-4" />
-                <span>MUTED</span>
-              </>
-            ) : (
-              <>
-                <Volume2 className="w-4 h-4 text-emerald-400" />
-                <span>SOUND ON</span>
-              </>
-            )}
-          </button>
+          {/* Sound & Clarity Framing Controls */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggleMute}
+              className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full border text-xs sm:text-sm font-mono uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center gap-2 shadow-2xl backdrop-blur-md ${
+                isMuted
+                  ? "bg-black/60 text-red-300 border-red-500/50 hover:bg-black/80 hover:border-red-400"
+                  : "bg-black/60 text-white border-white/40 hover:bg-white hover:text-black hover:border-white"
+              }`}
+              aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+            >
+              {isMuted ? (
+                <>
+                  <VolumeX className="w-4 h-4" />
+                  <span>MUTED</span>
+                </>
+              ) : (
+                <>
+                  <Volume2 className="w-4 h-4 text-emerald-400" />
+                  <span>SOUND ON</span>
+                </>
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setFitPreference((prev) => (prev === "cover" ? "contain" : prev === "contain" ? "cover" : (effectiveFitMode === "contain" ? "cover" : "contain")));
+              }}
+              className="hidden sm:flex px-3 py-2 sm:py-2.5 rounded-full bg-black/60 hover:bg-white hover:text-black border border-white/40 backdrop-blur-md text-xs font-mono uppercase tracking-wider text-white transition-all cursor-pointer active:scale-95 items-center gap-1.5 shadow-2xl"
+              title="Toggle Fit / Fill framing"
+              aria-label="Toggle Fit or Fill framing"
+            >
+              <span className="text-white/50">FRAME:</span>
+              <span className="font-bold text-emerald-400 uppercase">{effectiveFitMode}</span>
+            </button>
+          </div>
 
           {/* Next / Prev Reel & Video Controls */}
           <div className="flex items-center gap-2">

@@ -8,7 +8,7 @@ export interface Showreel {
   fallbackSrc?: string;
   poster?: string;
   specs: string;
-  aspectRatio?: string;
+  aspectRatio: "16:9" | "9:16";
   duration?: string;
   description: string;
   tags: string[];
@@ -25,6 +25,7 @@ export const showreels: Showreel[] = [
     fallbackSrc: "/website-video-2.mp4",
     poster: "/images/website-video-2-poster.jpg",
     specs: "4K DCI 60FPS • DOLBY VISION • ACES COLOR",
+    aspectRatio: "16:9",
     duration: "CINEMATIC CUT",
     description:
       "Our signature visual showreel featuring high-impact commercial campaigns, corporate brand films, large-format cinematography, and color grading craft.",
@@ -40,6 +41,7 @@ export const showreels: Showreel[] = [
     fallbackSrc: "/viyana%20production%20final%20video.mp4",
     poster: "/images/website-video-2-poster.jpg",
     specs: "4K DCI • MASTER AUDIO • ACES COLOR GRADED",
+    aspectRatio: "9:16",
     duration: "DIRECTOR'S CUT",
     description:
       "Our premier comprehensive production reel featuring high-impact commercial campaigns, brand narratives, dynamic visual pacing, and premium cinematic execution.",
@@ -55,6 +57,7 @@ export const showreels: Showreel[] = [
     fallbackSrc: "/viyana%20ganesha.mp4",
     poster: "/images/website-video-2-poster.jpg",
     specs: "4K ULTRA HD • HIGH-CONTRAST CHOREOGRAPHY • ATMOS MIX",
+    aspectRatio: "9:16",
     duration: "CULTURAL SPECIAL",
     description:
       "A grand devotional cinematic piece uniting spiritual devotion, heritage rhythm, and dramatic illumination with high-production aesthetic excellence.",
@@ -70,6 +73,7 @@ export const showreels: Showreel[] = [
     fallbackSrc: "/2.mp4",
     poster: "/images/website-video-2-poster.jpg",
     specs: "4K RAW • 60FPS SLOW-MO • DCI-P3 WIDE COLOR",
+    aspectRatio: "9:16",
     duration: "COMMERCIAL EDIT",
     description:
       "Fast-paced, vibrant commercial spot focused on contemporary brand aesthetics, sharp choreography, bold fashion staging, and modern digital momentum.",
