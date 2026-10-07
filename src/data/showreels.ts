@@ -20,7 +20,7 @@ export const showreels: Showreel[] = [
     title: "Viyana Cinematic Visual Reel",
     subtitle: "High-Impact Commercial Films, TVCs & Cinematic Visuals",
     category: "SIGNATURE SHOWREEL",
-    src: "/website-video-2.mp4",
+    src: "/showreel-master.mp4",
     poster: "/images/website-video-2-poster.jpg",
     specs: "4K DCI 60FPS • DOLBY VISION • ACES COLOR",
     duration: "CINEMATIC CUT",

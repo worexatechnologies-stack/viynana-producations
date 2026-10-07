@@ -58,6 +58,26 @@ export default function ShowreelPage() {
     };
   }, [isPlaying, resetHideTimer]);
 
+  // Ensure robust autoplay on mount with fallback
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.load();
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => setIsPlaying(true))
+        .catch(() => {
+          setIsPlaying(false);
+        });
+    }
+  }, []);
+
   // Sync fullscreen state
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -79,20 +99,27 @@ export default function ShowreelPage() {
     togglePlay();
   };
 
-  // Play / Pause toggle
+  // Play / Pause toggle with guaranteed fallback
   const togglePlay = () => {
     const video = videoRef.current;
     if (!video) return;
 
     setHasInteracted(true);
     if (video.paused) {
-      if (!hasInteracted) {
-        video.muted = false;
-        setIsMuted(false);
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPlaying(true))
+          .catch(() => {
+            // If browser blocks unmuted playback, enforce muted and play immediately
+            video.muted = true;
+            setIsMuted(true);
+            video.play().then(() => setIsPlaying(true)).catch(() => {});
+          });
       }
-      video.play().catch(() => {});
     } else {
       video.pause();
+      setIsPlaying(false);
     }
   };
 
@@ -102,8 +129,13 @@ export default function ShowreelPage() {
     const video = videoRef.current;
     if (!video) return;
 
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
+    const nextMuted = !video.muted;
+    video.muted = nextMuted;
+    setIsMuted(nextMuted);
+
+    if (video.paused) {
+      video.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
   };
 
   // Fullscreen toggle
@@ -142,9 +174,10 @@ export default function ShowreelPage() {
         onClick={handleContainerClick}
         className="relative w-full h-[100svh] min-h-[100svh] flex items-center justify-center bg-black cursor-pointer overflow-hidden group select-none"
       >
-        {/* Master Showreel Active Video: Instant loading with preload="auto" and poster */}
+        {/* Master Showreel Active Video: Instant loading with direct src, preloading and multi-source fallbacks */}
         <video
           ref={videoRef}
+          src={activeReel.src}
           autoPlay
           muted
           loop
@@ -167,6 +200,7 @@ export default function ShowreelPage() {
           className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none z-10"
         >
           <source src={activeReel.src} type="video/mp4" />
+          <source src="/website-video-2.mp4" type="video/mp4" />
         </video>
 
         {/* CENTER STATE: Play / Paused Hero Overlay (Clean & Non-Intrusive) */}
