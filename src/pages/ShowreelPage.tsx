@@ -284,33 +284,6 @@ export default function ShowreelPage() {
           {activeReel.fallbackSrc && <source src={activeReel.fallbackSrc} type="video/mp4" />}
         </video>
 
-        {/* Top Active Reel Navigation Pills */}
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className="absolute top-24 sm:top-28 left-4 right-4 z-30 flex items-center justify-center gap-1.5 sm:gap-2 pointer-events-auto"
-        >
-          <div className="flex items-center gap-1 sm:gap-2 p-1.5 rounded-full bg-black/60 backdrop-blur-xl border border-white/15 shadow-2xl max-w-full overflow-x-auto scrollbar-none">
-            {showreels.map((reel, idx) => {
-              const isCurrent = idx === activeReelIdx;
-              return (
-                <button
-                  key={reel.id}
-                  type="button"
-                  onClick={() => handleSelectReel(idx)}
-                  className={`px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
-                    isCurrent
-                      ? "bg-white text-black font-bold shadow-lg"
-                      : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-                >
-                  <span className={`w-1.5 h-1.5 rounded-full ${isCurrent ? "bg-emerald-500" : "bg-white/40"}`} />
-                  <span>{reel.number}</span>
-                  <span className="hidden md:inline font-sans font-medium">{reel.title.replace("Viyana ", "")}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
 
         {/* CENTER STATE: Play / Paused Hero Overlay */}
         <AnimatePresence>
