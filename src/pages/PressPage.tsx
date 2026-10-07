@@ -7,7 +7,7 @@ import { press } from "@/data/press";
 
 export default function PressPage() {
   return (
-    <main className="min-h-screen bg-brand-black text-brand-light">
+    <main className="min-h-screen bg-brand-black text-brand-light relative overflow-x-hidden">
       <Navbar />
 
       <section className="pt-28 sm:pt-36 md:pt-48 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12">

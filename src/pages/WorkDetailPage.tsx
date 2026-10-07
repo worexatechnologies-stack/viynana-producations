@@ -23,6 +23,11 @@ export default function ProjectDetail() {
   const nextProject = projects[nextProjectIdx];
 
   const images = project.gallery && project.gallery.length > 0 ? project.gallery : [project.thumbnail];
+  const isPortrait =
+    project.category === "MODELS PORTFOLIO SHOOTS" ||
+    project.category === "VERTICAL SERIES" ||
+    project.slug === "models-portfolio-shoots" ||
+    project.slug === "vertical-series";
   const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
@@ -79,55 +84,70 @@ export default function ProjectDetail() {
           onMouseLeave={() => setIsHovered(false)}
         >
           <div className="container mx-auto max-w-7xl">
-            {/* Gallery Control Bar */}
-            <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4 px-1">
+            {/* Gallery Control Bar — 2-row stacked on mobile, single row on desktop */}
+            <div className="mb-3 sm:mb-4 px-1 space-y-2.5 sm:space-y-0">
+              {/* Row 1: Status Label */}
               <div className="flex items-center gap-2.5">
                 <span
-                  className={`w-2 h-2 rounded-full transition-all ${
+                  className={`w-2 h-2 rounded-full shrink-0 transition-all ${
                     isAutoPlaying && !isHovered
                       ? "bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"
                       : "bg-white/40"
                   }`}
                 />
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.22em] text-white/70">
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.18em] sm:tracking-[0.22em] text-white/70 truncate">
                   PRODUCTION VISUALS // FRAME {String(activeImageIdx + 1).padStart(2, "0")} OF {String(images.length).padStart(2, "0")}
                 </span>
-                <span className="hidden sm:inline-block text-[9px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/50">
+                <span className="hidden sm:inline-block text-[9px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/50 shrink-0">
                   {isHovered ? "PAUSED ON HOVER" : "AUTO-SCROLLING"}
                 </span>
               </div>
-              
-              {/* Controls: Auto-Play Toggle & Pagination */}
-              <div className="flex items-center gap-2">
+
+              {/* Row 2: Controls — full-width pill buttons on mobile */}
+              <div className="flex items-center gap-2 sm:justify-end">
+                {/* Pause / Play — icon-only on mobile, icon+label on desktop */}
                 <button
                   onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                  className="px-2.5 py-1.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 active:scale-95 transition-all text-[10px] font-mono text-white/70 hover:text-white flex items-center gap-1 cursor-pointer"
+                  className="flex-1 sm:flex-none px-3 py-2.5 sm:px-2.5 sm:py-1.5 rounded-xl sm:rounded-full border border-white/15 bg-white/5 hover:bg-white/15 active:bg-white/20 active:scale-95 transition-all text-[11px] font-mono text-white/70 hover:text-white flex items-center justify-center gap-1.5 cursor-pointer"
                   title={isAutoPlaying ? "Pause Auto-scroll" : "Resume Auto-scroll"}
                 >
-                  <span>{isAutoPlaying ? "❚❚" : "▶"}</span>
-                  <span className="hidden md:inline">{isAutoPlaying ? "AUTO" : "PAUSED"}</span>
+                  <span className="text-base sm:text-xs leading-none">{isAutoPlaying ? "⏸" : "▶"}</span>
+                  <span className="sm:hidden text-[10px] uppercase tracking-wider">{isAutoPlaying ? "Pause" : "Play"}</span>
+                  <span className="hidden md:inline text-[10px]">{isAutoPlaying ? "AUTO" : "PAUSED"}</span>
                 </button>
+
+                {/* Prev */}
                 <button
                   onClick={handlePrev}
-                  className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 hover:bg-white hover:text-black active:scale-95 transition-all text-xs font-mono flex items-center gap-1.5 cursor-pointer shadow-md"
+                  className="flex-1 sm:flex-none px-3 py-2.5 sm:px-3 sm:py-1.5 rounded-xl sm:rounded-full border border-white/20 bg-white/5 hover:bg-white hover:text-black active:bg-white active:text-black active:scale-95 transition-all text-[11px] font-mono flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
                   aria-label="Previous image"
                 >
-                  <span>←</span>
-                  <span className="hidden sm:inline">PREV</span>
+                  <span className="text-sm sm:text-xs">←</span>
+                  <span className="text-[10px] uppercase tracking-wider sm:hidden">Prev</span>
+                  <span className="hidden sm:inline text-[10px]">PREV</span>
                 </button>
+
+                {/* Next */}
                 <button
                   onClick={handleNext}
-                  className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 hover:bg-white hover:text-black active:scale-95 transition-all text-xs font-mono flex items-center gap-1.5 cursor-pointer shadow-md"
+                  className="flex-1 sm:flex-none px-3 py-2.5 sm:px-3 sm:py-1.5 rounded-xl sm:rounded-full border border-white/20 bg-white/5 hover:bg-white hover:text-black active:bg-white active:text-black active:scale-95 transition-all text-[11px] font-mono flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
                   aria-label="Next image"
                 >
-                  <span className="hidden sm:inline">NEXT</span>
-                  <span>→</span>
+                  <span className="text-[10px] uppercase tracking-wider sm:hidden">Next</span>
+                  <span className="hidden sm:inline text-[10px]">NEXT</span>
+                  <span className="text-sm sm:text-xs">→</span>
                 </button>
               </div>
             </div>
 
             {/* Main Stage Viewport */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-brand-dark shadow-[0_20px_70px_rgba(0,0,0,0.95)] group">
+            <div
+              className={`relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-brand-dark shadow-[0_20px_70px_rgba(0,0,0,0.95)] group transition-all duration-500 ${
+                isPortrait
+                  ? "aspect-[4/5] sm:aspect-[4/5] md:aspect-[4/3.6] lg:aspect-[4/3.5] md:max-h-[560px] lg:max-h-[580px] max-w-2xl mx-auto"
+                  : "aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9]"
+              }`}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeImageIdx}
@@ -146,13 +166,13 @@ export default function ProjectDetail() {
                       muted
                       playsInline
                       controls
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-[center_top]"
                     />
                   ) : (
                     <img
                       src={images[activeImageIdx]}
                       alt={`${project.title} - Frame ${activeImageIdx + 1}`}
-                      className="object-cover w-full h-full filter contrast-[1.05] brightness-95"
+                      className="object-cover object-[center_top] w-full h-full filter contrast-[1.05] brightness-95"
                     />
                   )}
                 </motion.div>
@@ -169,39 +189,26 @@ export default function ProjectDetail() {
                 <span className="absolute bottom-0 right-0 w-4 h-4 sm:w-6 sm:h-6 border-b-2 border-r-2 border-white/60" />
               </div>
 
-              {/* Floating Large Nav Arrows on Master Frame */}
-              <button
-                onClick={handlePrev}
-                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100 shadow-2xl cursor-pointer active:scale-90"
-                aria-label="Previous slide"
-              >
-                ←
-              </button>
-              <button
-                onClick={handleNext}
-                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100 shadow-2xl cursor-pointer active:scale-90"
-                aria-label="Next slide"
-              >
-                →
-              </button>
 
               {/* Bottom Meta & Pagination Overlay */}
-              <div className="absolute bottom-4 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex justify-between items-center text-xs font-mono text-white/80 z-20 pointer-events-none">
-                <div className="flex items-center gap-2 max-w-[50%]">
-                  <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/15 text-[10px] sm:text-[11px] font-semibold text-white truncate shadow-lg">
-                    {project.title} // SHOT {String(activeImageIdx + 1).padStart(2, "0")}
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex justify-between items-center text-xs font-mono text-white/80 z-20 pointer-events-none gap-1.5 sm:gap-2">
+                {/* Left: Shot Tracker */}
+                <div className="flex items-center shrink-0">
+                  <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/15 text-[10px] sm:text-[11px] font-semibold text-white shadow-lg">
+                    <span className="hidden sm:inline">{project.title} // </span>
+                    SHOT {String(activeImageIdx + 1).padStart(2, "0")}
                   </span>
                 </div>
 
                 {/* Interactive Pagination Dots */}
-                <div className="pointer-events-auto flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-lg">
+                <div className="pointer-events-auto flex items-center gap-1.5 sm:gap-2 bg-black/75 backdrop-blur-md px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full border border-white/15 shadow-lg shrink-0">
                   {images.map((_, idx) => (
                     <button
                       key={idx}
                       onClick={() => setActiveImageIdx(idx)}
                       className={`transition-all duration-300 rounded-full cursor-pointer ${
                         idx === activeImageIdx
-                          ? "w-6 h-1.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                          ? "w-5 sm:w-6 h-1.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
                           : "w-1.5 h-1.5 bg-white/40 hover:bg-white/80"
                       }`}
                       aria-label={`Go to slide ${idx + 1}`}
@@ -209,8 +216,10 @@ export default function ProjectDetail() {
                   ))}
                 </div>
 
+                {/* Right: Technical Spec Badge */}
                 <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/20 text-[10px] sm:text-[11px] text-white/90 font-mono shrink-0 shadow-lg">
-                  {project.video && activeImageIdx === 0 ? "4K DCI • MOTION" : "4K DCI • RAW STILL"}
+                  <span className="sm:hidden">{project.video && activeImageIdx === 0 ? "4K MOTION" : "4K RAW"}</span>
+                  <span className="hidden sm:inline">{project.video && activeImageIdx === 0 ? "4K DCI • MOTION" : "4K DCI • RAW STILL"}</span>
                 </span>
               </div>
 
@@ -404,10 +413,12 @@ export default function ProjectDetail() {
           </div>
         </section>
 
-        {/* 5. QUICK 13 SERVICES SELECTOR STRIP */}
+        {/* 5. QUICK 13 SERVICES SELECTOR */}
         <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-black/60">
           <div className="container mx-auto max-w-7xl">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+
+            {/* Section Header */}
+            <div className="flex items-center justify-between gap-4 mb-5 sm:mb-6">
               <div>
                 <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/50 block mb-1">
                   EXPLORE ALL DISCIPLINES
@@ -418,14 +429,45 @@ export default function ProjectDetail() {
               </div>
               <Link
                 to="/work"
-                className="text-xs font-mono uppercase tracking-widest text-white/70 hover:text-white flex items-center gap-1.5 transition-colors"
+                className="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white hover:text-black text-[10px] sm:text-xs font-mono uppercase tracking-wider text-white/70 hover:text-black transition-all"
               >
-                <span>VIEW COMPLETE SERVICES OVERVIEW</span>
+                <span className="hidden sm:inline">VIEW ALL SERVICES</span>
+                <span className="sm:hidden">VIEW ALL</span>
                 <span>→</span>
               </Link>
             </div>
 
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
+            {/* Mobile: 2-col grid — Desktop: horizontal scroll row */}
+            {/* Grid (mobile only) */}
+            <div className="grid grid-cols-2 gap-2 sm:hidden">
+              {projects.map((p, pIdx) => {
+                const isCurrent = p.slug === slug;
+                return (
+                  <Link
+                    key={p.slug}
+                    to={`/work/${p.slug}`}
+                    className={`flex flex-col justify-between p-3.5 rounded-2xl border transition-all duration-300 min-h-[80px] ${
+                      isCurrent
+                        ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.25)]"
+                        : "bg-white/[0.03] text-white/70 border-white/10 active:bg-white/10 active:border-white/25"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`text-[10px] font-mono font-bold ${isCurrent ? "text-black/50" : "text-white/30"}`}>
+                        {String(pIdx + 1).padStart(2, "0")}
+                      </span>
+                      <span className={`text-xs ${isCurrent ? "text-black/60" : "text-white/25"}`}>→</span>
+                    </div>
+                    <span className={`text-[11px] font-mono uppercase tracking-wide leading-snug font-semibold ${isCurrent ? "text-black" : "text-white/80"}`}>
+                      {p.title}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Horizontal scroll (sm and up) */}
+            <div className="hidden sm:flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 overscroll-x-contain touch-pan-x">
               {projects.map((p, pIdx) => {
                 const isCurrent = p.slug === slug;
                 return (
@@ -446,8 +488,10 @@ export default function ProjectDetail() {
                 );
               })}
             </div>
+
           </div>
         </section>
+
 
         {/* 6. NEXT DISCIPLINE SHOWCASE WITH REALISTIC PRODUCTION BACKDROP */}
         <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 overflow-hidden bg-brand-dark group/next">

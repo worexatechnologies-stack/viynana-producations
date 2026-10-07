@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import VideoModal from "@/components/VideoModal";
 import {
   Play,
   Pause,
   ArrowUpRight,
+  ArrowRight,
   MapPin,
   CheckCircle2,
 } from "lucide-react";
@@ -161,21 +161,11 @@ const headerRevealVariants = {
 };
 
 export default function AboutPage() {
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isPillarsPaused, setIsPillarsPaused] = useState(false);
 
   return (
-    <main className="min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black">
+    <main className="min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black relative overflow-x-hidden">
       <Navbar />
-
-      {/* Video Modal */}
-      <VideoModal
-        isOpen={isVideoOpen}
-        onClose={() => setIsVideoOpen(false)}
-        videoSrc="/website-video-2.mp4"
-        title="VIYANA PRODUCTIONS // OFFICIAL 4K SHOWREEL"
-        category="STUDIO MASTER SHOWREEL"
-      />
 
       {/* 1. HERO SECTION (REDESIGNED CINEMATIC ARCHITECTURE) */}
       <section className="pt-28 sm:pt-40 md:pt-48 pb-14 sm:pb-24 px-4 sm:px-6 lg:px-12 border-b border-white/10 relative overflow-hidden bg-[#050505]">
@@ -272,14 +262,12 @@ export default function AboutPage() {
                     >
                       Start a Project →
                     </Link>
-                    <button
-                      type="button"
-                      onClick={() => setIsVideoOpen(true)}
-                      className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-mono text-xs uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2 cursor-pointer active:scale-95 shadow-sm"
+                    <Link
+                      to="/work"
+                      className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-mono text-xs uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2 cursor-pointer active:scale-95 shadow-sm text-center"
                     >
-                      <Play className="w-3.5 h-3.5 fill-white" />
-                      <span>Play Reel</span>
-                    </button>
+                      <span>Explore Work →</span>
+                    </Link>
                   </div>
                 </div>
 
@@ -346,46 +334,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. SHOWREEL VISUAL SHOWCASE */}
-      <section className="py-12 sm:py-16 px-6 sm:px-10 lg:px-16">
-        <div className="container mx-auto max-w-6xl">
-          <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden border border-white/15 bg-brand-dark group shadow-2xl">
-            <img
-              src="/images/website-video-2-poster.jpg"
-              alt="Viyana Productions Master Showreel"
-
-              className="object-cover w-full h-full absolute inset-0 object-center filter contrast-[1.05] group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-black/40 to-black/20" />
-
-            {/* Play Button Overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-              <button
-                type="button"
-                onClick={() => setIsVideoOpen(true)}
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-xl border border-white/40 flex items-center justify-center transition-all duration-300 shadow-2xl hover:scale-110 cursor-pointer group/btn mb-4"
-                aria-label="Play showreel video"
-              >
-                <Play className="w-8 h-8 fill-current translate-x-0.5" />
-              </button>
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/90 bg-black/60 px-4 py-1.5 rounded-full border border-white/20 backdrop-blur-md">
-                WATCH 4K SHOWREEL
-              </span>
-            </div>
-
-            {/* Bottom Meta */}
-            <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end text-xs font-mono text-white/70 z-10">
-              <span className="hidden sm:inline">VIYANA PRODUCTIONS // CINEMATIC REEL</span>
-              <span className="bg-black/70 px-3 py-1 rounded-md border border-white/10">
-                DOLBY VISION • 4K DCI
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 3. CORE DISCIPLINES (FIVE PILLARS OF IMPACT - CONTINUOUS RUNNING SLIDER) */}
-      <section className="relative py-20 sm:py-28 border-t border-white/10 border-b border-white/10 bg-[#242424] text-white overflow-hidden selection:bg-white selection:text-black">
+      <section className="relative py-20 sm:py-28 border-t border-white/10 border-b border-white/10 bg-black text-white overflow-hidden selection:bg-white selection:text-black">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[400px] bg-white/[0.015] blur-[150px] pointer-events-none rounded-full" />
 

@@ -7,7 +7,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black">
+    <main className="min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black relative overflow-x-hidden">
       <Navbar />
 
       <section className="pt-28 sm:pt-36 md:pt-44 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden">

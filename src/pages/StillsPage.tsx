@@ -8,21 +8,22 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 const stills = [
-  { url: "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=2000&auto=format&fit=crop", aspect: "aspect-[16/9]" },
-  { url: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2000&auto=format&fit=crop", aspect: "aspect-[4/5]" },
-  { url: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2000&auto=format&fit=crop", aspect: "aspect-[3/2]" },
-  { url: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2000&auto=format&fit=crop", aspect: "aspect-square" },
-  { url: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2000&auto=format&fit=crop", aspect: "aspect-[4/5]" },
-  { url: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2000&auto=format&fit=crop", aspect: "aspect-[16/9]" },
-  { url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2000&auto=format&fit=crop", aspect: "aspect-[3/2]" },
-  { url: "https://images.unsplash.com/photo-1517457210348-703079e57d4b?q=80&w=2000&auto=format&fit=crop", aspect: "aspect-square" },
+  { url: "/images/models-portfolio-saree.jpg", aspect: "aspect-[4/5]" },
+  { url: "/images/models-portfolio-shoots.jpg", aspect: "aspect-[4/5]" },
+  { url: "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=900&auto=format&fit=crop", aspect: "aspect-[16/9]" },
+  { url: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=900&auto=format&fit=crop", aspect: "aspect-[4/5]" },
+  { url: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop", aspect: "aspect-[3/2]" },
+  { url: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=900&auto=format&fit=crop", aspect: "aspect-square" },
+  { url: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=900&auto=format&fit=crop", aspect: "aspect-[4/5]" },
+  { url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=900&auto=format&fit=crop", aspect: "aspect-[3/2]" },
+  { url: "https://images.unsplash.com/photo-1517457210348-703079e57d4b?q=80&w=900&auto=format&fit=crop", aspect: "aspect-square" },
 ];
 
 export default function StillsPage() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
-    <main className="min-h-screen bg-brand-black text-brand-light">
+    <main className="min-h-screen bg-brand-black text-brand-light relative overflow-x-hidden">
       <Navbar />
 
       <section className="pt-28 sm:pt-36 md:pt-48 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12">

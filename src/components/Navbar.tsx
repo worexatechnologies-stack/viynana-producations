@@ -98,6 +98,10 @@ export default function Navbar() {
               <img
                 src="/logo-white.png"
                 alt="Viyana Productions"
+                width="140"
+                height="40"
+                fetchPriority="high"
+                decoding="async"
                 className="h-8 sm:h-9 md:h-10 w-auto object-contain filter brightness-110 drop-shadow-[0_0_16px_rgba(255,255,255,0.3)] transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </Link>
@@ -330,6 +334,9 @@ export default function Navbar() {
                   <img
                     src="/logo-white.png"
                     alt="Viyana Productions"
+                    loading="lazy"
+                    width="140"
+                    height="40"
                     className="h-10 sm:h-12 w-auto object-contain filter brightness-110 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                   />
                 </Link>

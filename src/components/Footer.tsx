@@ -10,7 +10,7 @@ import {
   MapPin,
   Check,
   Copy
-} from "lucide-react";
+} from "lucide-react"; 
 
 function InstagramIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
   return (
@@ -240,6 +240,9 @@ export default function Footer() {
                 <img
                   src="/logo-white.png"
                   alt="Viyana Productions"
+                  loading="lazy"
+                  width="160"
+                  height="48"
                   className="h-10 sm:h-12 w-auto object-contain filter brightness-110 group-hover:opacity-90 transition-opacity drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                 />
               </Link>
@@ -378,7 +381,7 @@ export default function Footer() {
             </div>
 
           </div>
-        </div>
+        </div>  
       </div>
 
       {/* ── 4. BOTTOM UTILITY & BACK TO TOP BAR ──────────────────────── */}

@@ -59,12 +59,12 @@ export default function PodcastPage() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between gap-4 pt-6 text-xs uppercase font-mono tracking-widest text-brand-grey">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 text-xs uppercase font-mono tracking-widest text-brand-grey">
             <div className="flex items-center gap-3">
               <span className="w-8 h-px bg-white/30" />
               <span className="text-white font-medium">PODCAST PRODUCTION — VIYANA PRODUCTIONS</span>
             </div>
-            <div className="flex gap-4 sm:gap-6">
+            <div className="flex flex-wrap gap-4 sm:gap-6">
               {s.metrics.map((m) => (
                 <span key={m.label}>{m.label} // <strong className="text-white font-normal">{m.value}</strong></span>
               ))}

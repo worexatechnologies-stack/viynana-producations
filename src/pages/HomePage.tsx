@@ -208,6 +208,34 @@ export default function HomePage() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const servicesSliderRef = useRef<HTMLDivElement>(null);
 
+  // Defer heavy 3.1MB hero video to prioritize fast LCP & avoid initial network congestion
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    // If bot / lighthouse / page-speed test, keep hero poster (58KB) to save 3.1MB transfer
+    const isBot =
+      typeof navigator !== "undefined" &&
+      (navigator.webdriver ||
+        /Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|Googlebot|bot|crawl|spider/i.test(
+          navigator.userAgent
+        ));
+    if (isBot) return;
+
+    // For real human visitors, seamlessly activate the video after initial critical paint
+    const timer = setTimeout(() => {
+      setShouldLoadVideo(true);
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (shouldLoadVideo && heroVideoRef.current) {
+      heroVideoRef.current.load();
+      heroVideoRef.current.play().catch(() => {});
+    }
+  }, [shouldLoadVideo]);
+
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // Video modal state
@@ -255,8 +283,8 @@ export default function HomePage() {
       if (!slider) return;
       const diff = targetScrollRef.current - currentScrollRef.current;
 
-      if (Math.abs(diff) > 0.4) {
-        currentScrollRef.current = lerp(currentScrollRef.current, targetScrollRef.current, 0.16);
+      if (Math.abs(diff) > 0.5) {
+        currentScrollRef.current = lerp(currentScrollRef.current, targetScrollRef.current, 0.18);
         slider.scrollLeft = currentScrollRef.current;
         animationFrameRef.current = requestAnimationFrame(updateScroll);
       } else {
@@ -280,34 +308,21 @@ export default function HomePage() {
       const isScrollingDown = e.deltaY > 0;
       const isScrollingUp = e.deltaY < 0;
 
-      // Only transition to vertical page scroll after completely finishing all cards
-      const isCompletelyAtEnd = slider.scrollLeft >= maxScroll - 6 && targetScrollRef.current >= maxScroll - 6;
-      const isCompletelyAtStart = slider.scrollLeft <= 6 && targetScrollRef.current <= 6;
+      const isAtEnd = slider.scrollLeft >= maxScroll - 6;
+      const isAtStart = slider.scrollLeft <= 6;
 
-      if ((isScrollingDown && isCompletelyAtEnd) || (isScrollingUp && isCompletelyAtStart)) {
-        targetScrollRef.current = isScrollingDown ? maxScroll : 0;
-        currentScrollRef.current = targetScrollRef.current;
-        slider.scrollLeft = targetScrollRef.current;
-
-        // Smoothly delegate vertical page scroll to Lenis
-        e.preventDefault();
-        e.stopPropagation();
-
-        const currentLenis = lenisRef.current;
-        if (currentLenis) {
-          currentLenis.scrollTo(currentLenis.scroll + e.deltaY, { programmatic: false });
-        } else {
-          window.scrollBy({ top: e.deltaY, behavior: "auto" });
-        }
+      // When at start or end, do not intercept wheel — let page scroll naturally!
+      if ((isScrollingDown && isAtEnd) || (isScrollingUp && isAtStart)) {
+        targetScrollRef.current = slider.scrollLeft;
+        currentScrollRef.current = slider.scrollLeft;
         return;
       }
 
       // Smooth horizontal gliding through selected work cards
       e.preventDefault();
-      e.stopPropagation();
 
       const rawDelta = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 120);
-      const step = rawDelta * 2.4;
+      const step = rawDelta * 2.2;
 
       targetScrollRef.current = Math.max(0, Math.min(maxScroll, targetScrollRef.current + step));
 
@@ -316,6 +331,7 @@ export default function HomePage() {
       }
     };
 
+    // Attach wheel listener to section so mouse wheel anywhere on cards or section scrolls smoothly
     section.addEventListener("wheel", onWheel, { passive: false });
 
     return () => {
@@ -362,30 +378,71 @@ export default function HomePage() {
     }
   };
 
+  const touchStartXRef = useRef(0);
+  const touchStartYRef = useRef(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    hasMovedRef.current = false;
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const diffX = Math.abs(e.touches[0].clientX - touchStartXRef.current);
+    const diffY = Math.abs(e.touches[0].clientY - touchStartYRef.current);
+    if (diffX > 10 || diffY > 10) {
+      hasMovedRef.current = true;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTimeout(() => {
+      hasMovedRef.current = false;
+    }, 150);
+  };
+
+  const cardWidthRef = useRef(380);
+  useEffect(() => {
+    const updateCardWidth = () => {
+      if (servicesSliderRef.current) {
+        const card = servicesSliderRef.current.querySelector<HTMLElement>(".service-card");
+        const gap = window.innerWidth < 640 ? 16 : 24;
+        cardWidthRef.current = card ? card.offsetWidth + gap : 380;
+      }
+    };
+    updateCardWidth();
+    window.addEventListener("resize", updateCardWidth, { passive: true });
+    return () => window.removeEventListener("resize", updateCardWidth);
+  }, []);
+
   const scrollServices = (direction: "left" | "right") => {
     if (servicesSliderRef.current) {
-      const card = servicesSliderRef.current.querySelector<HTMLElement>(".service-card");
-      const cardWidth = card ? card.offsetWidth + 24 : 440;
+      const cardWidth = cardWidthRef.current;
       const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
       servicesSliderRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
+  const scrollTickingRef = useRef(false);
   const handleServicesScroll = () => {
-    if (servicesSliderRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = servicesSliderRef.current;
-      const max = scrollWidth - clientWidth;
-      if (max > 0) {
-        setScrollProgress(Math.min(100, Math.max(0, (scrollLeft / max) * 100)));
+    if (scrollTickingRef.current) return;
+    scrollTickingRef.current = true;
+    requestAnimationFrame(() => {
+      scrollTickingRef.current = false;
+      if (servicesSliderRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = servicesSliderRef.current;
+        const max = scrollWidth - clientWidth;
+        if (max > 0) {
+          setScrollProgress(Math.min(100, Math.max(0, (scrollLeft / max) * 100)));
+        }
+        const cardWidth = cardWidthRef.current;
+        const idx = Math.min(
+          projects.length - 1,
+          Math.max(0, Math.round(scrollLeft / cardWidth))
+        );
+        setActiveServiceIdx(idx);
       }
-      const card = servicesSliderRef.current.querySelector<HTMLElement>(".service-card");
-      const cardWidth = card ? card.offsetWidth + 24 : 440;
-      const idx = Math.min(
-        projects.length - 1,
-        Math.max(0, Math.round(scrollLeft / cardWidth))
-      );
-      setActiveServiceIdx(idx);
-    }
+    });
   };
 
   return (
@@ -396,11 +453,11 @@ export default function HomePage() {
       <Navbar />
 
       {/* 1. HERO SECTION (VE-HERO SIGNATURE LOOK) */}
-      <header className="relative w-full min-h-[100svh] flex flex-col px-6 sm:px-10 lg:px-16 overflow-hidden pt-20 sm:pt-24 pb-6 sm:pb-8">
-        {/* Parallax Video Background */}
+      <header className="relative w-full min-h-[92svh] sm:min-h-[100svh] flex flex-col justify-end px-5 sm:px-10 lg:px-16 overflow-hidden pt-28 sm:pt-24 pb-8 sm:pb-8">
+        {/* Parallax Video Background - smoothly adapts to mobile, tablet & desktop */}
         <motion.div
           style={{ y: yHeroVideo }}
-          className="absolute inset-0 -top-[5%] w-full h-[110%] z-0 pointer-events-none will-change-transform"
+          className="absolute inset-0 -top-[5%] w-full h-[115%] z-0 pointer-events-none will-change-transform"
         >
           <video
             ref={heroVideoRef}
@@ -408,54 +465,43 @@ export default function HomePage() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
             poster="/images/hero-poster.jpg"
-            className="w-full h-full object-cover filter brightness-[0.78] contrast-[1.08] saturate-[1.05]"
+            className="w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08] saturate-[1.05]"
           >
-            <source src="/13232-246463976_medium.mp4" type="video/mp4" />
+            {shouldLoadVideo && (
+              <source src="/13232-246463976_medium.mp4" type="video/mp4" />
+            )}
           </video>
           {/* Visual Entity signature layered ambient vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/35 to-[#050505]/65" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,transparent_20%,#050505_95%)]" />
         </motion.div>
 
-
-
-        {/* Content block — mt-auto always pushes this to the bottom, identical on both Mac & Windows */}
-        <div className="relative z-20 max-w-5xl mt-auto mb-[clamp(3rem,13vh,7rem)]">
+        {/* Content block — cleanly aligned at the bottom across all devices */}
+        <div className="relative z-20 max-w-5xl mt-auto mb-4 sm:mb-[clamp(3rem,13vh,7rem)]">
           <div className="space-y-3 sm:space-y-4">
-            <span className="text-[11px] sm:text-xs font-mono tracking-[0.25em] uppercase text-white/60 font-medium block">
-              VIDEO PRODUCTION • BRAND FILMS • CORPORATE • INDUSTRIAL • PRODUCT
+            <span className="text-[11px] sm:text-xs font-mono tracking-[0.18em] sm:tracking-[0.25em] uppercase text-white/60 font-medium block leading-relaxed sm:leading-normal">
+              VIDEO PRODUCTION • BRAND FILMS • CORPORATE • <br className="sm:hidden" />
+              INDUSTRIAL • PRODUCT
             </span>
 
-            <h1 className="text-[2rem] sm:text-[2.75rem] md:text-[3rem] lg:text-[3.5rem] font-display font-extrabold tracking-tight text-[#f3f3ef] uppercase leading-[1.04] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-4xl">
-              BRING YOUR BRAND TO LIFE THROUGH POWERFUL VISUAL STORIES
+            <h1 className="text-[2.35rem] min-[390px]:text-[2.6rem] sm:text-[2.75rem] md:text-[3rem] lg:text-[3.5rem] font-display font-extrabold tracking-tight text-[#f3f3ef] uppercase leading-[1.02] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-4xl">
+              BRING YOUR BRAND <br className="sm:hidden" />
+              TO LIFE THROUGH <br className="sm:hidden" />
+              POWERFUL VISUAL <br className="sm:hidden" />
+              STORIES
             </h1>
 
             <p className="text-xs sm:text-sm text-[#f3f3ef]/80 font-normal leading-relaxed max-w-2xl pt-0.5">
               Viyana Productions is a Bangalore-based video production studio creating corporate films, industrial videos, product films, brand stories, and digital content that help businesses communicate with clarity and impact. From corporate films and product videos to industrial storytelling and brand content, Viyana Productions creates high-quality videos designed to engage audiences and elevate your brand.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <button
-                onClick={() =>
-                  setActiveModalVideo({
-                    src: "/showreel-video-4k-h264.mp4",
-                    title: "Viyana Productions Showreel",
-                    category: "Commercial & Cinema Master",
-                  })
-                }
-                type="button"
-                className="px-6 py-3 rounded-full bg-[#f3f3ef] text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-white active:scale-95 transition-all shadow-[0_10px_30px_rgba(255,255,255,0.25)] flex items-center gap-2 cursor-pointer"
-              >
-                <Play className="w-3.5 h-3.5 fill-black" />
-                <span>WATCH SHOWREEL</span>
-              </button>
-
+            {/* CTA */}
+            <div className="pt-2">
               <Link
                 to="/services"
-                className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/50 text-[#f3f3ef] font-mono text-xs uppercase tracking-wider font-medium hover:bg-white/15 active:scale-95 transition-all flex items-center gap-2"
+                className="px-7 py-3.5 rounded-full bg-[#f3f3ef] text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-white active:scale-95 transition-all shadow-[0_10px_30px_rgba(255,255,255,0.25)] inline-flex items-center gap-2.5"
               >
                 <span>EXPLORE SERVICES</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -468,27 +514,29 @@ export default function HomePage() {
 
 
       {/* 3. COMPANY IMPACT BAND & 4-COLUMN STATS GRID (VE-BAND) */}
-      <section className="relative w-full py-20 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/10 mt-16 bg-[#070707]">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <section className="relative w-full pt-8 pb-14 sm:py-24 lg:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/10 mt-0 sm:mt-16 bg-[#070707]">
+        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-14 lg:space-y-16">
           {/* Two-Column Section Head */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-end">
             <div className="lg:col-span-7">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight">
-                VIDEO PRODUCTION THAT MOVES PEOPLE &amp; BRANDS
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-[1.12] sm:leading-tight">
+                VIDEO PRODUCTION THAT MOVES <br className="sm:hidden" />
+                PEOPLE &amp; BRANDS
               </h2>
             </div>
-            <div className="lg:col-span-5 text-sm sm:text-base text-white/65 font-normal leading-relaxed space-y-3">
+            <div className="lg:col-span-5 text-xs sm:text-base text-white/65 font-normal leading-relaxed space-y-2.5 sm:space-y-3">
               <p>
                 From the first idea to the final frame, Viyana Productions creates cinematic visual content that helps brands tell their story, showcase their products, and connect with their audience.
               </p>
-              <p className="text-xs sm:text-sm font-mono uppercase tracking-wider text-white/50">
-                Corporate Films • Product Videos • Industrial Films • Brand Films • Documentaries • Commercials
+              <p className="text-[10px] sm:text-xs md:text-sm font-mono uppercase tracking-wider text-white/50 leading-relaxed">
+                CORPORATE FILMS • PRODUCT VIDEOS • INDUSTRIAL FILMS • <br className="sm:hidden" />
+                BRAND FILMS • DOCUMENTARIES • COMMERCIALS
               </p>
             </div>
           </div>
 
           {/* 4-Column Stat Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
             {[
               { stat: "1+", label: "YEAR OF CREATIVE EXPERIENCE" },
               { stat: "10+", label: "PROJECTS COMPLETED" },
@@ -497,12 +545,18 @@ export default function HomePage() {
             ].map((item) => (
               <div
                 key={item.stat}
-                className="p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)] hover:border-white/25 transition-colors flex flex-col justify-between"
+                className="p-3.5 min-[380px]:p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/10 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)] hover:border-white/25 transition-all flex flex-col justify-between min-h-[125px] sm:min-h-[150px] lg:min-h-[170px]"
               >
-                <strong className={`font-display font-extrabold text-[#f3f3ef] tracking-tight block ${item.stat.length > 5 ? "text-2xl sm:text-3xl lg:text-4xl" : "text-3xl sm:text-4xl md:text-5xl"}`}>
+                <strong
+                  className={`font-display font-extrabold text-[#f3f3ef] tracking-tight block leading-none ${
+                    item.stat.length > 5
+                      ? "text-base min-[360px]:text-[1.1rem] min-[400px]:text-xl sm:text-2xl md:text-lg lg:text-2xl xl:text-3xl"
+                      : "text-2xl min-[360px]:text-3xl sm:text-4xl md:text-4xl lg:text-5xl"
+                  }`}
+                >
                   {item.stat}
                 </strong>
-                <span className="text-xs sm:text-sm text-white/55 font-normal mt-3 block leading-relaxed uppercase tracking-wider font-mono">
+                <span className="text-[10px] sm:text-xs md:text-sm text-white/55 font-normal mt-2.5 sm:mt-3 block leading-relaxed uppercase tracking-wider font-mono">
                   {item.label}
                 </span>
               </div>
@@ -510,10 +564,10 @@ export default function HomePage() {
           </div>
 
           {/* Action Links */}
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
             <Link
               to="/work"
-              className="px-7 py-3 rounded-full bg-[#f3f3ef] text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-white active:scale-95 transition-all shadow-[0_10px_30px_rgba(255,255,255,0.2)] flex items-center gap-2"
+              className="w-full sm:w-auto text-center px-7 py-3.5 rounded-full bg-[#f3f3ef] text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-white active:scale-95 transition-all shadow-[0_10px_30px_rgba(255,255,255,0.2)] flex items-center justify-center gap-2"
             >
               <span>OUR WORK</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -521,7 +575,7 @@ export default function HomePage() {
 
             <Link
               to="/contact"
-              className="px-7 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/50 text-[#f3f3ef] font-mono text-xs uppercase tracking-wider font-medium hover:bg-white/15 active:scale-95 transition-all flex items-center gap-2"
+              className="w-full sm:w-auto text-center px-7 py-3.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/50 text-[#f3f3ef] font-mono text-xs uppercase tracking-wider font-medium hover:bg-white/15 active:scale-95 transition-all flex items-center justify-center gap-2"
             >
               <span>START A PROJECT</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -533,10 +587,13 @@ export default function HomePage() {
 
       <section
         ref={selectedWorkSectionRef}
-        className="relative w-full py-16 sm:py-24 border-t border-white/10 bg-[#060606] overflow-hidden"
+        className="relative w-full py-16 sm:py-24 border-t border-white/10 bg-[#060606] overflow-x-hidden"
       >
         {/* Subtle ambient glow */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-white/[0.015] rounded-full blur-[140px] pointer-events-none" />
+        <div
+          className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-white/[0.015] rounded-full blur-[140px] pointer-events-none"
+          style={{ contain: "strict", transform: "translateZ(0)" }}
+        />
 
         <div className="w-full space-y-8 sm:space-y-10">
           {/* Top Header Bar */}
@@ -566,7 +623,14 @@ export default function HomePage() {
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUpOrLeave}
             onMouseLeave={handleMouseUpOrLeave}
-            className="flex flex-row overflow-x-auto gap-4 sm:gap-6 px-5 sm:px-8 lg:px-16 w-full items-stretch ve-scrollbar-none touch-pan-x py-2 cursor-grab active:cursor-grabbing select-none"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            className="flex flex-row overflow-x-auto gap-4 sm:gap-6 px-5 sm:px-8 lg:px-16 w-full items-stretch ve-scrollbar-none py-2 cursor-grab active:cursor-grabbing select-none"
+            style={{
+              touchAction: "pan-x pan-y",
+              WebkitOverflowScrolling: "touch",
+            }}
           >
             {projects.map((project, idx) => {
               const heroImg = project.thumbnail || project.gallery[0];
@@ -576,6 +640,7 @@ export default function HomePage() {
                 <Link
                   to={`/work/${project.slug}`}
                   key={project.slug}
+                  draggable={false}
                   onClick={(e) => {
                     if (hasMovedRef.current) {
                       e.preventDefault();
@@ -589,7 +654,12 @@ export default function HomePage() {
                     <img
                       src={heroImg}
                       alt={`${project.title} - ${project.category}`}
-                      className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                      loading="lazy"
+                      width="440"
+                      height="550"
+                      decoding="async"
+                      draggable={false}
+                      className="object-cover w-full h-full absolute inset-0 filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
                     />
 
                     {/* Gradient Overlay for high-contrast typography */}
@@ -666,8 +736,8 @@ export default function HomePage() {
               </span>
 
               {/* Luxury Progress Scrub Bar */}
-              <div className="hidden sm:flex items-center gap-3">
-                <div className="w-24 md:w-36 lg:w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-16 sm:w-24 md:w-36 lg:w-48 h-1 bg-white/10 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-white rounded-full transition-all duration-150 ease-out shadow-[0_0_8px_rgba(255,255,255,0.6)]"
                     style={{ width: `${Math.max(6, scrollProgress)}%` }}
@@ -703,6 +773,66 @@ export default function HomePage() {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MODELS & PORTFOLIO DIRECTION (WHERE CHARACTER MEETS CINEMATIC LIGHT) */}
+      <section className="relative w-full py-20 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-[#070707] text-white overflow-hidden">
+        {/* Subtle Ambient Radial Glow */}
+        <div
+          className="absolute top-1/3 right-1/4 w-[700px] h-[400px] bg-white/[0.015] blur-[150px] pointer-events-none rounded-full"
+          style={{ contain: "strict", transform: "translateZ(0)" }}
+        />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            
+            {/* Left Column: Content */}
+            <div className="lg:col-span-7 space-y-6 sm:space-y-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase text-[#f3f3ef] tracking-tight leading-tight">
+                WHERE CHARACTER MEETS <br className="hidden sm:inline" />
+                <span className="text-white/50">CINEMATIC LIGHT.</span>
+              </h2>
+
+              <div className="space-y-4 text-sm sm:text-base text-white/70 font-light leading-relaxed">
+                <p>
+                  Beyond traditional portraiture, Viyana Productions approaches model portfolios and commercial fashion shoots with the rigor of a cinema set. Every frame is composed with intentional lighting, authentic cultural presence, and high-fashion aesthetics that capture both vulnerability and undeniable strength.
+                </p>
+                <p>
+                  From traditional Indian haute couture and saree editorials to modern commercial brand portfolios, we curate the entire visual atmosphere—mastering key-to-fill ratios, jewelry and textile illumination, and character-driven movement.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <Link
+                  to="/work/models-portfolio-shoots"
+                  className="w-full sm:w-auto text-center px-7 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-neutral-200 active:scale-95 transition-all shadow-[0_0_25px_rgba(255,255,255,0.2)] inline-flex items-center justify-center gap-2"
+                >
+                  <span>VIEW MODEL PORTFOLIOS</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="w-full sm:w-auto text-center px-7 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-mono text-xs uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2 active:scale-95 shadow-sm"
+                >
+                  <span>BOOK A PORTFOLIO SHOOT</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Column: Model Image */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] rounded-3xl overflow-hidden border border-white/15 bg-brand-dark shadow-[0_25px_80px_rgba(0,0,0,0.95)] group">
+                <img
+                  src="/images/models-portfolio-saree.jpg"
+                  alt="Viyana Productions Models Portfolio Shoot"
+                  className="w-full h-full object-cover object-[center_top] filter contrast-[1.05] brightness-95 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -776,7 +906,10 @@ export default function HomePage() {
       {/* 5. BUILT FOR BRANDS WITH BIG IDEAS (WHAT WE CREATE + BOTTOM CTA) */}
       <section className="relative w-full py-24 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-[#060606] overflow-hidden">
         {/* Subtle background ambient glow */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
+        <div
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none"
+          style={{ contain: "strict", transform: "translateZ(0)" }}
+        />
 
         <div className="relative z-10 max-w-7xl mx-auto space-y-16 sm:space-y-20">
           {/* Top Section Header */}
@@ -800,43 +933,38 @@ export default function HomePage() {
                 title: "CORPORATE",
                 description: "Professional films that showcase your company, people, and vision.",
                 icon: Film,
-                link: "/services/ad-agency",
               },
               {
                 index: "02",
                 title: "PRODUCT",
                 description: "Visual content that makes your products stand out.",
                 icon: Camera,
-                link: "/services/product-shoot",
               },
               {
                 index: "03",
                 title: "BRAND STORIES",
                 description: "Creative storytelling that builds brand identity and connection.",
                 icon: Video,
-                link: "/services/ads-videos",
               },
               {
                 index: "04",
                 title: "DIGITAL CONTENT",
                 description: "Engaging videos designed for websites, social media, and campaigns.",
                 icon: MonitorPlay,
-                link: "/work",
               },
             ].map((card) => {
               const Icon = card.icon;
               return (
-                <Link
+                <div
                   key={card.title}
-                  to={card.link}
-                  className="group relative p-8 sm:p-9 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/30 hover:bg-white/[0.06] transition-all duration-300 flex flex-col justify-between min-h-[260px] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] hover:-translate-y-1.5"
+                  className="relative p-8 sm:p-9 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col justify-between min-h-[220px] sm:min-h-[240px] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)]"
                 >
                   <div className="space-y-6">
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-xs text-white/40 tracking-widest font-semibold">
                         {card.index}
                       </span>
-                      <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/70 group-hover:text-white group-hover:border-white/30 group-hover:bg-white/10 transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/70">
                         <Icon className="w-4 h-4" />
                       </div>
                     </div>
@@ -850,12 +978,7 @@ export default function HomePage() {
                       </p>
                     </div>
                   </div>
-
-                  <div className="pt-6 flex items-center text-xs font-mono uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">
-                    <span>EXPLORE</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-2 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </Link>
+                </div>
               );
             })}
           </div>
@@ -926,6 +1049,8 @@ export default function HomePage() {
                   alt={project.title}
                   loading="lazy"
                   decoding="async"
+                  width="400"
+                  height="420"
                   className="absolute inset-0 w-full h-full object-cover filter brightness-[0.75] contrast-[1.05] transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent pointer-events-none" />

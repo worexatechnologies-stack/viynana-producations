@@ -48,7 +48,7 @@ export const projects: Project[] = [
     client: "Viyana Productions",
     director: "Elena Rostova",
     deliverableType: "Full-Scale Commercial Production & TVC",
-    thumbnail: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=900&auto=format&fit=crop",
     description: "A full-scale commercial production crafted to bring powerful brand stories to life   combining cinematic visuals, dynamic camera movement, and high-impact storytelling for television, digital platforms, and social media. Built around a strong creative concept, every frame is designed to capture attention, communicate the brand message, and create a lasting visual impression.",
     fullDescription: "Working closely with our creative and production team, Viyana Productions brings together direction, cinematography, production design, editing, and post-production to create a distinctive visual experience.",
     scope: [
@@ -69,9 +69,9 @@ export const projects: Project[] = [
     tagline: "YOUR STORY. OUR FRAME. LET'S CREATE",
     impact: "Broadcast on National TV Networks • Multi-Platform Digital Distribution",
     gallery: [
-      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -105,8 +105,8 @@ export const projects: Project[] = [
     impact: "Premiered across luxury channels & festival showcases",
     gallery: [
       "/images/cinematic-content-shoot.jpg",
-      "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -141,8 +141,8 @@ export const projects: Project[] = [
     ctaText: "LET'S CREATE",
     gallery: [
       "/images/advertisement-campaign.jpg",
-      "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -154,7 +154,7 @@ export const projects: Project[] = [
     client: "Viyana Productions",
     director: "David Okafor",
     deliverableType: "Premium Editorial Model Portfolio Production",
-    thumbnail: "/images/models-portfolio-shoots.jpg",
+    thumbnail: "/images/models-portfolio-saree.jpg",
     description: "A premium editorial-model portfolio production crafted to showcase high-fashion aesthetics, refined studio lighting, and sophisticated portraiture for modeling agencies, comp cards, and luxury publications. From sculpted lighting and couture styling to detailed skin retouching and color grading, every element was designed to create a distinctive visual identity and elevate the model portfolio.",
     scope: [
       "High-Fashion Editorial Direction",
@@ -174,9 +174,9 @@ export const projects: Project[] = [
     },
     ctaText: "LET'S CREATE",
     gallery: [
+      "/images/models-portfolio-saree.jpg",
       "/images/models-portfolio-shoots.jpg",
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2076&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -188,7 +188,7 @@ export const projects: Project[] = [
     client: "Viyana Productions",
     director: "Viyana Digital Lab",
     deliverableType: "9:16 Mobile-First Vertical Series",
-    thumbnail: "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2071&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=900&auto=format&fit=crop",
     description: "A new-generation storytelling format designed specifically for mobile audiences. Vertical series use a 9:16 full-screen format to deliver cinematic stories through smartphones and social platforms. The format combines fast-paced narratives, immersive visuals, cinematic colour grading, dynamic camera movements, and sound design to keep viewers engaged from scene to scene.",
     fullDescription: "Built for: Short-form entertainment, thriller narratives, branded storytelling, and digital-first original content.",
     keyFeatures: [
@@ -228,9 +228,9 @@ export const projects: Project[] = [
     ctaText: "LET'S CREATE",
     tagline: "VIYANA PRODUCTIONS",
     gallery: [
-      "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2071&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=2047&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -242,7 +242,7 @@ export const projects: Project[] = [
     client: "StreamWave Originals",
     director: "Elena Rostova & David Okafor",
     deliverableType: "4K Digital & OTT Originals",
-    thumbnail: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=900&auto=format&fit=crop",
     description: "Stories built for the streaming generation. We develop and produce original web series that combine compelling narratives with cinematic production. From the first concept and screenplay to casting, production, cinematography, and final post-production, every stage is crafted to create an engaging episodic viewing experience. Our approach brings together strong storytelling, character-driven narratives, cinematic visuals, and professional sound design to create series suitable for digital platforms, OTT audiences, and independent distribution.",
     fullDescription: "Formats We Develop: Drama • Thriller • Crime • Romance • Comedy • Mystery • Action • Anthology • Youth Stories • Social Stories.",
     highlights: [
@@ -270,9 +270,9 @@ export const projects: Project[] = [
     },
     impact: "Full OTT & digital delivery workflows engineered for modern streaming platforms",
     gallery: [
-      "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?q=80&w=2069&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -284,7 +284,7 @@ export const projects: Project[] = [
     client: "Viyana Productions",
     director: "David Okafor",
     deliverableType: "Original Cinema & Festival Short Film",
-    thumbnail: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop",
     description: "Cinematic Stories with a Distinctive Creative Vision. We produce original short films that transform compelling ideas into engaging cinematic experiences. From story development and scripting to direction, cinematography, editing, and sound design, every element is crafted to support the story and connect with the audience. Our short-film productions are suitable for film festivals, digital platforms, independent releases, and creative showcases.",
     fullDescription: "Focus: Original Stories • Independent Cinema • Festival Films • Drama • Thriller • Experimental Films • Auteur Storytelling.",
     scope: [
@@ -313,9 +313,9 @@ export const projects: Project[] = [
     tagline: "CREATE STORIES. CRAFT CINEMA. VIYANA PRODUCTIONS",
     impact: "Suitable for film festivals, digital platforms, independent releases, and creative showcases",
     gallery: [
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?q=80&w=2028&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -327,7 +327,7 @@ export const projects: Project[] = [
     client: "Aero Athletics & Global Cinema",
     director: "Marcus Chen",
     deliverableType: "Theatrical Feature Film Production",
-    thumbnail: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=900&auto=format&fit=crop",
     description: "A cinematic feature film built around powerful storytelling, striking environments, and deeply human moments. From expansive landscapes to meticulously designed sets, every frame was crafted to create a visually immersive theatrical experience. The production brought together cinematography, production design, large-format capture, practical effects, and sound to build a distinctive visual world that supports the story from beginning to end.",
     highlights: [
       { title: "LARGE-FORMAT CINEMA", subtitle: "Designed for an immersive big-screen experience" },
@@ -353,9 +353,9 @@ export const projects: Project[] = [
     ctaText: "EXPLORE THE PRODUCTION",
     impact: "Large-Format Cinema • Planned theatrical distribution across 14+ territories",
     gallery: [
-      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=2074&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -367,7 +367,7 @@ export const projects: Project[] = [
     client: "Worexa",
     director: "Viyana Graphic Atelier",
     deliverableType: "Graphic Design & Visual Identity System",
-    thumbnail: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=900&auto=format&fit=crop",
     description: "A complete visual design system created to give brands, artists, and creative projects a distinctive presence across print and digital platforms. From brand identity and typography to campaign visuals, motion graphics, and digital assets, every element is designed with clarity, consistency, and a strong visual point of view.",
     highlights: [
       { title: "VISUAL CONSISTENCY", subtitle: "A unified design language across platforms" },
@@ -398,9 +398,9 @@ export const projects: Project[] = [
     tagline: "DESIGNED TO BE SEEN. BUILT TO BE REMEMBERED. VIYANA PRODUCTIONS",
     impact: "Visual consistency & digital-first creative across all physical and digital touchpoints",
     gallery: [
-      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -429,8 +429,8 @@ export const projects: Project[] = [
     tagline: "CLEAR & ATTRACTIVE PHOTOS AND VIDEOS.",
     gallery: [
       "/images/product-shoot.jpg",
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -441,7 +441,7 @@ export const projects: Project[] = [
     client: "Influencers & Creators",
     director: "Viyana Creative Lab",
     deliverableType: "Reels, Photos and Short Videos",
-    thumbnail: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=900&auto=format&fit=crop",
     video: "/showreel-video-4k-h264.mp4",
     videoDuration: "1:30",
     description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",
@@ -460,9 +460,9 @@ export const projects: Project[] = [
     ctaText: "BOOK AN INFLUENCER SHOOT",
     tagline: "STYLISH VIDEOS & PHOTOS.",
     gallery: [
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -473,7 +473,7 @@ export const projects: Project[] = [
     client: "Viyana Studio Bangalore",
     director: "Viyana Studio Crew",
     deliverableType: "Photography & Video Studio × Brand Shoots × Interview & Green Screen",
-    thumbnail: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=900&auto=format&fit=crop",
     description: "A versatile production studio designed for photography, video production, brand shoots, interviews, and creative projects. From controlled lighting to flexible setups, our studio gives you the space and production environment to bring your ideas to life.",
     fullDescription: "Our professional studio is built for creators who refuse to compromise. Fully equipped with cinema-grade lighting, flexible set configurations, green screen capability, and interview-ready multi-camera rigs — every shoot at Viyana Studio is set up for success from the first frame to the last. Whether you are photographing a product, shooting a brand film, conducting an interview, or executing a full creative editorial, our space adapts to your vision.",
     creativeApproach: "A versatile production space tailored for commercial photography, high-end video shoots, fashion lookbooks, and broadcast interviews with controlled lighting and modular setups.",
@@ -512,9 +512,9 @@ export const projects: Project[] = [
     ctaText: "BOOK THE STUDIO",
     tagline: "PROFESSIONAL STUDIO SPACES FOR EVERY CREATIVE.",
     gallery: [
-      "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=900&auto=format&fit=crop"
     ]
   },
   {
@@ -525,7 +525,7 @@ export const projects: Project[] = [
     client: "Viyana Studio Bangalore",
     director: "Viyana Audio & Video Engineers",
     deliverableType: "Studio Recording × Multi-Camera × Professional Audio × Final Delivery",
-    thumbnail: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=900&auto=format&fit=crop",
     video: "/showreel-video-4k-h264.mp4",
     description: "A complete podcast production setup built for creators, brands, entrepreneurs, and businesses. From studio recording and multi-camera production to professional audio, editing, and final delivery — we help turn conversations into engaging content.",
     fullDescription: "Podcasting is the most powerful long-form platform of our time. At Viyana, we give your show the production quality it deserves. From our acoustically treated recording studio and multi-camera cinematic capture to professional audio engineering, sharp editing, and ready-to-publish delivery — every episode is handled with the same precision we bring to our commercial productions. Whether you are launching a business podcast, interview show, talk show, or YouTube series, we are your full production partner.",
@@ -565,9 +565,9 @@ export const projects: Project[] = [
     ctaText: "START YOUR PODCAST",
     tagline: "YOUR VOICE. YOUR STORY. YOUR PLATFORM.",
     gallery: [
-      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=900&auto=format&fit=crop"
     ]
   }
 ];
@@ -581,15 +581,15 @@ export const projectsArchive: Project[] = [
     client: "Apex Performance",
     director: "David Okafor",
     deliverableType: "Multi-Platform Commercial & Social Ad Rollout",
-    thumbnail: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=900&auto=format&fit=crop",
     video: "/showreel-video-4k-h264.mp4",
     videoDuration: "1:05",
     description: "A multi-platform advertising campaign combining cinematic commercial ads, interactive digital ad units, and targeted social media conversion assets.",
     scope: ["Ad Campaign", "Paid Media Creatives", "Social Storyboards", "Conversion Assets"],
     impact: "+180% Return on Ad Spend (ROAS) across paid channels",
     gallery: [
-      "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=900&auto=format&fit=crop"
     ]
   }
 ];

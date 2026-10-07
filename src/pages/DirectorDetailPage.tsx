@@ -75,7 +75,7 @@ export default function DirectorProfilePage() {
       <Navbar />
 
       {/* TOP BAR / BACK NAVIGATION */}
-      <div className="pt-28 pb-4 px-6 sm:px-10 lg:px-16 border-b border-white/10 bg-brand-black/90 backdrop-blur-md sticky top-0 z-30">
+      <div className="pt-20 sm:pt-28 pb-3 sm:pb-4 px-4 sm:px-10 lg:px-16 border-b border-white/10 bg-brand-black/90 backdrop-blur-md sticky top-0 z-30">
         <div className="container mx-auto max-w-6xl flex items-center justify-between">
           <Link
             to="/directors"

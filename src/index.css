@@ -30,6 +30,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    /* Mobile: ensure vertical scroll is never trapped */
+    overscroll-behavior-y: auto;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
   }
 
   h2 {
@@ -272,8 +276,11 @@ html.lenis body {
   overscroll-behavior: contain;
 }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
+/* lenis-stopped should only hide overflow on desktop — on mobile this traps scroll */
+@media (hover: hover) and (pointer: fine) {
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
 }
 
 .lenis.lenis-scrolling iframe {

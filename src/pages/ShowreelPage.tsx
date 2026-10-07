@@ -2,8 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { showreels } from "@/data/showreels";
 import {
   Play,
   Pause,
@@ -12,18 +14,19 @@ import {
   Maximize,
   Minimize,
   RotateCcw,
+  ChevronLeft,
+  ChevronRight,
+  Film,
+  ArrowRight,
+  CheckCircle2,
 } from "lucide-react";
 
-const showreelData = {
-  title: "Viyana Productions Master Showreel",
-  subtitle: "High-Impact Commercial Films, TVCs & Cinematic Visuals",
-  src: "/website-video-2.mp4",
-  poster: "/images/website-video-2-poster.jpg",
-  specs: "4K DCI 60FPS • DOLBY VISION • ACES COLOR",
-};
-
 export default function ShowreelPage() {
+  const [activeReelIdx, setActiveReelIdx] = useState(0);
+  const activeReel = showreels[activeReelIdx];
+
   const videoRef = useRef<HTMLVideoElement>(null);
+  const ambientVideoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
@@ -33,11 +36,10 @@ export default function ShowreelPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [controlsVisible, setControlsVisible] = useState(true);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [fitMode, setFitMode] = useState<"contain" | "cover">("contain");
 
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auto-hide controls after 2.5s of no interaction when video is playing
+  // Auto-hide controls after 3s of no interaction when playing
   const resetHideTimer = useCallback(() => {
     setControlsVisible(true);
     if (hideTimeoutRef.current) {
@@ -46,7 +48,7 @@ export default function ShowreelPage() {
     if (isPlaying) {
       hideTimeoutRef.current = setTimeout(() => {
         setControlsVisible(false);
-      }, 2500);
+      }, 3000);
     }
   }, [isPlaying]);
 
@@ -73,6 +75,42 @@ export default function ShowreelPage() {
     };
   }, []);
 
+  // When changing active reel, reload video and autoplay
+  const handleSelectReel = (idx: number) => {
+    if (idx === activeReelIdx) return;
+    setActiveReelIdx(idx);
+    setCurrentTime(0);
+    setHasInteracted(true);
+    setIsMuted(false);
+
+    // Give DOM time to update source then play
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.muted = false;
+        videoRef.current.load();
+        videoRef.current.play().catch(() => {});
+      }
+      if (ambientVideoRef.current) {
+        ambientVideoRef.current.currentTime = 0;
+        ambientVideoRef.current.load();
+        ambientVideoRef.current.play().catch(() => {});
+      }
+    }, 50);
+  };
+
+  const handleNextReel = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const nextIdx = (activeReelIdx + 1) % showreels.length;
+    handleSelectReel(nextIdx);
+  };
+
+  const handlePrevReel = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const prevIdx = (activeReelIdx - 1 + showreels.length) % showreels.length;
+    handleSelectReel(prevIdx);
+  };
+
   // Container tap handler: toggles controls or play
   const handleContainerClick = () => {
     if (!controlsVisible) {
@@ -95,8 +133,14 @@ export default function ShowreelPage() {
         setIsMuted(false);
       }
       video.play().catch(() => {});
+      if (ambientVideoRef.current) {
+        ambientVideoRef.current.play().catch(() => {});
+      }
     } else {
       video.pause();
+      if (ambientVideoRef.current) {
+        ambientVideoRef.current.pause();
+      }
     }
   };
 
@@ -131,6 +175,10 @@ export default function ShowreelPage() {
 
     video.currentTime = 0;
     video.play().catch(() => {});
+    if (ambientVideoRef.current) {
+      ambientVideoRef.current.currentTime = 0;
+      ambientVideoRef.current.play().catch(() => {});
+    }
   };
 
   // Seek bar click / drag
@@ -140,6 +188,9 @@ export default function ShowreelPage() {
     if (!video) return;
     video.currentTime = newTime;
     setCurrentTime(newTime);
+    if (ambientVideoRef.current) {
+      ambientVideoRef.current.currentTime = newTime;
+    }
   };
 
   const formatTime = (seconds: number) => {
@@ -151,36 +202,48 @@ export default function ShowreelPage() {
 
   const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
 
+  const scrollToTheatre = (idx: number) => {
+    handleSelectReel(idx);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <main className="min-h-screen bg-brand-black text-brand-light overflow-hidden flex flex-col justify-between select-none">
+    <main className="min-h-screen bg-brand-black text-brand-light select-none">
       <Navbar />
 
+      {/* ======================================================== */}
+      {/* ======================================================== */}
+      {/* 1. MASTER CINEMA THEATRE STAGE                           */}
+      {/* ======================================================== */}
       <section
         ref={containerRef}
         onMouseMove={resetHideTimer}
         onClick={handleContainerClick}
-        className="relative w-full h-[100svh] flex items-center justify-center bg-black cursor-pointer overflow-hidden group"
+        className="relative w-full h-[100svh] min-h-[100svh] flex items-center justify-center bg-black cursor-pointer overflow-hidden group select-none"
       >
-        {/* Ambient Video Glow Layer (fills mobile vertical letterbox with cinema atmosphere) */}
+        {/* Ambient Video Glow Layer: dynamically fills any screen boundaries (ultrawide, landscape, or tall) */}
         <video
+          ref={ambientVideoRef}
+          key={`ambient-${activeReel.id}`}
           autoPlay
           muted
           loop
           playsInline
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover scale-110 blur-3xl opacity-35 pointer-events-none sm:hidden"
+          className="absolute inset-0 w-full h-full object-cover scale-110 blur-3xl opacity-35 pointer-events-none"
         >
-          <source src={showreelData.src} type="video/mp4" />
+          <source src={activeReel.src} type="video/mp4" />
         </video>
 
-        {/* Master Showreel Video (Responsive fit/fill on mobile, cover on desktop) */}
+        {/* Master Showreel Active Video: Edge-to-edge full screen with zero side gaps */}
         <video
           ref={videoRef}
+          key={`main-${activeReel.id}`}
           autoPlay
           muted
           loop
           playsInline
-          poster={showreelData.poster}
+          poster={activeReel.poster}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           onTimeUpdate={() => {
@@ -194,186 +257,301 @@ export default function ShowreelPage() {
               setIsMuted(videoRef.current.muted);
             }
           }}
-          className={`relative z-10 w-full h-full pointer-events-none transition-all duration-300 ${
-            fitMode === "contain"
-              ? "object-contain sm:object-cover"
-              : "object-cover"
-          }`}
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none z-10"
         >
-          <source src={showreelData.src} type="video/mp4" />
+          <source src={activeReel.src} type="video/mp4" />
         </video>
 
-        {/* Ambient Top & Bottom Gradient Vignettes */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/80 via-transparent to-black/60 z-10" />
-
-        {/* Center State: Only shown when video is paused or before user starts unmuted watching */}
+        {/* CENTER STATE: Play / Paused Hero Overlay (clean & non-intrusive) */}
         <AnimatePresence>
           {!isPlaying && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0 z-20 flex flex-col items-center justify-center p-4 text-center bg-black/40 backdrop-blur-sm pointer-events-none"
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25 }}
+              className="absolute inset-0 z-20 flex flex-col items-center justify-center p-4 text-center pointer-events-none"
             >
-              <div className="w-16 h-16 sm:w-28 sm:h-28 rounded-full bg-white/20 backdrop-blur-2xl border border-white/40 flex items-center justify-center text-white shadow-[0_0_60px_rgba(255,255,255,0.25)] mb-3 sm:mb-6 group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-300">
-                <Play className="w-6 h-6 sm:w-12 sm:h-12 fill-current translate-x-0.5 sm:translate-x-1" />
+              <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-black/60 backdrop-blur-xl border border-white/50 flex items-center justify-center text-white shadow-[0_0_50px_rgba(0,0,0,0.8)] mb-3 group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-300">
+                <Play className="w-7 h-7 sm:w-10 sm:h-10 fill-current translate-x-0.5 sm:translate-x-1" />
               </div>
-              <h1 className="text-2xl sm:text-6xl md:text-7xl font-serif tracking-tighter uppercase mb-1.5 sm:mb-3 text-white drop-shadow-lg">
-                {hasInteracted ? "PAUSED" : "PLAY SHOWREEL"}
+              
+              <div className="inline-block px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/25 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-emerald-400 mb-2 shadow-lg">
+                REEL {activeReel.number} OF {String(showreels.length).padStart(2, "0")} • {activeReel.category}
+              </div>
+
+              <h1 className="text-xl sm:text-4xl md:text-5xl font-serif tracking-tight uppercase mb-2 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] max-w-4xl px-2">
+                {hasInteracted ? "PAUSED" : activeReel.title}
               </h1>
-              <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase font-mono text-white/90 max-w-md drop-shadow">
+
+              <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase font-mono text-white/90 max-w-md drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                 {hasInteracted
                   ? "TAP ANYWHERE TO RESUME"
-                  : `${showreelData.title} • TAP TO PLAY`}
+                  : "TAP ANYWHERE TO PLAY WITH AUDIO"}
               </p>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Cinema HUD Controls Bar (Fades out when playing and mouse/touch is idle) */}
+        {/* Floating In-Video Controls — clean floating controls directly on the video */}
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`absolute bottom-0 left-0 right-0 z-30 p-2.5 sm:p-6 pb-[max(0.85rem,env(safe-area-inset-bottom))] transition-all duration-500 cursor-default ${
+          className={`absolute bottom-5 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 z-30 flex items-center justify-between pointer-events-auto transition-all duration-500 ${
             controlsVisible
-              ? "opacity-100 translate-y-0 pointer-events-auto"
+              ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-4 pointer-events-none"
           }`}
         >
-          <div className="max-w-5xl mx-auto bg-brand-black/95 sm:bg-brand-black/85 backdrop-blur-2xl border border-white/20 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl space-y-2 sm:space-y-4">
-            
-            {/* Progress Scrubber */}
-            <div className="space-y-1">
-              <div className="relative w-full h-2 group/slider cursor-pointer flex items-center">
-                {/* Track background */}
-                <div className="absolute inset-0 bg-white/20 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-white rounded-full transition-all duration-75"
-                    style={{ width: `${progressPercent}%` }}
-                  />
-                </div>
-                {/* HTML Range Input Overlay */}
-                <input
-                  type="range"
-                  min={0}
-                  max={duration || 100}
-                  step={0.1}
-                  value={currentTime}
-                  onChange={handleSeek}
-                  aria-label="Video scrubber"
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                />
-              </div>
-            </div>
+          {/* Sound On / Mute toggle */}
+          <button
+            type="button"
+            onClick={toggleMute}
+            className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full border text-xs sm:text-sm font-mono uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center gap-2 shadow-2xl backdrop-blur-md ${
+              isMuted
+                ? "bg-black/60 text-red-300 border-red-500/50 hover:bg-black/80 hover:border-red-400"
+                : "bg-black/60 text-white border-white/40 hover:bg-white hover:text-black hover:border-white"
+            }`}
+            aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+          >
+            {isMuted ? (
+              <>
+                <VolumeX className="w-4 h-4" />
+                <span>MUTED</span>
+              </>
+            ) : (
+              <>
+                <Volume2 className="w-4 h-4 text-emerald-400" />
+                <span>SOUND ON</span>
+              </>
+            )}
+          </button>
 
-            {/* Bottom Row Controls */}
-            <div className="flex items-center justify-between gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
-              
-              {/* Left Group: Play/Pause, Audio, Timestamps */}
-              <div className="flex items-center gap-2 sm:gap-3">
-                {/* Play/Pause */}
-                <button
-                  type="button"
-                  onClick={togglePlay}
-                  className="p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 transition-all cursor-pointer active:scale-90 shrink-0"
-                  aria-label={isPlaying ? "Pause video" : "Play video"}
-                >
-                  {isPlaying ? (
-                    <Pause className="w-3.5 h-3.5 sm:w-5 sm:h-5 fill-current" />
-                  ) : (
-                    <Play className="w-3.5 h-3.5 sm:w-5 sm:h-5 fill-current translate-x-0.5" />
-                  )}
-                </button>
+          {/* Next / Prev Reel */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handlePrevReel}
+              className="px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-full bg-black/60 hover:bg-white hover:text-black border border-white/40 backdrop-blur-md text-xs sm:text-sm font-mono uppercase tracking-wider text-white transition-all cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-2xl"
+              title="Previous Reel"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">PREV</span>
+            </button>
 
-                {/* Restart */}
-                <button
-                  type="button"
-                  onClick={restartVideo}
-                  className="p-2 sm:p-3 rounded-full bg-white/5 hover:bg-white/20 text-white/80 hover:text-white border border-white/10 transition-all cursor-pointer active:scale-90 shrink-0"
-                  title="Restart from beginning"
-                  aria-label="Restart video"
-                >
-                  <RotateCcw className="w-3 h-3 sm:w-4 sm:h-4" />
-                </button>
-
-                {/* Mute/Unmute */}
-                <button
-                  type="button"
-                  onClick={toggleMute}
-                  className={`px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-full border text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center gap-1.5 shrink-0 ${
-                    isMuted
-                      ? "bg-red-500/20 text-red-200 border-red-500/40 hover:bg-red-500/30"
-                      : "bg-white/10 text-white border-white/20 hover:bg-white/20"
-                  }`}
-                  aria-label={isMuted ? "Unmute audio" : "Mute audio"}
-                >
-                  {isMuted ? (
-                    <>
-                      <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                      <span>MUTED</span>
-                    </>
-                  ) : (
-                    <>
-                      <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                      <span>SOUND ON</span>
-                    </>
-                  )}
-                </button>
-
-                {/* Time Display */}
-                <span className="text-[10px] sm:text-xs font-mono text-white/70 tracking-wider shrink-0">
-                  {formatTime(currentTime)} / {formatTime(duration)}
-                </span>
-              </div>
-
-              {/* Right Group: Fit/Fill Toggle, Cinema Specs, Fullscreen & Contact CTA */}
-              <div className="flex items-center gap-1.5 sm:gap-3 ml-auto shrink-0">
-                {/* Mobile Fit/Fill Aspect Ratio Switcher */}
-                <button
-                  type="button"
-                  onClick={() => setFitMode(fitMode === "contain" ? "cover" : "contain")}
-                  className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[10px] sm:text-xs font-mono uppercase tracking-wider text-white transition-all cursor-pointer active:scale-95 flex items-center gap-1"
-                  title="Toggle Mobile Aspect Ratio: Fit (Whole Frame) vs Fill (Full Screen)"
-                >
-                  <span className="text-white/50 hidden sm:inline">VIEW:</span>
-                  <span className="font-semibold">{fitMode === "contain" ? "FIT" : "FILL"}</span>
-                </button>
-
-                {/* Tech Specs (desktop) */}
-                <div className="hidden lg:flex items-center text-[11px] font-mono text-white/50 tracking-wider">
-                  <span>{showreelData.specs}</span>
-                </div>
-
-                {/* Fullscreen Toggle */}
-                <button
-                  type="button"
-                  onClick={toggleFullscreen}
-                  className="p-2 sm:p-3 rounded-full bg-white/5 hover:bg-white/20 text-white/80 hover:text-white border border-white/10 transition-all cursor-pointer active:scale-90"
-                  title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-                  aria-label="Toggle fullscreen"
-                >
-                  {isFullscreen ? (
-                    <Minimize className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  ) : (
-                    <Maximize className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  )}
-                </button>
-
-                {/* CTA Link */}
-                <Link
-                  to="/contact"
-                  className="px-3.5 py-1.5 sm:px-6 sm:py-2.5 rounded-full bg-white text-black text-[10px] sm:text-xs font-mono uppercase tracking-widest font-bold hover:bg-brand-light active:scale-95 transition-all shadow-md shrink-0"
-                >
-                  <span className="hidden sm:inline">START A PROJECT →</span>
-                  <span className="sm:hidden">CONTACT →</span>
-                </Link>
-              </div>
-
-            </div>
-
+            <button
+              type="button"
+              onClick={handleNextReel}
+              className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-black/60 hover:bg-white hover:text-black border border-white/40 backdrop-blur-md text-xs sm:text-sm font-mono uppercase tracking-wider text-white transition-all cursor-pointer active:scale-95 flex items-center gap-2 shadow-2xl font-semibold"
+              title="Next Reel"
+            >
+              <span>NEXT REEL</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </section>
+
+      {/* ======================================================== */}
+      {/* 2. THE 3-REEL MASTER ARCHIVE & EDITORIAL SHOWCASE        */}
+      {/* ======================================================== */}
+      <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 border-t border-white/10 bg-[#080808]">
+        <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
+          
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+            <div className="space-y-3 max-w-2xl">
+              <div>
+                <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/60 font-semibold block">
+                  SELECT SHOWREEL ARCHIVE // {showreels.length} MASTER EDITIONS
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+                FOUR EDITIONS. <br />
+                ONE UNCOMPROMISING STANDARD.
+              </h2>
+              <p className="text-sm sm:text-base text-white/70 leading-relaxed font-light">
+                Browse all four production reels curated from our commercial campaigns, cultural films, and narrative direction. Click any reel to load into the 4K Master Theatre above.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-mono text-white/40 uppercase tracking-widest">
+                SHOWING {showreels.length} OF {showreels.length} REELS
+              </span>
+            </div>
+          </div>
+
+          {/* 4-Card Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6">
+            {showreels.map((reel, idx) => {
+              const isActive = idx === activeReelIdx;
+
+              return (
+                <div
+                  key={reel.id}
+                  onClick={() => scrollToTheatre(idx)}
+                  className={`group relative rounded-3xl border overflow-hidden transition-all duration-500 cursor-pointer flex flex-col justify-between ${
+                    isActive
+                      ? "border-white/50 bg-white/[0.08] shadow-[0_20px_60px_rgba(255,255,255,0.08)] ring-1 ring-white/30"
+                      : "border-white/10 bg-white/[0.02] hover:border-white/30 hover:bg-white/[0.05]"
+                  }`}
+                >
+                  {/* Top Video Preview Stage */}
+                  <div className="relative aspect-video w-full overflow-hidden bg-black">
+                    <video
+                      src={reel.src}
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      onMouseEnter={(e) => {
+                        const target = e.currentTarget;
+                        target.play().catch(() => {});
+                      }}
+                      onMouseLeave={(e) => {
+                        const target = e.currentTarget;
+                        target.pause();
+                        target.currentTime = 0;
+                      }}
+                      className="w-full h-full object-contain bg-black transition-transform duration-700 group-hover:scale-105"
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+
+                    {/* Badge Overlay */}
+                    <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                      <span className="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-white font-bold uppercase tracking-wider">
+                        REEL {reel.number}
+                      </span>
+                      {isActive && (
+                        <span className="px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[9px] font-mono font-extrabold uppercase tracking-widest flex items-center gap-1 shadow-lg">
+                          <span className="w-1.5 h-1.5 rounded-full bg-black animate-ping" />
+                          NOW PLAYING
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Center Play Button on Hover */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-black shadow-xl">
+                        <Play className="w-5 h-5 fill-current translate-x-0.5" />
+                      </div>
+                    </div>
+
+                    {/* Duration / Format Pill */}
+                    <div className="absolute bottom-3 right-3">
+                      <span className="px-2.5 py-0.5 rounded-full bg-black/80 backdrop-blur-md text-[10px] font-mono text-white/80">
+                        {reel.duration}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Body Content */}
+                  <div className="p-6 sm:p-8 space-y-5 flex-1 flex flex-col justify-between">
+                    <div className="space-y-2.5">
+                      <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 block font-semibold">
+                        {reel.category}
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-display font-extrabold text-white uppercase tracking-tight group-hover:text-brand-light transition-colors">
+                        {reel.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-white/65 leading-relaxed font-light">
+                        {reel.description}
+                      </p>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="space-y-4 pt-3 border-t border-white/10">
+                      <div className="flex flex-wrap gap-1.5">
+                        {reel.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-white/70"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Action Button */}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          scrollToTheatre(idx);
+                        }}
+                        className={`w-full py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                          isActive
+                            ? "bg-white text-black shadow-lg"
+                            : "bg-white/10 text-white hover:bg-white hover:text-black border border-white/20"
+                        }`}
+                      >
+                        <span>{isActive ? "VIEWING IN THEATRE" : "PLAY IN 4K THEATRE"}</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Technical Production Pipeline Specs */}
+          <div className="mt-16 rounded-3xl border border-white/15 bg-gradient-to-br from-white/[0.04] to-transparent p-6 sm:p-10 backdrop-blur-xl space-y-6">
+            <div className="flex items-center gap-2">
+              <Film className="w-4 h-4 text-white/60" />
+              <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/60 font-semibold">
+                MASTER SPECIFICATIONS &amp; CAMERA INFRASTRUCTURE
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { title: "CAPTURE PIPELINE", desc: "4K & 8K Cinema Sensors, Prime Cine Glass & High-Speed Slow-Mo" },
+                { title: "COLOR MASTERY", desc: "DaVinci Resolve Studio ACES Color Pipeline with HDR Grading" },
+                { title: "AUDIO DIRECTION", desc: "Immersive 5.1 Surround & Spatial Stereo Master Sound Design" },
+                { title: "LOCATION READINESS", desc: "Rapid Multi-Crew Deployment across Bengaluru & Pan-India" },
+              ].map((spec) => (
+                <div key={spec.title} className="space-y-1.5 border-l-2 border-white/20 pl-4">
+                  <div className="flex items-center gap-1.5 text-emerald-400">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span className="text-xs font-mono font-bold tracking-wider">{spec.title}</span>
+                  </div>
+                  <p className="text-xs text-white/60 leading-relaxed font-light">{spec.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom CTA Banner */}
+          <div className="text-center py-10 space-y-5">
+            <h3 className="text-2xl sm:text-4xl font-display font-extrabold text-white uppercase tracking-tight">
+              HAVE A COMMERCIAL OR FILM TO PRODUCE?
+            </h3>
+            <p className="text-sm sm:text-base text-white/70 max-w-xl mx-auto font-light">
+              Let&apos;s collaborate to craft visual storytelling with the same production caliber and cinematic precision.
+            </p>
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                to="/contact"
+                className="px-8 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-brand-light active:scale-95 transition-all shadow-xl"
+              >
+                START A PROJECT →
+              </Link>
+              <Link
+                to="/services"
+                className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono text-xs uppercase tracking-wider font-medium active:scale-95 transition-all"
+              >
+                EXPLORE SERVICES
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <Footer />
     </main>
   );
 }

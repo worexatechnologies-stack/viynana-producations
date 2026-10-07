@@ -63,11 +63,26 @@ export default defineConfig({
   build: {
     outDir: "build",
     assetsDir: "assets",
+    // Increase chunk size warning threshold slightly for animation-heavy app
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["react", "react-dom", "react-router-dom"],
-          animations: ["framer-motion", "gsap"],
+        manualChunks(id) {
+          // Core React vendor
+          if (id.includes("node_modules/react/") || id.includes("node_modules/react-dom/") || id.includes("node_modules/react-router-dom/") || id.includes("node_modules/scheduler/")) {
+            return "vendor";
+          }
+          // Heavy animation libraries in a separate async chunk
+          if (id.includes("node_modules/framer-motion/") || id.includes("node_modules/motion/")) {
+            return "framer-motion";
+          }
+          if (id.includes("node_modules/lenis/")) {
+            return "lenis";
+          }
+          // Lucide icons tree-shaken separately
+          if (id.includes("node_modules/lucide-react/")) {
+            return "lucide";
+          }
         },
       },
     },

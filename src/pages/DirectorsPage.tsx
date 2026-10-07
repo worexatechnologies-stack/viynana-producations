@@ -88,7 +88,7 @@ export default function DirectorsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black">
+    <main className="min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black relative overflow-x-hidden">
       <Navbar />
 
       {/* Video Modal */}
@@ -174,7 +174,10 @@ export default function DirectorsPage() {
         <div className="container mx-auto max-w-7xl flex flex-wrap items-center justify-between gap-4">
           
           {/* Category Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+          <div
+            data-lenis-prevent
+            className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 overscroll-x-contain touch-auto"
+          >
             {categories.map((cat) => {
               const isActive = selectedFilter === cat.value;
               const count =
