@@ -8,10 +8,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import VideoModal from "@/components/VideoModal";
 import { projects } from "@/data/projects";
+import heroVideoWebm from "@/data/videoplayback.webm";
 import {
   ArrowRight,
   ArrowLeft,
   Play,
+  Pause,
   ChevronDown,
   Award,
   Video,
@@ -208,11 +210,13 @@ export default function HomePage() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const servicesSliderRef = useRef<HTMLDivElement>(null);
 
-  // Defer heavy 3.1MB hero video to prioritize fast LCP & avoid initial network congestion
+  // Hero video loading state
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
-    // If bot / lighthouse / page-speed test, keep hero poster (58KB) to save 3.1MB transfer
+    // If bot / lighthouse / page-speed test, keep hero poster to save transfer
     const isBot =
       typeof navigator !== "undefined" &&
       (navigator.webdriver ||
@@ -235,6 +239,17 @@ export default function HomePage() {
       heroVideoRef.current.play().catch(() => {});
     }
   }, [shouldLoadVideo]);
+
+  const toggleHeroPlay = () => {
+    if (!heroVideoRef.current) return;
+    if (isPlaying) {
+      heroVideoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      heroVideoRef.current.play().catch(() => {});
+      setIsPlaying(true);
+    }
+  };
 
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
@@ -459,24 +474,62 @@ export default function HomePage() {
           style={{ y: yHeroVideo }}
           className="absolute inset-0 -top-[5%] w-full h-[115%] z-0 pointer-events-none will-change-transform"
         >
+          {/* Static high-res poster fallback while video buffer completes */}
+          <img
+            src="/images/hero-poster.jpg"
+            alt="Hero Video Poster"
+            fetchPriority="high"
+            className={`absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.82] contrast-[1.06] saturate-[1.05] transition-opacity duration-1000 ${
+              isVideoLoaded ? "opacity-0" : "opacity-100"
+            }`}
+          />
+
           <video
             ref={heroVideoRef}
             autoPlay
             muted
             loop
             playsInline
-            preload="none"
+            preload="auto"
+            onPlaying={() => setIsVideoLoaded(true)}
+            onLoadedData={() => setIsVideoLoaded(true)}
             poster="/images/hero-poster.jpg"
-            className="w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08] saturate-[1.05]"
+            className={`w-full h-full object-cover object-center filter brightness-[0.82] contrast-[1.06] saturate-[1.05] transition-opacity duration-700 ${
+              isVideoLoaded ? "opacity-100" : "opacity-0"
+            }`}
           >
             {shouldLoadVideo && (
-              <source src="/13232-246463976_medium.mp4" type="video/mp4" />
+              <>
+                <source src={heroVideoWebm} type="video/webm" />
+                <source src="/videoplayback.webm" type="video/webm" />
+                <source src="/13232-246463976_medium.mp4" type="video/mp4" />
+              </>
             )}
           </video>
           {/* Visual Entity signature layered ambient vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/35 to-[#050505]/65" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,transparent_20%,#050505_95%)]" />
         </motion.div>
+
+        {/* Ambient hero video badge & control (Floating right) */}
+        <div className="absolute right-5 sm:right-10 lg:right-16 bottom-8 sm:bottom-12 z-20 hidden sm:flex items-center gap-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/10 text-[10px] font-mono tracking-widest text-white/80 uppercase shadow-lg">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>4K SHOWREEL</span>
+          </div>
+          <button
+            type="button"
+            onClick={toggleHeroPlay}
+            aria-label={isPlaying ? "Pause ambient video" : "Play ambient video"}
+            className="w-9 h-9 rounded-full bg-black/45 hover:bg-black/70 backdrop-blur-md border border-white/10 hover:border-white/30 text-white flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95"
+          >
+            {isPlaying ? (
+              <Pause className="w-3.5 h-3.5 text-white" />
+            ) : (
+              <Play className="w-3.5 h-3.5 text-white ml-0.5" />
+            )}
+          </button>
+        </div>
 
         {/* Content block — cleanly aligned at the bottom across all devices */}
         <div className="relative z-20 max-w-5xl mt-auto mb-4 sm:mb-[clamp(3rem,13vh,7rem)]">
@@ -498,7 +551,7 @@ export default function HomePage() {
             </p>
 
             {/* CTA */}
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
               <Link
                 to="/services"
                 className="px-7 py-3.5 rounded-full bg-[#f3f3ef] text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-white active:scale-95 transition-all shadow-[0_10px_30px_rgba(255,255,255,0.25)] inline-flex items-center gap-2.5"
@@ -506,6 +559,22 @@ export default function HomePage() {
                 <span>EXPLORE SERVICES</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveModalVideo({
+                    src: heroVideoWebm,
+                    title: "Viyana Productions Showreel",
+                    category: "4K Showreel",
+                  })
+                }
+                className="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 backdrop-blur-md border border-white/20 hover:border-white/40 text-white font-mono text-xs uppercase tracking-wider font-medium transition-all inline-flex items-center gap-2.5 group cursor-pointer"
+              >
+                <span className="w-5 h-5 rounded-full bg-white text-black flex items-center justify-center transition-transform group-hover:scale-110">
+                  <Play className="w-2.5 h-2.5 fill-black ml-0.5" />
+                </span>
+                <span>WATCH REEL</span>
+              </button>
             </div>
           </div>
         </div>
