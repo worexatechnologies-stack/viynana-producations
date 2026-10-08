@@ -114,7 +114,9 @@ export default function Navbar() {
           >
             {navLinks.map((link) => {
               const isActive =
-                pathname === link.path || (link.name === "Work" && pathname.startsWith("/work"));
+                pathname === link.path ||
+                (link.name === "Work" &&
+                  (pathname.startsWith("/work") || pathname.startsWith("/services")));
 
               if (link.name === "Work") {
                 return (
@@ -350,7 +352,8 @@ export default function Navbar() {
                       link.path === "/"
                         ? pathname === "/"
                         : pathname === link.path ||
-                          (link.name === "Work" && pathname.startsWith("/work"));
+                          (link.name === "Work" &&
+                            (pathname.startsWith("/work") || pathname.startsWith("/services")));
                     return (
                       <motion.div
                         initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}

@@ -46,6 +46,8 @@ function AppRoutes() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/work" element={<WorkPage />} />
             <Route path="/work/:slug" element={<WorkDetailPage />} />
+            <Route path="/services" element={<WorkPage />} />
+            <Route path="/services/:slug" element={<WorkDetailPage />} />
             <Route path="/showreel" element={<ShowreelPage />} />
             <Route path="/directors" element={<DirectorsPage />} />
             <Route path="/directors/:id" element={<DirectorDetailPage />} />

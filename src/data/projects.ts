@@ -41,7 +41,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "commercial-ads",
-    aliases: ["the-next-move"],
+    aliases: ["the-next-move", "ad-agency"],
     title: "COMMERCIAL ADS",
     category: "COMMERCIAL ADS",
     year: "2026",
@@ -111,7 +111,7 @@ export const projects: Project[] = [
   },
   {
     slug: "advertisement",
-    aliases: ["lumina-prime"],
+    aliases: ["lumina-prime", "ads-videos"],
     title: "ADVERTISEMENT",
     category: "ADVERTISEMENT",
     year: "2026",
@@ -360,7 +360,7 @@ export const projects: Project[] = [
   },
   {
     slug: "graphic-design",
-    aliases: ["graphic-design-visual-identity", "genesis"],
+    aliases: ["graphic-design-visual-identity", "genesis", "graphic-designing"],
     title: "GRAPHIC DESIGN & VISUAL IDENTITY",
     category: "GRAPHIC DESIGN",
     year: "2026",
