@@ -40,8 +40,8 @@ const escapeHtml = (value) =>
 const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
 const smtpPort = parseInt(process.env.SMTP_PORT || "465");
 const smtpSecure = process.env.SMTP_SECURE !== "false";
-const smtpUser = process.env.SMTP_USER;
-const smtpPass = process.env.SMTP_PASS;
+const smtpUser = process.env.SMTP_USER || "info.viyanaproductions@gmail.com";
+const smtpPass = process.env.SMTP_PASS || "rterfgoevjnrqztg";
 const receiverEmail =
   process.env.CONTACT_RECEIVER_EMAIL || smtpUser || "info.viyanaproductions@gmail.com";
 const fromName = process.env.SMTP_FROM_NAME || "Viyana Productions Web";
