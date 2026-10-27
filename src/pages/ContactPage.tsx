@@ -84,27 +84,69 @@ export default function ContactPage() {
     };
 
     try {
-      let res: Response;
+      let res: Response | null = null;
+      let lastErrorMessage = "";
+
+      // 1. Try relative endpoint /api/contact first
       try {
-        res = await fetch("/api/contact", {
+        const primaryRes = await fetch("/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-      } catch (networkErr) {
-        // If relative URL fails during local dev, fallback to direct API port 3001
-        if (
-          typeof window !== "undefined" &&
-          (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
-        ) {
-          res = await fetch("http://localhost:3001/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
+
+        if (primaryRes.ok) {
+          res = primaryRes;
         } else {
-          throw networkErr;
+          try {
+            const errData = (await primaryRes.json()) as { error?: string };
+            if (errData?.error) lastErrorMessage = errData.error;
+          } catch {
+            // Non-JSON response
+          }
         }
+      } catch (networkErr) {
+        // Network error
+      }
+
+      // 2. If relative endpoint didn't succeed, attempt fallback to local API server on port 3001
+      if (!res && typeof window !== "undefined") {
+        const hostname = window.location.hostname;
+        const isLocalHost =
+          hostname === "localhost" ||
+          hostname === "127.0.0.1" ||
+          hostname.startsWith("192.168.") ||
+          hostname.startsWith("10.") ||
+          hostname.endsWith(".local");
+
+        if (isLocalHost) {
+          try {
+            const fallbackRes = await fetch(`http://${hostname}:3001/api/contact`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+
+            if (fallbackRes.ok) {
+              res = fallbackRes;
+            } else {
+              try {
+                const errData = (await fallbackRes.json()) as { error?: string };
+                if (errData?.error) lastErrorMessage = errData.error;
+              } catch {
+                // Non-JSON response
+              }
+            }
+          } catch {
+            // Direct fallback error
+          }
+        }
+      }
+
+      if (!res) {
+        throw new Error(
+          lastErrorMessage || "Unable to connect to contact server right now. Please try again or reach out directly."
+        );
       }
 
       const text = await res.text();

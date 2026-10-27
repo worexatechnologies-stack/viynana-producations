@@ -116,7 +116,7 @@ export default function ProjectDetail() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchEndX, setTouchEndX] = useState<number | null>(null);
-  const [inquiry, setInquiry] = useState({ name: "", phone: "", message: "" });
+  const [inquiry, setInquiry] = useState({ name: "", email: "", phone: "", message: "" });
   const [isSubmittingInquiry, setIsSubmittingInquiry] = useState(false);
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
   const [inquiryError, setInquiryError] = useState<string | null>(null);
@@ -155,29 +155,96 @@ export default function ProjectDetail() {
     setIsSubmittingInquiry(true);
     setInquiryError(null);
 
-    const payload = { ...inquiry, service: project.title };
+    const payload = {
+      name: inquiry.name.trim(),
+      email: inquiry.email.trim(),
+      phone: inquiry.phone.trim(),
+      service: project.title,
+      message: inquiry.message.trim(),
+    };
+
+    if (!payload.name || !payload.email || !payload.phone || !payload.message) {
+      setInquiryError("Please fill in all fields (Name, Email, Phone, and Message).");
+      setIsSubmittingInquiry(false);
+      return;
+    }
 
     try {
-      let response: Response;
+      let response: Response | null = null;
+      let lastErrorMessage = "";
+
+      // 1. Try relative endpoint /api/contact first
       try {
-        response = await fetch("/api/contact", {
+        const res = await fetch("/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-      } catch (networkError) {
-        if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-          response = await fetch("http://localhost:3001/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
+
+        if (res.ok) {
+          response = res;
         } else {
-          throw networkError;
+          try {
+            const errData = (await res.json()) as { error?: string };
+            if (errData?.error) lastErrorMessage = errData.error;
+          } catch {
+            // Non-JSON response
+          }
+        }
+      } catch (networkError) {
+        // Network failure
+      }
+
+      // 2. If relative endpoint didn't succeed, attempt fallback to local API server on port 3001
+      if (!response && typeof window !== "undefined") {
+        const hostname = window.location.hostname;
+        const isLocalHost =
+          hostname === "localhost" ||
+          hostname === "127.0.0.1" ||
+          hostname.startsWith("192.168.") ||
+          hostname.startsWith("10.") ||
+          hostname.endsWith(".local");
+
+        if (isLocalHost) {
+          try {
+            const fallbackRes = await fetch(`http://${hostname}:3001/api/contact`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+
+            if (fallbackRes.ok) {
+              response = fallbackRes;
+            } else {
+              try {
+                const errData = (await fallbackRes.json()) as { error?: string };
+                if (errData?.error) lastErrorMessage = errData.error;
+              } catch {
+                // Non-JSON response
+              }
+            }
+          } catch {
+            // Direct fallback error
+          }
         }
       }
 
-      const result = await response.json() as { success?: boolean; error?: string };
+      if (!response) {
+        throw new Error(
+          lastErrorMessage || "Unable to send your message right now. Please try again or reach out directly."
+        );
+      }
+
+      const text = await response.text();
+      let result: { success?: boolean; error?: string } = {};
+      try {
+        result = JSON.parse(text);
+      } catch {
+        if (!response.ok) {
+          throw new Error("Unable to parse server response.");
+        }
+      }
+
       if (!response.ok || !result.success) {
         throw new Error(result.error || "Unable to send your message. Please try again.");
       }
@@ -198,7 +265,7 @@ export default function ProjectDetail() {
     setActiveReelIdx(0);
     setIsYoutubePlaying(false);
     setLightboxOpen(false);
-    setInquiry({ name: "", phone: "", message: "" });
+    setInquiry({ name: "", email: "", phone: "", message: "" });
     setInquirySubmitted(false);
     setInquiryError(null);
   }, [slug]);
@@ -815,16 +882,31 @@ export default function ProjectDetail() {
 
                 <div className="lg:sticky lg:top-28 p-6 sm:p-7 rounded-3xl bg-white text-neutral-900 border border-white shadow-2xl">
                   {inquirySubmitted ? (
-                    <div className="py-8 text-center space-y-3">
-                      <span className="text-3xl text-emerald-600" aria-hidden="true">✓</span>
-                      <h3 className="text-xl font-display font-bold uppercase text-neutral-900">Message Sent</h3>
-                      <p className="text-sm text-neutral-600">
-                        Thanks, {inquiry.name}. We&apos;ll be in touch about {project.title.toLowerCase()}.
-                      </p>
+                    <div className="py-8 text-center space-y-4">
+                      <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl font-bold">
+                        ✓
+                      </div>
+                      <div className="space-y-1">
+                        <h3 className="text-xl font-display font-bold uppercase text-neutral-900">Message Sent</h3>
+                        <p className="text-sm text-neutral-600">
+                          Thanks, {inquiry.name}. We&apos;ll be in touch about {project.title.toLowerCase()}.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setInquiry({ name: "", email: "", phone: "", message: "" });
+                          setInquirySubmitted(false);
+                          setInquiryError(null);
+                        }}
+                        className="mt-2 text-xs font-mono uppercase tracking-wider text-neutral-500 hover:text-neutral-900 underline transition-colors cursor-pointer"
+                      >
+                        Send another message
+                      </button>
                     </div>
                   ) : (
-                    <form onSubmit={handleInquirySubmit} className="space-y-5">
-                      <div className="space-y-2 border-b border-white/10 pb-4">
+                    <form onSubmit={handleInquirySubmit} className="space-y-4">
+                      <div className="space-y-2 border-b border-neutral-200 pb-4">
                         <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-500 block font-semibold">
                           START A PROJECT
                         </span>
@@ -833,7 +915,7 @@ export default function ProjectDetail() {
                         </h3>
                       </div>
 
-                      <label className="block space-y-2">
+                      <label className="block space-y-1.5">
                         <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-600">Name</span>
                         <input
                           type="text"
@@ -842,12 +924,26 @@ export default function ProjectDetail() {
                           onChange={(event) => setInquiry({ ...inquiry, name: event.target.value })}
                           autoComplete="name"
                           required
-                          className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
+                          className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
                           placeholder="Your name"
                         />
                       </label>
 
-                      <label className="block space-y-2">
+                      <label className="block space-y-1.5">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-600">Email</span>
+                        <input
+                          type="email"
+                          name="email"
+                          value={inquiry.email}
+                          onChange={(event) => setInquiry({ ...inquiry, email: event.target.value })}
+                          autoComplete="email"
+                          required
+                          className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
+                          placeholder="Your email address"
+                        />
+                      </label>
+
+                      <label className="block space-y-1.5">
                         <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-600">Phone</span>
                         <input
                           type="tel"
@@ -856,12 +952,12 @@ export default function ProjectDetail() {
                           onChange={(event) => setInquiry({ ...inquiry, phone: event.target.value })}
                           autoComplete="tel"
                           required
-                          className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
+                          className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
                           placeholder="Your phone number"
                         />
                       </label>
 
-                      <label className="block space-y-2">
+                      <label className="block space-y-1.5">
                         <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-600">Message</span>
                         <textarea
                           name="message"
@@ -869,19 +965,22 @@ export default function ProjectDetail() {
                           onChange={(event) => setInquiry({ ...inquiry, message: event.target.value })}
                           required
                           rows={4}
-                          className="w-full resize-y rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
+                          className="w-full resize-y rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
                           placeholder={`Tell us about your ${project.title.toLowerCase()} project`}
                         />
                       </label>
 
                       {inquiryError && (
-                        <p role="alert" className="text-sm text-red-300">{inquiryError}</p>
+                        <div role="alert" className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs font-mono text-red-700 leading-relaxed flex items-start gap-2">
+                          <span className="text-red-500 font-bold shrink-0">!</span>
+                          <span>{inquiryError}</span>
+                        </div>
                       )}
 
                       <button
                         type="submit"
                         disabled={isSubmittingInquiry}
-                        className="w-full py-3.5 px-4 rounded-xl bg-neutral-900 text-white hover:bg-neutral-700 font-mono text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 disabled:cursor-wait disabled:opacity-60"
+                        className="w-full py-3.5 px-4 rounded-xl bg-neutral-900 text-white hover:bg-neutral-800 font-mono text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 disabled:cursor-wait disabled:opacity-60 cursor-pointer"
                       >
                         {isSubmittingInquiry ? "SENDING..." : "SEND MESSAGE →"}
                       </button>
