@@ -440,7 +440,7 @@ export default function ProjectDetail() {
                   : isYoutubeSlide
                   ? "w-full aspect-video max-w-5xl mx-auto"
                   : isProductShoot
-                  ? "w-full aspect-[3/2] sm:aspect-[16/10] max-w-5xl mx-auto bg-black"
+                  ? "w-full aspect-[4/3] sm:aspect-[16/10] md:max-h-[620px] max-w-5xl mx-auto bg-black"
                   : isPortrait
                   ? "w-full aspect-[4/5] sm:aspect-[4/5] md:aspect-[4/3.6] lg:aspect-[4/3.5] md:max-h-[560px] lg:max-h-[580px] max-w-2xl mx-auto"
                   : isDirectVideoSlide
@@ -536,7 +536,7 @@ export default function ProjectDetail() {
                       onClick={() => setLightboxOpen(true)}
                       className={`w-full h-full cursor-zoom-in ${
                         isProductShoot
-                          ? "object-cover object-center filter contrast-[1.03] brightness-95"
+                          ? "object-contain object-center filter contrast-[1.02] brightness-95"
                           : isPortrait
                           ? "object-cover object-[center_top] filter contrast-[1.05] brightness-95"
                           : "object-cover object-[center_top] filter contrast-[1.05] brightness-95"

@@ -405,3 +405,22 @@ video:-ms-fullscreen {
 .home-cinematic [class*="from-[#1e1912]"] {
   background-image: linear-gradient(145deg, #191919, #080808) !important;
 }
+
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(0deg) skewX(0deg);
+    opacity: 0.95;
+  }
+  25% {
+    transform: scale(1.05, 0.96) rotate(-1.5deg) skewX(-1deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.96, 1.04) rotate(1.8deg) skewX(1.2deg);
+    opacity: 0.92;
+  }
+  75% {
+    transform: scale(1.03, 0.98) rotate(-1deg) skewX(-0.5deg);
+    opacity: 0.98;
+  }
+}

@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import VideoModal from "@/components/VideoModal";
 import { projects } from "@/data/projects";
+import { clientLogos, clientMarqueeCards } from "@/data/clients";
 import {
   ArrowRight,
   ArrowLeft,
@@ -112,7 +113,7 @@ const floatingServices = [
   {
     title: "Product Shoot",
     subtitle: "E-commerce, launches & macro detail",
-    image: "/images/product-shoot-1.jpg",
+    image: "/images/product-shoot-dermera-1.jpg",
     link: "/services/product-shoot",
     offset: "normal",
   },
@@ -1362,7 +1363,42 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. BUILT FOR BRANDS WITH BIG IDEAS (WHAT WE CREATE + BOTTOM CTA) */}
+      {/* 5. CLIENT LOGOS (CONTINUOUS RUNNING MARQUEE CAPSULES) */}
+      <section className="relative w-full py-16 sm:py-20 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
+        {/* Subtle Ambient Radial Glow */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle,rgba(255,255,255,0.06)_0%,rgba(212,160,54,0.05)_50%,transparent_75%)] rounded-full blur-3xl pointer-events-none"
+          style={{ contain: "strict", transform: "translateZ(0)" }}
+        />
+
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 text-center mb-8 sm:mb-12 relative z-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+            CLIENT LOGOS
+          </h2>
+        </div>
+
+        {/* Automatic Continuous Marquee Capsule Track */}
+        <div className="relative w-full overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_4%,black_96%,transparent)] py-3">
+          <div className="ve-logo-track py-2">
+            {[...clientMarqueeCards, ...clientMarqueeCards, ...clientMarqueeCards, ...clientMarqueeCards].map((card, idx) => (
+              <div
+                key={`${card.id}-${idx}`}
+                className={`group shrink-0 w-[240px] sm:w-[270px] md:w-[290px] h-[115px] sm:h-[130px] rounded-[28px] mx-2.5 sm:mx-3 px-6 py-4 flex items-center justify-center transition-all duration-300 select-none cursor-pointer hover:scale-[1.04] ${card.bgClass} ${card.glowClass || ""}`}
+              >
+                <img
+                  src={card.logo}
+                  alt={card.name}
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-16 sm:max-h-20 w-auto max-w-[85%] object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. BUILT FOR BRANDS WITH BIG IDEAS (WHAT WE CREATE + BOTTOM CTA) */}
       <section className="relative w-full py-24 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
         {/* Subtle background ambient glow mesh */}
         <div

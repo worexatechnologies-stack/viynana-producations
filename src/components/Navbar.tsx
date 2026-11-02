@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Film, Play, User, Send, ChevronDown, ChevronRight, Phone, Mail, ArrowUpRight, X } from "lucide-react";
+import { Home, Compass, Film, Play, User, Send, Bookmark, ChevronDown, ChevronRight, Phone, Mail, ArrowUpRight, X } from "lucide-react";
 import BackArrow from "./BackArrow";
 import Magnetic from "./Magnetic";
 
@@ -15,9 +15,15 @@ const navLinks = [
 
 const mobileBottomNavItems = [
   {
+    name: "Home",
+    path: "/",
+    icon: Home,
+    isActive: (pathname: string) => pathname === "/",
+  },
+  {
     name: "Work",
     path: "/work",
-    icon: Film,
+    icon: Compass,
     isActive: (pathname: string) => pathname.startsWith("/work") || pathname.startsWith("/services"),
   },
   {
@@ -27,21 +33,15 @@ const mobileBottomNavItems = [
     isActive: (pathname: string) => pathname.startsWith("/showreel"),
   },
   {
-    name: "Home",
-    path: "/",
-    icon: Home,
-    isActive: (pathname: string) => pathname === "/",
-  },
-  {
     name: "About",
     path: "/about",
-    icon: User,
+    icon: Bookmark,
     isActive: (pathname: string) => pathname.startsWith("/about"),
   },
   {
     name: "Contact",
     path: "/contact",
-    icon: Send,
+    icon: User,
     isActive: (pathname: string) => pathname.startsWith("/contact"),
   },
 ];
@@ -714,72 +714,68 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ── MOBILE BOTTOM FLOATING DOCK (iOS / Glassmorphism Dock Style) ── */}
+      {/* ── MOBILE BOTTOM NAVIGATION BAR (MATCHING SCREENSHOT DESIGN THEME) ── */}
       <div
-        className={`md:hidden fixed bottom-[calc(0.35rem+env(safe-area-inset-bottom,0px))] inset-x-2.5 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 sm:w-[420px] max-w-[440px] z-[120] transition-all duration-300 pointer-events-auto touch-manipulation ${
-          mobileMenuOpen ? "opacity-0 pointer-events-none translate-y-6" : "opacity-100 translate-y-0"
+        className={`md:hidden fixed bottom-0 inset-x-0 z-[120] transition-all duration-300 pointer-events-auto touch-manipulation ${
+          mobileMenuOpen ? "opacity-0 pointer-events-none translate-y-full" : "opacity-100 translate-y-0"
         }`}
       >
-        <nav
-          aria-label="Mobile Bottom Navigation"
-          className="relative flex items-center justify-between p-1.5 rounded-full bg-[#0a0a0a]/90 backdrop-blur-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(255,255,255,0.06),inset_0_1px_1px_rgba(255,255,255,0.2)]"
-        >
-          {/* Subtle Ambient Glow behind dock */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 via-white/10 to-white/5 pointer-events-none blur-sm" />
+        <div className="w-full bg-white/95 backdrop-blur-2xl border-t border-slate-200/90 rounded-t-[26px] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] pt-2 pb-[max(0.65rem,env(safe-area-inset-bottom,0px))] px-2.5">
+          <nav
+            aria-label="Mobile Bottom Navigation"
+            className="flex items-center justify-around max-w-md mx-auto relative"
+          >
+            {mobileBottomNavItems.map((item) => {
+              const Icon = item.icon;
+              const active = item.isActive(pathname);
+              const isFilledIcon = active && (item.name === "Home" || item.name === "Showreel" || item.name === "About" || item.name === "Contact");
 
-          {mobileBottomNavItems.map((item) => {
-            const Icon = item.icon;
-            const active = item.isActive(pathname);
+              return (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setMobileMenuOpen(false);
+                    navigate(item.path);
+                  }}
+                  className="relative flex-1 flex flex-col items-center justify-center py-2 px-1 min-h-[52px] max-w-[70px] rounded-2xl group select-none active:scale-95 transition-transform cursor-pointer"
+                  aria-label={item.name}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {/* Active Soft Brown Squircle Pill with Spring Animation (No Shadow) */}
+                  {active && (
+                    <motion.div
+                      layoutId="mobile-nav-active-pill"
+                      className="absolute inset-0 bg-[#f5ece3] rounded-2xl z-0"
+                      transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                    />
+                  )}
 
-            return (
-              <button
-                key={item.name}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setMobileMenuOpen(false);
-                  navigate(item.path);
-                }}
-                className="relative flex-1 flex flex-col items-center justify-center min-h-[48px] py-1.5 px-1 rounded-full group select-none active:scale-95 transition-transform cursor-pointer"
-                aria-label={item.name}
-                aria-current={active ? "page" : undefined}
-              >
-                {/* Active Pill Highlight with Spring Animation (Style 05 & 11) */}
-                {active && (
-                  <motion.div
-                    layoutId="mobile-dock-active-pill"
-                    className="absolute inset-0 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.4)] z-0"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-
-                {/* Icon & Label */}
-                <div className="relative z-10 flex flex-col items-center justify-center gap-0.5">
-                  <Icon
-                    className={`w-[19px] h-[19px] transition-all duration-200 ${
-                      active
-                        ? item.name === "Showreel"
-                          ? "text-black fill-black scale-105"
-                          : "text-black stroke-[2.2] scale-105"
-                        : item.name === "Showreel"
-                          ? "text-white/60 group-hover:text-white fill-white/60 group-hover:fill-white"
-                          : "text-white/60 group-hover:text-white stroke-[1.8]"
-                    }`}
-                  />
-                  <span
-                    className={`text-[9px] font-mono tracking-tight uppercase transition-colors duration-200 ${
-                      active
-                        ? "text-black font-bold"
-                        : "text-white/55 group-hover:text-white font-medium"
-                    }`}
-                  >
-                    {item.name}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
-        </nav>
+                  {/* Icon & Label */}
+                  <div className="relative z-10 flex flex-col items-center justify-center gap-0.5">
+                    <Icon
+                      className={`w-[21px] h-[21px] transition-all duration-200 ${
+                        active
+                          ? `text-[#6B4226] stroke-[2.2] scale-105 ${isFilledIcon ? "fill-[#6B4226]" : ""}`
+                          : "text-[#78716c] stroke-[1.8] group-hover:text-[#6B4226]"
+                      }`}
+                    />
+                    <span
+                      className={`text-[11px] font-sans tracking-tight transition-colors duration-200 leading-tight ${
+                        active
+                          ? "text-[#6B4226] font-bold"
+                          : "text-[#78716c] font-medium group-hover:text-[#6B4226]"
+                      }`}
+                    >
+                      {item.name}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </nav>
+        </div>
       </div>
     </>
   );
