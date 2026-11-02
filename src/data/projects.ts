@@ -607,23 +607,22 @@ export const projects: Project[] = [
     client: "Luxury Jewelry & E-Commerce Brands",
     director: "Viyana Creative Lab",
     deliverableType: "HD Photos, Macro Stills and Reels",
-    thumbnail: "/images/product-shoot-1.jpg",
-    instagramReelUrl: "https://www.instagram.com/reel/DdlycB7Dn08/?srtk=MWpsMW5lamtuN2I5cA==",
+    thumbnail: "/images/product-shoot-dermera-1.jpg",
+    instagramReelUrl: "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl",
     instagramReels: [
-      "https://www.instagram.com/reel/DdlycB7Dn08/?srtk=MWpsMW5lamtuN2I5cA==",
-      "https://www.instagram.com/reel/DdZHtpjB3kZ/?xtok=MW13aHFyb2VkZ20wcQ=="
+      "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl"
     ],
     description: "We take clear, evocative, and attractive photos and videos of your products. It helps your customers fall in love with your product and buy it.",
-    fullDescription: "Specializing in high-end jewelry, e-commerce, and luxury goods photography. From macro texture capture to editorial lifestyle staging, our lighting and framing accentuate every intricate design detail.",
-    creativeApproach: "Masterful studio lighting, high-magnification macro optics, and artful prop styling designed to highlight craftsmanship, metallic luster, and gemstone brilliance.",
+    fullDescription: "Specializing in high-end cosmetic, beauty, skincare, and luxury goods photography. From clean packshots and high-resolution textures to editorial staging, our studio lighting and macro framing accentuate every fine product feature.",
+    creativeApproach: "Masterful studio strobe lighting, razor-sharp focus, and artful staging designed to highlight branding, sleek bottle finishes, formulation textures, and luxury appeal.",
     highlights: [
-      { title: "MACRO PRECISION", subtitle: "Pin-sharp focus on intricate details, gemstone facets, and fine gold filigree" },
-      { title: "EDITORIAL STYLING", subtitle: "Creative thematic backdrops, organic textures, and cinematic lighting setups" }
+      { title: "MACRO PRECISION", subtitle: "Pin-sharp focus on intricate typography, textures, and luxury bottle finishes" },
+      { title: "EDITORIAL STYLING", subtitle: "Creative clean backdrops, natural reflections, and commercial lighting setups" }
     ],
     keyFeatures: [
       "High-Resolution Macro Photography",
       "Creative Editorial & Prop Styling",
-      "E-Commerce White & Natural Backgrounds",
+      "E-Commerce White & Clean Backgrounds",
       "Color-Accurate Studio Lighting",
       "High-End Retouching & Color Grading",
       "Social-Ready Reels & Short-Form Video"
@@ -631,7 +630,7 @@ export const projects: Project[] = [
     scope: [
       "Online store photos",
       "Lifestyle & editorial photos",
-      "Macro jewelry & product stills",
+      "Cosmetic, beauty & skincare stills",
       "Product showcase reels",
       "E-commerce catalog ready assets"
     ],
@@ -639,11 +638,17 @@ export const projects: Project[] = [
     credits: {
       "STUDIO": "Viyana Productions",
       "DELIVERABLES": "HD Photos, Macro Stills & Reels",
-      "FOR": "Jewelry, Fashion Brands, Beauty & Luxury Products"
+      "FOR": "Cosmetics, Skincare, Beauty & Luxury Products"
     },
     ctaText: "BOOK A PRODUCT SHOOT",
     tagline: "CLEAR & ATTRACTIVE PHOTOS AND VIDEOS.",
     gallery: [
+      "/images/product-shoot-dermera-1.jpg",
+      "/images/product-shoot-dermera-2.jpg",
+      "/images/product-shoot-dermera-3.jpg",
+      "/images/product-shoot-dermera-4.jpg",
+      "/images/product-shoot-dermera-5.jpg",
+      "/images/product-shoot-dermera-6.jpg",
       "/images/product-shoot-1.jpg",
       "/images/product-shoot-2.jpg",
       "/images/product-shoot-3.jpg",

@@ -808,7 +808,7 @@ export default function ContactPage() {
                   Bengaluru, Karnataka 560085
                 </a>
                 <div className="flex items-center justify-between pt-2.5 border-t border-white/10 text-[11px] text-white/70">
-                  <span>Mon – Sat: 9:30 AM – 7:30 PM</span>
+                  <span>Mon – Sat: 9:30 AM – 9:00 PM</span>
                   <a
                     href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
                     target="_blank"
@@ -842,7 +842,7 @@ export default function ContactPage() {
                 4th Floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
               </a>
               <div className="flex items-center justify-between pt-2.5 border-t border-white/10 text-xs text-white/80">
-                <span>Mon – Sat: 9:30 AM – 7:30 PM</span>
+                <span>Mon – Sat: 9:30 AM – 9:00 PM</span>
                 <a
                   href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
                   target="_blank"

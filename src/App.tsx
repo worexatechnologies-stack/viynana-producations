@@ -3,6 +3,7 @@ import { useEffect, lazy, Suspense } from "react";
 import { clsx } from "clsx";
 import SmoothScroll from "@/components/SmoothScroll";
 import Preloader from "@/components/Preloader";
+import DiwaliCelebration from "@/components/DiwaliCelebration";
 
 // Keep HomePage eager for instant homepage rendering
 import HomePage from "@/pages/HomePage";
@@ -42,6 +43,7 @@ function AppRoutes() {
       <HeadMetaSynchronizer />
       <ScrollToTop />
       <Preloader />
+      <DiwaliCelebration />
       <SmoothScroll>
         <Suspense fallback={<div className="min-h-screen bg-brand-black" />}>
           <Routes>

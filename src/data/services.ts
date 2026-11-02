@@ -302,8 +302,14 @@ export const services: ServiceItem[] = [
     tagline: "Online Store Photos × Lifestyle Photos × Product Videos",
     description: "We take clear and attractive photos and videos of your products. It helps your customers to like your product and buy it.",
     longDescription: "High-quality imagery is crucial for e-commerce success. We specialize in capturing the essence of your products through clear, attractive photos and compelling videos. Whether you are a dress brand, beauty product line, food vendor, or tech gadget company, our visuals are designed to make your customers fall in love with your product and drive sales. We handle everything from pristine online store shots on clean backgrounds to aspirational lifestyle photos that tell a story.",
-    image: "/images/product-shoot-1.jpg",
+    image: "/images/product-shoot-dermera-1.jpg",
     gallery: [
+      "/images/product-shoot-dermera-1.jpg",
+      "/images/product-shoot-dermera-2.jpg",
+      "/images/product-shoot-dermera-3.jpg",
+      "/images/product-shoot-dermera-4.jpg",
+      "/images/product-shoot-dermera-5.jpg",
+      "/images/product-shoot-dermera-6.jpg",
       "/images/product-shoot-1.jpg",
       "/images/product-shoot-2.jpg",
       "/images/product-shoot-3.jpg",
@@ -311,7 +317,7 @@ export const services: ServiceItem[] = [
       "/images/product-shoot-5.jpg"
     ],
     video: "/showreel-video-4k-h264.mp4",
-    instagramReelUrl: "https://www.instagram.com/reel/DdlycB7Dn08/?srtk=MWpsMW5lamtuN2I5cA==",
+    instagramReelUrl: "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl",
     services: [
       "Online store photos",
       "Lifestyle photos",
