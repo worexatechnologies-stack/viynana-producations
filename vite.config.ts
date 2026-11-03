@@ -18,10 +18,9 @@ function autoApiServerPlugin(): Plugin {
       tester.once("listening", () => {
         tester.close(() => {
           console.log("🚀 Auto-starting api-server.js on port 3001 for contact form...");
-          const apiProcess = spawn("node", ["api-server.js"], {
+          const apiProcess = spawn(process.execPath, ["api-server.js"], {
             cwd: __dirname,
             stdio: "inherit",
-            shell: true,
           });
           process.on("exit", () => {
             try {
@@ -48,6 +47,9 @@ export default defineConfig({
     host: true,
     port: 5173,
     allowedHosts: true,
+    watch: {
+      ignored: ["**/public/*.mp4", "**/public/**/*.mp4", "**/data/inquiries.json"],
+    },
     proxy: {
       "/api": {
         target: "http://localhost:3001",

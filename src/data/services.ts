@@ -24,7 +24,9 @@ export interface ServiceItem {
   image: string;
   gallery: string[];
   video?: string;
+  videos?: string[];
   instagramReelUrl?: string;
+  instagramReels?: string[];
   services: string[];
   deliverables: string[];
   tools: string[];
@@ -386,12 +388,16 @@ export const services: ServiceItem[] = [
     description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",
     longDescription: "Stand out in a crowded digital landscape with striking visuals. We provide professional shooting services for models, influencers, and YouTubers looking to elevate their personal brand. From viral Instagram Reels to high-fashion model portfolios and brand collaboration shoots, we capture your unique personality and style. Our content is designed to maximize engagement, attract more followers, and help you secure lucrative brand partnerships.",
     image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=75&w=900&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=75&w=900&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=75&w=900&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=75&w=900&auto=format&fit=crop"
+    gallery: [],
+    video: "/final-render-video-volpue.mp4",
+    videos: [
+      "/final-render-video-volpue.mp4",
+      "/final-output.mp4"
     ],
-    video: "/showreel-video-4k-h264.mp4",
+    instagramReelUrl: "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw==",
+    instagramReels: [
+      "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw=="
+    ],
     services: [
       "Instagram Reels",
       "Model Photos",

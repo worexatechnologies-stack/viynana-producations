@@ -406,6 +406,55 @@ video:-ms-fullscreen {
   background-image: linear-gradient(145deg, #191919, #080808) !important;
 }
 
+/* Dual Diagonal Moving Tracks for Selected Work */
+@keyframes diagonalMarqueeLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes diagonalMarqueeRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.diagonal-track-left {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  will-change: transform;
+  animation: diagonalMarqueeLeft 42s linear infinite;
+}
+
+.diagonal-track-right {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  will-change: transform;
+  animation: diagonalMarqueeRight 42s linear infinite;
+}
+
+.diagonal-track-left:hover,
+.diagonal-track-right:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 640px) {
+  .diagonal-track-left {
+    animation-duration: 32s;
+  }
+  .diagonal-track-right {
+    animation-duration: 32s;
+  }
+}
+
 @keyframes flameFlicker {
   0%, 100% {
     transform: scale(1) rotate(0deg) skewX(0deg);

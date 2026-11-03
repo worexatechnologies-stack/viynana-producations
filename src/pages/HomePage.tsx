@@ -15,6 +15,9 @@ import {
   ArrowRight,
   ArrowLeft,
   Play,
+  Building2,
+  Box,
+  Clapperboard,
   Pause,
   Volume2,
   VolumeX,
@@ -449,6 +452,38 @@ export default function HomePage() {
     return projects.filter((p) => tab.categories.includes(p.category));
   }, [selectedFilter]);
 
+  // Split projects into 2 continuous streams for dual diagonal moving tracks
+  const { row1Projects, row2Projects } = useMemo(() => {
+    const list = filteredProjects.length > 0 ? filteredProjects : projects;
+    const r1: typeof list = [];
+    const r2: typeof list = [];
+
+    // Distribute projects between Row 1 and Row 2
+    list.forEach((item, index) => {
+      if (index % 2 === 0) {
+        r1.push(item);
+      } else {
+        r2.push(item);
+      }
+    });
+
+    if (r2.length === 0) r2.push(...r1);
+
+    // Repeat to ensure seamless 50% translation marquee loop with no seam
+    const repeatToMin = (arr: typeof list, minCount: number) => {
+      let result = [...arr];
+      while (result.length < minCount) {
+        result = [...result, ...arr];
+      }
+      return [...result, ...result];
+    };
+
+    return {
+      row1Projects: repeatToMin(r1, 5),
+      row2Projects: repeatToMin(r2, 5),
+    };
+  }, [filteredProjects]);
+
   const handleFilterChange = (id: string) => {
     setSelectedFilter(id);
     setActiveServiceIdx(0);
@@ -797,11 +832,11 @@ export default function HomePage() {
 
 
       {/* 3. COMPANY IMPACT BAND & 4-COLUMN STATS GRID (VE-BAND) */}
-      <section className="relative w-full pt-8 pb-14 sm:py-24 lg:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/10 mt-0 sm:mt-16 bg-black/25 overflow-hidden">
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/25 overflow-hidden">
         {/* Advanced Ambient Glow Mesh */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.15)_50%,transparent_80%)] pointer-events-none blur-2xl" />
 
-        <div className="relative z-10 max-w-7xl mx-auto space-y-8 sm:space-y-14 lg:space-y-16">
+        <div className="relative z-10 max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12">
           {/* Two-Column Section Head */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-end">
             <div className="lg:col-span-7">
@@ -877,7 +912,7 @@ export default function HomePage() {
       <section
         ref={selectedWorkSectionRef}
         id="selected-work"
-        className="relative w-full py-16 sm:py-28 border-t border-white/15 bg-black/20 overflow-hidden"
+        className="relative w-full py-6 sm:py-10 border-t border-white/15 bg-black/20 overflow-hidden"
       >
         {/* Ambient Radial Spotlight Mesh */}
         <div
@@ -888,10 +923,10 @@ export default function HomePage() {
           className="absolute bottom-10 left-10 w-[500px] h-[300px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,transparent_70%)] rounded-full blur-3xl pointer-events-none"
         />
 
-        <div className="w-full space-y-8 sm:space-y-10 relative z-10">
+        <div className="w-full space-y-4 sm:space-y-5 relative z-10">
           {/* Top Header Bar */}
-          <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-2.5 max-w-2xl">
+          <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-1 max-w-2xl">
               <div className="flex items-center gap-3">
                 <span className="text-xs sm:text-sm font-mono text-white tracking-widest font-bold px-3 py-1 rounded-full bg-white/10 border border-white/20">
                   [ 02 / SELECTED WORK ]
@@ -909,13 +944,13 @@ export default function HomePage() {
             </div>
 
             <div className="flex items-center gap-3 sm:gap-4 shrink-0 flex-wrap">
-              {/* View Mode Toggle: Carousel vs Grid */}
+              {/* View Mode Toggle: Diagonal vs Grid */}
               <div className="flex items-center p-1 rounded-full bg-[#13100c]/90 border border-white/20 shadow-md">
                 <button
                   type="button"
                   onClick={() => setViewMode("carousel")}
-                  aria-label="Carousel View"
-                  title="Carousel View"
+                  aria-label="Diagonal Moving View"
+                  title="Diagonal Moving View"
                   className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
                     viewMode === "carousel"
                       ? "bg-white text-black hover:bg-neutral-200 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
@@ -923,7 +958,7 @@ export default function HomePage() {
                   }`}
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">CAROUSEL</span>
+                  <span className="hidden sm:inline">DIAGONAL</span>
                 </button>
                 <button
                   type="button"
@@ -974,126 +1009,171 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* View Mode 1: Cinema Horizontal Stage */}
+          {/* View Mode 1: Dual Continuous Diagonal Moving Tracks */}
           {viewMode === "carousel" ? (
-            <div
-              ref={servicesSliderRef}
-              onScroll={handleServicesScroll}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUpOrLeave}
-              onMouseLeave={handleMouseUpOrLeave}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              className="flex flex-row overflow-x-auto gap-4 sm:gap-6 px-5 sm:px-8 lg:px-16 w-full items-stretch ve-scrollbar-none py-2 cursor-grab active:cursor-grabbing select-none"
-              style={{
-                touchAction: "pan-x pan-y",
-                WebkitOverflowScrolling: "touch",
-              }}
-            >
-              {filteredProjects.map((project, idx) => {
-                const heroImg = project.thumbnail || project.gallery[0];
-                const displayNumber = String(idx + 1).padStart(2, "0");
+            <div className="relative w-full overflow-hidden py-2 sm:py-4 select-none">
+              {/* Edge Gradient Vignettes so cards gracefully glide in and out */}
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-r from-[#080706] via-[#080706]/75 to-transparent" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-l from-[#080706] via-[#080706]/75 to-transparent" />
 
-                return (
-                  <Link
-                    to={`/work/${project.slug}`}
-                    key={project.slug}
-                    draggable={false}
-                    onClick={(e) => {
-                      if (hasMovedRef.current) {
-                        e.preventDefault();
-                      }
-                    }}
-                    className="service-card group relative flex flex-col w-[86vw] sm:w-[460px] md:w-[500px] lg:w-[540px] aspect-[16/11] shrink-0 rounded-3xl overflow-hidden border border-white/15 bg-[#14110d] shadow-[0_22px_60px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:border-white/40/60 hover:shadow-[0_28px_70px_rgba(255,255,255,0.15)] transition-all duration-500 select-none"
-                    aria-label={`View ${project.title} service`}
-                  >
-                    {/* Background Image with Cinematic Grading */}
-                    <img
-                      src={heroImg}
-                      alt={`${project.title} - ${project.category}`}
-                      loading="lazy"
-                      width="540"
-                      height="370"
-                      decoding="async"
-                      draggable={false}
-                      className="object-cover w-full h-full absolute inset-0 filter contrast-[1.08] brightness-[0.88] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
-                    />
+              {/* Slanted Stage: -rotate-2 / -rotate-3 for the authentic diagonal flow */}
+              <div className="transform -rotate-2 sm:-rotate-3 scale-[1.02] space-y-2.5 sm:space-y-3.5 -my-2 sm:-my-3">
+                {/* ── DIAGONAL ROW 1: RIGHT TO LEFT AUTOMATIC CONTINUOUS MOVEMENT ── */}
+                <div className="flex overflow-hidden py-1">
+                  <div className="diagonal-track-left">
+                    {row1Projects.map((project, idx) => {
+                      const heroImg = project.thumbnail || project.gallery[0];
+                      return (
+                        <Link
+                          to={`/work/${project.slug}`}
+                          key={`r1-${project.slug}-${idx}`}
+                          draggable={false}
+                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-[#14110d] shadow-[0_18px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:border-white/50 hover:shadow-[0_24px_65px_rgba(255,255,255,0.18)] transition-all duration-500 select-none mx-2 sm:mx-3"
+                          aria-label={`View ${project.title} - ${project.category}`}
+                        >
+                          <img
+                            src={heroImg}
+                            alt={`${project.title} - ${project.category}`}
+                            loading="lazy"
+                            width="460"
+                            height="290"
+                            decoding="async"
+                            draggable={false}
+                            className="object-cover w-full h-full absolute inset-0 filter contrast-[1.08] brightness-[0.88] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
 
-                    {/* Gradient Overlay for high-contrast typography */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
+                          <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
+                            <span className="px-3 py-1 bg-[#080706]/80 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-mono font-bold tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
+                              {project.category}
+                            </span>
+                            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-white/90 bg-[#080706]/80 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
+                              {project.year}
+                            </span>
+                          </div>
 
-                    {/* Top Row: Category Tag & Index Number */}
-                    <div className="relative z-10 p-4 sm:p-6 flex items-center justify-between gap-3">
-                      <span className="px-3.5 py-1.5 bg-[#080706]/75 backdrop-blur-xl text-[10px] sm:text-[11px] font-mono font-bold tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[75%]">
-                        {project.category}
-                      </span>
+                          <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-black hover:bg-neutral-200 flex items-center justify-center shadow-[0_0_35px_rgba(255,255,255,0.25)] scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                              <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current text-[#080706] ml-0.5" />
+                            </div>
+                          </div>
 
-                      <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest text-white bg-[#080706]/75 px-3 py-1.5 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
-                        {displayNumber}
-                      </span>
-                    </div>
-
-                    {/* Center Interactive Floating Play / Preview Trigger on Hover */}
-                    <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white text-black hover:bg-neutral-200 flex items-center justify-center shadow-[0_0_35px_rgba(255,255,255,0.15)] scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
-                        <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#080706] ml-0.5" />
-                      </div>
-                    </div>
-
-                    {/* Bottom Content Block */}
-                    <div className="relative z-10 p-5 sm:p-7 mt-auto space-y-2">
-                      <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-mono text-white/80 tracking-widest uppercase font-semibold">
-                        <span>VIYANA PRODUCTIONS</span>
-                        <span>•</span>
-                        <span>{project.year}</span>
-                        <span>•</span>
-                        <span className="truncate">{project.client}</span>
-                      </div>
-
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-extrabold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 uppercase drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-                        {project.title}
-                      </h3>
-
-                      <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono text-white/75 pt-2 border-t border-white/15">
-                        <span className="truncate max-w-[65%] font-medium text-[#fbf7ee]/70">
-                          {project.deliverableType}
-                        </span>
-                        <span className="text-white font-bold group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5">
-                          <span>CASE STUDY</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-
-              {/* View All Services End Card */}
-              <div className="service-card w-[86vw] sm:w-[400px] md:w-[440px] aspect-[16/11] shrink-0 flex items-center justify-center p-6 sm:p-8 border border-white/20 rounded-3xl bg-gradient-to-br from-[#17130f]/90 via-[#14110d]/90 to-[#0a0907]/90 backdrop-blur-2xl hover:border-white/40/70 hover:shadow-[0_25px_60px_rgba(255,255,255,0.15)] transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
-                <Link
-                  to="/work"
-                  onClick={(e) => {
-                    if (hasMovedRef.current) {
-                      e.preventDefault();
-                    }
-                  }}
-                  className="text-center group flex flex-col items-center justify-center gap-3.5 w-full h-full"
-                >
-                  <div className="w-14 h-14 rounded-full bg-white text-black hover:bg-neutral-200 flex items-center justify-center transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.15)] group-hover:scale-110">
-                    <ArrowRight className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                          <div className="relative z-10 p-4 sm:p-6 mt-auto space-y-1.5 sm:space-y-2">
+                            <div className="flex items-center gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-white/80 tracking-widest uppercase font-semibold">
+                              <span>VIYANA PRODUCTIONS</span>
+                              <span>•</span>
+                              <span className="truncate">{project.client}</span>
+                            </div>
+                            <h3 className="text-lg sm:text-2xl font-display font-extrabold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 uppercase drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                              {project.title}
+                            </h3>
+                            <div className="flex items-center justify-between text-[10.5px] sm:text-xs font-mono text-white/75 pt-1.5 sm:pt-2 border-t border-white/15">
+                              <span className="truncate max-w-[65%] font-medium text-[#fbf7ee]/70">
+                                {project.deliverableType}
+                              </span>
+                              <span className="text-white font-bold group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5">
+                                <span>CASE STUDY</span>
+                                <ArrowRight className="w-3.5 h-3.5" />
+                              </span>
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
-                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white font-bold">
-                    FULL PORTFOLIO
+                </div>
+
+                {/* ── DIAGONAL ROW 2: LEFT TO RIGHT AUTOMATIC CONTINUOUS MOVEMENT ── */}
+                <div className="flex overflow-hidden py-1">
+                  <div className="diagonal-track-right">
+                    {row2Projects.map((project, idx) => {
+                      const heroImg = project.thumbnail || project.gallery[0];
+                      return (
+                        <Link
+                          to={`/work/${project.slug}`}
+                          key={`r2-${project.slug}-${idx}`}
+                          draggable={false}
+                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-[#14110d] shadow-[0_18px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:border-white/50 hover:shadow-[0_24px_65px_rgba(255,255,255,0.18)] transition-all duration-500 select-none mx-2 sm:mx-3"
+                          aria-label={`View ${project.title} - ${project.category}`}
+                        >
+                          <img
+                            src={heroImg}
+                            alt={`${project.title} - ${project.category}`}
+                            loading="lazy"
+                            width="460"
+                            height="290"
+                            decoding="async"
+                            draggable={false}
+                            className="object-cover w-full h-full absolute inset-0 filter contrast-[1.08] brightness-[0.88] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
+
+                          <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
+                            <span className="px-3 py-1 bg-[#080706]/80 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-mono font-bold tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
+                              {project.category}
+                            </span>
+                            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-white/90 bg-[#080706]/80 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
+                              {project.year}
+                            </span>
+                          </div>
+
+                          <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-black hover:bg-neutral-200 flex items-center justify-center shadow-[0_0_35px_rgba(255,255,255,0.25)] scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                              <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current text-[#080706] ml-0.5" />
+                            </div>
+                          </div>
+
+                          <div className="relative z-10 p-4 sm:p-6 mt-auto space-y-1.5 sm:space-y-2">
+                            <div className="flex items-center gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-white/80 tracking-widest uppercase font-semibold">
+                              <span>VIYANA PRODUCTIONS</span>
+                              <span>•</span>
+                              <span className="truncate">{project.client}</span>
+                            </div>
+                            <h3 className="text-lg sm:text-2xl font-display font-extrabold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 uppercase drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                              {project.title}
+                            </h3>
+                            <div className="flex items-center justify-between text-[10.5px] sm:text-xs font-mono text-white/75 pt-1.5 sm:pt-2 border-t border-white/15">
+                              <span className="truncate max-w-[65%] font-medium text-[#fbf7ee]/70">
+                                {project.deliverableType}
+                              </span>
+                              <span className="text-white font-bold group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5">
+                                <span>CASE STUDY</span>
+                                <ArrowRight className="w-3.5 h-3.5" />
+                              </span>
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Status and instruction cue bar */}
+              <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-wrap items-center justify-between gap-3 text-[11px] sm:text-xs font-mono text-white/60 z-20 pt-4 sm:pt-6">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                    <span>DUAL DIAGONAL CONTINUOUS FLOW</span>
                   </span>
-                  <span className="text-xl sm:text-2xl font-display font-extrabold uppercase tracking-tight text-white group-hover:text-white transition-colors leading-tight">
-                    EXPLORE ALL 13 PRODUCTIONS
+                  <span className="hidden md:inline text-white/30">•</span>
+                  <span className="hidden md:inline text-white/70">
+                    ROW 1: RIGHT &rarr; LEFT &nbsp;|&nbsp; ROW 2: LEFT &rarr; RIGHT
                   </span>
-                  <span className="text-[11px] font-mono text-[#fbf7ee]/60">
-                    4K MASTER CUTS • CASE STUDIES
+                </div>
+                <div className="flex items-center gap-3 text-white/70">
+                  <span className="text-[10.5px] tracking-wider uppercase font-semibold">
+                    HOVER ANY CARD TO PAUSE &amp; EXPLORE
                   </span>
-                </Link>
+                  <span>•</span>
+                  <Link
+                    to="/work"
+                    className="text-white hover:text-amber-300 transition-colors font-bold flex items-center gap-1"
+                  >
+                    <span>FULL ARCHIVE ({projects.length})</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
               </div>
             </div>
           ) : (
@@ -1180,59 +1260,12 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* Bottom Status Bar for Carousel View */}
-          {viewMode === "carousel" && (
-            <div className="w-full px-5 sm:px-8 lg:px-16 flex items-center justify-between text-[11px] sm:text-xs font-mono text-white/50 z-20 pt-2">
-              <div className="flex items-center gap-4 sm:gap-6">
-                <span className="tracking-wider uppercase font-semibold text-white">
-                  {String(Math.min(filteredProjects.length, activeServiceIdx + 1)).padStart(2, "0")} / {String(filteredProjects.length).padStart(2, "0")} CURATED WORKS
-                </span>
 
-                {/* Luxury Progress Scrub Bar */}
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-20 sm:w-28 md:w-44 lg:w-56 h-1.5 bg-white/10 rounded-full overflow-hidden p-0.5">
-                    <div
-                      className="h-full bg-gradient-to-r from-white to-neutral-400 rounded-full transition-all duration-150 ease-out shadow-[0_0_10px_rgba(255,255,255,0.15)]"
-                      style={{ width: `${Math.max(6, scrollProgress)}%` }}
-                    />
-                  </div>
-                  <span className="text-[10px] text-white/70 tracking-wider font-semibold">
-                    {Math.round(scrollProgress)}%
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <span className="hidden md:inline-block text-[10px] text-white/60 uppercase tracking-widest font-mono">
-                  DRAG OR USE ARROWS
-                </span>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => scrollServices("left")}
-                    aria-label="Previous work"
-                    type="button"
-                    className="w-10 h-10 rounded-full border border-white/20 bg-[#17130f]/90 backdrop-blur-md text-white hover:bg-white text-black hover:text-[#080706] flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-md hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => scrollServices("right")}
-                    aria-label="Next work"
-                    type="button"
-                    className="w-10 h-10 rounded-full border border-white/20 bg-[#17130f]/90 backdrop-blur-md text-white hover:bg-white text-black hover:text-[#080706] flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-md hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
-                  >
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </section>
 
       {/* MODELS & PORTFOLIO DIRECTION (WHERE CHARACTER MEETS CINEMATIC LIGHT) */}
-      <section className="relative w-full py-20 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/60 backdrop-blur-md text-[#fbf7ee] overflow-hidden">
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/60 backdrop-blur-md text-[#fbf7ee] overflow-hidden">
         {/* Subtle Ambient Radial Glow Mesh */}
         <div
           className="absolute top-1/3 right-1/4 w-[750px] h-[450px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,rgba(212,160,54,0.15)_60%,transparent_80%)] blur-3xl pointer-events-none rounded-full"
@@ -1298,7 +1331,7 @@ export default function HomePage() {
       </section>
 
       {/* 4. CLIENT STORIES VIDEO TESTIMONIALS (AUTOMATIC RUNNING MARQUEE) */}
-      <section className="relative w-full py-20 sm:py-32 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 space-y-6">
           {/* Header without arrow buttons */}
           <div className="max-w-3xl">
@@ -1315,7 +1348,7 @@ export default function HomePage() {
         </div>
 
         {/* Automatic Smooth Continuous Scrolling Track */}
-        <div className="relative w-full mt-10 sm:mt-14 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_4%,black_96%,transparent)]">
+        <div className="relative w-full mt-6 sm:mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_4%,black_96%,transparent)]">
           <div className="ve-testimonial-track py-3">
             {[...testimonials, ...testimonials].map((item, idx) => (
               <article
@@ -1364,14 +1397,14 @@ export default function HomePage() {
       </section>
 
       {/* 5. CLIENT LOGOS (CONTINUOUS RUNNING MARQUEE CAPSULES) */}
-      <section className="relative w-full py-16 sm:py-20 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
+      <section className="relative w-full py-10 sm:py-14 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
         {/* Subtle Ambient Radial Glow */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle,rgba(255,255,255,0.06)_0%,rgba(212,160,54,0.05)_50%,transparent_75%)] rounded-full blur-3xl pointer-events-none"
           style={{ contain: "strict", transform: "translateZ(0)" }}
         />
 
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 text-center mb-8 sm:mb-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 text-center mb-4 sm:mb-6 relative z-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
             CLIENT LOGOS
           </h2>
@@ -1399,14 +1432,14 @@ export default function HomePage() {
       </section>
 
       {/* 6. BUILT FOR BRANDS WITH BIG IDEAS (WHAT WE CREATE + BOTTOM CTA) */}
-      <section className="relative w-full py-24 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
         {/* Subtle background ambient glow mesh */}
         <div
           className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[750px] h-[400px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.15)_50%,transparent_80%)] rounded-full blur-3xl pointer-events-none"
           style={{ contain: "strict", transform: "translateZ(0)" }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto space-y-16 sm:space-y-20">
+        <div className="relative z-10 max-w-7xl mx-auto space-y-8 sm:space-y-10">
           {/* Top Section Header */}
           <div className="max-w-3xl space-y-4">
             <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/70 block font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
@@ -1420,64 +1453,378 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* 4 Cards Grid - WHAT WE CREATE */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              {
-                index: "01",
-                title: "CORPORATE",
-                description: "Professional films that showcase your company, people, and vision.",
-                icon: Film,
-              },
-              {
-                index: "02",
-                title: "PRODUCT",
-                description: "Visual content that makes your products stand out.",
-                icon: Camera,
-              },
-              {
-                index: "03",
-                title: "BRAND STORIES",
-                description: "Creative storytelling that builds brand identity and connection.",
-                icon: Video,
-              },
-              {
-                index: "04",
-                title: "DIGITAL CONTENT",
-                description: "Engaging videos designed for websites, social media, and campaigns.",
-                icon: MonitorPlay,
-              },
-            ].map((card) => {
-              const Icon = card.icon;
-              return (
-                <div
-                  key={card.title}
-                  className="group relative p-8 sm:p-9 rounded-3xl bg-[#14110d]/80 backdrop-blur-2xl border border-white/15 hover:border-white/40/60 hover:-translate-y-1.5 shadow-[0_15px_40px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:shadow-[0_25px_60px_rgba(255,255,255,0.15)] transition-all duration-300 flex flex-col justify-between min-h-[230px] sm:min-h-[250px] overflow-hidden"
-                >
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-white/10 to-transparent rounded-bl-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs text-white tracking-widest font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/15">
-                        {card.index}
-                      </span>
-                      <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-white/15 to-white/5 border border-white/20 flex items-center justify-center text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] group-hover:scale-110 transition-transform">
-                        <Icon className="w-4.5 h-4.5" />
-                      </div>
-                    </div>
+          {/* ORBITAL HUB & SPOKE SHOWCASE (WHAT WE CREATE) */}
+          <div className="relative w-full max-w-6xl mx-auto py-8 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-12 rounded-[32px] sm:rounded-[44px] bg-gradient-to-b from-[#fcfcfd] via-[#f8fafc] to-[#ffffff] border border-white/80 shadow-[0_30px_90px_rgba(0,0,0,0.5),inset_0_1px_2px_rgba(255,255,255,0.95)] overflow-hidden">
+            {/* Ambient Multi-spectrum Glow Canvas */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-[radial-gradient(circle,rgba(168,85,247,0.18)_0%,rgba(59,130,246,0.1)_35%,transparent_70%)] blur-3xl pointer-events-none" />
 
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-display font-extrabold text-white uppercase tracking-tight mb-2.5">
-                        {card.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed font-normal">
-                        {card.description}
-                      </p>
-                    </div>
-                  </div>
+            <div className="relative">
+              {/* Concentric Animated Radar & Orbital Rings (Emerges from Center on Scroll) */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 flex items-center justify-center"
+              >
+                {/* Expanding Radar Wave Ring 1 */}
+                <motion.div
+                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-purple-500/20"
+                  animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.65, 0.25, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
+                />
+                {/* Expanding Radar Wave Ring 2 (delayed) */}
+                <motion.div
+                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-blue-500/15"
+                  animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.55, 0.2, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 2 }}
+                />
+                {/* Slow Rotating Outer Dashed Orbit Ring */}
+                <motion.div
+                  className="absolute w-[290px] h-[290px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] rounded-full border border-dashed border-purple-400/25"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                />
+                {/* Middle Delicate Orbital Ring */}
+                <div className="absolute w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border border-purple-500/25" />
+                {/* Inner Glow Aura Ring */}
+                <div className="absolute w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border border-purple-400/35 shadow-[0_0_25px_rgba(168,85,247,0.3)]" />
+              </motion.div>
+
+              {/* SVG Connecting Diagonal Beams with Flowing Light Particles (Desktop lg+) */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 hidden lg:block" viewBox="0 0 1000 620" preserveAspectRatio="none">
+                <defs>
+                  <filter id="hubNodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                {/* Line 1: Center to Top-Left (Corporate) - Draws outward from center */}
+                <motion.line
+                  x1="480" y1="285" x2="380" y2="195"
+                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 0.65 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+                />
+                <motion.circle
+                  r="4"
+                  fill="#e9d5ff"
+                  filter="url(#hubNodeGlow)"
+                  animate={{ cx: [480, 380, 480], cy: [285, 195, 285] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                />
+                <circle cx="380" cy="195" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+                <circle cx="380" cy="195" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
+                <circle cx="480" cy="285" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+
+                {/* Line 2: Center to Top-Right (Product) - Draws outward from center */}
+                <motion.line
+                  x1="520" y1="285" x2="620" y2="195"
+                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 0.65 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                />
+                <motion.circle
+                  r="4"
+                  fill="#e9d5ff"
+                  filter="url(#hubNodeGlow)"
+                  animate={{ cx: [520, 620, 520], cy: [285, 195, 285] }}
+                  transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                />
+                <circle cx="620" cy="195" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+                <circle cx="620" cy="195" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
+                <circle cx="520" cy="285" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+
+                {/* Line 3: Center to Bottom-Left (Brand Stories) - Draws outward from center */}
+                <motion.line
+                  x1="480" y1="335" x2="380" y2="425"
+                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 0.65 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+                />
+                <motion.circle
+                  r="4"
+                  fill="#e9d5ff"
+                  filter="url(#hubNodeGlow)"
+                  animate={{ cx: [480, 380, 480], cy: [335, 425, 335] }}
+                  transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+                />
+                <circle cx="380" cy="425" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+                <circle cx="380" cy="425" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
+                <circle cx="480" cy="335" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+
+                {/* Line 4: Center to Bottom-Right (Digital Content) - Draws outward from center */}
+                <motion.line
+                  x1="520" y1="335" x2="620" y2="425"
+                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 0.65 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+                />
+                <motion.circle
+                  r="4"
+                  fill="#e9d5ff"
+                  filter="url(#hubNodeGlow)"
+                  animate={{ cx: [520, 620, 520], cy: [335, 425, 335] }}
+                  transition={{ duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
+                />
+                <circle cx="620" cy="425" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+                <circle cx="620" cy="425" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
+                <circle cx="520" cy="335" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+              </svg>
+
+              {/* 4 Satellite Cards (2x2 Grid) - Expanding outward from center on scroll */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-x-28 lg:gap-y-10 xl:gap-x-32 xl:gap-y-12 relative z-10">
+                {[
+                  {
+                    id: "corporate",
+                    title: "Corporate",
+                    description: "Professional films that showcase your company, people, and vision.",
+                    icon: Building2,
+                    iconColor: "text-[#d97706]",
+                    iconBg: "bg-amber-500/10 border border-amber-500/25",
+                    accentShadow: "hover:shadow-[0_25px_60px_rgba(245,158,11,0.28),0_10px_25px_rgba(0,0,0,0.15)]",
+                    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+                    link: "/work/corporate-film",
+                    position: "top-left",
+                    initialX: 180,
+                    initialY: 130,
+                    entryDelay: 0.15,
+                    floatY: -8, duration: 5, delay: 0,
+                  },
+                  {
+                    id: "product",
+                    title: "Product",
+                    description: "Visual content that makes your products stand out.",
+                    icon: Box,
+                    iconColor: "text-[#7c3aed]",
+                    iconBg: "bg-purple-500/10 border border-purple-500/25",
+                    accentShadow: "hover:shadow-[0_25px_60px_rgba(168,85,247,0.3),0_10px_25px_rgba(0,0,0,0.15)]",
+                    image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+                    link: "/work/product-shoot",
+                    position: "top-right",
+                    initialX: -180,
+                    initialY: 130,
+                    entryDelay: 0.22,
+                    floatY: 8, duration: 5.4, delay: 0.4,
+                  },
+                  {
+                    id: "brand-stories",
+                    title: "Brand Stories",
+                    description: "Creative storytelling that builds brand identity and connection.",
+                    icon: Clapperboard,
+                    iconColor: "text-[#059669]",
+                    iconBg: "bg-emerald-500/10 border border-emerald-500/25",
+                    accentShadow: "hover:shadow-[0_25px_60px_rgba(16,185,129,0.28),0_10px_25px_rgba(0,0,0,0.15)]",
+                    image: "https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?q=80&w=800&auto=format&fit=crop",
+                    link: "/work/commercial-video-production",
+                    position: "bottom-left",
+                    initialX: 180,
+                    initialY: -130,
+                    entryDelay: 0.28,
+                    floatY: -7, duration: 5.8, delay: 0.8,
+                  },
+                  {
+                    id: "digital-content",
+                    title: "Digital Content",
+                    description: "Engaging videos designed for websites, social media, and campaigns.",
+                    icon: Play,
+                    iconColor: "text-[#2563eb]",
+                    iconBg: "bg-blue-500/10 border border-blue-500/25",
+                    accentShadow: "hover:shadow-[0_25px_60px_rgba(59,130,246,0.28),0_10px_25px_rgba(0,0,0,0.15)]",
+                    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop",
+                    link: "/work/social-media-content",
+                    position: "bottom-right",
+                    initialX: -180,
+                    initialY: -130,
+                    entryDelay: 0.35,
+                    floatY: 7, duration: 5.2, delay: 1.2,
+                  },
+                ].map((card) => {
+                  const Icon = card.icon;
+                  return (
+                    <motion.div
+                      key={card.id}
+                      initial={{
+                        x: typeof window !== "undefined" && window.innerWidth < 1024 ? 0 : card.initialX,
+                        y: typeof window !== "undefined" && window.innerWidth < 1024 ? (card.position.includes("top") ? 35 : -35) : card.initialY,
+                        scale: 0.3,
+                        opacity: 0,
+                      }}
+                      whileInView={{
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        opacity: 1,
+                      }}
+                      viewport={{ once: false, amount: 0.2 }}
+                      transition={{
+                        duration: 0.85,
+                        delay: card.entryDelay,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      className="relative"
+                    >
+                      <motion.div
+                        animate={{ y: [0, card.floatY, 0] }}
+                        transition={{ duration: card.duration, repeat: Infinity, ease: "easeInOut", delay: card.delay }}
+                        whileHover={{ scale: 1.025, y: -6 }}
+                        className="relative"
+                      >
+                        <Link
+                          to={card.link}
+                          className={`group relative block w-full rounded-[26px] sm:rounded-[32px] bg-white text-neutral-900 border border-white/90 shadow-[0_15px_45px_rgba(0,0,0,0.14),0_3px_10px_rgba(0,0,0,0.06)] ${card.accentShadow} transition-all duration-500 overflow-hidden cursor-pointer`}
+                        >
+                          <div className="relative flex items-center justify-between min-h-[145px] sm:min-h-[160px] p-5 sm:p-6 lg:p-7 z-10">
+                            {/* Left text & icon (takes ~62% width) */}
+                            <div className="flex-1 pr-3 sm:pr-4 z-10 max-w-[64%]">
+                              <div className="flex items-center gap-3 mb-2 sm:mb-2.5">
+                                <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${card.iconBg}`}>
+                                  <Icon className={`w-5 h-5 ${card.iconColor}`} />
+                                </div>
+                                <h3 className="text-xl sm:text-2xl font-display font-extrabold text-neutral-900 tracking-tight leading-none">
+                                  {card.title}
+                                </h3>
+                              </div>
+                              <p className="text-xs sm:text-[13px] text-neutral-600 font-normal leading-relaxed">
+                                {card.description}
+                              </p>
+                            </div>
+
+                            {/* Right image with seamless horizontal fade into white card */}
+                            <div className="absolute right-0 top-0 bottom-0 w-[42%] overflow-hidden pointer-events-none">
+                              <img
+                                src={card.image}
+                                alt={card.title}
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-full object-cover object-center filter contrast-[1.05] brightness-95 group-hover:scale-110 group-hover:brightness-105 transition-all duration-700 ease-out"
+                              />
+                              {/* Smooth gradient mask to pure white */}
+                              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/20" />
+                            </div>
+                          </div>
+
+                          {/* Corner glowing node dot on card (matching the reference image) */}
+                          <div
+                            className={`hidden lg:block absolute w-3 h-3 rounded-full bg-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.95)] z-20 ${
+                              card.position === "top-left"
+                                ? "bottom-3 right-3"
+                                : card.position === "top-right"
+                                ? "bottom-3 left-3"
+                                : card.position === "bottom-left"
+                                ? "top-3 right-3"
+                                : "top-3 left-3"
+                            }`}
+                          >
+                            <span className="absolute inset-0 rounded-full bg-purple-400 animate-ping opacity-75" />
+                          </div>
+                        </Link>
+                      </motion.div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Central VIYANA PRODUCTIONS Hub (Desktop: pops outward from middle on scroll) */}
+              <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none items-center justify-center">
+                <motion.div
+                  initial={{ scale: 0, opacity: 0, rotate: -25 }}
+                  whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative flex items-center justify-center pointer-events-auto"
+                >
+                  <motion.div
+                    animate={{
+                      boxShadow: [
+                        "0 0 35px rgba(168, 85, 247, 0.35), 0 0 70px rgba(59, 130, 246, 0.2)",
+                        "0 0 55px rgba(168, 85, 247, 0.6), 0 0 95px rgba(59, 130, 246, 0.35)",
+                        "0 0 35px rgba(168, 85, 247, 0.35), 0 0 70px rgba(59, 130, 246, 0.2)",
+                      ],
+                    }}
+                    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                    className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-[#0c0a0f] border-2 border-white/25 p-4 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden group"
+                  >
+                    {/* Subtle inner radial ambient shine */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(245,158,11,0.2)_0%,rgba(168,85,247,0.18)_50%,transparent_80%)] pointer-events-none" />
+
+                    {/* Golden stylized filmstrip "V" icon */}
+                    <svg className="w-12 h-12 xl:w-14 xl:h-14 relative z-10 drop-shadow-[0_4px_14px_rgba(234,179,8,0.55)] group-hover:scale-105 transition-transform duration-300" viewBox="0 0 64 64" fill="none">
+                      <defs>
+                        <linearGradient id="hubGoldFilmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#fef08a" />
+                          <stop offset="30%" stopColor="#eab308" />
+                          <stop offset="70%" stopColor="#ca8a04" />
+                          <stop offset="100%" stopColor="#a16207" />
+                        </linearGradient>
+                        <linearGradient id="hubGoldBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#ffffff" />
+                          <stop offset="50%" stopColor="#facc15" />
+                          <stop offset="100%" stopColor="#854d0e" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M14 12 L28 52 L36 52 L22 12 Z" fill="url(#hubGoldFilmGrad)" stroke="url(#hubGoldBorderGrad)" strokeWidth="1.2" strokeLinejoin="round" />
+                      <path d="M50 12 L36 52 L28 52 L42 12 Z" fill="url(#hubGoldFilmGrad)" stroke="url(#hubGoldBorderGrad)" strokeWidth="1.2" strokeLinejoin="round" />
+                      <rect x="17" y="16" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 17 16)" />
+                      <rect x="20.5" y="24" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 20.5 24)" />
+                      <rect x="24" y="32" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 24 32)" />
+                      <rect x="27.5" y="40" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 27.5 40)" />
+                      <rect x="43.5" y="16" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 43.5 16)" />
+                      <rect x="40" y="24" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 40 24)" />
+                      <rect x="36.5" y="32" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 36.5 32)" />
+                      <rect x="33" y="40" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 33 40)" />
+                      <circle cx="47" cy="18" r="3.5" fill="#fef08a" stroke="#ca8a04" strokeWidth="1" />
+                      <circle cx="47" cy="18" r="1.5" fill="#0c0a0f" />
+                    </svg>
+
+                    {/* Brand Typography */}
+                    <span className="font-display font-extrabold text-white text-base xl:text-lg tracking-tight uppercase leading-none mt-2 relative z-10">
+                      VIYANA
+                    </span>
+                    <span className="font-mono font-semibold text-white/70 text-[8.5px] xl:text-[9.5px] tracking-[0.28em] uppercase mt-1 relative z-10">
+                      PRODUCTIONS
+                    </span>
+                  </motion.div>
+                </motion.div>
+              </div>
+
+              {/* Mobile / Tablet Center Emblem Display (Emerges from Middle on Scroll) */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:hidden flex justify-center py-6"
+              >
+                <div className="w-36 h-36 rounded-full bg-[#0c0a0f] border-2 border-white/20 p-3 flex flex-col items-center justify-center text-center shadow-[0_0_40px_rgba(168,85,247,0.35)] relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(245,158,11,0.15)_0%,transparent_70%)] pointer-events-none" />
+                  <svg className="w-9 h-9 relative z-10 drop-shadow-[0_2px_8px_rgba(234,179,8,0.5)]" viewBox="0 0 64 64" fill="none">
+                    <path d="M14 12 L28 52 L36 52 L22 12 Z" fill="#eab308" />
+                    <path d="M50 12 L36 52 L28 52 L42 12 Z" fill="#ca8a04" />
+                    <circle cx="47" cy="18" r="3" fill="#fef08a" />
+                  </svg>
+                  <span className="font-display font-extrabold text-white text-sm tracking-tight uppercase leading-none mt-1.5">
+                    VIYANA
+                  </span>
+                  <span className="font-mono font-medium text-white/70 text-[7.5px] tracking-[0.24em] uppercase mt-0.5">
+                    PRODUCTIONS
+                  </span>
                 </div>
-              );
-            })}
+              </motion.div>
+            </div>
           </div>
 
           {/* Bottom CTA Banner */}
@@ -1512,11 +1859,11 @@ export default function HomePage() {
       </section>
 
       {/* 6. LATEST WORK SHOWCASE GRID (VE-WORK-GRID) */}
-      <section className="relative w-full py-20 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/25 overflow-hidden">
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/25 overflow-hidden">
         {/* Ambient Top Glow */}
         <div className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
 
-        <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
@@ -1586,11 +1933,11 @@ export default function HomePage() {
       </section>
 
       {/* 7. PRODUCTION WORKFLOW PROCESS CARD (VE-PROCESS-CARD) */}
-      <section className="relative w-full py-20 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/20 overflow-hidden">
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/20 overflow-hidden">
         {/* Ambient Glow */}
         <div className="absolute bottom-0 left-1/3 w-[700px] h-[350px] bg-[radial-gradient(ellipse_at_bottom,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
 
-        <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="max-w-3xl">
             <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/80 block mb-3 font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
@@ -1667,11 +2014,11 @@ export default function HomePage() {
       </section>
 
       {/* 8. VIDEO PRODUCTION FAQ ACCORDION (VE-FAQ) */}
-      <section className="relative w-full py-20 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/25 overflow-hidden">
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/25 overflow-hidden">
         {/* Ambient Top Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
 
-        <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/80 block mb-3 font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/15 w-fit mx-auto">
@@ -1808,7 +2155,7 @@ export default function HomePage() {
       </section>
 
       {/* 9. CONTACT STRIP BANNER (VE-CONTACT-STRIP EXACT LAYOUT) */}
-      <section className="relative w-full py-20 sm:py-32 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/30 text-center overflow-hidden">
+      <section className="relative w-full py-12 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/30 text-center overflow-hidden">
         {/* Central Ambient Gold Spotlight */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,rgba(5,10,18,0)_70%)] pointer-events-none" />
 

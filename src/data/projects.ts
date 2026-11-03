@@ -43,6 +43,7 @@ export interface Project {
   director?: string;
   thumbnail: string;
   video?: string;
+  videos?: string[];
   youtubeVideoId?: string;
   instagramReelUrl?: string;
   instagramReels?: string[];
@@ -684,7 +685,15 @@ export const projects: Project[] = [
     director: "Viyana Creative Lab",
     deliverableType: "Reels, Photos and Short Videos",
     thumbnail: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=75&w=720&auto=format&fit=crop",
-    video: "/showreel-video-4k-h264.mp4",
+    video: "/final-render-video-volpue.mp4",
+    videos: [
+      "/final-render-video-volpue.mp4",
+      "/final-output.mp4"
+    ],
+    instagramReelUrl: "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw==",
+    instagramReels: [
+      "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw=="
+    ],
     videoDuration: "1:30",
     description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",
     fullDescription: "We do: Instagram Reels, Model Photos, Brand Collab Shoots. For: Models, Influencers, Youtubers.",
@@ -701,11 +710,7 @@ export const projects: Project[] = [
     },
     ctaText: "BOOK AN INFLUENCER SHOOT",
     tagline: "STYLISH VIDEOS & PHOTOS.",
-    gallery: [
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=75&w=720&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=75&w=720&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=75&w=720&auto=format&fit=crop"
-    ],
+    gallery: [],
     seo: {
       metaTitle: "Influencer shoot in Bangalore | Viyana Productions",
       metaDescription: "Create standout social media content with Viyana Productions. Our influencer shoots in Bangalore deliver visuals for personal branding and campaigns.",

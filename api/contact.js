@@ -28,7 +28,7 @@ module.exports = async function handler(req, res) {
   const smtpPort = parseInt(process.env.SMTP_PORT || "465");
   const smtpSecure = process.env.SMTP_SECURE !== "false";
   const smtpUser = process.env.SMTP_USER || "info.viyanaproductions@gmail.com";
-  const smtpPass = process.env.SMTP_PASS || "rterfgoevjnrqztg";
+  const smtpPass = process.env.SMTP_PASS || "";
   const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || smtpUser;
   const fromName = process.env.SMTP_FROM_NAME || "Viyana Productions Web";
 

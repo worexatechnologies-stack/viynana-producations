@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -15,6 +15,14 @@ import {
   ArrowRight,
   MapPin,
   CheckCircle2,
+  Volume2,
+  VolumeX,
+  Film,
+  Compass,
+  FileText,
+  Video,
+  SlidersHorizontal,
+  GitBranch,
 } from "lucide-react";
 
 const pillarsOfImpact = [
@@ -101,27 +109,51 @@ const duplicatedPillars = [...pillarsOfImpact, ...pillarsOfImpact];
 const processSteps = [
   {
     step: "01",
+    branchName: "BRANCH // 01 • STRATEGY",
     title: "DISCOVER & DEFINE",
     subtitle: "Start with understanding.",
     desc: "We begin by understanding your brand, audience, objectives, and the story you want to tell. We research, ask the right questions, and define a clear creative direction before moving forward.",
+    deliverables: ["Brand & Audience Research", "Strategic Positioning", "Creative Brief"],
+    icon: Compass,
+    accent: "from-amber-500/20 to-amber-500/5",
+    borderGlow: "group-hover:border-amber-400/60 shadow-[0_0_20px_rgba(245,158,11,0.15)]",
+    dotColor: "bg-amber-400",
   },
   {
     step: "02",
+    branchName: "BRANCH // 02 • SCREENPLAY",
     title: "CONCEPT & SCRIPT",
     subtitle: "Turn strategy into an idea.",
     desc: "We develop the central creative concept and build the story around it. From treatments and scripts to storyboards and visual references, every element is designed to give the project a strong foundation.",
+    deliverables: ["Scriptwriting & Treatments", "Visual Storyboarding", "Director's Deck"],
+    icon: FileText,
+    accent: "from-purple-500/20 to-purple-500/5",
+    borderGlow: "group-hover:border-purple-400/60 shadow-[0_0_20px_rgba(168,85,247,0.15)]",
+    dotColor: "bg-purple-400",
   },
   {
     step: "03",
+    branchName: "BRANCH // 03 • CINEMATOGRAPHY",
     title: "DIRECT & PRODUCE",
     subtitle: "Bring the vision to life.",
     desc: "This is where the idea becomes real. Our directors, cinematographers, production teams, and creative specialists work together to capture every scene with purpose, precision, and visual character.",
+    deliverables: ["4K ARRI & RED Camera Packages", "Cine Lighting & Art Direction", "On-Set Directing"],
+    icon: Video,
+    accent: "from-emerald-500/20 to-emerald-500/5",
+    borderGlow: "group-hover:border-emerald-400/60 shadow-[0_0_20px_rgba(16,185,129,0.15)]",
+    dotColor: "bg-emerald-400",
   },
   {
     step: "04",
+    branchName: "BRANCH // 04 • FINISHING",
     title: "POST & DELIVERY",
     subtitle: "Perfect every detail.",
     desc: "The final story comes together in post-production. Through editing, colour grading, motion graphics, VFX, sound design, and finishing, we refine every detail and prepare the work for its intended platforms.",
+    deliverables: ["Cinema Color Grading (LOG-C4)", "Spatial Sound & Audio Mastering", "4K DCI Multi-Platform Delivery"],
+    icon: SlidersHorizontal,
+    accent: "from-blue-500/20 to-blue-500/5",
+    borderGlow: "group-hover:border-blue-400/60 shadow-[0_0_20px_rgba(59,130,246,0.15)]",
+    dotColor: "bg-blue-400",
   },
 ];
 
@@ -164,6 +196,36 @@ const headerRevealVariants = {
 
 export default function AboutPage() {
   const [isPillarsPaused, setIsPillarsPaused] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [timecode, setTimecode] = useState("00:14:32:18");
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    let frame = 18;
+    let sec = 32;
+    let min = 14;
+    const interval = setInterval(() => {
+      frame += 1;
+      if (frame >= 24) {
+        frame = 0;
+        sec += 1;
+        if (sec >= 60) {
+          sec = 0;
+          min += 1;
+        }
+      }
+      const pad = (n: number) => String(n).padStart(2, "0");
+      setTimecode(`00:${pad(min)}:${pad(sec)}:${pad(frame)}`);
+    }, 1000 / 24);
+    return () => clearInterval(interval);
+  }, []);
+
+  const toggleAudio = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black relative overflow-x-hidden">
@@ -189,165 +251,250 @@ export default function AboutPage() {
 
       <Navbar />
 
-      {/* 1. HERO SECTION (REDESIGNED CINEMATIC ARCHITECTURE) */}
-      <section className="pt-16 sm:pt-28 md:pt-36 pb-10 sm:pb-24 px-4 sm:px-6 lg:px-12 border-b border-white/10 relative overflow-hidden bg-[#050505]">
-        {/* Subtle Ambient Light Glows */}
-        <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[700px] h-[350px] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute top-1/3 right-10 w-[600px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.035)_0%,transparent_70%)] pointer-events-none rounded-full" />
-        {/* Architectural Tactical Dot Matrix */}
-        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-60" />
+      {/* 1. HERO SECTION (REDESIGNED CINEMATIC ARCHITECTURE WITH OPTICAL VIEWFINDER & LIVE SHOWREEL) */}
+      <section className="pt-24 sm:pt-32 md:pt-36 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-12 border-b border-white/10 relative overflow-hidden bg-[#050505]">
+        {/* Cinematic Ambient Flare Glows */}
+        <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[700px] h-[380px] bg-[radial-gradient(circle,rgba(245,158,11,0.06)_0%,rgba(168,85,247,0.04)_45%,transparent_70%)] rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/3 right-4 w-[600px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none rounded-full blur-[120px]" />
+        
+        {/* Tactical Director's Optical Dot Grid */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0d_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-50" />
 
         <div className="container mx-auto max-w-7xl relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Top Status & Viewfinder Bar */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 mb-5 sm:mb-8">
-              {/* Status Pill */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md w-fit">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/80">
+            {/* Live Studio Status Pill */}
+            <div className="mb-6 sm:mb-8">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.8)]" />
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/90 font-medium">
                   STUDIO PROFILE
                 </span>
-                <span className="text-white/20">•</span>
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-white/50">
+                <span className="text-white/25">•</span>
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-white/60">
                   BANGALORE, INDIA
                 </span>
               </div>
-
-              {/* Viewfinder Metadata Stamp */}
-              <span className="text-[9px] sm:text-xs font-mono uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white/40">
-                [ 4K DCI • MASTER PROFILE // 2026 ]
-              </span>
             </div>
 
-            {/* Monumental Headline */}
-            <div className="mb-6 sm:mb-12">
-              <h1 className="text-[clamp(2rem,8.8vw,3rem)] sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight uppercase leading-[1.02] sm:leading-[0.92] text-white">
-                ABOUT <br />
-                <span className="text-white/40 hover:text-white transition-colors duration-500">
-                  VIYANA <br className="sm:hidden" />PRODUCTIONS.
-                </span>
-              </h1>
-            </div>
-
-            {/* Core Matter Card with Optical Viewfinder Accents */}
-            <div className="p-4 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white/[0.045] via-white/[0.02] to-transparent border border-white/15 backdrop-blur-xl relative overflow-hidden mb-5 sm:mb-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-              {/* Corner Viewfinder Brackets */}
-              <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-white/30 pointer-events-none" />
-              <div className="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-white/30 pointer-events-none" />
-              <div className="absolute bottom-3 left-3 w-3 h-3 border-b-2 border-l-2 border-white/30 pointer-events-none" />
-              <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-white/30 pointer-events-none" />
-
-              <div className="max-w-4xl space-y-4 sm:space-y-6">
-                <h2 className="text-lg sm:text-3xl md:text-4xl font-display font-bold text-white uppercase tracking-tight leading-snug">
-                  WHERE HIGH-IMPACT STRATEGY MEETS <br className="hidden sm:inline" />
-                  <span className="text-white/60">CINEMA-GRADE CRAFT.</span>
-                </h2>
-
-                <div className="border-l-2 border-white/60 pl-3 sm:pl-6 py-1">
-                  <p className="text-base sm:text-2xl font-display font-medium text-white/95 uppercase tracking-tight">
-                    We exist to make brands impossible to ignore.
-                  </p>
-                </div>
-
-                <p className="text-xs sm:text-base md:text-xl text-brand-grey font-light leading-relaxed max-w-3xl">
-                  We merge high-level advertising strategy with cinematic film production and world-class graphic design to create work that captures attention, builds brands, and drives meaningful growth.
-                </p>
-              </div>
-            </div>
-
-            {/* One Creative Partner Breakdown (Ecosystem Deck) */}
-            <div className="p-6 sm:p-10 md:p-12 rounded-3xl bg-gradient-to-br from-white/[0.035] via-white/[0.015] to-transparent border border-white/10 backdrop-blur-xl relative overflow-hidden shadow-2xl mb-8 sm:mb-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-                
-                {/* Left Action & Identity Column */}
-                <div className="lg:col-span-5 space-y-5">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 w-fit">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                    <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/80">
-                      OUR ECOSYSTEM
+            {/* SPLIT HERO COMPOSITION (TYPOGRAPHY NARRATIVE + CINEMATIC VIEWFINDER RIG) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center mb-10 sm:mb-16">
+              
+              {/* LEFT COLUMN: BRAND MANIFESTO & STRATEGIC VISION (7 COLS) */}
+              <div className="lg:col-span-7 space-y-6 sm:space-y-7">
+                {/* Monumental Headline (Clean 2-Line Architecture) */}
+                <div>
+                  <h1 className="text-[clamp(1.15rem,2.8vw,2.35rem)] sm:text-[clamp(1.25rem,3.2vw,2.55rem)] font-display font-extrabold uppercase tracking-tight leading-[1.12] text-white">
+                    <span className="block whitespace-nowrap">
+                      WHERE HIGH&#8209;IMPACT STRATEGY
                     </span>
-                  </div>
-
-                  <h3 className="text-2xl sm:text-4xl font-display font-bold uppercase text-white tracking-tight leading-tight">
-                    One creative partner. <br />
-                    <span className="text-white/50">One unified vision.</span>
-                  </h3>
-
-                  <div className="pt-2 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                    <Link
-                      to="/contact"
-                      className="w-full sm:w-auto text-center px-7 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-200 active:scale-95 transition-all shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.35)]"
-                    >
-                      Start a Project →
-                    </Link>
-                    <Link
-                      to="/work"
-                      className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-mono text-xs uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2 cursor-pointer active:scale-95 shadow-sm text-center"
-                    >
-                      <span>Explore Work →</span>
-                    </Link>
-                  </div>
+                    <span className="block whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-white drop-shadow-[0_2px_15px_rgba(245,158,11,0.25)]">
+                      MEETS CINEMA&#8209;GRADE CRAFT.
+                    </span>
+                  </h1>
                 </div>
 
-                {/* Right Narrative Column */}
-                <div className="lg:col-span-7 space-y-4 text-xs sm:text-base text-brand-grey font-light leading-relaxed border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-10">
-                  <p>
-                    Traditional agency models often separate strategy, production, and design. We bring them together under one creative ecosystem combining brand strategy, creative direction, filmmaking, motion, sound design, and graphic design.
+                {/* Golden Accent Manifesto Callout */}
+                <div className="relative pl-4 sm:pl-5 border-l-2 border-amber-400/90 py-1 space-y-1.5 bg-gradient-to-r from-white/[0.03] to-transparent rounded-r-xl">
+                  <p className="text-lg sm:text-2xl font-display font-bold uppercase tracking-tight text-white leading-snug">
+                    "We exist to make brands impossible to ignore."
                   </p>
-                  <p>
-                    From high-impact campaigns and brand identity systems to digital films and visual experiences, we create work designed to connect with modern audiences and deliver measurable results.
-                  </p>
-                  <p className="text-white/90">
-                    Our directors, writers, cinematographers, designers, and production artists collaborate from the first idea to final delivery, ensuring every frame, message, and visual serves a clear purpose.
+                  <p className="text-xs sm:text-sm font-mono text-amber-300/85 uppercase tracking-widest font-medium">
+                    One Creative Partner • Unified Vision • Measurable Commercial Growth
                   </p>
                 </div>
 
+                {/* Core Narrative Paragraph */}
+                <p className="text-sm sm:text-base md:text-lg text-neutral-300 font-light leading-relaxed max-w-2xl">
+                  Traditional agency models fracture strategy, film production, and design across disconnected vendors. At Viyana Productions, we eliminate the friction—uniting brand positioning, cinematic commercial filmmaking, motion design, and post-production under one collaborative roof in Bangalore.
+                </p>
+
+                {/* Value Propositions / Quality Checklist */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                  <div className="flex items-center gap-2 text-xs font-mono text-white/80 bg-white/[0.03] border border-white/10 px-3 py-2 rounded-xl">
+                    <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Integrated Creative</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-mono text-white/80 bg-white/[0.03] border border-white/10 px-3 py-2 rounded-xl">
+                    <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>In-House 4K Cinema</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-mono text-white/80 bg-white/[0.03] border border-white/10 px-3 py-2 rounded-xl">
+                    <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Script-to-Screen</span>
+                  </div>
+                </div>
+
+                {/* Dual CTA Actions */}
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-neutral-200 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.25)] hover:shadow-[0_0_45px_rgba(255,255,255,0.4)]"
+                  >
+                    <span>Start a Project</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    to="/work"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-sm active:scale-95"
+                  >
+                    <Film className="w-4 h-4 text-amber-400" />
+                    <span>Explore Showreel</span>
+                    <ArrowUpRight className="w-4 h-4 opacity-70" />
+                  </Link>
+                </div>
               </div>
+
+              {/* RIGHT COLUMN: THE CINEMATIC VIEWFINDER MASTER RIG (5 COLS) */}
+              <div className="lg:col-span-5 relative">
+                {/* Ambient Multi-Spectrum Glow Halo */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-amber-500/25 via-purple-500/20 to-blue-500/25 rounded-[34px] blur-2xl opacity-60 pointer-events-none group-hover:opacity-100 transition-opacity duration-700" />
+
+                {/* Viewfinder Outer Enclosure */}
+                <div className="relative rounded-[28px] sm:rounded-[32px] overflow-hidden border-2 border-white/20 bg-neutral-950 shadow-[0_25px_80px_rgba(0,0,0,0.85),inset_0_1px_2px_rgba(255,255,255,0.2)] group">
+                  
+                  {/* Live Auto-Playing Showreel Video */}
+                  <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] xl:aspect-[16/11] w-full overflow-hidden bg-black">
+                    <video
+                      ref={videoRef}
+                      src="/showreel-1080p-fast.mp4"
+                      poster="/cinematic-content-shoot.jpg"
+                      autoPlay
+                      loop
+                      muted={isMuted}
+                      playsInline
+                      className="w-full h-full object-cover filter contrast-[1.06] brightness-95 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+
+                    {/* Subtle Cinematic Vignette & Gradient Mask */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60 pointer-events-none" />
+
+                    {/* Cinematic Scope Letterbox Guides (2.39:1 Anamorphic Framing) */}
+                    <div className="absolute inset-x-3 inset-y-4 sm:inset-x-5 sm:inset-y-6 border border-white/20 pointer-events-none rounded-lg">
+                      {/* Sub-center Crosshair */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                        <div className="w-5 h-[1px] bg-white/40" />
+                        <div className="h-5 w-[1px] bg-white/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                        <div className="w-1.5 h-1.5 rounded-full border border-white/50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                      </div>
+                    </div>
+
+                    {/* Viewfinder Corner Sensor Brackets */}
+                    <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-400 pointer-events-none" />
+                    <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-amber-400 pointer-events-none" />
+                    <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-400 pointer-events-none" />
+                    <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-400 pointer-events-none" />
+
+                    {/* Optical Viewfinder HUD Overlays */}
+                    <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between pointer-events-none">
+                      
+                      {/* Top HUD Row: REC Tally Lamp & Sensor Resolution */}
+                      <div className="flex items-center justify-between gap-2">
+                        {/* Red Recording Tally Lamp */}
+                        <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/15 text-white font-mono text-[10px] sm:text-xs tracking-wider shadow-lg">
+                          <span className="relative flex h-2.5 w-2.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,1)]" />
+                          </span>
+                          <span className="font-bold text-red-400">REC</span>
+                          <span className="text-white/90 font-semibold">{timecode}</span>
+                        </div>
+
+                        {/* Format Indicator */}
+                        <div className="px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/15 text-amber-300 font-mono text-[10px] sm:text-xs tracking-wider font-semibold shadow-lg">
+                          4K DCI • 24 FPS
+                        </div>
+                      </div>
+
+                      {/* Bottom HUD Row: Camera Metadata & Interactive Sound Toggle */}
+                      <div className="flex items-end justify-between gap-2">
+                        {/* Camera Package Readout */}
+                        <div className="px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/15 text-white/80 font-mono text-[9px] sm:text-[10.5px] tracking-wide shadow-lg">
+                          <span className="text-amber-400 font-semibold">ARRI ALEXA 35</span>
+                          <span className="text-white/40 mx-1.5">•</span>
+                          <span>35MM T1.3</span>
+                        </div>
+
+                        {/* Audio Mute/Unmute Toggle Button */}
+                        <button
+                          type="button"
+                          onClick={toggleAudio}
+                          className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/85 hover:bg-black text-white border border-white/20 hover:border-amber-400/60 text-[10px] sm:text-xs font-mono tracking-wider transition-all cursor-pointer shadow-xl active:scale-95"
+                          title={isMuted ? "Unmute reel audio" : "Mute reel audio"}
+                        >
+                          {isMuted ? (
+                            <>
+                              <VolumeX className="w-3.5 h-3.5 text-neutral-400" />
+                              <span className="text-neutral-300">UNMUTE</span>
+                            </>
+                          ) : (
+                            <>
+                              <Volume2 className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+                              <span className="text-amber-300 font-bold">AUDIO ON</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  {/* Viewfinder Lower Tech Strip */}
+                  <div className="px-4 py-2.5 bg-neutral-900/90 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-white/60">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span>IN-HOUSE CINEMA STUDIO REEL</span>
+                    </div>
+                    <span className="text-amber-300/80 font-semibold">RAW LOG-C4 FINISH</span>
+                  </div>
+
+                </div>
+              </div>
+
             </div>
 
-            {/* Studio Metric Matrix Strip */}
+            {/* STUDIO METRIC MATRIX STRIP */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.025] hover:bg-white/[0.05] border border-white/10 hover:border-white/25 transition-all duration-300 relative overflow-hidden group">
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-white/50 transition-all duration-500" />
-                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-white/50 block mb-1">
-                  STUDIO MODEL
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.025] hover:bg-white/[0.06] border border-white/10 hover:border-amber-400/40 transition-all duration-300 relative overflow-hidden group shadow-lg">
+                <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400 transition-all duration-500" />
+                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-amber-300/70 block mb-1 font-semibold">
+                  01 / STUDIO MODEL
                 </span>
                 <span className="text-xs sm:text-sm font-semibold text-white font-mono block">
-                  Agency + Cinema Studio
+                  Agency + 4K Cinema Studio
                 </span>
               </div>
 
-              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.025] hover:bg-white/[0.05] border border-white/10 hover:border-white/25 transition-all duration-300 relative overflow-hidden group">
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-white/50 transition-all duration-500" />
-                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-white/50 block mb-1">
-                  HEADQUARTERS
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.025] hover:bg-white/[0.06] border border-white/10 hover:border-amber-400/40 transition-all duration-300 relative overflow-hidden group shadow-lg">
+                <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400 transition-all duration-500" />
+                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-amber-300/70 block mb-1 font-semibold">
+                  02 / HEADQUARTERS
                 </span>
                 <span className="text-xs sm:text-sm font-semibold text-white font-mono block">
-                  Bangalore, India
+                  Bangalore, Karnataka, India
                 </span>
               </div>
 
-              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.025] hover:bg-white/[0.05] border border-white/10 hover:border-white/25 transition-all duration-300 relative overflow-hidden group">
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-white/50 transition-all duration-500" />
-                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-white/50 block mb-1">
-                  PRODUCTION PIPELINE
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.025] hover:bg-white/[0.06] border border-white/10 hover:border-amber-400/40 transition-all duration-300 relative overflow-hidden group shadow-lg">
+                <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400 transition-all duration-500" />
+                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-amber-300/70 block mb-1 font-semibold">
+                  03 / PRODUCTION PIPELINE
                 </span>
                 <span className="text-xs sm:text-sm font-semibold text-white font-mono block">
-                  4K Cinema • ARRI &amp; RED
+                  4K Cinema • ARRI &amp; RED Rigs
                 </span>
               </div>
 
-              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.025] hover:bg-white/[0.05] border border-white/10 hover:border-white/25 transition-all duration-300 relative overflow-hidden group">
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-white/50 transition-all duration-500" />
-                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-white/50 block mb-1">
-                  CORE DISCIPLINES
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.025] hover:bg-white/[0.06] border border-white/10 hover:border-amber-400/40 transition-all duration-300 relative overflow-hidden group shadow-lg">
+                <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400 transition-all duration-500" />
+                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-amber-300/70 block mb-1 font-semibold">
+                  04 / CORE DISCIPLINES
                 </span>
                 <span className="text-xs sm:text-sm font-semibold text-white font-mono block">
-                  Ads • Videos • Design
+                  TVCs • Digital Ads • Brand Films
                 </span>
               </div>
             </div>
@@ -506,52 +653,152 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. CREATIVE PROCESS (HOW WE WORK) */}
-      {/* 4. CREATIVE PROCESS (HOW WE WORK) */}
-      <section className="py-16 sm:py-24 px-6 sm:px-10 lg:px-16 border-t border-white/10">
-        <div className="container mx-auto max-w-6xl">
+      {/* 4. CREATIVE PROCESS (PRODUCTION TREE GRAPH WORKFLOW) */}
+      <section className="py-14 sm:py-20 px-4 sm:px-8 lg:px-14 border-t border-white/10 relative overflow-hidden bg-gradient-to-b from-[#080706] via-[#0c0a0d] to-[#080706]">
+        {/* Subtle Ambient Glow Mesh */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.06)_0%,rgba(168,85,247,0.04)_45%,transparent_70%)] blur-3xl pointer-events-none" />
+        
+        {/* Engineering Coordinate Grid Texture */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
 
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16 gap-4">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-[0.3em] text-white/50 block mb-2">
-                OUR CREATIVE PROCESS
-              </span>
-              <h2 className="text-3xl sm:text-5xl font-syne font-bold text-white uppercase tracking-tight">
-                FROM THE FIRST IDEA TO THE FINAL FRAME.
+        <div className="container mx-auto max-w-7xl relative z-10">
+          
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 sm:mb-14 gap-4 pb-6 border-b border-white/10">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md">
+                <GitBranch className="w-3.5 h-3.5 text-amber-400" />
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/90 font-medium">
+                  PRODUCTION TREE GRAPH
+                </span>
+                <span className="text-white/20">•</span>
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.18em] text-amber-300/80">
+                  4 CALIBRATED PHASES
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold text-white uppercase tracking-tight leading-tight">
+                FROM THE FIRST IDEA <br className="hidden sm:inline" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-white">
+                  TO THE FINAL FRAME.
+                </span>
               </h2>
             </div>
-            <p className="text-xs font-mono uppercase tracking-widest text-white/40">
-              Four calibrated phases of production.
+            <p className="text-xs sm:text-sm font-mono text-white/50 uppercase tracking-widest max-w-xs leading-relaxed">
+              Every phase branches directly into the next, maintaining unbroken creative fidelity.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((step) => (
-              <div
-                key={step.step}
-                className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all space-y-3 flex flex-col justify-between"
-              >
-                <div className="space-y-2">
-                  <span className="text-xs font-mono text-white/80 font-bold block">
-                    STEP // {step.step}
-                  </span>
-                  <h3 className="text-xl font-display font-bold uppercase tracking-tight text-white">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs font-mono text-white/60 uppercase tracking-wide">
-                    {step.subtitle}
-                  </p>
-                </div>
-                <p className="text-xs sm:text-sm text-brand-grey font-light leading-relaxed pt-2 border-t border-white/5">
-                  {step.desc}
-                </p>
+          {/* TREE GRAPH VISUAL CONTAINER */}
+          <div className="relative">
+            
+            {/* Horizontal Tree Trunk Connecting Line with Animated Light Pulse (Desktop lg+) */}
+            <div className="hidden lg:block absolute top-[52px] left-[6%] right-[6%] h-[2px] bg-gradient-to-r from-amber-400/40 via-purple-400/40 to-blue-400/40 z-0">
+              {/* Traveling light pulse along the tree trunk */}
+              <motion.div
+                className="absolute top-1/2 -translate-y-1/2 w-16 h-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent blur-[2px]"
+                animate={{ left: ["0%", "100%"] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "linear" }}
+              />
+            </div>
+
+            {/* Tree Graph Grid (4 Branch Columns) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 relative z-10">
+              {processSteps.map((step, idx) => {
+                const Icon = step.icon;
+                return (
+                  <motion.div
+                    key={step.step}
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6, delay: idx * 0.12 }}
+                    className="relative group flex flex-col"
+                  >
+                    {/* Tree Node Junction Pin (Center-top of card on desktop) */}
+                    <div className="flex items-center gap-3 mb-4 lg:flex-col lg:items-center">
+                      {/* Circular Glowing Tree Node */}
+                      <div className="relative flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-[#120f17] border-2 border-white/20 group-hover:border-amber-400/80 flex items-center justify-center text-white font-mono font-bold text-xs tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.8)] group-hover:shadow-[0_0_25px_rgba(245,158,11,0.4)] z-10">
+                          <Icon className="w-5 h-5 text-amber-300 group-hover:scale-110 transition-transform" />
+                        </div>
+                        {/* Concentric node pulse ring */}
+                        <span className="absolute inset-0 rounded-full border border-amber-400/30 animate-ping opacity-40" />
+                      </div>
+
+                      {/* Branch Stem Connector Line (Desktop: vertical connector from node into card) */}
+                      <div className="hidden lg:block w-[2px] h-4 bg-gradient-to-b from-amber-400/50 to-white/20" />
+
+                      {/* Mobile Step Badge */}
+                      <div className="lg:hidden flex items-center gap-2">
+                        <span className="text-[10px] font-mono text-amber-300/90 font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+                          {step.branchName}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Tree Branch Card Pod */}
+                    <div className={`flex-1 p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent border border-white/12 ${step.borderGlow} transition-all duration-500 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group-hover:-translate-y-1.5`}>
+                      {/* Ambient internal card glow */}
+                      <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${step.accent} rounded-full blur-2xl pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity`} />
+                      
+                      {/* Top Branch Indicator (Desktop) */}
+                      <div className="space-y-2 mb-4 relative z-10">
+                        <div className="hidden lg:flex items-center justify-between">
+                          <span className="text-[9.5px] font-mono text-amber-300/80 uppercase tracking-widest font-semibold px-2 py-0.5 rounded bg-white/[0.03] border border-white/10">
+                            PHASE // {step.step}
+                          </span>
+                          <span className={`w-2 h-2 rounded-full ${step.dotColor} shadow-[0_0_8px_currentColor]`} />
+                        </div>
+
+                        <h3 className="text-lg sm:text-xl font-display font-bold uppercase tracking-tight text-white group-hover:text-amber-200 transition-colors pt-1">
+                          {step.title}
+                        </h3>
+                        <p className="text-xs font-mono text-white/60 uppercase tracking-wide">
+                          {step.subtitle}
+                        </p>
+                      </div>
+
+                      {/* Body Description */}
+                      <p className="text-xs sm:text-[13px] text-neutral-300 font-light leading-relaxed mb-5 relative z-10">
+                        {step.desc}
+                      </p>
+
+                      {/* Tree Leaves / Deliverable Tags */}
+                      <div className="pt-3 border-t border-white/10 space-y-1.5 relative z-10 mt-auto">
+                        <span className="text-[9px] font-mono uppercase tracking-widest text-white/40 block mb-1">
+                          TREE OUTPUTS:
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {step.deliverables.map((deliv, dIdx) => (
+                            <span
+                              key={dIdx}
+                              className="text-[10px] font-mono text-white/75 bg-white/[0.04] border border-white/10 px-2 py-1 rounded-md"
+                            >
+                              {deliv}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Tree Graph Flow Summary Bar */}
+            <div className="mt-8 sm:mt-10 p-4 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-white/60 gap-3">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-white/80 font-medium">END-TO-END PRODUCTION INTEGRATION</span>
               </div>
-            ))}
+              <span className="text-amber-300/80 hidden sm:inline">DISCOVERY → SCREENPLAY → CINEMATOGRAPHY → FINISHING</span>
+            </div>
+
           </div>
 
         </div>
       </section>
-
 
       {/* 6. STUDIO LOCATION CALLOUT (WHITE SECTION CANVAS WITH MONUMENTAL BLACK CARD) */}
       <section className="py-16 sm:py-24 px-4 sm:px-10 lg:px-16 bg-white text-black border-t border-black/10 border-b border-black/10 relative z-10 selection:bg-white selection:text-black">

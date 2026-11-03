@@ -52,7 +52,7 @@ function send_via_smtp($to, $subject, $body, $fromEmail, $fromName) {
     $host = 'ssl://smtp.gmail.com';
     $port = 465;
     $user = 'info.viyanaproductions@gmail.com';
-    $pass = 'rterfgoevjnrqztg'; // Gmail App Password
+    $pass = getenv('SMTP_PASS') ?: ($_ENV['SMTP_PASS'] ?? ''); // Loaded from environment
 
     $socket = @fsockopen($host, $port, $errno, $errstr, 15);
     if (!$socket) {

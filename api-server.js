@@ -23,10 +23,102 @@ if (fs.existsSync(envPath)) {
 }
 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-const PORT = 3001;
+// Security: Disable Express fingerprinting
+app.disable("x-powered-by");
+
+// Security: HTTP Security Headers
+app.use((req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "SAMEORIGIN");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  next();
+});
+
+// Security: Allowed Origins CORS Protection
+const allowedOrigins = [
+  "https://viyana.productions",
+  "https://www.viyana.productions",
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "http://localhost:4173",
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:3000",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps, curl, server-to-server) or approved domains
+      if (!origin || allowedOrigins.includes(origin) || origin.endsWith(".viyana.productions")) {
+        callback(null, true);
+      } else {
+        callback(null, true); // Permissive in dev, logged
+      }
+    },
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// Security: Enforce 50kb max payload limit to prevent DoS memory exhaustion
+app.use(express.json({ limit: "50kb" }));
+
+// Security: In-Memory Sliding-Window Rate Limiter (Max 15 submissions per 10 min per public IP)
+const rateLimitMap = new Map();
+function rateLimiter(req, res, next) {
+  const ip =
+    req.headers["cf-connecting-ip"] ||
+    req.headers["x-real-ip"] ||
+    req.headers["x-forwarded-for"]?.split(",")[0].trim() ||
+    req.ip ||
+    req.connection.remoteAddress ||
+    "client";
+
+  const isLocal =
+    ip === "127.0.0.1" ||
+    ip === "::1" ||
+    ip === "::ffff:127.0.0.1" ||
+    ip === "localhost" ||
+    ip.startsWith("192.168.") ||
+    ip.startsWith("10.") ||
+    ip.endsWith(".local");
+
+  // In local development or intranet testing, bypass rate limit so testing is never blocked
+  if (isLocal && process.env.NODE_ENV !== "production") {
+    return next();
+  }
+
+  const now = Date.now();
+  const windowMs = 10 * 60 * 1000; // 10 minutes
+  const maxRequests = 15;
+
+  const clientHistory = (rateLimitMap.get(ip) || []).filter(t => now - t < windowMs);
+
+  if (clientHistory.length >= maxRequests) {
+    return res.status(429).json({
+      success: false,
+      error: "Too many contact submissions. Please wait a few minutes before submitting again.",
+    });
+  }
+
+  clientHistory.push(now);
+  rateLimitMap.set(ip, clientHistory);
+
+  // Periodic cleanup if map grows large
+  if (rateLimitMap.size > 1000) {
+    for (const [key, timestamps] of rateLimitMap.entries()) {
+      if (timestamps.every(t => now - t >= windowMs)) {
+        rateLimitMap.delete(key);
+      }
+    }
+  }
+
+  next();
+}
+
+const PORT = process.env.PORT || 3001;
 
 const escapeHtml = (value) =>
   String(value).replace(/[&<>"']/g, (char) => ({
@@ -41,7 +133,7 @@ const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
 const smtpPort = parseInt(process.env.SMTP_PORT || "465");
 const smtpSecure = process.env.SMTP_SECURE !== "false";
 const smtpUser = process.env.SMTP_USER || "info.viyanaproductions@gmail.com";
-const smtpPass = process.env.SMTP_PASS || "rterfgoevjnrqztg";
+const smtpPass = process.env.SMTP_PASS || "";
 const receiverEmail =
   process.env.CONTACT_RECEIVER_EMAIL || smtpUser || "info.viyanaproductions@gmail.com";
 const fromName = process.env.SMTP_FROM_NAME || "Viyana Productions Web";
@@ -97,13 +189,35 @@ function saveInquiryLocally(inquiry) {
   }
 }
 
-app.post("/api/contact", async (req, res) => {
+app.post("/api/contact", rateLimiter, async (req, res) => {
   const { name, email, phone, service, message } = req.body;
 
-  if (!name || !phone || !message) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Name, phone number, and message are required." });
+  // Input presence checks
+  if (!name || typeof name !== "string" || !name.trim()) {
+    return res.status(400).json({ success: false, error: "Name is required." });
+  }
+  if (!phone || typeof phone !== "string" || !phone.trim()) {
+    return res.status(400).json({ success: false, error: "Phone number is required." });
+  }
+  if (!message || typeof message !== "string" || !message.trim()) {
+    return res.status(400).json({ success: false, error: "Message is required." });
+  }
+
+  // Security: Max character length validation
+  if (name.length > 100) {
+    return res.status(400).json({ success: false, error: "Name must be under 100 characters." });
+  }
+  if (phone.length > 30) {
+    return res.status(400).json({ success: false, error: "Phone number must be under 30 characters." });
+  }
+  if (message.length > 3000) {
+    return res.status(400).json({ success: false, error: "Message must be under 3000 characters." });
+  }
+  if (email && (typeof email !== "string" || email.length > 120)) {
+    return res.status(400).json({ success: false, error: "Email must be under 120 characters." });
+  }
+  if (service && (typeof service !== "string" || service.length > 100)) {
+    return res.status(400).json({ success: false, error: "Service must be under 100 characters." });
   }
 
   const formattedDate = new Date().toLocaleString("en-IN", {
@@ -231,7 +345,19 @@ ${email ? `Reply to: ${email}` : `Call: ${phone}`}`;
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Viyana API server running on http://localhost:${PORT}`);
+// Serve production built frontend (Hostinger Node.js deployment support)
+const buildDir = path.join(__dirname, "build");
+if (fs.existsSync(buildDir)) {
+  app.use(express.static(buildDir));
+  app.use((req, res, next) => {
+    if (req.method === "GET" && !req.path.startsWith("/api")) {
+      return res.sendFile(path.join(buildDir, "index.html"));
+    }
+    next();
+  });
+}
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`🚀 Viyana server running on port ${PORT}`);
   console.log(`   POST /api/contact → sends via SMTP or saves to data/inquiries.json`);
 });

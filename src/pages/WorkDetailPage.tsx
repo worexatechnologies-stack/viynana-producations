@@ -50,7 +50,7 @@ export default function ProjectDetail() {
     title: string;
   }
 
-  const galleryImages = project.gallery && project.gallery.length > 0 ? project.gallery : [project.thumbnail];
+  const galleryImages = Array.isArray(project.gallery) ? project.gallery : (project.thumbnail ? [project.thumbnail] : []);
   
   const slides: Slide[] = [];
 
@@ -62,11 +62,22 @@ export default function ProjectDetail() {
       thumbnail: `https://img.youtube.com/vi/${project.youtubeVideoId}/hqdefault.jpg`,
       title: `${project.title} - Video Reel`,
     });
+  }
+  
+  if (project.videos && project.videos.length > 0) {
+    project.videos.forEach((vidSrc, idx) => {
+      slides.push({
+        type: "video",
+        src: vidSrc,
+        thumbnail: (galleryImages && galleryImages[idx]) || project.thumbnail,
+        title: `${project.title} - Reel ${String(idx + 1).padStart(2, "0")}`,
+      });
+    });
   } else if (project.video) {
     slides.push({
       type: "video",
       src: project.video,
-      thumbnail: galleryImages[0] || project.thumbnail,
+      thumbnail: (galleryImages && galleryImages[0]) || project.thumbnail,
       title: `${project.title} - Video Preview`,
     });
   }
@@ -100,12 +111,14 @@ export default function ProjectDetail() {
 
   const slideCount = slides.length;
   const isProductShoot = project.slug === "product-shoot";
+  const isInfluencerShoot = project.slug === "influencer-shoot" || project.category === "INFLUENCER SHOOT";
   const isModelPortfolio =
     project.category === "MODELS PORTFOLIO SHOOTS" ||
     project.slug === "models-portfolio-shoots" ||
     project.slug === "model-portfolio-shoots";
   const isPortrait =
     isModelPortfolio ||
+    isInfluencerShoot ||
     project.category === "VERTICAL SERIES" ||
     project.slug === "vertical-series";
   const [activeImageIdx, setActiveImageIdx] = useState(0);
@@ -323,6 +336,120 @@ export default function ProjectDetail() {
   const pagePublisher = project.seo?.publisher || "Viyana Productions";
   const pageOgLocale = project.seo?.ogLocale || "en_US";
 
+  const renderInstagramSection = () => (
+    <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-gradient-to-b from-brand-black via-[#0d090d] to-brand-black relative overflow-hidden">
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-[#833ab4]/15 via-[#fd1d1d]/10 to-transparent blur-3xl pointer-events-none rounded-full" />
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          {/* Left: Reel Details & Hook */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#833ab4]/20 via-[#fd1d1d]/20 to-[#fcb045]/20 border border-pink-500/30 text-[11px] font-mono text-pink-300">
+              <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
+              <span>
+                {isInfluencerShoot
+                  ? "OFFICIAL INSTAGRAM REEL // INFLUENCER COLLAB"
+                  : isModelPortfolio
+                  ? "OFFICIAL INSTAGRAM REEL // MODEL PORTFOLIO"
+                  : "OFFICIAL INSTAGRAM REEL // PRODUCT SHOWCASE"}
+              </span>
+            </div>
+
+            <h2 className="text-2xl sm:text-4xl font-serif text-white tracking-tight leading-tight">
+              {isInfluencerShoot
+                ? "Watch the Influencer Collaboration in Motion"
+                : isModelPortfolio
+                ? "Watch the Model Portfolio in Motion"
+                : "Watch the Product in Motion"}
+            </h2>
+
+            <p className="text-brand-grey text-sm sm:text-base leading-relaxed font-light">
+              {isInfluencerShoot
+                ? "Designed to stop thumbs and captivate social audiences. Featuring creator-first pacing, trend-conscious color science, and dynamic vertical compositions optimized for high engagement, follower growth, and premium brand partnerships."
+                : isModelPortfolio
+                ? "Crafted for editorial agencies, comp cards, and luxury brand showcases. Featuring sculpted strobe lighting, fluid model posing, and high-fashion visual rhythm designed for vertical engagement."
+                : "Engineered specifically for high-retention vertical feeds. From dynamic macro lighting shifts to organic textures and seamless product rotation, this reel demonstrates our approach to viral luxury e-commerce visual storytelling."}
+            </p>
+
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-white/50 block mb-1">FORMAT</span>
+                <span className="text-sm font-mono font-semibold text-white">9:16 Vertical Reel</span>
+              </div>
+              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-white/50 block mb-1">PRODUCTION</span>
+                <span className="text-sm font-mono font-semibold text-white">
+                  {isInfluencerShoot
+                    ? "Creator Direction & Social Grade"
+                    : isModelPortfolio
+                    ? "Editorial Key Light & ACEScc"
+                    : "Macro Lighting & FX"}
+                </span>
+              </div>
+            </div>
+
+            {/* Multi-Reel Selector Tabs (if more than 1 reel) */}
+            {instagramList.length > 1 && (
+              <div className="pt-2 flex items-center gap-2.5">
+                <span className="text-[11px] font-mono text-white/60 uppercase tracking-wider">Select Reel:</span>
+                <div className="flex items-center gap-2">
+                  {instagramList.map((_, rIdx) => (
+                    <button
+                      key={rIdx}
+                      type="button"
+                      onClick={() => setActiveReelIdx(rIdx)}
+                      className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all cursor-pointer ${
+                        activeReelIdx === rIdx
+                          ? "bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white font-bold shadow-lg scale-105"
+                          : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+                      }`}
+                    >
+                      Reel 0{rIdx + 1}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <a
+                href={instagramList[activeReelIdx] || instagramList[0]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-95 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-transform active:scale-95 shadow-[0_10px_25px_rgba(253,29,29,0.3)]"
+              >
+                <InstagramIcon className="w-4 h-4" />
+                <span>Watch on Instagram</span>
+                <span className="text-sm">↗</span>
+              </a>
+              <span className="text-xs font-mono text-white/50">
+                @viyana.productions
+              </span>
+            </div>
+          </div>
+
+          {/* Right: Instagram Embedded Frame */}
+          <div className="lg:col-span-6 flex justify-center">
+            <div className="w-full max-w-[360px] sm:max-w-[400px] rounded-3xl overflow-hidden border border-white/20 bg-black shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(253,29,29,0.15)] p-2.5 sm:p-3 relative group">
+              <div className="w-full h-[560px] sm:h-[600px] rounded-2xl overflow-hidden bg-black flex items-center justify-center">
+                <iframe
+                  key={activeReelIdx}
+                  src={getInstagramEmbedUrl(instagramList[activeReelIdx] || instagramList[0])}
+                  title={`${project.title} Instagram Reel`}
+                  className="w-full h-full border-0"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen
+                  scrolling="no"
+                />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+
   return (
     <main className="bg-[#080808] text-brand-light min-h-screen selection:bg-white selection:text-black overflow-x-hidden">
       <SEO
@@ -382,14 +509,15 @@ export default function ProjectDetail() {
                   }`}
                 />
                 <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.18em] sm:tracking-[0.22em] text-white/70 truncate">
-                  PRODUCTION VISUALS // {isVideoSlide ? "FEATURED VIDEO" : `FRAME ${String(activeImageIdx + 1).padStart(2, "0")}`} OF {String(slideCount).padStart(2, "0")}
+                  PRODUCTION VISUALS // {isInfluencerShoot ? (isInstagramSlide ? `REEL ${String(activeImageIdx + 1).padStart(2, "0")} OF ${String(slideCount).padStart(2, "0")} (INSTAGRAM)` : `REEL ${String(activeImageIdx + 1).padStart(2, "0")} OF ${String(slideCount).padStart(2, "0")}`) : isVideoSlide ? "FEATURED VIDEO" : `FRAME ${String(activeImageIdx + 1).padStart(2, "0")}`} {slideCount > 1 && !isInfluencerShoot ? `OF ${String(slideCount).padStart(2, "0")}` : ""}
                 </span>
                 <span className="hidden sm:inline-block text-[9px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/50 shrink-0">
                   {isHovered ? "PAUSED ON HOVER" : "AUTO-SCROLLING"}
                 </span>
               </div>
 
-              {/* Row 2: Controls — full-width pill buttons on mobile */}
+              {/* Row 2: Controls — only when multiple slides */}
+              {slideCount > 1 && (
               <div className="flex items-center gap-2 sm:justify-end">
                 {/* Pause / Play — icon-only on mobile, icon+label on desktop */}
                 <button
@@ -427,6 +555,7 @@ export default function ProjectDetail() {
                   <span className="text-sm sm:text-xs">→</span>
                 </button>
               </div>
+              )} 
             </div>
 
             {/* Main Stage Viewport */}
@@ -436,11 +565,15 @@ export default function ProjectDetail() {
               onTouchEnd={handleTouchEnd}
               className={`relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-brand-dark shadow-[0_20px_70px_rgba(0,0,0,0.95)] group transition-all duration-500 ${
                 isInstagramSlide
-                  ? "w-full min-h-[580px] sm:min-h-[640px] max-w-4xl mx-auto bg-black"
+                  ? isInfluencerShoot
+                    ? "w-full max-w-[340px] sm:max-w-[380px] min-h-[580px] sm:min-h-[640px] mx-auto bg-black rounded-2xl sm:rounded-3xl shadow-[0_15px_50px_rgba(0,0,0,0.95)]"
+                    : "w-full min-h-[580px] sm:min-h-[640px] max-w-4xl mx-auto bg-black"
                   : isYoutubeSlide
                   ? "w-full aspect-video max-w-5xl mx-auto"
                   : isProductShoot
                   ? "w-full aspect-[4/3] sm:aspect-[16/10] md:max-h-[620px] max-w-5xl mx-auto bg-black"
+                  : isInfluencerShoot
+                  ? "w-full max-w-[270px] sm:max-w-[310px] md:max-w-[330px] aspect-[9/16] max-h-[480px] sm:max-h-[550px] mx-auto bg-black rounded-2xl sm:rounded-3xl shadow-[0_15px_50px_rgba(0,0,0,0.95)]"
                   : isPortrait
                   ? "w-full aspect-[4/5] sm:aspect-[4/5] md:aspect-[4/3.6] lg:aspect-[4/3.5] md:max-h-[560px] lg:max-h-[580px] max-w-2xl mx-auto"
                   : isDirectVideoSlide
@@ -525,7 +658,7 @@ export default function ProjectDetail() {
                       muted
                       playsInline
                       controls
-                      className={`w-full h-full ${isPortrait ? "object-cover object-[center_top]" : "object-cover"}`}
+                      className={`w-full h-full ${isInfluencerShoot ? "object-contain bg-black" : isPortrait ? "object-cover object-[center_top]" : "object-cover"}`}
                     />
                   ) : (
                     <img
@@ -582,7 +715,8 @@ export default function ProjectDetail() {
                   </span>
                 </div>
 
-                {/* Interactive Pagination Dots */}
+                {/* Interactive Pagination Dots (when multiple slides) */}
+                {slideCount > 1 && (
                 <div className="pointer-events-auto flex items-center gap-1.5 sm:gap-2 bg-black/75 backdrop-blur-md px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full border border-white/15 shadow-lg shrink-0">
                   {Array.from({ length: slideCount }, (_, idx) => (
                     <button
@@ -597,6 +731,7 @@ export default function ProjectDetail() {
                     />
                   ))}
                 </div>
+                )}
 
                 {/* Right: Technical Spec Badge */}
                 <span className="bg-black/80 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/20 text-[10px] sm:text-[11px] text-white/90 font-mono shrink-0 shadow-lg">
@@ -651,7 +786,7 @@ export default function ProjectDetail() {
                         <span className={`absolute bottom-1 right-1 text-[8.5px] font-mono px-1 py-0.2 rounded font-bold ${
                           isInstagram ? "bg-gradient-to-r from-pink-600 to-purple-600 text-white" : isVideo ? "bg-red-600 text-white" : "bg-black/80 text-white"
                         }`}>
-                          {isInstagram ? "REEL" : isVideo ? "VIDEO" : String(idx).padStart(2, "0")}
+                          {isInstagram ? "INSTA REEL" : isInfluencerShoot ? `REEL ${String(idx + 1).padStart(2, "0")}` : isVideo ? "VIDEO" : String(idx).padStart(2, "0")}
                         </span>
                       </button>
                     );
@@ -662,104 +797,8 @@ export default function ProjectDetail() {
           </div>
         </section>
 
-        {/* FEATURED INSTAGRAM REEL SHOWCASE (e.g. for product-shoot and models-portfolio-shoots) */}
-        {instagramList.length > 0 && (
-          <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-gradient-to-b from-brand-black via-[#0d090d] to-brand-black relative overflow-hidden">
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-[#833ab4]/15 via-[#fd1d1d]/10 to-transparent blur-3xl pointer-events-none rounded-full" />
-            <div className="container mx-auto max-w-6xl relative z-10">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-                
-                {/* Left: Reel Details & Hook */}
-                <div className="lg:col-span-6 space-y-6">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#833ab4]/20 via-[#fd1d1d]/20 to-[#fcb045]/20 border border-pink-500/30 text-[11px] font-mono text-pink-300">
-                    <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
-                    <span>{isModelPortfolio ? "OFFICIAL INSTAGRAM REEL // MODEL PORTFOLIO" : "OFFICIAL INSTAGRAM REEL // PRODUCT SHOWCASE"}</span>
-                  </div>
-
-                  <h2 className="text-2xl sm:text-4xl font-serif text-white tracking-tight leading-tight">
-                    {isModelPortfolio ? "Watch the Model Portfolio in Motion" : "Watch the Product in Motion"}
-                  </h2>
-
-                  <p className="text-brand-grey text-sm sm:text-base leading-relaxed font-light">
-                    {isModelPortfolio
-                      ? "Crafted for editorial agencies, comp cards, and luxury brand showcases. Featuring sculpted strobe lighting, fluid model posing, and high-fashion visual rhythm designed for vertical engagement."
-                      : "Engineered specifically for high-retention vertical feeds. From dynamic macro lighting shifts to organic textures and seamless product rotation, this reel demonstrates our approach to viral luxury e-commerce visual storytelling."}
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-3 pt-2">
-                    <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-white/50 block mb-1">FORMAT</span>
-                      <span className="text-sm font-mono font-semibold text-white">9:16 Vertical Reel</span>
-                    </div>
-                    <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-white/50 block mb-1">PRODUCTION</span>
-                      <span className="text-sm font-mono font-semibold text-white">
-                        {isModelPortfolio ? "Editorial Key Light & ACEScc" : "Macro Lighting & FX"}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Multi-Reel Selector Tabs (if more than 1 reel) */}
-                  {instagramList.length > 1 && (
-                    <div className="pt-2 flex items-center gap-2.5">
-                      <span className="text-[11px] font-mono text-white/60 uppercase tracking-wider">Select Reel:</span>
-                      <div className="flex items-center gap-2">
-                        {instagramList.map((_, rIdx) => (
-                          <button
-                            key={rIdx}
-                            type="button"
-                            onClick={() => setActiveReelIdx(rIdx)}
-                            className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all cursor-pointer ${
-                              activeReelIdx === rIdx
-                                ? "bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white font-bold shadow-lg scale-105"
-                                : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
-                            }`}
-                          >
-                            Reel 0{rIdx + 1}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="pt-2 flex flex-wrap items-center gap-4">
-                    <a
-                      href={instagramList[activeReelIdx] || instagramList[0]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-95 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-transform active:scale-95 shadow-[0_10px_25px_rgba(253,29,29,0.3)]"
-                    >
-                      <InstagramIcon className="w-4 h-4" />
-                      <span>Watch on Instagram</span>
-                      <span className="text-sm">↗</span>
-                    </a>
-                    <span className="text-xs font-mono text-white/50">
-                      @viyana.productions
-                    </span>
-                  </div>
-                </div>
-
-                {/* Right: Instagram Embedded Frame */}
-                <div className="lg:col-span-6 flex justify-center">
-                  <div className="w-full max-w-[360px] sm:max-w-[400px] rounded-3xl overflow-hidden border border-white/20 bg-black shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(253,29,29,0.15)] p-2.5 sm:p-3 relative group">
-                    <div className="w-full h-[560px] sm:h-[600px] rounded-2xl overflow-hidden bg-black flex items-center justify-center">
-                      <iframe
-                        key={activeReelIdx}
-                        src={getInstagramEmbedUrl(instagramList[activeReelIdx] || instagramList[0])}
-                        title={`${project.title} Instagram Reel`}
-                        className="w-full h-full border-0"
-                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                        allowFullScreen
-                        scrolling="no"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </section>
-        )}
+        {/* FEATURED INSTAGRAM REEL SHOWCASE (for standard shoots) */}
+        {instagramList.length > 0 && !isInfluencerShoot && renderInstagramSection()}
 
         {/* 4. EDITORIAL STRATEGY & COMPREHENSIVE PRODUCTION CONTENT */}
         <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-12 border-t border-white/10 mt-6">
@@ -993,6 +1032,9 @@ export default function ProjectDetail() {
             </div>
           </div>
         </section>
+
+        {/* FEATURED INSTAGRAM REEL SHOWCASE FOR INFLUENCER SHOOT (AT LAST IN INFLUENCER PAGE) */}
+        {instagramList.length > 0 && isInfluencerShoot && renderInstagramSection()}
 
         {/* 5. QUICK 13 SERVICES SELECTOR */}
         <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-black/60">

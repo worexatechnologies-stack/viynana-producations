@@ -5,10 +5,10 @@ import { X } from "lucide-react";
 // Vibrant Festive Diwali Colors for Rocket Bursts
 const ROCKET_COLORS = [
   "#FFD700", // Royal Gold Willow
-  "#FF5E00", // Saffron / Marigold Orange
-  "#FF1E56", // Festive Crimson Red
-  "#00F5D4", // Emerald Glow
-  "#FFF4D2", // Champagne Spark
+  "#FF6B00", // Saffron / Marigold Orange
+  "#FF1E56", // Festive Ruby Crimson
+  "#00F5A0", // Peacock Emerald
+  "#FFF8D6", // Champagne Willow Spark
   "#FF007F", // Bright Diwali Magenta
   "#00E5FF", // Electric Cyan
 ];
@@ -28,6 +28,15 @@ interface Particle {
   trail: { x: number; y: number; alpha: number }[];
 }
 
+interface Flash {
+  x: number;
+  y: number;
+  radius: number;
+  maxRadius: number;
+  alpha: number;
+  color: string;
+}
+
 interface Rocket {
   x: number;
   y: number;
@@ -45,19 +54,31 @@ export default function DiwaliCelebration() {
   const [showBanner, setShowBanner] = useState(false);
   const particlesRef = useRef<Particle[]>([]);
   const rocketsRef = useRef<Rocket[]>([]);
+  const flashesRef = useRef<Flash[]>([]);
   const animFrameRef = useRef<number | null>(null);
   const isRunningRef = useRef(false);
 
   // Burst explosion when rocket reaches target height
   const explodeRocket = useCallback(
-    (x: number, y: number, mainColor: string, count: number = 70) => {
+    (x: number, y: number, mainColor: string, count: number = 85) => {
+      // 1. Initial luminous flash bloom
+      flashesRef.current.push({
+        x,
+        y,
+        radius: 12,
+        maxRadius: 180,
+        alpha: 0.45,
+        color: mainColor,
+      });
+
       const particles: Particle[] = [];
 
+      // 2. Main spherical firework stars with spark streaks
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 5.8 + 1.2;
+        const speed = Math.random() * 6.5 + 1.6;
         const color =
-          Math.random() > 0.3
+          Math.random() > 0.35
             ? mainColor
             : ROCKET_COLORS[Math.floor(Math.random() * ROCKET_COLORS.length)];
 
@@ -68,31 +89,31 @@ export default function DiwaliCelebration() {
           vy: Math.sin(angle) * speed,
           alpha: 1,
           color,
-          size: Math.random() * 2.8 + 1.4,
-          decay: Math.random() * 0.018 + 0.012,
+          size: Math.random() * 2.6 + 1.4,
+          decay: Math.random() * 0.016 + 0.011,
           sparkle: Math.random() > 0.35,
-          gravity: 0.085,
-          friction: 0.962,
+          gravity: 0.082,
+          friction: 0.965,
           trail: [],
         });
       }
 
-      // Golden willow trailing sparks
-      for (let j = 0; j < 30; j++) {
+      // 3. Golden Nishiki Kamuro / Weeping Willow trailing cascade
+      for (let j = 0; j < 40; j++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 4.5 + 0.8;
+        const speed = Math.random() * 4.2 + 0.6;
         particles.push({
           x,
           y,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
           alpha: 1,
-          color: "#FFE89E",
-          size: Math.random() * 1.8 + 0.8,
-          decay: Math.random() * 0.014 + 0.009, // longer lingering golden willow
+          color: "#FFE699",
+          size: Math.random() * 1.8 + 0.9,
+          decay: Math.random() * 0.012 + 0.007, // lingering golden willow embers
           sparkle: true,
-          gravity: 0.095,
-          friction: 0.97,
+          gravity: 0.075,
+          friction: 0.975,
           trail: [],
         });
       }
@@ -104,17 +125,16 @@ export default function DiwaliCelebration() {
 
   // Launch an authentic Diwali sky rocket with spark exhaust trail
   const launchRocket = useCallback(
-    (targetXPercent: number, targetYPercent: number = 0.28) => {
+    (targetXPercent: number, targetYPercent: number = 0.26) => {
       const width = typeof window !== "undefined" ? window.innerWidth : 1000;
       const height = typeof window !== "undefined" ? window.innerHeight : 800;
 
       const startX = width * targetXPercent + (Math.random() - 0.5) * 60;
       const destY = height * targetYPercent + (Math.random() - 0.5) * 80;
 
-      // Calculate vertical speed to reach altitude
       const dy = height - destY;
-      const vy = -Math.sqrt(2 * 0.09 * dy) * 1.22;
-      const vx = ((width * targetXPercent - startX) / Math.abs(vy)) * 1.5 + (Math.random() - 0.5) * 1.6;
+      const vy = -Math.sqrt(2 * 0.09 * dy) * 1.25;
+      const vx = ((width * targetXPercent - startX) / Math.abs(vy)) * 1.5 + (Math.random() - 0.5) * 1.8;
 
       const color = ROCKET_COLORS[Math.floor(Math.random() * ROCKET_COLORS.length)];
 
@@ -125,12 +145,11 @@ export default function DiwaliCelebration() {
         vx,
         vy,
         color,
-        particlesCount: Math.floor(Math.random() * 25) + 65,
+        particlesCount: Math.floor(Math.random() * 25) + 75,
         trail: [],
         exhaustSparks: [],
       });
 
-      // Ensure animation loop is running
       if (!isRunningRef.current) {
         isRunningRef.current = true;
         startAnimation();
@@ -139,36 +158,35 @@ export default function DiwaliCelebration() {
     [explodeRocket]
   );
 
-  // Launch a synchronized Diwali rocket show
+  // Synchronized Diwali celebratory sky rocket show
   const launchRocketShow = useCallback(() => {
     setShowBanner(true);
 
-    // Salvo 1: Two rockets from left and right climbing toward sky
-    launchRocket(0.25, 0.28);
-    launchRocket(0.75, 0.26);
+    // Wave 1: Dual rockets from left & right
+    launchRocket(0.28, 0.28);
+    launchRocket(0.72, 0.27);
 
-    // Salvo 2: Two rockets intersecting toward upper center
+    // Wave 2: Intersecting rockets
     setTimeout(() => {
-      launchRocket(0.4, 0.22);
-      launchRocket(0.6, 0.24);
-    }, 1200);
+      launchRocket(0.42, 0.22);
+      launchRocket(0.58, 0.23);
+    }, 1100);
 
-    // Salvo 3: Grand finale center rocket bursting high
+    // Wave 3: Grand finale center rocket blooming high
     setTimeout(() => {
-      launchRocket(0.5, 0.18);
-    }, 2400);
+      launchRocket(0.5, 0.17);
+    }, 2200);
 
-    // Auto-hide the Diwali banner after 6 seconds
+    // Auto-dismiss banner after 6.5s
     setTimeout(() => {
       setShowBanner(false);
     }, 6500);
   }, [launchRocket]);
 
-  // Launch initial rocket show when user opens the website
   useEffect(() => {
     const timer = setTimeout(() => {
       launchRocketShow();
-    }, 700);
+    }, 650);
 
     return () => clearTimeout(timer);
   }, [launchRocketShow]);
@@ -188,21 +206,45 @@ export default function DiwaliCelebration() {
 
       const rockets = rocketsRef.current;
       const particles = particlesRef.current;
+      const flashes = flashesRef.current;
+
+      // ── 0. DRAW RADIAL FLASHES ──
+      for (let f = flashes.length - 1; f >= 0; f--) {
+        const fl = flashes[f];
+        fl.radius += (fl.maxRadius - fl.radius) * 0.28;
+        fl.alpha -= 0.055;
+
+        if (fl.alpha <= 0) {
+          flashes.splice(f, 1);
+          continue;
+        }
+
+        ctx.save();
+        const grad = ctx.createRadialGradient(fl.x, fl.y, 0, fl.x, fl.y, fl.radius);
+        grad.addColorStop(0, "rgba(255, 255, 255, " + fl.alpha + ")");
+        grad.addColorStop(0.4, fl.color);
+        grad.addColorStop(1, "transparent");
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(fl.x, fl.y, fl.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
 
       // ── 1. UPDATE & DRAW ROCKETS ──
       for (let i = rockets.length - 1; i >= 0; i--) {
         const r = rockets[i];
         r.x += r.vx;
         r.y += r.vy;
-        r.vy += 0.088; // gravity deceleration as it reaches apex
+        r.vy += 0.088;
 
-        // Add exhaust golden sparks
-        for (let s = 0; s < 3; s++) {
+        // Exhaust golden sparks
+        for (let s = 0; s < 4; s++) {
           r.exhaustSparks.push({
             x: r.x + (Math.random() - 0.5) * 3,
-            y: r.y + Math.random() * 4,
-            vx: -r.vx * 0.2 + (Math.random() - 0.5) * 1.5,
-            vy: Math.random() * 2.5 + 1.2,
+            y: r.y + Math.random() * 5,
+            vx: -r.vx * 0.2 + (Math.random() - 0.5) * 1.8,
+            vy: Math.random() * 3 + 1.2,
             alpha: 1,
           });
         }
@@ -212,7 +254,7 @@ export default function DiwaliCelebration() {
           const spk = r.exhaustSparks[s];
           spk.x += spk.vx;
           spk.y += spk.vy;
-          spk.alpha -= 0.06;
+          spk.alpha -= 0.055;
 
           if (spk.alpha <= 0) {
             r.exhaustSparks.splice(s, 1);
@@ -222,27 +264,27 @@ export default function DiwaliCelebration() {
           ctx.save();
           ctx.beginPath();
           ctx.arc(spk.x, spk.y, Math.random() * 1.8 + 0.8, 0, Math.PI * 2);
-          ctx.fillStyle = Math.random() > 0.4 ? "#FFD700" : "#FFA500";
+          ctx.fillStyle = Math.random() > 0.35 ? "#FFD700" : "#FFA500";
           ctx.globalAlpha = spk.alpha;
           ctx.shadowColor = "#FF8C00";
-          ctx.shadowBlur = 6;
+          ctx.shadowBlur = 8;
           ctx.fill();
           ctx.restore();
         }
 
         // Store rocket path trail
         r.trail.push({ x: r.x, y: r.y });
-        if (r.trail.length > 12) r.trail.shift();
+        if (r.trail.length > 14) r.trail.shift();
 
         // Draw luminous rocket body trail
         ctx.save();
         ctx.beginPath();
         for (let t = 0; t < r.trail.length; t++) {
           const pt = r.trail[t];
-          const trAlpha = (t / r.trail.length) * 0.9;
+          const trAlpha = (t / r.trail.length) * 0.95;
           ctx.strokeStyle = r.color;
           ctx.globalAlpha = trAlpha;
-          ctx.lineWidth = (t / r.trail.length) * 3 + 0.8;
+          ctx.lineWidth = (t / r.trail.length) * 3.2 + 0.8;
           if (t === 0) ctx.moveTo(pt.x, pt.y);
           else ctx.lineTo(pt.x, pt.y);
         }
@@ -250,11 +292,11 @@ export default function DiwaliCelebration() {
 
         // Burning fiery rocket head
         ctx.beginPath();
-        ctx.arc(r.x, r.y, 3, 0, Math.PI * 2);
+        ctx.arc(r.x, r.y, 3.2, 0, Math.PI * 2);
         ctx.fillStyle = "#FFFFFF";
         ctx.globalAlpha = 1;
         ctx.shadowColor = "#FFF";
-        ctx.shadowBlur = 14;
+        ctx.shadowBlur = 16;
         ctx.fill();
         ctx.restore();
 
@@ -279,21 +321,38 @@ export default function DiwaliCelebration() {
           continue;
         }
 
+        // Particle trail
+        p.trail.push({ x: p.x, y: p.y, alpha: p.alpha });
+        if (p.trail.length > 4) p.trail.shift();
+
         ctx.save();
+        // Draw spark streak
+        if (p.trail.length > 1) {
+          ctx.beginPath();
+          ctx.moveTo(p.trail[0].x, p.trail[0].y);
+          for (let t = 1; t < p.trail.length; t++) {
+            ctx.lineTo(p.trail[t].x, p.trail[t].y);
+          }
+          ctx.strokeStyle = p.color;
+          ctx.globalAlpha = p.alpha * 0.45;
+          ctx.lineWidth = p.size * 0.8;
+          ctx.stroke();
+        }
+
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
 
-        const flicker = p.sparkle ? 0.75 + Math.random() * 0.25 : 1;
+        const flicker = p.sparkle ? 0.7 + Math.random() * 0.3 : 1;
         ctx.globalAlpha = Math.max(0, p.alpha * flicker);
         ctx.fillStyle = p.color;
         ctx.shadowColor = p.color;
-        ctx.shadowBlur = p.sparkle ? 9 : 3;
+        ctx.shadowBlur = p.sparkle ? 10 : 4;
         ctx.fill();
         ctx.restore();
       }
 
       // Keep loop running while rockets or particles are active
-      if (rockets.length > 0 || particles.length > 0) {
+      if (rockets.length > 0 || particles.length > 0 || flashes.length > 0) {
         animFrameRef.current = requestAnimationFrame(render);
       } else {
         isRunningRef.current = false;
@@ -304,7 +363,6 @@ export default function DiwaliCelebration() {
     animFrameRef.current = requestAnimationFrame(render);
   };
 
-  // Handle window resizing
   useEffect(() => {
     const handleResize = () => {
       const canvas = canvasRef.current;

@@ -1,7 +1,12 @@
 const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
-const ffmpeg = require("ffmpeg-static");
+let ffmpeg = "ffmpeg";
+try {
+  ffmpeg = require("ffmpeg-static");
+} catch {
+  // Use system ffmpeg if ffmpeg-static is not installed
+}
 
 const publicDir = path.resolve(__dirname, "../public");
 const backupDir = path.resolve(publicDir, "video-originals");
