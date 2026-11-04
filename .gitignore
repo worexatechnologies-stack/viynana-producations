@@ -50,5 +50,3 @@ inquiries.json
 
 # Large video backups (> 100MB)
 public/video-originals/
-public/final-output.mp4
-"public/final output.mp4"
