@@ -28,6 +28,7 @@ function WorkVideoPlayer({
     if (!video) return;
     video.defaultMuted = true;
     video.muted = isMuted;
+    video.load();
     const promise = video.play();
     if (promise !== undefined) {
       promise
@@ -36,7 +37,13 @@ function WorkVideoPlayer({
           setIsPlaying(false);
         });
     }
-  }, [src, isMuted]);
+  }, [src]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = isMuted;
+  }, [isMuted]);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -66,12 +73,15 @@ function WorkVideoPlayer({
       <video
         ref={videoRef}
         key={src}
+        src={src}
         poster={poster}
         autoPlay
         loop
         muted={isMuted}
         playsInline
         preload="auto"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
         className={`w-full h-full ${
           isInfluencerShoot
             ? "object-contain bg-black"

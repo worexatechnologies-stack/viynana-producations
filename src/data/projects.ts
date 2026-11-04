@@ -684,7 +684,7 @@ export const projects: Project[] = [
     client: "Influencers & Creators",
     director: "Viyana Creative Lab",
     deliverableType: "Reels, Photos and Short Videos",
-    thumbnail: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=75&w=720&auto=format&fit=crop",
+    thumbnail: "/reel-01-poster.jpg",
     video: "/final-output.mp4",
     videos: [
       "/final-output.mp4",
@@ -710,7 +710,10 @@ export const projects: Project[] = [
     },
     ctaText: "BOOK AN INFLUENCER SHOOT",
     tagline: "STYLISH VIDEOS & PHOTOS.",
-    gallery: [],
+    gallery: [
+      "/reel-01-poster.jpg",
+      "/reel-02-poster.jpg"
+    ],
     seo: {
       metaTitle: "Influencer shoot in Bangalore | Viyana Productions",
       metaDescription: "Create standout social media content with Viyana Productions. Our influencer shoots in Bangalore deliver visuals for personal branding and campaigns.",
