@@ -1,11 +1,120 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { projects } from "@/data/projects";
+
+function WorkVideoPlayer({
+  src,
+  poster,
+  isInfluencerShoot,
+  isPortrait,
+}: {
+  src: string;
+  poster?: string;
+  isInfluencerShoot?: boolean;
+  isPortrait?: boolean;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.defaultMuted = true;
+    video.muted = isMuted;
+    const promise = video.play();
+    if (promise !== undefined) {
+      promise
+        .then(() => setIsPlaying(true))
+        .catch(() => {
+          setIsPlaying(false);
+        });
+    }
+  }, [src, isMuted]);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play().then(() => setIsPlaying(true)).catch(() => {});
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const toggleSound = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
+
+  return (
+    <div
+      onClick={togglePlay}
+      className="relative w-full h-full cursor-pointer group/video bg-black flex items-center justify-center overflow-hidden"
+    >
+      <video
+        ref={videoRef}
+        key={src}
+        poster={poster}
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline
+        preload="auto"
+        className={`w-full h-full ${
+          isInfluencerShoot
+            ? "object-contain bg-black"
+            : isPortrait
+            ? "object-cover object-[center_top]"
+            : "object-cover"
+        }`}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+
+      {/* Play / Pause Center Overlay Icon */}
+      <div
+        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 pointer-events-none ${
+          !isPlaying ? "opacity-100 bg-black/40" : "opacity-0 group-hover/video:opacity-100"
+        }`}
+      >
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl transition-transform group-hover/video:scale-110">
+          {!isPlaying ? (
+            <Play className="w-7 h-7 fill-current ml-0.5 text-white" />
+          ) : (
+            <Pause className="w-7 h-7 fill-current text-white" />
+          )}
+        </div>
+      </div>
+
+      {/* Sound Mute/Unmute Button (Bottom Right) */}
+      <button
+        type="button"
+        onClick={toggleSound}
+        className={`absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-30 p-2 sm:p-2.5 rounded-full backdrop-blur-md border transition-all cursor-pointer pointer-events-auto ${
+          !isMuted
+            ? "bg-emerald-500 text-black border-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.5)]"
+            : "bg-black/70 text-white border-white/25 hover:bg-black/90 hover:scale-105"
+        }`}
+        aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+        title={isMuted ? "Unmute" : "Mute"}
+      >
+        {!isMuted ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+      </button>
+    </div>
+  );
+}
 
 function getInstagramEmbedUrl(url: string): string {
   const match = url.match(/instagram\.com\/(?:reel|p|tv)\/([^/?#&]+)/i);
@@ -649,16 +758,12 @@ export default function ProjectDetail() {
                         </a>
                       </div>
                     </div>
-                  ) : currentSlide.type === "video" && currentSlide.src ? (
-                    <video
+                                    ) : currentSlide.type === "video" && currentSlide.src ? (
+                    <WorkVideoPlayer
                       src={currentSlide.src}
                       poster={currentSlide.thumbnail}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      controls
-                      className={`w-full h-full ${isInfluencerShoot ? "object-contain bg-black" : isPortrait ? "object-cover object-[center_top]" : "object-cover"}`}
+                      isInfluencerShoot={isInfluencerShoot}
+                      isPortrait={isPortrait}
                     />
                   ) : (
                     <img
