@@ -687,8 +687,7 @@ export const projects: Project[] = [
     thumbnail: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=75&w=720&auto=format&fit=crop",
     video: "/final-render-video-volpue.mp4",
     videos: [
-      "/final-render-video-volpue.mp4",
-      "/final-output.mp4"
+      "/final-render-video-volpue.mp4"
     ],
     instagramReelUrl: "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw==",
     instagramReels: [

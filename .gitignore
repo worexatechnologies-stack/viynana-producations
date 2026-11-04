@@ -42,7 +42,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Lead & inquiry data (PII)
+# Lead & inquiry data (PII at root only)
 /data/
-data/
+/data/*
 inquiries.json
+!src/data/
+
+# Large video backups (> 100MB)
+public/video-originals/
+public/final-output.mp4
+"public/final output.mp4"
