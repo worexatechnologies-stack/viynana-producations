@@ -10,7 +10,8 @@
     "api": "node api-server.js",
     "dev:full": "start cmd /k node api-server.js && vite --host",
     "build:portfolio": "npm --prefix \"viyana portfolio\" run build",
-    "build": "npm --prefix \"viyana portfolio\" run build && tsc -b && vite build",
+    "build:full": "npm --prefix \"viyana portfolio\" run build && tsc -b && vite build",
+    "build": "tsc -b && vite build",
     "start": "node api-server.js",
     "preview": "vite preview --host"
   },
