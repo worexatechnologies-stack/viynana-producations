@@ -13,11 +13,13 @@ function WorkVideoPlayer({
   poster,
   isInfluencerShoot,
   isPortrait,
+  isProductShoot,
 }: {
   src: string;
   poster?: string;
   isInfluencerShoot?: boolean;
   isPortrait?: boolean;
+  isProductShoot?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -83,7 +85,7 @@ function WorkVideoPlayer({
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         className={`w-full h-full ${
-          isInfluencerShoot
+          isInfluencerShoot || isProductShoot
             ? "object-contain bg-black"
             : isPortrait
             ? "object-cover object-[center_top]"
@@ -773,6 +775,7 @@ export default function ProjectDetail() {
                       src={currentSlide.src}
                       poster={currentSlide.thumbnail}
                       isInfluencerShoot={isInfluencerShoot}
+                      isProductShoot={isProductShoot}
                       isPortrait={isPortrait}
                     />
                   ) : (

@@ -318,8 +318,8 @@ export const services: ServiceItem[] = [
       "/images/product-shoot-4.jpg",
       "/images/product-shoot-5.jpg"
     ],
-    video: "/showreel-video-4k-h264.mp4",
-    instagramReelUrl: "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl",
+    video: "/videos/product-jewellery-behind-the-scenes.mp4",
+    instagramReelUrl: "https://www.instagram.com/reel/DdlycB7Dn08/",
     services: [
       "Online store photos",
       "Lifestyle photos",

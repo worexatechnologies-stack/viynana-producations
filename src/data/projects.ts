@@ -608,9 +608,19 @@ export const projects: Project[] = [
     client: "Luxury Jewelry & E-Commerce Brands",
     director: "Viyana Creative Lab",
     deliverableType: "HD Photos, Macro Stills and Reels",
-    thumbnail: "/images/product-shoot-dermera-1.jpg",
-    instagramReelUrl: "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl",
+    thumbnail: "/images/product-shoot/10-antique-gold-bangles-sculptural.jpg",
+    video: "/videos/product-jewellery-behind-the-scenes.mp4",
+    videos: [
+      "/videos/product-jewellery-behind-the-scenes.mp4",
+      "/videos/product-jewellery-oole-commercial.mp4",
+      "/videos/product-chopping-board.mp4",
+      "/videos/product-commercial-render.mp4",
+      "/videos/product-final-output.mp4"
+    ],
+    instagramReelUrl: "https://www.instagram.com/reel/DdlycB7Dn08/",
     instagramReels: [
+      "https://www.instagram.com/reel/DdlycB7Dn08/",
+      "https://www.instagram.com/reel/DdZHtpjB3kZ/",
       "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl"
     ],
     description: "We take clear, evocative, and attractive photos and videos of your products. It helps your customers fall in love with your product and buy it.",
@@ -644,6 +654,11 @@ export const projects: Project[] = [
     ctaText: "BOOK A PRODUCT SHOOT",
     tagline: "CLEAR & ATTRACTIVE PHOTOS AND VIDEOS.",
     gallery: [
+      "/images/product-shoot/07-antique-gold-necklace-chess.jpg",
+      "/images/product-shoot/08-filigree-jhumkas-blue-beads.jpg",
+      "/images/product-shoot/09-peacock-gold-earrings-eiffel.jpg",
+      "/images/product-shoot/10-antique-gold-bangles-sculptural.jpg",
+      "/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg",
       "/images/product-shoot-dermera-1.jpg",
       "/images/product-shoot-dermera-2.jpg",
       "/images/product-shoot-dermera-3.jpg",

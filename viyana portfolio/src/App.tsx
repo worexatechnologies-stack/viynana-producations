@@ -875,12 +875,32 @@ type ProductVideo = {
 
 const productShootVideos: ProductVideo[] = [
   {
+    id: 'jewellery-bts-production',
+    title: 'Behind The Scenes — Luxury Jewellery Production Breakdown',
+    tag: 'BTS Breakdown',
+    category: 'Behind The Scenes',
+    src: '/videos/product-jewellery-behind-the-scenes.mp4',
+    badge: '01 / BTS Studio Shoot',
+    description: 'Exclusive behind-the-scenes breakdown showing creative lighting, paper-tear styling, and mannequin shoot precision in Bangalore.',
+    poster: '/images/product-shoot/10-antique-gold-bangles-sculptural.jpg',
+  },
+  {
+    id: 'jewellery-oole-commercial',
+    title: 'Oole Style Everyday — Fine Jewellery Commercial Reel',
+    tag: 'Jewellery Reel',
+    category: 'Fine Jewellery',
+    src: '/videos/product-jewellery-oole-commercial.mp4',
+    badge: '02 / Jewellery Reel',
+    description: 'Artisanal jewellery cinematography, organic egg nest installation, and luxury macro ring details.',
+    poster: '/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg',
+  },
+  {
     id: 'chopping-board',
     title: 'Precision Craft & Kitchenware — Chopping Board Commercial',
     tag: 'Commercial Film',
     category: 'Commercial Ads',
     src: '/videos/product-chopping-board.mp4',
-    badge: '01 / Chopping Board Film',
+    badge: '03 / Chopping Board Film',
     description: 'Dynamic studio lighting, rich organic wood textures, and tactile commercial motion captured for premium kitchenware.',
     poster: '/images/product-shoot/01-melanex-serum.jpg',
   },
@@ -890,7 +910,7 @@ const productShootVideos: ProductVideo[] = [
     tag: 'Product Reel',
     category: 'Motion & CGI',
     src: '/videos/product-commercial-render.mp4',
-    badge: '02 / 3D Macro Motion',
+    badge: '04 / 3D Macro Motion',
     description: 'High-contrast studio lighting highlighting product silhouettes, reflections, and cinematic brand pacing.',
     poster: '/images/product-shoot/03-dewexa-cloud-cream.jpg',
   },
@@ -900,29 +920,9 @@ const productShootVideos: ProductVideo[] = [
     tag: 'Commercial Master',
     category: 'Product Cinema',
     src: '/videos/product-final-output.mp4',
-    badge: '03 / Commercial Master',
+    badge: '05 / Commercial Master',
     description: 'High-fidelity cinema lighting, crisp packaging reflections, and rhythmic commercial pacing engineered for luxury conversion.',
     poster: '/images/product-shoot/06-genex-serum.jpg',
-  },
-  {
-    id: 'jewellery-oole-commercial',
-    title: 'Oole Style Everyday — Fine Jewellery Commercial Reel',
-    tag: 'Jewellery Reel',
-    category: 'Fine Jewellery',
-    src: '/videos/product-jewellery-oole-commercial.mp4',
-    badge: '04 / Jewellery Reel',
-    description: 'Artisanal jewellery cinematography, organic egg nest installation, and luxury macro ring details.',
-    poster: '/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg',
-  },
-  {
-    id: 'jewellery-bts-production',
-    title: 'Behind The Scenes — Luxury Jewellery Production Breakdown',
-    tag: 'BTS Breakdown',
-    category: 'Behind The Scenes',
-    src: '/videos/product-jewellery-behind-the-scenes.mp4',
-    badge: '05 / BTS Studio Shoot',
-    description: 'Exclusive behind-the-scenes breakdown showing creative lighting, paper-tear styling, and mannequin shoot precision in Bangalore.',
-    poster: '/images/product-shoot/10-antique-gold-bangles-sculptural.jpg',
   },
 ]
 
@@ -1101,6 +1101,32 @@ function ProductShoot() {
                     type="button"
                   >
                     0{idx + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="product-playlist-wrap">
+              <span className="product-playlist-label">Product Films Reel Catalog:</span>
+              <div className="product-playlist-list">
+                {productShootVideos.map((video, idx) => (
+                  <button
+                    aria-label={`Switch to ${video.title}`}
+                    className={`product-playlist-item ${activeProductVideoIndex === idx ? 'active' : ''}`}
+                    key={`item-${video.id}`}
+                    onClick={() => setActiveProductVideoIndex(idx)}
+                    type="button"
+                  >
+                    <div className="product-playlist-item-left">
+                      <span className="product-playlist-num">0{idx + 1}</span>
+                      <div className="product-playlist-item-text">
+                        <strong className="product-playlist-title">{video.title}</strong>
+                        <span className="product-playlist-tag">{video.tag} · {video.category}</span>
+                      </div>
+                    </div>
+                    <span className="product-playlist-indicator">
+                      {activeProductVideoIndex === idx ? <Play size={12} /> : <ChevronRight size={13} />}
+                    </span>
                   </button>
                 ))}
               </div>
