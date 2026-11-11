@@ -7,6 +7,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { projects } from "@/data/projects";
+import ProductShootDetailPage from "@/pages/ProductShootDetailPage";
 
 function WorkVideoPlayer({
   src,
@@ -456,6 +457,23 @@ export default function ProjectDetail() {
   const pageIndexingStatus = project.seo?.indexingStatus || "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
   const pagePublisher = project.seo?.publisher || "Viyana Productions";
   const pageOgLocale = project.seo?.ogLocale || "en_US";
+
+  // Dedicated bespoke luxury showcase for Product Shoot
+  if (project.slug === "product-shoot") {
+    return (
+      <ProductShootDetailPage
+        project={project}
+        nextProject={nextProject}
+        onInquirySubmit={handleInquirySubmit}
+        inquiry={inquiry}
+        setInquiry={setInquiry}
+        isSubmittingInquiry={isSubmittingInquiry}
+        inquirySubmitted={inquirySubmitted}
+        inquiryError={inquiryError}
+        setInquirySubmitted={setInquirySubmitted}
+      />
+    );
+  }
 
   const renderInstagramSection = () => (
     <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-gradient-to-b from-brand-black via-[#0d090d] to-brand-black relative overflow-hidden">
