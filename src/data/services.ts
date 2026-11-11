@@ -49,7 +49,7 @@ export const services: ServiceItem[] = [
     image: "/images/the-next-move.jpg",
     gallery: [
       "/images/the-next-move.jpg",
-      "https://images.unsplash.com/photo-1542744094-3a3172722053?q=75&w=900&auto=format&fit=crop",
+      "/images/advertisement-campaign.jpg",
       "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=75&w=900&auto=format&fit=crop"
     ],
     video: "/13232-246463976_medium.mp4",
@@ -222,7 +222,7 @@ export const services: ServiceItem[] = [
     gallery: [
       "/images/neon-horizons.png",
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=75&w=900&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1542744094-3a3172722053?q=75&w=900&auto=format&fit=crop"
+      "/images/vanguard-mobility-tech.jpg"
     ],
     video: "/13232-246463976_medium.mp4",
     services: [

@@ -13,6 +13,7 @@ import { projects } from "@/data/projects";
 import { clientLogos, clientMarqueeCards } from "@/data/clients";
 import {
   ArrowRight,
+  ArrowUpRight,
   ArrowLeft,
   Play,
   Building2,
@@ -236,7 +237,7 @@ export default function HomePage() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isIntroFinished, setIsIntroFinished] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isHeroMuted, setIsHeroMuted] = useState(false);
+  const [isHeroMuted, setIsHeroMuted] = useState(true);
   const [heroVideoSrc, setHeroVideoSrc] = useState("/13232-246463976_medium.mp4");
 
   // Cinematic intro: enforce minimum 2.5s display even on cache-hit
@@ -269,44 +270,20 @@ export default function HomePage() {
     const video = heroVideoRef.current;
     if (!video) return;
 
-    // Attempt unmuted playback with sound first
-    video.muted = false;
+    video.muted = isHeroMuted;
     const playPromise = video.play();
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
-          setIsHeroMuted(false);
           setIsPlaying(true);
         })
         .catch(() => {
-          // If browser policy blocks initial autoplay with sound, fall back to muted so video plays smoothly
           video.muted = true;
           setIsHeroMuted(true);
           video.play().catch(() => {});
         });
     }
-
-    // Automatically unmute upon the first user interaction anywhere if sound was blocked
-    const handleFirstUserInteraction = () => {
-      if (video && video.muted) {
-        video.muted = false;
-        setIsHeroMuted(false);
-      }
-      window.removeEventListener("click", handleFirstUserInteraction);
-      window.removeEventListener("touchstart", handleFirstUserInteraction);
-      window.removeEventListener("keydown", handleFirstUserInteraction);
-    };
-
-    window.addEventListener("click", handleFirstUserInteraction, { once: true });
-    window.addEventListener("touchstart", handleFirstUserInteraction, { once: true });
-    window.addEventListener("keydown", handleFirstUserInteraction, { once: true });
-
-    return () => {
-      window.removeEventListener("click", handleFirstUserInteraction);
-      window.removeEventListener("touchstart", handleFirstUserInteraction);
-      window.removeEventListener("keydown", handleFirstUserInteraction);
-    };
-  }, []);
+  }, [heroVideoSrc]);
 
   const toggleHeroPlay = () => {
     if (!heroVideoRef.current) return;
@@ -718,17 +695,15 @@ export default function HomePage() {
             ref={heroVideoRef}
             autoPlay
             loop
+            muted
             playsInline
-            preload="auto"
+            poster="/images/hero-poster.jpg"
+            preload="metadata"
             src={heroVideoSrc}
             onPlaying={handleVideoReady}
             onLoadedData={handleVideoReady}
             className="w-full h-full object-cover object-center filter contrast-[1.03] saturate-[1.04]"
-          >
-            <source src="/13232-246463976_medium.mp4" type="video/mp4" />
-            <source src="/website-video-2.mp4" type="video/mp4" />
-            <source src="/showreel-hero-4k.mp4" type="video/mp4" />
-          </video>
+          />
 
           {/* Clean Cinematic Overlays: Top and Bottom Vignettes for perfect readability */}
           <div className="absolute top-0 left-0 right-0 h-32 sm:h-40 md:h-48 bg-gradient-to-b from-black/85 via-black/40 to-transparent pointer-events-none" />
@@ -755,27 +730,26 @@ export default function HomePage() {
             CINEMATIC VISUAL CONTENT &bull; PRODUCTION HOUSE &bull; BENGALURU
           </p>
 
-          {/* Buttons ON VIDEO: WATCH REELS & EXPLORE */}
+          {/* Buttons ON VIDEO: WATCH REELS & VIYANA PORTFOLIO */}
           <div className="mt-5 sm:mt-7 flex items-center justify-center gap-3 sm:gap-4 flex-wrap">
             <button
               type="button"
               onClick={openSignatureShowreelModal}
-              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_30px_rgba(255,255,255,0.25)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/30 hover:border-white/60 text-white font-mono text-xs uppercase tracking-wider font-semibold shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
-              <Play className="w-3.5 h-3.5 fill-current" />
+              <Play className="w-3.5 h-3.5 fill-current text-white" />
               <span>WATCH REELS</span>
             </button>
-            <button
-              type="button"
-              onClick={() => {
-                const el = document.getElementById("selected-work");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/25 hover:border-white/50 text-white font-mono text-xs uppercase tracking-wider transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-lg"
+            <a
+              href="/portfolio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_30px_rgba(255,255,255,0.35)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              title="Open Viyana Portfolio"
             >
-              <span>EXPLORE</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-            </button>
+              <span>VIYANA PORTFOLIO</span>
+              <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
           </div>
         </div>
 
@@ -2191,12 +2165,15 @@ export default function HomePage() {
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
 
-            <Link
-              to="/work"
-              className="px-9 py-4 rounded-full bg-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 text-[#fbf7ee] hover:bg-white/15 hover:text-white font-mono text-xs uppercase tracking-widest font-bold transition-all shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.06)]"
+            <a
+              href="/portfolio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-9 py-4 rounded-full bg-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 text-[#fbf7ee] hover:bg-white/15 hover:text-white font-mono text-xs uppercase tracking-widest font-bold transition-all shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.06)] flex items-center gap-2 group cursor-pointer"
             >
-              <span>EXPLORE PORTFOLIO</span>
-            </Link>
+              <span>VIYANA PORTFOLIO</span>
+              <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
           </div>
         </div>
       </section>

@@ -4,17 +4,27 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 // Detect touch-primary devices — on these, native scroll is better than Lenis
+const checkIsTouch = (): boolean => {
+  if (typeof window === "undefined") return false;
+  return (
+    window.matchMedia("(pointer: coarse)").matches ||
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    window.innerWidth < 768
+  );
+};
+
 function useIsTouchDevice() {
-  const [isTouch, setIsTouch] = useState(false);
+  const [isTouch, setIsTouch] = useState(() => checkIsTouch());
+
   useEffect(() => {
-    const check = () =>
-      setIsTouch(
-        window.matchMedia("(pointer: coarse)").matches ||
-          "ontouchstart" in window ||
-          navigator.maxTouchPoints > 0
-      );
-    check();
+    const onResize = () => {
+      setIsTouch(checkIsTouch());
+    };
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => window.removeEventListener("resize", onResize);
   }, []);
+
   return isTouch;
 }
 

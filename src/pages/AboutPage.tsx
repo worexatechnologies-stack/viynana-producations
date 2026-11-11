@@ -197,30 +197,17 @@ const headerRevealVariants = {
 export default function AboutPage() {
   const [isPillarsPaused, setIsPillarsPaused] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-  const [timecode, setTimecode] = useState("00:14:32:18");
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    let frame = 18;
-    let sec = 32;
-    let min = 14;
-    const interval = setInterval(() => {
-      frame += 1;
-      if (frame >= 24) {
-        frame = 0;
-        sec += 1;
-        if (sec >= 60) {
-          sec = 0;
-          min += 1;
-        }
-      }
-      const pad = (n: number) => String(n).padStart(2, "0");
-      setTimecode(`00:${pad(min)}:${pad(sec)}:${pad(frame)}`);
-    }, 1000 / 24);
-    return () => clearInterval(interval);
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+      videoRef.current.play().catch(() => {});
+    }
   }, []);
 
-  const toggleAudio = () => {
+  const toggleAudio = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (videoRef.current) {
       videoRef.current.muted = !videoRef.current.muted;
       setIsMuted(videoRef.current.muted);
@@ -228,7 +215,7 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black relative overflow-x-hidden">
+    <main className="about-cinematic min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black relative overflow-x-hidden">
       <SEO
         title="About Viyana Productions | Our Story and Creative Vision"
         description="Learn about Viyana Productions, our creative vision, and our approach to filmmaking, commercial advertising, cinematic storytelling, and professional video production."
@@ -252,7 +239,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* 1. HERO SECTION (REDESIGNED CINEMATIC ARCHITECTURE WITH OPTICAL VIEWFINDER & LIVE SHOWREEL) */}
-      <section className="pt-24 sm:pt-32 md:pt-36 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-12 border-b border-white/10 relative overflow-hidden bg-[#050505]">
+      <section className="about-studio-backdrop pt-24 sm:pt-32 md:pt-36 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-12 border-b border-white/10 relative overflow-hidden bg-[#050505]">
         {/* Cinematic Ambient Flare Glows */}
         <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[700px] h-[380px] bg-[radial-gradient(circle,rgba(245,158,11,0.06)_0%,rgba(168,85,247,0.04)_45%,transparent_70%)] rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute top-1/3 right-4 w-[600px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none rounded-full blur-[120px]" />
@@ -280,11 +267,11 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* SPLIT HERO COMPOSITION (TYPOGRAPHY NARRATIVE + CINEMATIC VIEWFINDER RIG) */}
+            {/* SPLIT HERO COMPOSITION (TYPOGRAPHY NARRATIVE + CLEAN CINEMATIC SHOWREEL) */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center mb-10 sm:mb-16">
               
-              {/* LEFT COLUMN: BRAND MANIFESTO & STRATEGIC VISION (7 COLS) */}
-              <div className="lg:col-span-7 space-y-6 sm:space-y-7">
+              {/* LEFT COLUMN: BRAND MANIFESTO & STRATEGIC VISION (6 COLS) */}
+              <div className="lg:col-span-6 space-y-6 sm:space-y-7">
                 {/* Monumental Headline (Clean 2-Line Architecture) */}
                 <div>
                   <h1 className="text-[clamp(1.15rem,2.8vw,2.35rem)] sm:text-[clamp(1.25rem,3.2vw,2.55rem)] font-display font-extrabold uppercase tracking-tight leading-[1.12] text-white">
@@ -348,16 +335,14 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: THE CINEMATIC VIEWFINDER MASTER RIG (5 COLS) */}
-              <div className="lg:col-span-5 relative">
+              {/* RIGHT COLUMN: CINEMATIC SHOWREEL VIDEO (BIGGER, CLEAN VIDEO ONLY) */}
+              <div className="lg:col-span-6 relative">
                 {/* Ambient Multi-Spectrum Glow Halo */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-amber-500/25 via-purple-500/20 to-blue-500/25 rounded-[34px] blur-2xl opacity-60 pointer-events-none group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute -inset-2 bg-gradient-to-r from-amber-500/20 via-purple-500/15 to-blue-500/20 rounded-[30px] blur-2xl opacity-50 pointer-events-none group-hover:opacity-80 transition-opacity duration-700" />
 
-                {/* Viewfinder Outer Enclosure */}
-                <div className="relative rounded-[28px] sm:rounded-[32px] overflow-hidden border-2 border-white/20 bg-neutral-950 shadow-[0_25px_80px_rgba(0,0,0,0.85),inset_0_1px_2px_rgba(255,255,255,0.2)] group">
-                  
-                  {/* Live Auto-Playing Showreel Video */}
-                  <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] xl:aspect-[16/11] w-full overflow-hidden bg-black">
+                {/* Video Container (Clean, Larger, No Viewfinder/Record Overlays) */}
+                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 bg-black shadow-[0_25px_80px_rgba(0,0,0,0.85),inset_0_1px_2px_rgba(255,255,255,0.15)] group">
+                  <div className="relative aspect-[16/11] min-h-[320px] sm:min-h-[400px] lg:min-h-[450px] w-full overflow-hidden bg-black">
                     <video
                       ref={videoRef}
                       src="/showreel-1080p-fast.mp4"
@@ -366,91 +351,24 @@ export default function AboutPage() {
                       loop
                       muted={isMuted}
                       playsInline
-                      className="w-full h-full object-cover filter contrast-[1.06] brightness-95 group-hover:scale-105 transition-transform duration-700 ease-out"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                     />
 
-                    {/* Subtle Cinematic Vignette & Gradient Mask */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60 pointer-events-none" />
-
-                    {/* Cinematic Scope Letterbox Guides (2.39:1 Anamorphic Framing) */}
-                    <div className="absolute inset-x-3 inset-y-4 sm:inset-x-5 sm:inset-y-6 border border-white/20 pointer-events-none rounded-lg">
-                      {/* Sub-center Crosshair */}
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                        <div className="w-5 h-[1px] bg-white/40" />
-                        <div className="h-5 w-[1px] bg-white/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                        <div className="w-1.5 h-1.5 rounded-full border border-white/50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                      </div>
-                    </div>
-
-                    {/* Viewfinder Corner Sensor Brackets */}
-                    <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-400 pointer-events-none" />
-                    <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-amber-400 pointer-events-none" />
-                    <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-400 pointer-events-none" />
-                    <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-400 pointer-events-none" />
-
-                    {/* Optical Viewfinder HUD Overlays */}
-                    <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between pointer-events-none">
-                      
-                      {/* Top HUD Row: REC Tally Lamp & Sensor Resolution */}
-                      <div className="flex items-center justify-between gap-2">
-                        {/* Red Recording Tally Lamp */}
-                        <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/15 text-white font-mono text-[10px] sm:text-xs tracking-wider shadow-lg">
-                          <span className="relative flex h-2.5 w-2.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,1)]" />
-                          </span>
-                          <span className="font-bold text-red-400">REC</span>
-                          <span className="text-white/90 font-semibold">{timecode}</span>
-                        </div>
-
-                        {/* Format Indicator */}
-                        <div className="px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/15 text-amber-300 font-mono text-[10px] sm:text-xs tracking-wider font-semibold shadow-lg">
-                          4K DCI • 24 FPS
-                        </div>
-                      </div>
-
-                      {/* Bottom HUD Row: Camera Metadata & Interactive Sound Toggle */}
-                      <div className="flex items-end justify-between gap-2">
-                        {/* Camera Package Readout */}
-                        <div className="px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/15 text-white/80 font-mono text-[9px] sm:text-[10.5px] tracking-wide shadow-lg">
-                          <span className="text-amber-400 font-semibold">ARRI ALEXA 35</span>
-                          <span className="text-white/40 mx-1.5">•</span>
-                          <span>35MM T1.3</span>
-                        </div>
-
-                        {/* Audio Mute/Unmute Toggle Button */}
-                        <button
-                          type="button"
-                          onClick={toggleAudio}
-                          className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/85 hover:bg-black text-white border border-white/20 hover:border-amber-400/60 text-[10px] sm:text-xs font-mono tracking-wider transition-all cursor-pointer shadow-xl active:scale-95"
-                          title={isMuted ? "Unmute reel audio" : "Mute reel audio"}
-                        >
-                          {isMuted ? (
-                            <>
-                              <VolumeX className="w-3.5 h-3.5 text-neutral-400" />
-                              <span className="text-neutral-300">UNMUTE</span>
-                            </>
-                          ) : (
-                            <>
-                              <Volume2 className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-                              <span className="text-amber-300 font-bold">AUDIO ON</span>
-                            </>
-                          )}
-                        </button>
-                      </div>
-
-                    </div>
+                    {/* Minimal Sound Mute/Unmute Toggle Button */}
+                    <button
+                      type="button"
+                      onClick={toggleAudio}
+                      aria-label={isMuted ? "Unmute reel audio" : "Mute reel audio"}
+                      title={isMuted ? "Click to unmute" : "Click to mute"}
+                      className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-20 p-2 sm:p-2.5 rounded-full bg-black/70 hover:bg-black text-white border border-white/25 hover:border-amber-400/60 backdrop-blur-md transition-all cursor-pointer shadow-xl active:scale-95"
+                    >
+                      {isMuted ? (
+                        <VolumeX className="w-4 h-4 text-white/80" />
+                      ) : (
+                        <Volume2 className="w-4 h-4 text-amber-400" />
+                      )}
+                    </button>
                   </div>
-
-                  {/* Viewfinder Lower Tech Strip */}
-                  <div className="px-4 py-2.5 bg-neutral-900/90 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-white/60">
-                    <div className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      <span>IN-HOUSE CINEMA STUDIO REEL</span>
-                    </div>
-                    <span className="text-amber-300/80 font-semibold">RAW LOG-C4 FINISH</span>
-                  </div>
-
                 </div>
               </div>
 
@@ -504,7 +422,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. CORE DISCIPLINES (FIVE PILLARS OF IMPACT - CONTINUOUS RUNNING SLIDER) */}
-      <section className="relative py-20 sm:py-28 border-t border-white/10 border-b border-white/10 bg-black text-white overflow-hidden selection:bg-white selection:text-black">
+      <section className="about-studio-backdrop relative py-20 sm:py-28 border-t border-white/10 border-b border-white/10 bg-black text-white overflow-hidden selection:bg-white selection:text-black">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[400px] bg-white/[0.015] blur-[150px] pointer-events-none rounded-full" />
 
@@ -654,7 +572,7 @@ export default function AboutPage() {
       </section>
 
       {/* 4. CREATIVE PROCESS (PRODUCTION TREE GRAPH WORKFLOW) */}
-      <section className="py-14 sm:py-20 px-4 sm:px-8 lg:px-14 border-t border-white/10 relative overflow-hidden bg-gradient-to-b from-[#080706] via-[#0c0a0d] to-[#080706]">
+      <section className="about-studio-backdrop py-14 sm:py-20 px-4 sm:px-8 lg:px-14 border-t border-white/10 relative overflow-hidden bg-gradient-to-b from-[#080706] via-[#0c0a0d] to-[#080706]">
         {/* Subtle Ambient Glow Mesh */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.06)_0%,rgba(168,85,247,0.04)_45%,transparent_70%)] blur-3xl pointer-events-none" />
         
@@ -866,7 +784,7 @@ export default function AboutPage() {
       </section>
 
       {/* 7. BOTTOM CTA */}
-      <section className="py-16 sm:py-28 px-4 sm:px-10 lg:px-16 border-t border-white/10 bg-brand-dark/50 text-center">
+      <section className="about-studio-backdrop py-16 sm:py-28 px-4 sm:px-10 lg:px-16 border-t border-white/10 bg-brand-dark/50 text-center">
         <div className="container mx-auto max-w-4xl space-y-4 sm:space-y-6">
           <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] text-white/50 block">
             CTA

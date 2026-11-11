@@ -41,6 +41,41 @@
   }
 }
 
+.home-cinematic,
+.work-portfolio,
+.about-cinematic {
+  background-color: #050505;
+  background-image: none !important;
+  color: #f5f3ee;
+}
+
+.about-studio-backdrop,
+.home-studio-backdrop,
+.work-studio-backdrop {
+  background-color: #08090d !important;
+  background-image: none !important;
+}
+
+/* Mobile Performance & Touch Response Optimization */
+@media (max-width: 768px) {
+  /* Optimize heavy backdrop-blur filters for silky smooth 60fps/120fps scrolling */
+  [class*="backdrop-blur-"] {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+
+  /* Cap massive ambient background blur spheres so mobile GPUs don't throttle */
+  .pointer-events-none[class*="blur-"] {
+    filter: blur(28px) !important;
+    opacity: 0.35 !important;
+  }
+
+  /* Eliminate mobile 300ms tap delay & improve touch response */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -380,12 +415,14 @@ video:-ms-fullscreen {
   height: 100% !important;
 }
 
-.home-cinematic > section {
+.home-cinematic > section,
+.work-portfolio > section {
   background-color: #060606 !important;
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 18rem) !important;
 }
 
-.home-cinematic > section:nth-of-type(even) {
+.home-cinematic > section:nth-of-type(even),
+.work-portfolio > section:nth-of-type(even) {
   background-color: #090909 !important;
   background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 42%) !important;
 }
@@ -452,24 +489,5 @@ video:-ms-fullscreen {
   }
   .diagonal-track-right {
     animation-duration: 32s;
-  }
-}
-
-@keyframes flameFlicker {
-  0%, 100% {
-    transform: scale(1) rotate(0deg) skewX(0deg);
-    opacity: 0.95;
-  }
-  25% {
-    transform: scale(1.05, 0.96) rotate(-1.5deg) skewX(-1deg);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(0.96, 1.04) rotate(1.8deg) skewX(1.2deg);
-    opacity: 0.92;
-  }
-  75% {
-    transform: scale(1.03, 0.98) rotate(-1deg) skewX(-0.5deg);
-    opacity: 0.98;
   }
 }

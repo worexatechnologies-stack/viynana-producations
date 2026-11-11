@@ -350,8 +350,16 @@ const buildDir = path.join(__dirname, "build");
 if (fs.existsSync(buildDir)) {
   app.use(express.static(buildDir));
   app.use((req, res, next) => {
-    if (req.method === "GET" && !req.path.startsWith("/api")) {
-      return res.sendFile(path.join(buildDir, "index.html"));
+    if (req.method === "GET") {
+      if (req.path === "/portfolio" || req.path.startsWith("/portfolio/")) {
+        const portfolioHtml = path.join(buildDir, "portfolio", "index.html");
+        if (fs.existsSync(portfolioHtml)) {
+          return res.sendFile(portfolioHtml);
+        }
+      }
+      if (!req.path.startsWith("/api")) {
+        return res.sendFile(path.join(buildDir, "index.html"));
+      }
     }
     next();
   });

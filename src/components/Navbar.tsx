@@ -119,8 +119,8 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 select-none ${
           scrolled
-            ? "bg-[#060606]/85 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.8)] py-3 sm:py-3.5"
-            : "bg-gradient-to-b from-[#050505]/90 via-[#050505]/50 to-transparent py-4 sm:py-6"
+            ? "bg-[#050505]/85 backdrop-blur-2xl border-b border-white/[0.08] shadow-[0_12px_36px_rgba(0,0,0,0.85)] py-3 sm:py-3.5"
+            : "bg-gradient-to-b from-[#050505]/95 via-[#050505]/50 to-transparent py-4 sm:py-6 border-b border-transparent"
         }`}
       >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 flex items-center justify-between">
@@ -140,7 +140,7 @@ export default function Navbar() {
                 height="40"
                 fetchPriority="high"
                 decoding="async"
-                className="h-8 sm:h-9 md:h-10 w-auto object-contain filter brightness-110 drop-shadow-[0_0_16px_rgba(255,255,255,0.3)] transition-transform duration-300 group-hover:scale-[1.03]"
+                className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 group-hover:opacity-90 group-hover:scale-[1.02]"
               />
             </Link>
           </div>
@@ -148,7 +148,7 @@ export default function Navbar() {
           {/* Desktop Center Navigation (Floating Glass Pill Deck) */}
           <nav
             aria-label="Main Navigation"
-            className="hidden md:flex items-center gap-1 px-1.5 py-1 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_20px_rgba(0,0,0,0.5)]"
+            className="hidden md:flex items-center gap-1 p-1.5 rounded-full bg-[#0a0a0a]/85 border border-white/[0.12] backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,255,255,0.12)]"
           >
             {navLinks.map((link) => {
               const isActive =
@@ -166,10 +166,10 @@ export default function Navbar() {
                   >
                     <Link
                       to={link.path}
-                      className={`relative px-4 py-2 rounded-full text-xs font-mono uppercase tracking-[0.16em] flex items-center gap-1.5 transition-all duration-300 z-10 ${
+                      className={`relative px-4 py-2 rounded-full text-[12px] font-sans font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-all duration-200 z-10 ${
                         isActive
-                          ? "text-black font-bold"
-                          : "text-white/70 hover:text-white hover:bg-white/[0.06]"
+                          ? "text-neutral-950 font-bold"
+                          : "text-white/70 hover:text-white hover:bg-white/[0.08]"
                       }`}
                     >
                       <span className="relative z-10">{link.name}</span>
@@ -184,15 +184,15 @@ export default function Navbar() {
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          strokeWidth={2}
+                          strokeWidth={2.2}
                           d="M19 9l-7 7-7-7"
                         />
                       </svg>
                       {isActive && (
                         <motion.div
                           layoutId="nav-active-pill"
-                          className="absolute inset-0 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.4)] z-0"
-                          transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                          className="absolute inset-0 bg-white rounded-full shadow-[0_2px_14px_rgba(255,255,255,0.35)] z-0"
+                          transition={{ type: "spring", stiffness: 380, damping: 32 }}
                         />
                       )}
                     </Link>
@@ -201,18 +201,18 @@ export default function Navbar() {
                     <AnimatePresence>
                       {workDropdownOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[620px] z-[120] pointer-events-auto"
+                          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[640px] z-[120] pointer-events-auto before:absolute before:-top-3 before:left-0 before:w-full before:h-3 before:content-['']"
                         >
-                          <div className="p-4 rounded-3xl bg-[#090909]/95 backdrop-blur-3xl border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.9),0_0_30px_rgba(255,255,255,0.03)] overflow-hidden">
+                          <div className="p-4 rounded-3xl bg-[#090909]/96 backdrop-blur-3xl border border-white/[0.14] shadow-[0_30px_90px_rgba(0,0,0,0.95),0_0_35px_rgba(255,255,255,0.03)] overflow-hidden">
                             {/* Dropdown Header */}
-                            <div className="px-3 pt-1 pb-3 flex items-center justify-between border-b border-white/10 mb-2.5">
+                            <div className="px-3 pt-1 pb-3 flex items-center justify-between border-b border-white/[0.08] mb-2.5">
                               <div className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                                <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/60">
+                                <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                                <span className="text-[10.5px] font-mono uppercase tracking-[0.22em] text-white/60">
                                   13 Core Services &amp; Disciplines
                                 </span>
                               </div>
@@ -227,7 +227,7 @@ export default function Navbar() {
                                 <motion.div
                                   initial={{ opacity: 0, x: -6 }}
                                   animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: i * 0.02, duration: 0.2 }}
+                                  transition={{ delay: i * 0.015, duration: 0.2 }}
                                   key={cat.id}
                                 >
                                   <Link
@@ -236,15 +236,15 @@ export default function Navbar() {
                                     className="group/item flex items-center justify-between p-2.5 rounded-xl hover:bg-white/[0.08] border border-transparent hover:border-white/10 transition-all duration-200"
                                   >
                                     <div className="flex items-center gap-2.5 min-w-0">
-                                      <span className="text-[10px] font-mono text-white/35 group-hover/item:text-white font-semibold shrink-0">
+                                      <span className="text-[10px] font-mono text-white/40 group-hover/item:text-white font-semibold shrink-0">
                                         {cat.number}
                                       </span>
-                                      <span className="text-xs text-white/80 group-hover/item:text-white font-medium truncate">
+                                      <span className="text-[12.5px] text-white/80 group-hover/item:text-white font-medium truncate">
                                         {cat.name}
                                       </span>
                                     </div>
                                     <svg
-                                      className="w-3.5 h-3.5 text-white/0 group-hover/item:text-white/70 transition-all -translate-x-1 group-hover/item:translate-x-0 shrink-0"
+                                      className="w-3.5 h-3.5 text-white/0 group-hover/item:text-white/80 transition-all -translate-x-1 group-hover/item:translate-x-0 shrink-0"
                                       fill="none"
                                       viewBox="0 0 24 24"
                                       stroke="currentColor"
@@ -252,7 +252,7 @@ export default function Navbar() {
                                       <path
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
-                                        strokeWidth={1.5}
+                                        strokeWidth={1.8}
                                         d="M14 5l7 7m0 0l-7 7m7-7H3"
                                       />
                                     </svg>
@@ -262,11 +262,11 @@ export default function Navbar() {
                             </div>
 
                             {/* Dropdown Bottom Banner */}
-                            <div className="mt-3 pt-2.5 border-t border-white/10 px-1">
+                            <div className="mt-3 pt-2.5 border-t border-white/[0.08] px-1">
                               <Link
                                 to="/work"
                                 onClick={() => setWorkDropdownOpen(false)}
-                                className="block w-full py-2.5 rounded-xl bg-white/10 text-white text-center text-xs font-semibold tracking-widest hover:bg-white hover:text-black transition-colors uppercase font-mono"
+                                className="block w-full py-2.5 rounded-xl bg-white/10 text-white text-center text-xs font-sans font-bold tracking-wider hover:bg-white hover:text-black transition-all duration-200 uppercase"
                               >
                                 EXPLORE ALL 13 SERVICES →
                               </Link>
@@ -283,18 +283,18 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative px-4 py-2 rounded-full text-xs font-mono uppercase tracking-[0.16em] transition-all duration-300 z-10 ${
+                  className={`relative px-4 py-2 rounded-full text-[12px] font-sans font-semibold uppercase tracking-wider transition-all duration-200 z-10 ${
                     isActive
-                      ? "text-black font-bold"
-                      : "text-white/70 hover:text-white hover:bg-white/[0.06]"
+                      ? "text-neutral-950 font-bold"
+                      : "text-white/70 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
                   {isActive && (
                     <motion.div
                       layoutId="nav-active-pill"
-                      className="absolute inset-0 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.4)] z-0"
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      className="absolute inset-0 bg-white rounded-full shadow-[0_2px_14px_rgba(255,255,255,0.35)] z-0"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
                 </Link>
@@ -309,12 +309,10 @@ export default function Navbar() {
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 hover:bg-brand-light hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] active:scale-95"
+                  className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-neutral-950 font-sans text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:bg-neutral-100 hover:shadow-[0_0_28px_rgba(255,255,255,0.35)] active:scale-95"
                 >
                   <span>Start Project</span>
-                  <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                    ↗
-                  </span>
+                  <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </Magnetic>
             </div>
@@ -326,7 +324,7 @@ export default function Navbar() {
                 setMobileMenuOpen(false);
                 navigate("/contact");
               }}
-              className="sm:hidden relative z-[101] px-3.5 py-1.5 rounded-full bg-gradient-to-r from-white via-neutral-100 to-white text-black font-mono text-[10.5px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-[0_4px_16px_rgba(255,255,255,0.22)] border border-white active:scale-95 transition-all cursor-pointer"
+              className="sm:hidden relative z-[101] px-3.5 py-1.5 rounded-full bg-white text-neutral-950 font-sans text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-[0_2px_14px_rgba(255,255,255,0.25)] border border-white/20 active:scale-95 transition-all cursor-pointer"
               aria-label="Start Project"
             >
               <span>Start</span>
@@ -394,7 +392,7 @@ export default function Navbar() {
                     loading="eager"
                     width="120"
                     height="32"
-                    className="h-7 w-auto object-contain filter brightness-110 drop-shadow-[0_0_12px_rgba(255,255,255,0.25)]"
+                    className="h-7 w-auto object-contain brightness-105"
                   />
                 </button>
 
@@ -662,7 +660,7 @@ export default function Navbar() {
                     setMobileMenuOpen(false);
                     navigate("/contact");
                   }}
-                  className="w-full py-4 rounded-full bg-white text-black font-mono text-xs font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_30px_rgba(255,255,255,0.35)] active:scale-98 transition-transform"
+                  className="w-full py-3.5 rounded-full bg-white text-neutral-950 font-sans text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_28px_rgba(255,255,255,0.3)] active:scale-98 transition-all"
                 >
                   <span>START A PROJECT</span>
                   <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
@@ -714,13 +712,13 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ── MOBILE BOTTOM NAVIGATION BAR (MATCHING SCREENSHOT DESIGN THEME) ── */}
+      {/* ── MOBILE BOTTOM NAVIGATION BAR (LUXURY CINEMA DOCK) ── */}
       <div
         className={`md:hidden fixed bottom-0 inset-x-0 z-[120] transition-all duration-300 pointer-events-auto touch-manipulation ${
           mobileMenuOpen ? "opacity-0 pointer-events-none translate-y-full" : "opacity-100 translate-y-0"
         }`}
       >
-        <div className="w-full bg-white/95 backdrop-blur-2xl border-t border-slate-200/90 rounded-t-[26px] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] pt-2 pb-[max(0.65rem,env(safe-area-inset-bottom,0px))] px-2.5">
+        <div className="w-full bg-[#080808]/92 backdrop-blur-2xl border-t border-white/[0.12] rounded-t-[26px] shadow-[0_-12px_40px_rgba(0,0,0,0.85)] pt-2 pb-[max(0.65rem,env(safe-area-inset-bottom,0px))] px-2.5">
           <nav
             aria-label="Mobile Bottom Navigation"
             className="flex items-center justify-around max-w-md mx-auto relative"
@@ -743,11 +741,11 @@ export default function Navbar() {
                   aria-label={item.name}
                   aria-current={active ? "page" : undefined}
                 >
-                  {/* Active Soft Brown Squircle Pill with Spring Animation (No Shadow) */}
+                  {/* Active Frosted Glass Squircle Pill with Spring Animation */}
                   {active && (
                     <motion.div
                       layoutId="mobile-nav-active-pill"
-                      className="absolute inset-0 bg-[#f5ece3] rounded-2xl z-0"
+                      className="absolute inset-0 bg-white/[0.14] border border-white/20 rounded-2xl z-0 shadow-[0_0_15px_rgba(255,255,255,0.06)]"
                       transition={{ type: "spring", stiffness: 450, damping: 32 }}
                     />
                   )}
@@ -757,15 +755,15 @@ export default function Navbar() {
                     <Icon
                       className={`w-[21px] h-[21px] transition-all duration-200 ${
                         active
-                          ? `text-[#6B4226] stroke-[2.2] scale-105 ${isFilledIcon ? "fill-[#6B4226]" : ""}`
-                          : "text-[#78716c] stroke-[1.8] group-hover:text-[#6B4226]"
+                          ? `text-white stroke-[2.2] scale-105 ${isFilledIcon ? "fill-white" : ""}`
+                          : "text-white/45 stroke-[1.8] group-hover:text-white/80"
                       }`}
                     />
                     <span
                       className={`text-[11px] font-sans tracking-tight transition-colors duration-200 leading-tight ${
                         active
-                          ? "text-[#6B4226] font-bold"
-                          : "text-[#78716c] font-medium group-hover:text-[#6B4226]"
+                          ? "text-white font-bold"
+                          : "text-white/45 font-medium group-hover:text-white/80"
                       }`}
                     >
                       {item.name}

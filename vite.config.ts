@@ -2,8 +2,28 @@ import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
+import fs from "fs";
 import { spawn } from "child_process";
 import net from "net";
+
+function portfolioSubsitePlugin(): Plugin {
+  return {
+    name: "portfolio-subsite",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const url = req.url?.split("?")[0];
+        if (url === "/portfolio" || url === "/portfolio/") {
+          const indexPath = path.resolve(__dirname, "public/portfolio/index.html");
+          if (fs.existsSync(indexPath)) {
+            res.setHeader("Content-Type", "text/html");
+            return res.end(fs.readFileSync(indexPath, "utf8"));
+          }
+        }
+        next();
+      });
+    },
+  };
+}
 
 function autoApiServerPlugin(): Plugin {
   return {
@@ -37,7 +57,7 @@ function autoApiServerPlugin(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), autoApiServerPlugin()],
+  plugins: [react(), tailwindcss(), autoApiServerPlugin(), portfolioSubsitePlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

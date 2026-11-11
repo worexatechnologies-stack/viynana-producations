@@ -42,6 +42,7 @@ function FacebookIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
 const navigationLinks = [
   { name: "About Studio", href: "/about" },
   { name: "Selected Work", href: "/work" },
+  { name: "Viyana Portfolio", href: "/portfolio/", external: true },
   { name: "Directors Roster", href: "/directors" },
   { name: "4K Showreel", href: "/showreel" },
   { name: "Studio Rental", href: "/studio" },
@@ -276,6 +277,33 @@ export default function Footer() {
                   4th Floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
                 </p>
               </a>
+
+              {/* Viyana Portfolio Dedicated Card */}
+              <a
+                href="/portfolio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/25 transition-all max-w-md shadow-sm"
+                title="Open Viyana Portfolio Showcase"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold font-mono text-[11px] shrink-0">
+                    VP
+                  </div>
+                  <div>
+                    <span className="text-xs font-mono uppercase tracking-wider text-white font-semibold block">
+                      VIYANA PORTFOLIO
+                    </span>
+                    <span className="text-[10px] font-mono text-white/50 block">
+                      Commercials &bull; Product &bull; Editorial Shoots
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 text-[11px] font-mono text-white/60 group-hover:text-white transition-colors">
+                  <span className="hidden sm:inline">EXPLORE</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+              </a>
             </div>
 
             {/* Quick Links Column */}
@@ -286,17 +314,33 @@ export default function Footer() {
               <ul className="space-y-2.5 text-xs font-mono uppercase tracking-wider">
                 {navigationLinks.map((link) => (
                   <li key={link.name}>
-                    <Link
-                      to={link.href}
-                      className="text-white/70 hover:text-white flex items-center justify-between py-1 group transition-colors"
-                    >
-                      <span className="group-hover:translate-x-1 transition-transform duration-200">
-                        {link.name}
-                      </span>
-                      <span className="text-white/20 group-hover:text-white transition-colors">
-                        →
-                      </span>
-                    </Link>
+                    {"external" in link && link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white hover:text-white flex items-center justify-between py-1 group transition-colors"
+                        title="Open Viyana Portfolio in a new tab"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform duration-200 flex items-center gap-1.5 font-semibold text-white">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          {link.name}
+                        </span>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-white/50 group-hover:text-white transition-colors" />
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className="text-white/70 hover:text-white flex items-center justify-between py-1 group transition-colors"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform duration-200">
+                          {link.name}
+                        </span>
+                        <span className="text-white/20 group-hover:text-white transition-colors">
+                          →
+                        </span>
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
