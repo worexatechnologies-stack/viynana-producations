@@ -102,7 +102,7 @@ function Navigation() {
     { label: 'Podcast shoot', href: '#podcast-shoot' },
     { label: 'Influencer shoot', href: '#influencer-shoot' },
     { label: 'Services', href: '#services' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact', href: 'https://viyana.productions/contact' },
   ]
 
   useEffect(() => {
@@ -126,9 +126,9 @@ function Navigation() {
         />
       </Link>
       
-      <Link className="header-cta" to={location.pathname === '/' ? '#contact' : '/#contact'}>
+      <a className="header-cta" href="https://viyana.productions/contact">
         Start a project <ArrowUpRight size={15} strokeWidth={1.7} />
-      </Link>
+      </a>
       <button
         aria-expanded={menuOpen}
         aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
@@ -245,11 +245,11 @@ function Hero() {
             Partner in <span className="hero-accent">Bangalore.</span>
           </h1>
 
-          <p className="hero-ref-desc">
+          <p className="hero-ref-desc hidden md:block">
             Viyana Productions is an independent creative film and commercial production company in Bangalore that helps brands increase visual impact, create unforgettable model stories, and produce luxury product campaigns. We provide commercial films, editorial model shoots, product photography, creative direction, and high-end video production designed around measurable brand growth.
           </p>
 
-          <div className="hero-ref-cards">
+          <div className="hero-ref-cards hidden md:grid">
             {cards.map((card) => (
               <div className="hero-ref-card" key={card.title}>
                 <div className="hero-ref-icon">{card.icon}</div>
@@ -1592,14 +1592,13 @@ function BrandingShoot({ onSelectService }: { onSelectService?: (service: string
 
       <div className="branding-shoot-outro" data-reveal>
         <span>Looking for a monthly content creation retainer or complete brand visual relaunch?</span>
-        <button
+        <a
           className="branding-cta-inline-btn"
-          onClick={() => onSelectService?.('02 Cinematic Content Shoot')}
-          type="button"
+          href="https://viyana.productions/contact"
         >
           <span>Book a Branding Shoot</span>
           <ArrowUpRight size={16} />
-        </button>
+        </a>
       </div>
     </section>
   )
@@ -2378,7 +2377,7 @@ function About() {
 
           {/* Action Row */}
           <div className="about-actions-row">
-            <a className="about-book-btn" href="#contact">
+            <a className="about-book-btn" href="https://viyana.productions/contact">
               <span>BOOK YOUR SESSION TODAY</span>
               <ArrowUpRight size={16} />
             </a>
@@ -2762,15 +2761,14 @@ function Services({ onSelectService }: { onSelectService?: (serviceTitle: string
                 </div>
 
                 <div className="service-card-actions-wrap">
-                  <button
+                  <a
                     aria-label={`Inquire about ${service.title}`}
                     className="service-card-action"
-                    onClick={() => onSelectService?.(`${service.number} ${service.title}`)}
-                    type="button"
+                    href="https://viyana.productions/contact"
                   >
                     <span>Book this service</span>
                     <ArrowUpRight size={15} />
-                  </button>
+                  </a>
                   {service.number === '10' && (
                     <a className="service-card-anchor-link" href="#product-shoot">
                       <span>Watch Product Videos</span>
@@ -2832,15 +2830,14 @@ function Services({ onSelectService }: { onSelectService?: (serviceTitle: string
               </div>
 
               <div className="service-card-actions-wrap">
-                <button
+                <a
                   aria-label={`Inquire about ${service.title}`}
                   className="service-card-action"
-                  onClick={() => onSelectService?.(`${service.number} ${service.title}`)}
-                  type="button"
+                  href="https://viyana.productions/contact"
                 >
                   <span>Book this service</span>
                   <ArrowUpRight size={15} />
-                </button>
+                </a>
                 {service.number === '10' && (
                   <a className="service-card-anchor-link" href="#product-shoot">
                     <span>Watch Product Videos</span>
@@ -2879,220 +2876,11 @@ function Services({ onSelectService }: { onSelectService?: (serviceTitle: string
 
       <div className="services-outro" data-reveal>
         <span>Looking for a tailored blend of multiple services? We build custom project packages.</span>
-        <a className="text-link" href="#contact">Discuss your requirements <ArrowUpRight size={17} /></a>
+        <a className="text-link" href="https://viyana.productions/contact">Discuss your requirements <ArrowUpRight size={17} /></a>
       </div>
     </section>
   )
 }
-
-function Contact({ preselectedService }: { preselectedService?: string }) {
-  const [selectedService, setSelectedService] = useState('01 Commercial Ads')
-  const [sent, setSent] = useState(false)
-
-  useEffect(() => {
-    if (preselectedService) {
-      setSelectedService(preselectedService)
-    }
-  }, [preselectedService])
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const name = String(formData.get('name') ?? '')
-    const email = String(formData.get('email') ?? '')
-    const service = String(formData.get('service') ?? selectedService)
-    const message = String(formData.get('message') ?? '')
-    const subject = encodeURIComponent(`Project Inquiry: ${service} from ${name}`)
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSelected Service: ${service}\n\nMessage:\n${message}`)
-    window.location.href = `mailto:info.viyanaproductions@gmail.com?subject=${subject}&body=${body}`
-    setSent(true)
-  }
-
-  return (
-    <section className="contact-section section-pad" id="contact">
-      <div className="contact-heading" data-reveal>
-        <div>
-          <Eyebrow>Start a project · Bangalore Flagship Studio</Eyebrow>
-          <h2 className="section-title">Contact <em>Us.</em></h2>
-        </div>
-      </div>
-
-      <div className="contact-studio-layout" data-reveal>
-        {/* Left Column: Context, Working Hours & Studio Details */}
-        <div className="contact-info-col">
-          <h3 className="contact-subheadline">
-            Let's Make <em>Something</em> Remarkable.
-          </h3>
-
-          <p className="contact-lede">
-            Have a commercial film, model campaign, product shoot, or bespoke visual project in mind? Share your vision and our team in Bangalore will connect within 24 hours.
-          </p>
-
-          <div className="contact-details-grid">
-            <div className="contact-detail-card">
-              <span className="detail-card-label">Direct Mail</span>
-              <a className="detail-card-value text-link" href="mailto:info.viyanaproductions@gmail.com">
-                info.viyanaproductions@gmail.com
-              </a>
-              <span className="detail-card-hint">Inquiries, proposals &amp; pitches</span>
-            </div>
-
-            <div className="contact-detail-card">
-              <span className="detail-card-label">Bangalore Studio</span>
-              <a
-                className="detail-card-value text-link contact-location-link"
-                href="https://www.google.com/maps/search/?api=1&query=4th+Floor,+Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
-                rel="noreferrer"
-                target="_blank"
-                title="Open Bangalore Studio in Google Maps"
-              >
-                4th Floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
-                <ArrowUpRight size={13} style={{ display: 'inline', marginLeft: 4 }} />
-              </a>
-              <span className="detail-card-hint">Open for visits by appointment · Tap for Google Maps directions</span>
-            </div>
-
-            <div className="contact-detail-card">
-              <span className="detail-card-label">Studio Availability</span>
-              <span className="detail-card-badge">
-                <span className="live-dot" /> Mon – Sat: 9:00 AM – 7:30 PM
-              </span>
-              <span className="detail-card-hint">Shoot bookings open for 2026</span>
-            </div>
-
-            <div className="contact-detail-card">
-              <span className="detail-card-label">Response Guarantee</span>
-              <span className="detail-card-value">
-                Usually within 24 hours
-              </span>
-              <span className="detail-card-hint">Direct line with our creative producer</span>
-            </div>
-          
-          {/* Direct Social Channels */}
-          <div className="contact-social-bar">
-            <span className="contact-social-label">Official Studio Channels:</span>
-            <div className="contact-social-links">
-              <a
-                className="contact-social-btn"
-                href="https://www.instagram.com/viyana.productions?utm_source=qr&xtok=bWR1eTBxZHVpOGp3"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <Instagram size={14} />
-                <span>@viyana.productions</span>
-                <ArrowUpRight size={13} />
-              </a>
-              <a
-                className="contact-social-btn"
-                href="https://www.linkedin.com/company/viyana-production/"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <span>LinkedIn</span>
-                <ArrowUpRight size={13} />
-              </a>
-            </div>
-          </div>
-</div>
-        </div>
-
-        {/* Right Column: Sleek Luxury Production Inquiry Form */}
-        <div className="contact-form-col">
-          <div className="contact-form-card">
-            <form className="contact-form-inner" onSubmit={handleSubmit}>
-              <div className="form-card-header">
-                <h3>Start a Production Enquiry</h3>
-                <p>Tell us what you are envisioning. All 13 services available.</p>
-              </div>
-
-              {/* Name & Email in 2 columns */}
-              <div className="contact-input-row">
-                <div className="contact-field-group">
-                  <label htmlFor="contact-name">
-                    Your Name <span className="req">*</span>
-                  </label>
-                  <input
-                    autoComplete="name"
-                    id="contact-name"
-                    name="name"
-                    required
-                    type="text"
-                  />
-                </div>
-
-                <div className="contact-field-group">
-                  <label htmlFor="contact-email">
-                    Your Email Address <span className="req">*</span>
-                  </label>
-                  <input
-                    autoComplete="email"
-                    id="contact-email"
-                    name="email"
-                    required
-                    type="email"
-                  />
-                </div>
-              </div>
-
-              {/* Service Selector Dropdown */}
-              <div className="contact-field-group">
-                <label htmlFor="contact-service">
-                  Selected Service <span className="req">*</span>
-                </label>
-                <div className="select-wrapper">
-                  <select
-                    id="contact-service"
-                    name="service"
-                    onChange={(e) => setSelectedService(e.target.value)}
-                    required
-                    value={selectedService}
-                  >
-                    <option disabled value="">Select one of 13 studio disciplines</option>
-                    {servicesList.map((s) => (
-                      <option key={s.number} value={`${s.number} ${s.title}`}>
-                        {s.number} · {s.title} ({s.tag})
-                      </option>
-                    ))}
-                    <option value="Custom Multi-Service Package">Custom Multi-Service Package</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Message / Project Scope Textarea */}
-              <div className="contact-field-group">
-                <label htmlFor="contact-message">
-                  Your Message / Project Scope <span className="req">*</span>
-                </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  required
-                  rows={4}
-                />
-              </div>
-
-              {/* Submit Button & Privacy Reassurance */}
-              <div className="contact-submit-area">
-                <button className="contact-send-btn" type="submit">
-                  <span>{sent ? 'Opening Email Client…' : 'Send Project Enquiry'}</span>
-                  <Send size={16} />
-                </button>
-                <span className="submit-subtext">No spam. Your project details stay 100% confidential.</span>
-              </div>
-
-              {sent && (
-                <p aria-live="polite" className="form-feedback-card">
-                  ✓ Opening your email client to dispatch your enquiry. If it didn&apos;t open automatically, write directly to <strong>info.viyanaproductions@gmail.com</strong>.
-                </p>
-              )}
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 
 function Footer() {
   return (
@@ -3120,7 +2908,7 @@ function Footer() {
           <a href="#podcast-shoot">Podcast shoot</a>
           <a href="#influencer-shoot">Influencer shoot</a>
           <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
+          <a href="https://viyana.productions/contact">Contact</a>
         </div>
 
         <div className="footer-column">
@@ -3139,7 +2927,6 @@ function Footer() {
             Bengaluru, Karnataka 560085
             <ArrowUpRight size={12} style={{ display: 'inline', marginLeft: 4 }} />
           </a>
-          <span className="footer-loc-badge">Bengaluru HQ · Tap for Map</span>
         </div>
 
         <div className="footer-column">
@@ -3190,7 +2977,7 @@ function ProjectDetail() {
         <Eyebrow>A little about this one</Eyebrow>
         <h2>A good story can begin anywhere.</h2>
         <p>{project.description} We worked together to find the point of view, bring the right people into the room, and make something worth spending a little time with.</p>
-        <Link className="text-link" to="/#contact">Have a story of your own? <ArrowUpRight size={17} /></Link>
+        <a className="text-link" href="https://viyana.productions/contact">Have a story of your own? <ArrowUpRight size={17} /></a>
       </div>
       <Link className="next-project" to={`/work/${nextProject.slug}`}>
         <img alt="" loading="lazy" src={nextProject.image} />
@@ -3202,14 +2989,8 @@ function ProjectDetail() {
 }
 
 function HomePage() {
-  const [selectedService, setSelectedService] = useState('01 Commercial Ads')
-
-  const handleSelectService = (service: string) => {
-    setSelectedService(service)
-    const el = document.getElementById('contact')
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }
+  const handleSelectService = () => {
+    window.location.href = 'https://viyana.productions/contact'
   }
 
   return (
@@ -3223,7 +3004,6 @@ function HomePage() {
       <PodcastShoot onSelectService={handleSelectService} />
       <InfluencerShoot onSelectService={handleSelectService} />
       <Services onSelectService={handleSelectService} />
-      <Contact preselectedService={selectedService} />
       <div className="luxury-section-divider" />
     </main>
   )
@@ -3442,23 +3222,7 @@ export default function App() {
         scrollTrigger: { trigger: '.services-controls-bar', start: 'top 86%', once: true },
       })
 
-      // 10. Contact Us: Info Column from LEFT, Contact Form Card from RIGHT
-      gsap.from('.contact-info-col', {
-        autoAlpha: 0,
-        x: -xOffset,
-        duration: 1.1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.contact-studio-layout', start: 'top 85%', once: true },
-      })
-      gsap.from('.contact-form-card', {
-        autoAlpha: 0,
-        x: xOffset,
-        duration: 1.1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.contact-studio-layout', start: 'top 85%', once: true },
-      })
-
-      // 11. Luxury Section Dividers: Expand outward from center
+      // 10. Luxury Section Dividers: Expand outward from center
       gsap.from('.luxury-section-divider', {
         scaleX: 0,
         transformOrigin: 'center center',

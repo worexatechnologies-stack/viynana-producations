@@ -10,6 +10,10 @@ type MobileNavigationProps = {
 export default function MobileNavigation({ isOpen, links, onNavigate }: MobileNavigationProps) {
   const handleClick = (to: string) => {
     onNavigate()
+    if (to.startsWith('http://') || to.startsWith('https://')) {
+      window.location.href = to
+      return
+    }
     if (to.startsWith('#') || to.startsWith('/#')) {
       const targetId = to.replace('/#', '#')
       const el = document.querySelector(targetId)

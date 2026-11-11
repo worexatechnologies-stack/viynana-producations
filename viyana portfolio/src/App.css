@@ -3771,13 +3771,8 @@
   .hero-split { display: flex; flex-direction: column; gap: 26px; }
   .hero-video-side { order: -1; width: 100%; }
   .hero-content-side { order: 1; width: 100%; }
-  .hero-ref-title { font-size: clamp(28px, 7.8vw, 40px); line-height: 1.12; margin-bottom: 14px; }
-  .hero-ref-desc { font-size: 13px; line-height: 1.65; margin-bottom: 20px; }
-  .hero-ref-cards { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
-  .hero-ref-card { padding: 13px 11px; border-radius: 12px; }
-  .hero-ref-icon { width: 28px; height: 28px; margin-bottom: 8px; }
-  .hero-ref-card h4 { font-size: 13.5px; }
-  .hero-ref-card p { font-size: 11.5px; }
+  .hero-ref-title { font-size: clamp(28px, 7.8vw, 40px); line-height: 1.12; margin-bottom: 16px; }
+  .hero-ref-desc, .hero-ref-cards { display: none !important; }
   .hero-ref-video-wrap { height: clamp(280px, 78vw, 380px); border-radius: 20px; }
   .hero-ref-play { width: 52px; height: 52px; }
   .hero-ref-video-tag { top: 16px; left: 16px; font-size: 11px; padding: 5px 12px; }
@@ -5104,9 +5099,8 @@
 }
 
 @media (max-width: 420px) {
-  .hero-ref-cards {
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .hero-ref-desc, .hero-ref-cards {
+    display: none !important;
   }
   .about-full-chakra-wrapper {
     max-width: min(90vw, 320px);
