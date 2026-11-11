@@ -781,12 +781,28 @@ const productShootImages = [
     description: 'Tranexamic acid and licorice formulation captured with studio mirror reflections and sharp macro detail.',
   },
   {
+    name: 'Heritage Temple Gold Necklace & Chessboard Study',
+    type: 'Fine Jewellery · Antique Gold',
+    category: 'Jewellery',
+    image: '/images/product-shoot/07-antique-gold-necklace-chess.jpg',
+    alt: 'Intricate handcrafted antique temple gold necklace and jhumka earrings set against wooden chessboard',
+    description: 'Rich warm temple gold with handcrafted filigree and ruby bead accents, staged across a rustic chessboard with royal chess pieces.',
+  },
+  {
     name: 'Genex Advanced PDRN+ Revitalizing Serum',
     type: 'Serum · 30 ml',
     category: 'Serum',
     image: '/images/product-shoot/06-genex-serum.jpg',
     alt: 'Dermera Genex Advanced PDRN+ Revitalizing face serum bottle',
     description: 'Frosted matte finish with delicate pastel amber gradient, showcasing precision dispenser typography.',
+  },
+  {
+    name: 'Artisanal Gold Filigree Jhumkas with Sapphire Beads',
+    type: 'Earrings · Bridal & Festive',
+    category: 'Jewellery',
+    image: '/images/product-shoot/08-filigree-jhumkas-blue-beads.jpg',
+    alt: 'Gold filigree jhumka earrings with deep blue droplet beads suspended against architectural lattice',
+    description: 'Intricate jaali dome work adorned with royal blue droplet beads, highlighting delicate gold metallurgy against clean architectural contrast.',
   },
   {
     name: 'Luminex Luminous Face Wash',
@@ -797,6 +813,14 @@ const productShootImages = [
     description: 'High-contrast studio lighting capturing the rich metallic gold foil and deep charcoal black luxury carton.',
   },
   {
+    name: 'Peacock Motif Antique Gold Studs — Parisian Accent',
+    type: 'Earrings · Heritage Craft',
+    category: 'Jewellery',
+    image: '/images/product-shoot/09-peacock-gold-earrings-eiffel.jpg',
+    alt: 'Peacock motif antique gold stud earrings with ruby stones mounted on bronze Eiffel tower',
+    description: 'Traditional Mayura peacock carvings with ruby eyes mounted on a Parisian bronze spire, blending heritage craftsmanship with contemporary concept.',
+  },
+  {
     name: 'Dewexa Dermal Bio Cloud Cream',
     type: 'Moisturizer · 50 g',
     category: 'Cream',
@@ -805,12 +829,28 @@ const productShootImages = [
     description: 'Polished gold metallic lid paired with crimson red textured box, angled with razor-sharp reflection.',
   },
   {
+    name: 'Sculptural Antique Gold Bangles — Contrast Composition',
+    type: 'Bangles · Luxury Editorial',
+    category: 'Jewellery',
+    image: '/images/product-shoot/10-antique-gold-bangles-sculptural.jpg',
+    alt: 'Ornate antique gold bangles displayed on matte black mannequin hands breaking through white seamless paper',
+    description: 'High-contrast studio editorial featuring antique gold floral kadas held by matte black sculptural hands emerging from torn white paper.',
+  },
+  {
     name: 'Spiculex Advanced Bio Micro Needle Serum',
     type: 'Micro Needle Serum · 30 ml',
     category: 'Serum',
     image: '/images/product-shoot/04-spiculex-serum.jpg',
     alt: 'Dermera Spiculex Advanced Bio micro needle serum bottle and box',
     description: 'Amber glass bottle paired with artisanal textured box, highlighting micro-needle bio formulation details.',
+  },
+  {
+    name: 'Pearl Butterfly Fine Gold Chain — Nest Installation',
+    type: 'Neckwear · Minimalist Luxury',
+    category: 'Jewellery',
+    image: '/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg',
+    alt: 'Delicate gold link chain with sculpted pearl butterflies draped over porcelain egg in straw nest',
+    description: 'Organic conceptual still life featuring iridescent mother-of-pearl butterflies on a fine gold chain, delicately draped over an egg in a natural twig nest.',
   },
   {
     name: 'Dewexa Bio Cloud Cream — Angle View',
@@ -934,7 +974,7 @@ function ProductShoot() {
         </div>
         <p className="section-note">
           Tactile macro lighting, cinematic textures, and motion reels.<br />
-          From commercial product films to high-end Dermera packaging photography.
+          From commercial product films to luxury jewellery and high-end Dermera packaging photography.
         </p>
       </div>
 
@@ -1106,7 +1146,7 @@ function ProductShoot() {
             <div className="lightbox-info-bar">
               <div className="lightbox-meta">
                 <span className="lightbox-count">
-                  0{lightboxIndex + 1} / 0{productShootImages.length} · {productShootImages[lightboxIndex].type}
+                  {String(lightboxIndex + 1).padStart(2, '0')} / {String(productShootImages.length).padStart(2, '0')} · {productShootImages[lightboxIndex].type}
                 </span>
                 <h3>{productShootImages[lightboxIndex].name}</h3>
                 <p>{productShootImages[lightboxIndex].description}</p>
