@@ -767,7 +767,8 @@
    360° Circular Radial Aperture Dial Showcase (Product Shoot)
    ========================================================= */
 /* =========================================================
-   Product Marquee Showcase - Continuous Horizontal Ribbon Auto-Moving Right to Left
+   Product Marquee Showcase - Dual Opposing Horizontal Ribbons
+   (Row 1: Right to Left | Row 2: Left to Right)
    ========================================================= */
 @keyframes productMarqueeScroll {
   0% {
@@ -778,12 +779,24 @@
   }
 }
 
+@keyframes productMarqueeScrollReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .product-marquee-showcase {
-  margin-top: 36px;
+  margin-top: 32px;
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding: 12px 0 24px;
+  padding: 8px 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
   mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
@@ -795,18 +808,63 @@
 
 .product-marquee-track {
   display: flex;
-  gap: 24px;
+  gap: 22px;
   width: max-content;
-  animation: productMarqueeScroll 30s linear infinite;
+  animation: productMarqueeScroll 36s linear infinite;
   will-change: transform;
+}
+
+.product-marquee-track-reverse {
+  animation: productMarqueeScrollReverse 36s linear infinite;
 }
 
 .product-marquee-track:hover {
   animation-play-state: paused;
 }
 
+.product-film-selector-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed #e3dfd7;
+}
+
+.product-film-selector-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.product-pill-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #dcd7ce;
+  background: #ffffff;
+  color: #374151;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+
+.product-pill-btn:hover {
+  border-color: #a68e67;
+  color: #a68e67;
+}
+
+.product-pill-btn.active {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+}
+
 .product-marquee-card {
-  flex: 0 0 clamp(280px, 24vw, 340px);
+  flex: 0 0 clamp(260px, 22vw, 320px);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -816,7 +874,7 @@
 }
 
 .product-marquee-img-box {
-  height: clamp(380px, 35vw, 470px);
+  height: clamp(340px, 28vw, 420px);
   background: #ffffff;
   border: 1px solid #e7e2d7;
   border-radius: 18px;
@@ -838,7 +896,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 18px;
+  padding: 16px;
   display: block;
 }
 
@@ -902,11 +960,23 @@
 }
 
 @media (max-width: 640px) {
+  .product-marquee-showcase {
+    gap: 14px;
+    padding: 6px 0 16px;
+  }
+  .product-marquee-track {
+    gap: 14px;
+    animation-duration: 28s;
+  }
   .product-marquee-card {
-    flex: 0 0 250px;
+    flex: 0 0 210px;
   }
   .product-marquee-img-box {
-    height: 330px;
+    height: 270px;
+    border-radius: 14px;
+  }
+  .product-marquee-img-box img {
+    padding: 12px;
   }
 }
 
@@ -5078,6 +5148,7 @@
   /* Smooth hardware-accelerated momentum scrolling on touch carousels */
   .model-stills-track,
   .product-marquee-track,
+  .product-marquee-track-reverse,
   .branding-stills-track,
   .podcast-youtube-line,
   .podcast-insta-line,

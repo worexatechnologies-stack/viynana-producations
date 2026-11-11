@@ -870,6 +870,7 @@ type ProductVideo = {
   src: string
   badge: string
   description: string
+  poster?: string
 }
 
 const productShootVideos: ProductVideo[] = [
@@ -881,6 +882,7 @@ const productShootVideos: ProductVideo[] = [
     src: '/videos/product-chopping-board.mp4',
     badge: '01 / Chopping Board Film',
     description: 'Dynamic studio lighting, rich organic wood textures, and tactile commercial motion captured for premium kitchenware.',
+    poster: '/images/product-shoot/01-melanex-serum.jpg',
   },
   {
     id: 'commercial-render',
@@ -890,6 +892,7 @@ const productShootVideos: ProductVideo[] = [
     src: '/videos/product-commercial-render.mp4',
     badge: '02 / 3D Macro Motion',
     description: 'High-contrast studio lighting highlighting product silhouettes, reflections, and cinematic brand pacing.',
+    poster: '/images/product-shoot/03-dewexa-cloud-cream.jpg',
   },
   {
     id: 'final-output-master',
@@ -899,6 +902,27 @@ const productShootVideos: ProductVideo[] = [
     src: '/videos/product-final-output.mp4',
     badge: '03 / Commercial Master',
     description: 'High-fidelity cinema lighting, crisp packaging reflections, and rhythmic commercial pacing engineered for luxury conversion.',
+    poster: '/images/product-shoot/06-genex-serum.jpg',
+  },
+  {
+    id: 'jewellery-oole-commercial',
+    title: 'Oole Style Everyday — Fine Jewellery Commercial Reel',
+    tag: 'Jewellery Reel',
+    category: 'Fine Jewellery',
+    src: '/videos/product-jewellery-oole-commercial.mp4',
+    badge: '04 / Jewellery Reel',
+    description: 'Artisanal jewellery cinematography, organic egg nest installation, and luxury macro ring details.',
+    poster: '/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg',
+  },
+  {
+    id: 'jewellery-bts-production',
+    title: 'Behind The Scenes — Luxury Jewellery Production Breakdown',
+    tag: 'BTS Breakdown',
+    category: 'Behind The Scenes',
+    src: '/videos/product-jewellery-behind-the-scenes.mp4',
+    badge: '05 / BTS Studio Shoot',
+    description: 'Exclusive behind-the-scenes breakdown showing creative lighting, paper-tear styling, and mannequin shoot precision in Bangalore.',
+    poster: '/images/product-shoot/10-antique-gold-bangles-sculptural.jpg',
   },
 ]
 
@@ -911,6 +935,7 @@ function ProductShoot() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   const activeProductVideo = productShootVideos[activeProductVideoIndex]
+  const productShootImagesRow2 = [...productShootImages.slice(5), ...productShootImages.slice(0, 5)]
 
   const handleProductPrev = () => {
     setActiveProductVideoIndex((prev) => (prev === 0 ? productShootVideos.length - 1 : prev - 1))
@@ -990,7 +1015,7 @@ function ProductShoot() {
               loop
               muted={isProductVideoMuted}
               playsInline
-              poster="/images/product-shoot/01-melanex-serum.jpg"
+              poster={activeProductVideo.poster || '/images/product-shoot/01-melanex-serum.jpg'}
               preload="metadata"
               ref={productVideoRef}
               src={activeProductVideo.src}
@@ -1063,13 +1088,31 @@ function ProductShoot() {
               <span className="film-active-index">Film 0{activeProductVideoIndex + 1} / 0{productShootVideos.length}</span>
               <span className="film-active-title">{activeProductVideo.title}</span>
             </div>
+
+            <div className="product-film-selector-wrap">
+              <span className="selector-label">Cycle Films:</span>
+              <div className="product-film-selector-pills">
+                {productShootVideos.map((video, idx) => (
+                  <button
+                    aria-label={`Select ${video.title}`}
+                    className={`product-pill-btn ${activeProductVideoIndex === idx ? 'active' : ''}`}
+                    key={video.id}
+                    onClick={() => setActiveProductVideoIndex(idx)}
+                    type="button"
+                  >
+                    0{idx + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Product Stills: Continuous Horizontal Ribbon Auto-Moving Right to Left */}
+      {/* Product Stills: Dual Opposing Horizontal Ribbons */}
       <div className="product-stills-section" data-reveal>
         <div className="product-marquee-showcase">
+          {/* Row 1: Flowing Right to Left */}
           <div className="product-marquee-track-wrap">
             <div className="product-marquee-track">
               {[...productShootImages, ...productShootImages].map((product, idx) => {
@@ -1077,7 +1120,7 @@ function ProductShoot() {
                 return (
                   <div
                     className="product-marquee-card"
-                    key={`${product.image}-${idx}`}
+                    key={`row1-${product.image}-${idx}`}
                     onClick={() => setLightboxIndex(originalIndex)}
                     role="button"
                     tabIndex={0}
@@ -1088,7 +1131,32 @@ function ProductShoot() {
                         <ArrowUpRight size={16} />
                       </span>
                     </div>
-                                      </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Row 2: Flowing Left to Right (Opposite Direction) */}
+          <div className="product-marquee-track-wrap product-marquee-track-wrap-second">
+            <div className="product-marquee-track product-marquee-track-reverse">
+              {[...productShootImagesRow2, ...productShootImagesRow2].map((product, idx) => {
+                const originalIndex = productShootImages.findIndex((p) => p.image === product.image)
+                return (
+                  <div
+                    className="product-marquee-card"
+                    key={`row2-${product.image}-${idx}`}
+                    onClick={() => setLightboxIndex(originalIndex >= 0 ? originalIndex : 0)}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <div className="product-marquee-img-box">
+                      <img alt={product.alt} loading="lazy" src={product.image} />
+                      <span className="product-marquee-zoom">
+                        <ArrowUpRight size={16} />
+                      </span>
+                    </div>
+                  </div>
                 )
               })}
             </div>
