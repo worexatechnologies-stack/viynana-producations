@@ -3,9 +3,16 @@
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
   RewriteRule ^api/contact/?$ /api/contact.php [L,QSA]
-  RewriteRule ^portfolio/.*$ /portfolio/index.html [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # If requested path is a real file or directory, serve it directly without rewriting
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # SPA Routing for Portfolio subsite
+  RewriteRule ^portfolio(/.*)?$ /portfolio/index.html [L]
+
+  # SPA Routing for Main application
   RewriteRule . /index.html [L]
 </IfModule>
 
