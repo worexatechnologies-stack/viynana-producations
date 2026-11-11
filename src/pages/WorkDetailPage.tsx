@@ -1172,85 +1172,6 @@ export default function ProjectDetail() {
         {/* FEATURED INSTAGRAM REEL SHOWCASE FOR INFLUENCER SHOOT (AT LAST IN INFLUENCER PAGE) */}
         {instagramList.length > 0 && isInfluencerShoot && renderInstagramSection()}
 
-        {/* 5. QUICK 13 SERVICES SELECTOR */}
-        <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-black/60">
-          <div className="container mx-auto max-w-7xl">
-
-            {/* Section Header */}
-            <div className="flex items-center justify-between gap-4 mb-5 sm:mb-6">
-              <div>
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/50 block mb-1">
-                  EXPLORE ALL DISCIPLINES
-                </span>
-                <h3 className="text-lg sm:text-xl font-display font-bold uppercase text-white tracking-tight">
-                  13 Core Services
-                </h3>
-              </div>
-              <Link
-                to="/work"
-                className="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white hover:text-black text-[10px] sm:text-xs font-mono uppercase tracking-wider text-white/70 hover:text-black transition-all"
-              >
-                <span className="hidden sm:inline">VIEW ALL SERVICES</span>
-                <span className="sm:hidden">VIEW ALL</span>
-                <span>→</span>
-              </Link>
-            </div>
-
-            {/* Mobile: 2-col grid — Desktop: horizontal scroll row */}
-            {/* Grid (mobile only) */}
-            <div className="grid grid-cols-2 gap-2 sm:hidden">
-              {projects.map((p, pIdx) => {
-                const isCurrent = p.slug === slug;
-                return (
-                  <Link
-                    key={p.slug}
-                    to={`/work/${p.slug}`}
-                    className={`flex flex-col justify-between p-3.5 rounded-2xl border transition-all duration-300 min-h-[80px] ${
-                      isCurrent
-                        ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.25)]"
-                        : "bg-white/[0.03] text-white/70 border-white/10 active:bg-white/10 active:border-white/25"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className={`text-[10px] font-mono font-bold ${isCurrent ? "text-black/50" : "text-white/30"}`}>
-                        {String(pIdx + 1).padStart(2, "0")}
-                      </span>
-                      <span className={`text-xs ${isCurrent ? "text-black/60" : "text-white/25"}`}>→</span>
-                    </div>
-                    <span className={`text-[11px] font-mono uppercase tracking-wide leading-snug font-semibold ${isCurrent ? "text-black" : "text-white/80"}`}>
-                      {p.title}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Horizontal scroll (sm and up) */}
-            <div className="hidden sm:flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 overscroll-x-contain touch-pan-x">
-              {projects.map((p, pIdx) => {
-                const isCurrent = p.slug === slug;
-                return (
-                  <Link
-                    key={p.slug}
-                    to={`/work/${p.slug}`}
-                    className={`shrink-0 px-3.5 py-2.5 rounded-xl border text-xs font-mono flex items-center gap-2.5 transition-all duration-300 ${
-                      isCurrent
-                        ? "bg-white text-black border-white font-bold shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-                        : "bg-white/[0.03] text-white/70 border-white/10 hover:border-white/30 hover:text-white hover:bg-white/[0.08]"
-                    }`}
-                  >
-                    <span className={`text-[10px] ${isCurrent ? "text-black/60 font-bold" : "text-white/40"}`}>
-                      {String(pIdx + 1).padStart(2, "0")}
-                    </span>
-                    <span className="whitespace-nowrap uppercase tracking-wider">{p.title}</span>
-                  </Link>
-                );
-              })}
-            </div>
-
-          </div>
-        </section>
-
 
         {/* 6. NEXT DISCIPLINE SHOWCASE WITH REALISTIC PRODUCTION BACKDROP */}
         <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 overflow-hidden bg-brand-dark group/next">
@@ -1396,7 +1317,7 @@ export default function ProjectDetail() {
         )}
       </AnimatePresence>
 
-      <Footer />
+      <Footer variant="light" hideCtaBanner={true} />
     </main>
   );
 }

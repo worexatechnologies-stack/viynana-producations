@@ -1035,64 +1035,21 @@ export default function ProductShootDetailPage({
                   </p>
                 </div>
               </div>
-
-              {/* Deliverables Badges */}
-              <div className="space-y-3 pt-2">
-                <span className="text-xs font-mono uppercase tracking-widest text-white/50 block">
-                  DELIVERABLES &amp; PRODUCTION SCOPE
-                </span>
-                <div className="flex flex-wrap gap-2.5">
-                  {[
-                    "E-Commerce Packshots",
-                    "Fine Jewellery Macro Stills",
-                    "Skincare & Beauty Editorial",
-                    "Lifestyle Prop Staging",
-                    "4K Commercial Broadcast Films",
-                    "Social-Ready Vertical Reels",
-                    "Catalog Retouching & Color Grading",
-                  ].map((scopeItem, sIdx) => (
-                    <span
-                      key={sIdx}
-                      className="px-4 py-2 rounded-xl bg-white/[0.04] border border-white/15 text-xs font-mono text-white/90 uppercase tracking-wider"
-                    >
-                      {scopeItem}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Project Credits Dossier */}
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs font-mono">
-                <div>
-                  <span className="text-white/40 block text-[10px] uppercase">STUDIO</span>
-                  <span className="text-white font-semibold">Viyana Productions</span>
-                </div>
-                <div>
-                  <span className="text-white/40 block text-[10px] uppercase">LOCATION</span>
-                  <span className="text-white font-semibold">Bengaluru, India</span>
-                </div>
-                <div>
-                  <span className="text-white/40 block text-[10px] uppercase">SPECIALTY</span>
-                  <span className="text-amber-400 font-semibold">Luxury Products &amp; Jewellery</span>
-                </div>
-              </div>
             </div>
 
-            {/* Right Column: Inquiry / Booking Form */}
+            {/* Right Column: Inquiry / Booking Form (Luxury White Card) */}
             <div className="lg:col-span-5">
-              <div className="lg:sticky lg:top-28 p-7 sm:p-9 rounded-3xl bg-[#101015] border border-white/20 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
-
+              <div className="lg:sticky lg:top-28 p-7 sm:p-9 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-2xl relative overflow-hidden">
                 {inquirySubmitted ? (
                   <div className="py-10 text-center space-y-4">
-                    <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto text-2xl font-bold">
+                    <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-2xl font-bold">
                       ✓
                     </div>
                     <div className="space-y-1.5">
-                      <h3 className="text-2xl font-display font-bold uppercase text-white">
+                      <h3 className="text-2xl font-display font-bold uppercase text-neutral-900">
                         Inquiry Received
                       </h3>
-                      <p className="text-sm text-white/70 max-w-xs mx-auto">
+                      <p className="text-sm text-neutral-600 max-w-xs mx-auto">
                         Thank you, {inquiry.name}. Our production producer will contact you within 24 hours.
                       </p>
                     </div>
@@ -1102,27 +1059,27 @@ export default function ProductShootDetailPage({
                         setInquiry({ name: "", email: "", phone: "", message: "" });
                         setInquirySubmitted(false);
                       }}
-                      className="mt-3 text-xs font-mono uppercase tracking-wider text-amber-400 hover:text-amber-300 underline cursor-pointer"
+                      className="mt-3 text-xs font-mono uppercase tracking-wider text-neutral-500 hover:text-black underline cursor-pointer transition-colors"
                     >
                       Send another message
                     </button>
                   </div>
                 ) : (
                   <form onSubmit={onInquirySubmit} className="space-y-4 relative z-10">
-                    <div className="space-y-1.5 border-b border-white/10 pb-4">
-                      <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-400 block font-semibold">
+                    <div className="space-y-1.5 border-b border-neutral-200 pb-4">
+                      <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-500 block font-semibold">
                         BOOK A PRODUCT SHOOT
                       </span>
-                      <h3 className="text-2xl font-display font-bold uppercase text-white">
+                      <h3 className="text-2xl font-display font-bold uppercase text-neutral-900">
                         Start Your Campaign
                       </h3>
-                      <p className="text-xs text-white/60">
+                      <p className="text-xs text-neutral-600">
                         Let us craft unforgettable stills and high-converting commercial reels for your products.
                       </p>
                     </div>
 
                     <label className="block space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-white/70">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-700">
                         Name *
                       </span>
                       <input
@@ -1131,13 +1088,13 @@ export default function ProductShootDetailPage({
                         value={inquiry.name}
                         onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })}
                         required
-                        className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-amber-400 focus:bg-white/[0.08] focus:outline-none transition-all"
+                        className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
                         placeholder="Your full name"
                       />
                     </label>
 
                     <label className="block space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-white/70">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-700">
                         Email Address *
                       </span>
                       <input
@@ -1146,13 +1103,13 @@ export default function ProductShootDetailPage({
                         value={inquiry.email}
                         onChange={(e) => setInquiry({ ...inquiry, email: e.target.value })}
                         required
-                        className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-amber-400 focus:bg-white/[0.08] focus:outline-none transition-all"
+                        className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
                         placeholder="name@company.com"
                       />
                     </label>
 
                     <label className="block space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-white/70">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-700">
                         Phone Number *
                       </span>
                       <input
@@ -1161,13 +1118,13 @@ export default function ProductShootDetailPage({
                         value={inquiry.phone}
                         onChange={(e) => setInquiry({ ...inquiry, phone: e.target.value })}
                         required
-                        className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-amber-400 focus:bg-white/[0.08] focus:outline-none transition-all"
+                        className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
                         placeholder="+91 98765 43210"
                       />
                     </label>
 
                     <label className="block space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-white/70">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-700">
                         Project Details *
                       </span>
                       <textarea
@@ -1176,7 +1133,7 @@ export default function ProductShootDetailPage({
                         onChange={(e) => setInquiry({ ...inquiry, message: e.target.value })}
                         required
                         rows={4}
-                        className="w-full resize-y rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-amber-400 focus:bg-white/[0.08] focus:outline-none transition-all"
+                        className="w-full resize-y rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
                         placeholder="Tell us about your product range, quantity, required stills and video deliverables..."
                       />
                     </label>
@@ -1184,9 +1141,9 @@ export default function ProductShootDetailPage({
                     {inquiryError && (
                       <div
                         role="alert"
-                        className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-xs font-mono text-red-300 leading-relaxed flex items-start gap-2"
+                        className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs font-mono text-red-700 leading-relaxed flex items-start gap-2"
                       >
-                        <span className="text-red-400 font-bold">!</span>
+                        <span className="text-red-500 font-bold">!</span>
                         <span>{inquiryError}</span>
                       </div>
                     )}
@@ -1194,7 +1151,7 @@ export default function ProductShootDetailPage({
                     <button
                       type="submit"
                       disabled={isSubmittingInquiry}
-                      className="w-full py-4 px-6 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2 transition-all shadow-[0_10px_30px_rgba(251,191,36,0.3)] active:scale-95 disabled:opacity-60 cursor-pointer"
+                      className="w-full py-4 px-6 rounded-xl bg-neutral-900 hover:bg-black text-white font-mono text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 disabled:opacity-60 cursor-pointer"
                     >
                       {isSubmittingInquiry ? "PROCESSING INQUIRY..." : "SUBMIT PRODUCT SHOOT INQUIRY →"}
                     </button>
@@ -1207,52 +1164,7 @@ export default function ProductShootDetailPage({
         </div>
       </section>
 
-      {/* 7. ALL WORKS ARCHIVE & NEXT PROJECT FOOTER */}
-      <section className="py-14 sm:py-16 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-[#050507]">
-        <div className="container mx-auto max-w-7xl space-y-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/50 block">
-                EXPLORE PORTFOLIO
-              </span>
-              <h3 className="text-xl sm:text-2xl font-display font-bold uppercase text-white">
-                All Production Categories
-              </h3>
-            </div>
-            {nextProject && (
-              <Link
-                to={`/work/${nextProject.slug}`}
-                className="inline-flex items-center gap-2 text-xs font-mono text-amber-400 hover:text-white uppercase tracking-wider transition-colors"
-              >
-                <span>Next Project: {nextProject.title}</span>
-                <ArrowRight size={13} />
-              </Link>
-            )}
-          </div>
-
-          {/* Projects Quick Links Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
-            {projects.map((p) => {
-              const isCurrent = p.slug === "product-shoot";
-              return (
-                <Link
-                  key={p.slug}
-                  to={`/work/${p.slug}`}
-                  className={`p-3 rounded-xl border text-xs font-mono transition-all truncate block ${
-                    isCurrent
-                      ? "bg-amber-400 text-black font-bold border-amber-400 shadow-md"
-                      : "bg-white/[0.03] border-white/10 text-white/70 hover:bg-white/[0.08] hover:text-white hover:border-white/20"
-                  }`}
-                >
-                  {p.title}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+      <Footer variant="light" hideCtaBanner={true} />
     </main>
   );
 }
