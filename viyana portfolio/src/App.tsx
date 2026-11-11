@@ -728,6 +728,7 @@ function ModelShoot() {
             <div className="lightbox-image-container">
               <img
                 alt={modelShootImages[modelLightboxIndex].alt}
+                className="lightbox-main-img"
                 src={modelShootImages[modelLightboxIndex].image}
               />
             </div>
@@ -1684,6 +1685,7 @@ function BrandingShoot({ onSelectService }: { onSelectService?: (service: string
             <div className="lightbox-image-container">
               <img
                 alt={brandingShootImages[brandingLightboxIndex].alt}
+                className="lightbox-main-img"
                 src={brandingShootImages[brandingLightboxIndex].image}
               />
             </div>
@@ -2554,6 +2556,7 @@ function About() {
             <div className="lightbox-image-container">
               <img
                 alt={chakraWorksPool[aboutLightboxIndex].alt}
+                className="lightbox-main-img"
                 src={chakraWorksPool[aboutLightboxIndex].image}
               />
             </div>
