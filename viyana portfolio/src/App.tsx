@@ -559,56 +559,24 @@ function ModelShoot() {
             </div>
           </div>
 
-          {/* Model Film Navigation Bar with Previous / Next Buttons */}
-          <div className="model-film-nav-bar">
-            <button
-              aria-label="Previous model film"
-              className="model-nav-btn"
-              onClick={handlePrev}
-              type="button"
-            >
-              <ChevronLeft size={16} />
-              <span>Previous Film</span>
-            </button>
-
-            <div className="model-nav-indicators">
-              {modelShootVideos.map((video, idx) => (
-                <button
-                  aria-label={`Jump to film ${idx + 1}: ${video.title}`}
-                  className={`model-nav-dot ${activeVideoIndex === idx ? 'active' : ''}`}
-                  key={video.id}
-                  onClick={() => setActiveVideoIndex(idx)}
-                  type="button"
-                >
-                  <span className="dot-num">0{idx + 1}</span>
-                  <span className="dot-label">{video.tag}</span>
-                </button>
-              ))}
-            </div>
-
-            <button
-              aria-label="Next model film"
-              className="model-nav-btn"
-              onClick={handleNext}
-              type="button"
-            >
-              <span>Next Film</span>
-              <ChevronRight size={16} />
-            </button>
-          </div>
-
-          <figcaption>
-            <div>
-              <strong>{activeVideo.title}</strong>
+          <figcaption className="model-film-caption">
+            <div className="model-film-caption-main">
+              <span className="model-film-caption-num">0{activeVideoIndex + 1} / 0{modelShootVideos.length} · {activeVideo.badge}</span>
+              <strong className="model-film-title">{activeVideo.title}</strong>
               <span className="model-film-sub">{activeVideo.note}</span>
             </div>
-            <span>{activeVideo.badge}</span>
+            <div className="model-film-caption-tags">
+              <span className="model-film-tag-pill">{activeVideo.tag}</span>
+            </div>
           </figcaption>
         </figure>
 
         <div className="model-shoot-copy" data-reveal>
-          <span className="model-shoot-mark">V / 02</span>
-          <p>Honest expressions. Easy movement. Light that lets every detail breathe.</p>
+          <div className="model-shoot-copy-header">
+            <span className="model-shoot-mark">V / 02</span>
+            <span className="model-shoot-chapter">CINEMA PORTRAITURE</span>
+          </div>
+          <p className="model-shoot-quote">Honest expressions. Easy movement. Light that lets every detail breathe.</p>
           <div className="model-shoot-meta">
             <span className="model-shoot-credit">Portraits and campaign films<br />by Viyana Productions</span>
             <div className="model-reel-selector">
