@@ -87,26 +87,31 @@ export default function ContactPage() {
       let res: Response | null = null;
       let lastErrorMessage = "";
 
-      // 1. Try relative endpoint /api/contact first
-      try {
-        const primaryRes = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+      // 1. Try relative endpoints in sequence (Node/Vercel -> PHP on Hostinger -> Root PHP)
+      const endpointsToTry = ["/api/contact", "/api/contact.php", "/contact.php"];
+      for (const endpoint of endpointsToTry) {
+        if (res) break;
+        try {
+          const fetchRes = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(payload),
+          });
 
-        if (primaryRes.ok) {
-          res = primaryRes;
-        } else {
-          try {
-            const errData = (await primaryRes.json()) as { error?: string };
-            if (errData?.error) lastErrorMessage = errData.error;
-          } catch {
-            // Non-JSON response
+          if (fetchRes.ok) {
+            res = fetchRes;
+            break;
+          } else {
+            try {
+              const errData = (await fetchRes.json()) as { error?: string };
+              if (errData?.error) lastErrorMessage = errData.error;
+            } catch {
+              // Non-JSON response
+            }
           }
+        } catch {
+          // Network error on this endpoint, try next
         }
-      } catch (networkErr) {
-        // Network error
       }
 
       // 2. If relative endpoint didn't succeed, attempt fallback to local API server on port 3001

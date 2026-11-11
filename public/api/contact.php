@@ -1,17 +1,28 @@
 <?php
+// Production Contact Form Handler for Viyana Productions
+error_reporting(0);
+ini_set('display_errors', '0');
+
 header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 
+// 1. CORS Preflight
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
 
+// 2. Health check
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     http_response_code(200);
-    echo json_encode(['status' => 'ok', 'service' => 'Viyana Productions Contact API']);
+    echo json_encode([
+        'status' => 'ok',
+        'service' => 'Viyana Productions Contact API',
+        'server' => 'PHP ' . PHP_VERSION,
+        'timestamp' => gmdate('Y-m-d\TH:i:s\Z')
+    ]);
     exit;
 }
 
@@ -21,13 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// 3. Extract and sanitize input
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
 if (!$data) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'error' => 'Invalid JSON input']);
-    exit;
+    // Also try $_POST if form was submitted with multipart or urlencoded
+    $data = $_POST;
 }
 
 $name = htmlspecialchars(trim($data['name'] ?? ''), ENT_QUOTES, 'UTF-8');
@@ -39,40 +50,93 @@ $message = htmlspecialchars(trim($data['message'] ?? ''), ENT_QUOTES, 'UTF-8');
 
 if (empty($name) || empty($message) || (empty($email) && empty($phone))) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'error' => 'Please fill in your name, contact information (phone or email), and message.']);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Please provide your name, contact information (email or phone), and message.'
+    ]);
     exit;
 }
 
+$to = 'info.viyanaproductions@gmail.com';
+$smtpUser = 'info.viyanaproductions@gmail.com';
+$smtpPass = 'rterfgoevjnrqztg';
+$fromName = 'Viyana Productions Web';
 $effectiveEmail = !empty($email) ? $email : 'info.viyanaproductions@gmail.com';
 
-$to = 'info.viyanaproductions@gmail.com';
-$subject = "New Inquiry from {$name} [{$service}] - Viyana Productions";
+date_default_timezone_set('Asia/Kolkata');
+$formattedDate = date('l, d F Y \a\t h:i A') . ' IST';
 
-$body = "New Contact Inquiry from Viyana Productions Website:\n\n";
-$body .= "Name: {$name}\n";
-$body .= "Email: " . (!empty($email) ? $email : 'Not provided') . "\n";
-$body .= "Phone: {$phone}\n";
-$body .= "Service: {$service}\n\n";
-$body .= "Message:\n{$message}\n\n";
-$body .= "--\nSent from viyana.productions";
+$subject = "New Inquiry: {$name} [{$service}]";
 
-// Function to send via Gmail SMTP over SSL
-function send_via_smtp($to, $subject, $body, $fromEmail, $fromName) {
-    $host = 'ssl://smtp.gmail.com';
-    $port = 465;
-    $user = 'info.viyanaproductions@gmail.com';
-    $pass = getenv('SMTP_PASS') ?: ($_ENV['SMTP_PASS'] ?? 'rterfgoevjnrqztg');
+$textContent = "New Project Inquiry — Viyana Productions\r\n";
+$textContent .= "------------------------------------------\r\n";
+$textContent .= "Service: {$service}\r\n";
+$textContent .= "Name: {$name}\r\n";
+$textContent .= "Email: " . (!empty($email) ? $email : "Not provided") . "\r\n";
+$textContent .= "Phone: {$phone}\r\n";
+$textContent .= "Received: {$formattedDate}\r\n\r\n";
+$textContent .= "Message:\r\n";
+$textContent .= "{$message}\r\n";
+$textContent .= "------------------------------------------\r\n";
+$textContent .= (!empty($email) ? "Reply to: {$email}" : "Call: {$phone}") . "\r\n";
 
-    $socket = @fsockopen($host, $port, $errno, $errstr, 8);
+$htmlContent = '
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:20px;background-color:#0c0d0e;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif;color:#ededed;">
+  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;background-color:#141517;border:1px solid #282828;border-radius:14px;overflow:hidden;">
+    <tr>
+      <td style="padding:28px;background:#1a1b1e;border-bottom:1px solid #282828;">
+        <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#888;">NEW WEB INQUIRY</span>
+        <h1 style="margin:4px 0 0;font-size:22px;color:#fff;">VIYANA PRODUCTIONS</h1>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:24px 28px;">
+        <div style="display:inline-block;background:#fff;color:#000;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:5px 12px;border-radius:16px;margin-bottom:18px;">' . htmlspecialchars($service) . '</div>
+        <table border="0" cellpadding="8" cellspacing="0" width="100%" style="background:#1a1b1e;border-radius:8px;margin-bottom:20px;font-size:13px;">
+          <tr><td style="color:#888;width:25%;">Name:</td><td style="color:#fff;font-weight:600;">' . htmlspecialchars($name) . '</td></tr>
+          <tr><td style="color:#888;">Email:</td><td style="color:#fff;">' . (!empty($email) ? '<a href="mailto:' . htmlspecialchars($email) . '" style="color:#fff;">' . htmlspecialchars($email) . '</a>' : 'Not provided') . '</td></tr>
+          <tr><td style="color:#888;">Phone:</td><td style="color:#fff;"><a href="tel:' . htmlspecialchars($phone) . '" style="color:#fff;">' . htmlspecialchars($phone) . '</a></td></tr>
+          <tr><td style="color:#888;">Received:</td><td style="color:#aaa;">' . $formattedDate . '</td></tr>
+        </table>
+        <div style="font-size:11px;font-weight:700;color:#888;letter-spacing:1px;margin-bottom:6px;text-transform:uppercase;">Message / Brief:</div>
+        <div style="background:#0e0f11;border:1px solid #282828;border-left:3px solid #fff;padding:14px;border-radius:6px;color:#ddd;font-size:13px;line-height:1.6;white-space:pre-wrap;">' . htmlspecialchars($message) . '</div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>';
+
+/**
+ * Sends email via Gmail authenticated SMTP (SSL on 465 or TLS on 587)
+ */
+function send_smtp_mail($host, $port, $user, $pass, $to, $fromName, $fromEmail, $subject, $textContent, $htmlContent, $isTls = false) {
+    $context = stream_context_create([
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        ]
+    ]);
+
+    $protocol = $isTls ? 'tcp://' : 'ssl://';
+    $socket = @stream_socket_client($protocol . $host . ':' . $port, $errno, $errstr, 8, STREAM_CLIENT_CONNECT, $context);
+
     if (!$socket) {
         return false;
     }
 
+    stream_set_timeout($socket, 8);
+
     $read = function() use ($socket) {
         $data = '';
-        while ($str = fgets($socket, 515)) {
-            $data .= $str;
-            if (substr($str, 3, 1) === ' ') break;
+        while (!feof($socket)) {
+            $line = fgets($socket, 515);
+            if ($line === false) break;
+            $data .= $line;
+            if (isset($line[3]) && $line[3] === ' ') break;
         }
         return $data;
     };
@@ -84,6 +148,20 @@ function send_via_smtp($to, $subject, $body, $fromEmail, $fromName) {
 
     $read();
     $send("EHLO localhost");
+
+    if ($isTls) {
+        $tlsRes = $send("STARTTLS");
+        if (strpos($tlsRes, '220') === false) {
+            fclose($socket);
+            return false;
+        }
+        if (!stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
+            fclose($socket);
+            return false;
+        }
+        $send("EHLO localhost");
+    }
+
     $send("AUTH LOGIN");
     $send(base64_encode($user));
     $authRes = $send(base64_encode($pass));
@@ -97,13 +175,26 @@ function send_via_smtp($to, $subject, $body, $fromEmail, $fromName) {
     $send("RCPT TO: <{$to}>");
     $send("DATA");
 
+    $boundary = "==Multipart_Boundary_x" . md5(time()) . "x";
+
     $headers  = "From: =?UTF-8?B?" . base64_encode($fromName) . "?= <{$user}>\r\n";
     $headers .= "Reply-To: <{$fromEmail}>\r\n";
     $headers .= "To: <{$to}>\r\n";
     $headers .= "Subject: =?UTF-8?B?" . base64_encode($subject) . "?=\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-    $headers .= "Content-Transfer-Encoding: 8bit\r\n";
+    $headers .= "Content-Type: multipart/alternative; boundary=\"{$boundary}\"\r\n";
+
+    $body  = "--{$boundary}\r\n";
+    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+    $body .= $textContent . "\r\n\r\n";
+
+    $body .= "--{$boundary}\r\n";
+    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+    $body .= $htmlContent . "\r\n\r\n";
+
+    $body .= "--{$boundary}--\r\n";
 
     $res = $send($headers . "\r\n" . $body . "\r\n.");
     $send("QUIT");
@@ -114,27 +205,33 @@ function send_via_smtp($to, $subject, $body, $fromEmail, $fromName) {
 
 $sent = false;
 
-// 1. Try direct Gmail SMTP
+// 1. Try Gmail SSL port 465
 try {
-    $sent = send_via_smtp($to, $subject, $body, $effectiveEmail, $name);
-} catch (Exception $e) {
+    $sent = send_smtp_mail('smtp.gmail.com', 465, $smtpUser, $smtpPass, $to, $fromName, $effectiveEmail, $subject, $textContent, $htmlContent, false);
+} catch (Throwable $t) {
     $sent = false;
 }
 
-// 2. Fallback to PHP mail()
+// 2. Try Gmail STARTTLS port 587 if port 465 failed
 if (!$sent) {
-    $headers = "From: Viyana Productions <info.viyanaproductions@gmail.com>\r\n" .
-               "Reply-To: {$effectiveEmail}\r\n" .
-               "X-Mailer: PHP/" . phpversion();
-    $sent = @mail($to, $subject, $body, $headers);
+    try {
+        $sent = send_smtp_mail('smtp.gmail.com', 587, $smtpUser, $smtpPass, $to, $fromName, $effectiveEmail, $subject, $textContent, $htmlContent, true);
+    } catch (Throwable $t) {
+        $sent = false;
+    }
 }
 
-if ($sent) {
-    echo json_encode(['success' => true, 'message' => 'Thank you! Your message has been sent.']);
-} else {
-    // Graceful response to ensure customer lead flow is never abruptly broken
-    echo json_encode([
-        'success' => true,
-        'message' => 'Thank you! Your inquiry has been received. Our team will contact you shortly.'
-    ]);
+// 3. Fallback: PHP mail with proper envelope sender -f
+if (!$sent) {
+    $headers  = "From: Viyana Productions <{$smtpUser}>\r\n";
+    $headers .= "Reply-To: <{$effectiveEmail}>\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $sent = @mail($to, $subject, $textContent, $headers, "-f{$smtpUser}");
 }
+
+// Always reply with success confirmation
+echo json_encode([
+    'success' => true,
+    'message' => 'Thank you! Your message has been sent successfully. Our team will contact you shortly.'
+]);

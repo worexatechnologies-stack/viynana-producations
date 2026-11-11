@@ -445,26 +445,31 @@ export default function WorkDetailPage() {
       let response: Response | null = null;
       let lastErrorMessage = "";
 
-      // 1. Try relative endpoint
-      try {
-        const primaryRes = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+      // 1. Try relative endpoints in sequence (Node/Vercel -> PHP on Hostinger -> Root PHP)
+      const endpointsToTry = ["/api/contact", "/api/contact.php", "/contact.php"];
+      for (const endpoint of endpointsToTry) {
+        if (response) break;
+        try {
+          const fetchRes = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(payload),
+          });
 
-        if (primaryRes.ok) {
-          response = primaryRes;
-        } else {
-          try {
-            const errData = (await primaryRes.json()) as { error?: string };
-            if (errData?.error) lastErrorMessage = errData.error;
-          } catch {
-            // Non-JSON response
+          if (fetchRes.ok) {
+            response = fetchRes;
+            break;
+          } else {
+            try {
+              const errData = (await fetchRes.json()) as { error?: string };
+              if (errData?.error) lastErrorMessage = errData.error;
+            } catch {
+              // Non-JSON response
+            }
           }
+        } catch {
+          // Network error on this endpoint, try next
         }
-      } catch {
-        // Network failure
       }
 
       // 2. Fallback to local server on port 3001 if on localhost
