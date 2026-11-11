@@ -1935,6 +1935,7 @@ interface InfluencerNativeReel {
   isNative: true
   id: string
   videoSrc: string
+  poster?: string
   title: string
   tag: string
   badge: string
@@ -1952,7 +1953,8 @@ const influencerReels: InfluencerReel[] = [
   {
     isNative: true,
     id: 'viyana-influencer-feature',
-    videoSrc: '/Final.mp4',
+    videoSrc: '/final-output.mp4',
+    poster: '/reel-01-poster.jpg',
     title: 'Featured Influencer Film · 4K Edition',
     tag: 'Creator Showcase',
     badge: '01 / Featured Reel',
@@ -2132,7 +2134,7 @@ function InfluencerShoot({ onSelectService: _onSelectService }: { onSelectServic
                     onPlay={() => setNativePlaying(true)}
                     onVolumeChange={(e) => setNativeMuted(e.currentTarget.muted)}
                     playsInline
-                    poster="/images/model-shoot/03-temple-heritage-pose.jpg"
+                    poster={reel.poster || '/reel-01-poster.jpg'}
                     preload="metadata"
                     ref={nativeVideoRef}
                     src={reel.videoSrc}
