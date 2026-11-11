@@ -61,10 +61,11 @@ module.exports = async function handler(req, res) {
   const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
   const smtpPort = parseInt(process.env.SMTP_PORT || "465", 10);
   const smtpSecure = process.env.SMTP_SECURE !== "false";
-  const smtpUser = process.env.SMTP_USER || "info.viyanaproductions@gmail.com";
-  const smtpPass = process.env.SMTP_PASS || "rterfgoevjnrqztg";
-  const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || "info.viyanaproductions@gmail.com";
-  const fromName = process.env.SMTP_FROM_NAME || "Viyana Productions Web";
+  const smtpUser = (process.env.SMTP_USER || "info.viyanaproductions@gmail.com").trim();
+  const smtpPass = (process.env.SMTP_PASS || "rterfgoevjnrqztg").replace(/^["']|["']$/g, "").trim();
+  const receiverEmail = (process.env.CONTACT_RECEIVER_EMAIL || "info.viyanaproductions@gmail.com").trim();
+  const rawFromName = process.env.SMTP_FROM_NAME || "Viyana Productions Web";
+  const fromName = rawFromName.replace(/^["']|["']$/g, "").trim();
 
   const transporter = nodemailer.createTransport({
     host: smtpHost,
@@ -74,9 +75,9 @@ module.exports = async function handler(req, res) {
       user: smtpUser,
       pass: smtpPass,
     },
-    connectionTimeout: 8000,
-    greetingTimeout: 8000,
-    socketTimeout: 8000,
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
   });
 
   const formattedDate = new Date().toLocaleString("en-IN", {

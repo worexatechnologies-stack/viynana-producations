@@ -16,7 +16,8 @@ if (fs.existsSync(envPath)) {
       if (!trimmed || trimmed.startsWith("#")) return;
       const [key, ...rest] = trimmed.split("=");
       if (key && rest.length) {
-        process.env[key.trim()] = rest.join("=").trim();
+        const val = rest.join("=").trim().replace(/^["']|["']$/g, "");
+        process.env[key.trim()] = val;
       }
     });
   console.log("✅ Loaded .env.local");
@@ -130,13 +131,15 @@ const escapeHtml = (value) =>
   })[char]);
 
 const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
-const smtpPort = parseInt(process.env.SMTP_PORT || "465");
+const smtpPort = parseInt(process.env.SMTP_PORT || "465", 10);
 const smtpSecure = process.env.SMTP_SECURE !== "false";
-const smtpUser = process.env.SMTP_USER || "info.viyanaproductions@gmail.com";
-const smtpPass = process.env.SMTP_PASS || "rterfgoevjnrqztg";
-const receiverEmail =
-  process.env.CONTACT_RECEIVER_EMAIL || smtpUser || "info.viyanaproductions@gmail.com";
-const fromName = process.env.SMTP_FROM_NAME || "Viyana Productions Web";
+const smtpUser = (process.env.SMTP_USER || "info.viyanaproductions@gmail.com").trim();
+const smtpPass = (process.env.SMTP_PASS || "rterfgoevjnrqztg").replace(/^["']|["']$/g, "").trim();
+const receiverEmail = (
+  process.env.CONTACT_RECEIVER_EMAIL || smtpUser || "info.viyanaproductions@gmail.com"
+).trim();
+const rawFromName = process.env.SMTP_FROM_NAME || "Viyana Productions Web";
+const fromName = rawFromName.replace(/^["']|["']$/g, "").trim();
 
 let transporter = null;
 if (smtpUser && smtpPass) {
@@ -145,6 +148,9 @@ if (smtpUser && smtpPass) {
     port: smtpPort,
     secure: smtpSecure,
     auth: { user: smtpUser, pass: smtpPass },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
   });
 
   transporter.verify((err) => {
@@ -331,7 +337,7 @@ ${email ? `Reply to: ${email}` : `Call: ${phone}`}`;
       });
       console.log(`✉️ Email dispatched to ${receiverEmail}`);
     } catch (error) {
-      console.error("⚠️ [SMTP DISPATCH ERROR]:", error.message);
+      console.error("⚠️ [SMTP DISPATCH ERROR]:", error.message || error);
       // Lead is still saved in data/inquiries.json
     }
   } else {
