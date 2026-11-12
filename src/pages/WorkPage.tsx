@@ -106,7 +106,7 @@ export default function WorkPage() {
               <span className="text-[9px] sm:text-[11px] font-mono tracking-[0.2em] sm:tracking-[0.3em] uppercase block mb-2 sm:mb-3 text-white/40">
                 [ 01 // PORTFOLIO ARCHIVE ]
               </span>
-              <h1 className="text-[clamp(2.5rem,8vw,5.5rem)] font-display font-extrabold tracking-tight uppercase text-white leading-[0.95]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight uppercase text-white leading-[1.02]">
                 SELECTED{" "}
                 <span className="text-white/40 hover:text-white transition-colors duration-500">
                   WORK.
@@ -242,7 +242,7 @@ export default function WorkPage() {
                   OUR 13 SERVICES
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight leading-none text-white">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase tracking-tight leading-tight text-white">
                 THE 13 SERVICES.
               </h2>
               <p className="text-xs sm:text-sm font-mono mt-3 max-w-2xl leading-relaxed text-brand-grey">

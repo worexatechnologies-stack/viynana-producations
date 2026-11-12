@@ -705,9 +705,12 @@ export const projects: Project[] = [
       "/final-output.mp4",
       "/final-render-video-volpue.mp4"
     ],
-    instagramReelUrl: "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw==",
+    instagramReelUrl: "https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==",
     instagramReels: [
-      "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw=="
+      "https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==",
+      "https://www.instagram.com/reel/DfCi048T8Jz/?dlrf=NHFnNzgxanY5dGpp",
+      "https://www.instagram.com/reel/De9Vwv6CBSj/?dlrf=MW1zNThlbXlhcnN4Zw==",
+      "https://www.instagram.com/reel/DeuCeLIzMWk/?psln=MXZucjJlc2pwMHQ3ZQ=="
     ],
     videoDuration: "1:30",
     description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",

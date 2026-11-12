@@ -416,19 +416,19 @@ export default function ProductShootDetailPage({
             <span className="text-white/80">PRODUCT CINEMA &amp; MACRO STILLS</span>
           </div>
 
-          {/* Hero Monumental Title with Serif Contrast */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-end mb-10">
-            <div className="lg:col-span-8 space-y-4">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5vw] font-display font-extrabold uppercase tracking-tight text-white leading-[0.92]">
+          {/* Hero Title with Balanced Responsive Typography (1-2 Lines Max) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 sm:mb-10">
+            <div className="lg:col-span-8 xl:col-span-9 space-y-3 sm:space-y-4">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-display font-extrabold uppercase tracking-tight text-white leading-[1.08] sm:leading-[1.03] max-w-4xl">
                 Product Shoot<span className="text-amber-400">.</span>
               </h1>
-              <p className="text-base sm:text-xl md:text-2xl font-serif font-light text-white/80 leading-relaxed max-w-3xl">
+              <p className="text-sm sm:text-lg md:text-xl font-serif font-light text-white/80 leading-relaxed max-w-3xl">
                 Tactile macro lighting, fine jewellery metallurgy, and commercial motion engineered to make customers fall in love with your brand.
               </p>
             </div>
 
             {/* Quick Metrics Bar */}
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+            <div className="lg:col-span-4 xl:col-span-3 flex flex-col sm:flex-row lg:flex-col gap-3">
               <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
                 <div className="flex items-center justify-between text-xs font-mono text-white/50 mb-1">
                   <span>PRODUCTION CATALOG</span>
@@ -490,7 +490,7 @@ export default function ProductShootDetailPage({
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
                 <span>COMMERCIAL MOTION &amp; REELS</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold uppercase tracking-tight text-white">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
                 Commercial Product Cinema<span className="text-amber-400">.</span>
               </h2>
             </div>
@@ -696,7 +696,7 @@ export default function ProductShootDetailPage({
                 <Sparkles size={14} />
                 <span>HIGH-RESOLUTION CATALOG</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold uppercase tracking-tight text-white">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
                 Editorial Stills &amp; Jewellery Master<span className="text-amber-400">.</span>
               </h2>
               <p className="text-sm font-mono text-white/60 mt-1 max-w-xl">
@@ -876,7 +876,7 @@ export default function ProductShootDetailPage({
                 <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
                 <span>OFFICIAL INSTAGRAM REELS // @VIYANA.PRODUCTIONS</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold uppercase tracking-tight text-white">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
                 Vertical Motion Stories<span className="text-pink-500">.</span>
               </h2>
             </div>

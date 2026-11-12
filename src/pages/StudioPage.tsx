@@ -61,7 +61,7 @@ export default function StudioPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-[7.5vw] font-display font-extrabold tracking-tight uppercase leading-[0.88] text-white select-none mb-6"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-display font-extrabold tracking-tight uppercase leading-[0.98] text-white select-none mb-6"
           >
             <span className="block">PROFESSIONAL</span>
             <span className="block">STUDIO SPACES.</span>
