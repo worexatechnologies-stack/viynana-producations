@@ -744,14 +744,14 @@ function UniversalWorkCinemaPage({
       <Navbar />
 
       {/* 1. BESPOKE EDITORIAL HERO SECTION */}
-      <section className="relative pt-32 sm:pt-40 md:pt-44 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-12 border-b border-white/[0.08] overflow-hidden">
+      <section className="relative pt-20 sm:pt-24 md:pt-28 pb-5 sm:pb-7 px-4 sm:px-6 lg:px-12 border-b border-white/[0.08] overflow-hidden">
         {/* Ambient Golden / Violet Atmospheric Glow */}
         <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-amber-500/10 via-amber-700/5 to-transparent blur-[140px] pointer-events-none rounded-full" />
         <div className="absolute top-1/3 left-10 w-[450px] h-[450px] bg-gradient-to-tr from-purple-500/8 via-transparent to-transparent blur-[120px] pointer-events-none rounded-full" />
 
         <div className="container mx-auto max-w-7xl relative z-10">
           {/* Eyebrow Breadcrumb */}
-          <div className="flex flex-wrap items-center gap-2.5 mb-6 text-xs font-mono uppercase tracking-[0.25em] text-white/50">
+          <div className="flex flex-wrap items-center gap-2.5 mb-3 sm:mb-4 text-xs font-mono uppercase tracking-[0.25em] text-white/50">
             <Link to="/work" className="hover:text-white transition-colors">
               WORK ARCHIVE
             </Link>
@@ -764,13 +764,13 @@ function UniversalWorkCinemaPage({
           </div>
 
           {/* Hero Title with Balanced Responsive Typography (1-2 Lines Max) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 sm:mb-10">
-            <div className="lg:col-span-8 xl:col-span-9 space-y-3 sm:space-y-4">
-              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-display font-extrabold uppercase tracking-tight text-white leading-[1.08] sm:leading-[1.03] max-w-4xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-10 items-end mb-5 sm:mb-6">
+            <div className="lg:col-span-8 xl:col-span-9 space-y-2.5 sm:space-y-3">
+              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-[2.65rem] xl:text-[3.15rem] font-display font-extrabold uppercase tracking-tight text-white leading-[1.1] sm:leading-[1.04] max-w-5xl">
                 {project.title}
                 <span className="text-amber-400">.</span>
               </h1>
-              <p className="text-sm sm:text-lg md:text-xl font-serif font-light text-white/80 leading-relaxed max-w-3xl">
+              <p className="text-xs sm:text-base md:text-lg font-serif font-light text-white/80 leading-relaxed max-w-3xl">
                 {project.description}
               </p>
             </div>
@@ -801,7 +801,7 @@ function UniversalWorkCinemaPage({
           </div>
 
           {/* Navigation Quick Anchors */}
-          <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-white/[0.08]">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-3 sm:pt-4 border-t border-white/[0.08]">
             <a
               href="#cinema-films"
               className="px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-amber-300 transition-all shadow-lg flex items-center gap-2"
@@ -837,10 +837,10 @@ function UniversalWorkCinemaPage({
       </section>
 
       {/* 2. THEATER CINEMA PLAYER */}
-      <section id="cinema-films" className="py-14 sm:py-20 px-4 sm:px-6 lg:px-12 bg-black relative">
-        <div className="container mx-auto max-w-7xl space-y-8">
+      <section id="cinema-films" className="py-8 sm:py-14 px-4 sm:px-6 lg:px-12 bg-black relative">
+        <div className="container mx-auto max-w-7xl space-y-6 sm:space-y-8">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-white/10 pb-4 sm:pb-5">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-amber-400 mb-2">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />

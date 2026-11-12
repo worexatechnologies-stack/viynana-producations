@@ -37,17 +37,17 @@ export default function OriginalContentPage() {
 
       <Navbar />
 
-      <section className="pt-28 sm:pt-36 md:pt-48 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12">
+      <section className="pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-12">
         <div className="container mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif tracking-tighter mb-6 sm:mb-8 leading-[0.85]">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif tracking-tighter mb-4 sm:mb-6 leading-[0.85]">
               ORIGINAL<br />CONTENT
             </h1>
-            <p className="text-brand-grey text-sm tracking-widest uppercase mb-16 sm:mb-24 max-w-lg">
+            <p className="text-brand-grey text-xs sm:text-sm tracking-widest uppercase mb-8 sm:mb-12 max-w-lg">
               Proprietary formats, short films, and feature-length narratives developed entirely in-house by Viyana Production.
             </p>
           </motion.div>

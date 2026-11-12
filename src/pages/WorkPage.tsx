@@ -71,7 +71,7 @@ export default function WorkPage() {
       {/* 1. HERO HEADER (CINEMATIC ARCHITECTURE MATCHING ABOUT PAGE) */}
       <section
         ref={headerRef}
-        className="work-studio-backdrop relative pt-16 sm:pt-28 md:pt-36 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-12 border-b border-white/10 overflow-hidden bg-[#050505]"
+        className="work-studio-backdrop relative pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-12 border-b border-white/10 overflow-hidden bg-[#050505]"
       >
         {/* Cinematic Ambient Flare Glows (Matching About Page) */}
         <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[700px] h-[380px] bg-[radial-gradient(circle,rgba(245,158,11,0.06)_0%,rgba(168,85,247,0.04)_45%,transparent_70%)] rounded-full blur-[140px] pointer-events-none" />
@@ -84,7 +84,7 @@ export default function WorkPage() {
           <div className="flex flex-col">
             
             {/* Top Brand & Discipline Status Strip */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5 sm:gap-3 mb-5 sm:mb-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
               <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md w-fit">
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
                 <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] font-semibold text-white">
@@ -102,11 +102,11 @@ export default function WorkPage() {
             </div>
 
             {/* Monumental Headline: SELECTED WORK. */}
-            <div className="mb-6 sm:mb-10">
-              <span className="text-[9px] sm:text-[11px] font-mono tracking-[0.2em] sm:tracking-[0.3em] uppercase block mb-2 sm:mb-3 text-white/40">
+            <div className="mb-4 sm:mb-6">
+              <span className="text-[9px] sm:text-[11px] font-mono tracking-[0.2em] sm:tracking-[0.3em] uppercase block mb-1.5 sm:mb-2 text-white/40">
                 [ 01 // PORTFOLIO ARCHIVE ]
               </span>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight uppercase text-white leading-[1.02]">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight uppercase text-white leading-[1.02]">
                 SELECTED{" "}
                 <span className="text-white/40 hover:text-white transition-colors duration-500">
                   WORK.
@@ -115,21 +115,21 @@ export default function WorkPage() {
             </div>
 
             {/* Headline Subtitle & Core Capabilities Deck */}
-            <div className="space-y-6 pt-2 pb-8 border-b border-white/10">
-              <div className="border-l-2 border-white/60 pl-3 sm:pl-6 py-1">
-                <p className="text-sm sm:text-xl md:text-2xl font-light max-w-3xl leading-relaxed text-white/90">
+            <div className="space-y-3 sm:space-y-4 pt-1 pb-5 border-b border-white/10">
+              <div className="border-l-2 border-white/60 pl-3 sm:pl-6 py-0.5">
+                <p className="text-sm sm:text-lg md:text-xl font-light max-w-3xl leading-relaxed text-white/90">
                   We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
                 </p>
               </div>
 
               {/* Core Capabilities Pills */}
-              <div className="flex flex-wrap gap-2 sm:gap-3 pt-1 sm:pt-2">
+              <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-1">
                 {coreCapabilities.map((cap) => {
                   const Icon = cap.icon;
                   return (
                     <span
                       key={cap.name}
-                      className="inline-flex items-center gap-2 px-3 sm:gap-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-white/10 hover:border-white/30 bg-white/[0.035] hover:bg-white/[0.08] text-white text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-sm hover:scale-[1.02]"
+                      className="inline-flex items-center gap-2 px-3 sm:gap-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/10 hover:border-white/30 bg-white/[0.035] hover:bg-white/[0.08] text-white text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-sm hover:scale-[1.02]"
                     >
                       <Icon className="w-3.5 h-3.5 text-amber-400/90" />
                       <span>{cap.name}</span>
@@ -140,7 +140,7 @@ export default function WorkPage() {
             </div>
 
             {/* Creative Philosophy & About Viyana Architectural Card */}
-            <div className="mt-6 sm:mt-12 p-4 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl border border-white/15 bg-gradient-to-br from-white/[0.045] via-white/[0.02] to-transparent backdrop-blur-xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            <div className="mt-4 sm:mt-6 p-4 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl border border-white/15 bg-gradient-to-br from-white/[0.045] via-white/[0.02] to-transparent backdrop-blur-xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               {/* Corner Viewfinder Brackets */}
               <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-white/30 pointer-events-none" />
               <div className="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-white/30 pointer-events-none" />
@@ -150,13 +150,13 @@ export default function WorkPage() {
               <div className="absolute top-0 right-0 w-80 h-80 rounded-full blur-3xl pointer-events-none bg-white/[0.02]" />
 
               {/* Philosophy Header Badge */}
-              <div className="inline-flex items-center gap-2 px-2.5 sm:gap-2.5 sm:px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/80 text-[9px] sm:text-xs font-mono uppercase tracking-[0.16em] sm:tracking-[0.25em] mb-5 sm:mb-8 w-fit">
+              <div className="inline-flex items-center gap-2 px-2.5 sm:gap-2.5 sm:px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/80 text-[9px] sm:text-xs font-mono uppercase tracking-[0.16em] sm:tracking-[0.25em] mb-4 sm:mb-6 w-fit">
                 <span className="w-2 h-2 rounded-full animate-pulse bg-white" />
                 <span>OUR CREATIVE PHILOSOPHY</span>
               </div>
 
               {/* 3 Pillars in Elevated Glass Panels */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pb-8 mb-8 border-b border-white/10">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5 pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-white/10">
                 <div className="p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-white/25 bg-white/[0.025] hover:bg-white/[0.05] transition-all duration-300 relative overflow-hidden group">
                   <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 group-hover:via-white/50 transition-all duration-500" />
                   <span className="text-[11px] mb-2 font-mono uppercase tracking-widest block text-white/40">[ 01 ]</span>
@@ -209,7 +209,7 @@ export default function WorkPage() {
             </div>
 
             {/* Total 13 Services Stats Strip */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-8 sm:pt-10 text-xs uppercase font-mono tracking-widest text-brand-grey">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 sm:pt-6 text-xs uppercase font-mono tracking-widest text-brand-grey">
               <div className="flex items-center gap-3">
                 <span className="w-8 h-px bg-white/30" />
                 <span className="font-medium text-white">13 SPECIALIZED SERVICES &amp; DISCIPLINES</span>
@@ -228,13 +228,13 @@ export default function WorkPage() {
       </section>
 
       {/* 2. THE 13 SERVICES GRID & SHOWCASE (MATCHING ABOUT PAGE BACKDROP) */}
-      <section className="work-studio-backdrop py-14 sm:py-24 px-4 sm:px-6 lg:px-12 relative bg-brand-black border-b border-white/10 overflow-hidden">
+      <section className="work-studio-backdrop py-8 sm:py-14 px-4 sm:px-6 lg:px-12 relative bg-brand-black border-b border-white/10 overflow-hidden">
         {/* Subtle Ambient Radial Glow (Matching About Page) */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[400px] bg-white/[0.015] blur-[150px] pointer-events-none rounded-full" />
 
         <div className="container mx-auto max-w-7xl relative z-10">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-10">
             <div>
               <div className="flex items-center gap-2.5 mb-3">
                 <span className="w-2 h-2 rounded-full animate-pulse bg-amber-400" />

@@ -47,13 +47,13 @@ export default function StillsPage() {
 
       <Navbar />
 
-      <section className="pt-28 sm:pt-36 md:pt-48 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12">
+      <section className="pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-12">
         <div className="container mx-auto">
           <motion.h1
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-            className="text-4xl sm:text-5xl md:text-8xl font-serif tracking-tighter mb-16 sm:mb-24"
+            className="text-3xl sm:text-5xl md:text-6xl font-serif tracking-tighter mb-6 sm:mb-10"
           >
             STILLS<br />ARCHIVE
           </motion.h1>

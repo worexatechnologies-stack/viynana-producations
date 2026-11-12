@@ -37,7 +37,7 @@ export default function PodcastPage() {
       <Navbar />
 
       {/* ── HERO HEADER ──────────────────────────────── */}
-      <section className="relative pt-24 sm:pt-28 md:pt-36 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-12 border-b border-white/10 overflow-hidden bg-gradient-to-b from-brand-dark/80 via-brand-black to-brand-black">
+      <section className="relative pt-20 sm:pt-24 md:pt-28 pb-5 sm:pb-7 px-4 sm:px-6 lg:px-12 border-b border-white/10 overflow-hidden bg-gradient-to-b from-brand-dark/80 via-brand-black to-brand-black">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-white/[0.02] rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(#ffffff0d_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
 
@@ -46,7 +46,7 @@ export default function PodcastPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-wrap items-center gap-2 sm:gap-3 mb-5 text-[10px] sm:text-xs font-mono tracking-widest uppercase text-white/70"
+            className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4 text-[10px] sm:text-xs font-mono tracking-widest uppercase text-white/70"
           >
             <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-semibold">
               VIYANA PRODUCTIONS
@@ -59,26 +59,26 @@ export default function PodcastPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-display font-extrabold tracking-tight uppercase leading-[0.98] text-white select-none mb-6"
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-display font-extrabold tracking-tight uppercase leading-[0.98] text-white select-none mb-4 sm:mb-5"
           >
             <span className="block">YOUR VOICE.</span>
             <span className="block">YOUR PLATFORM.</span>
           </motion.h1>
 
-          <div className="space-y-4 pt-2 pb-6 border-b border-white/10">
-            <p className="text-base sm:text-lg md:text-xl font-light text-white/90 max-w-3xl leading-relaxed">
+          <div className="space-y-3 pt-1 pb-4 border-b border-white/10">
+            <p className="text-sm sm:text-base md:text-lg font-light text-white/90 max-w-3xl leading-relaxed">
               {s.description}
             </p>
-            <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
+            <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-1">
               {s.services.map((item) => (
-                <span key={item} className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full bg-white/[0.04] border border-white/15 hover:border-white/40 text-white/90 text-xs font-mono uppercase tracking-wider transition-colors">
+                <span key={item} className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.04] border border-white/15 hover:border-white/40 text-white/90 text-xs font-mono uppercase tracking-wider transition-colors">
                   {item}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 text-xs uppercase font-mono tracking-widest text-brand-grey">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3.5 sm:pt-4 text-xs uppercase font-mono tracking-widest text-brand-grey">
             <div className="flex items-center gap-3">
               <span className="w-8 h-px bg-white/30" />
               <span className="text-white font-medium">PODCAST PRODUCTION — VIYANA PRODUCTIONS</span>
@@ -93,7 +93,7 @@ export default function PodcastPage() {
       </section>
 
       {/* ── MAIN EDITORIAL CARD ──────────────────────── */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12">
+      <section className="py-8 sm:py-14 px-4 sm:px-6 lg:px-12">
         <div className="container mx-auto max-w-7xl">
           <motion.article
             initial={{ opacity: 0, y: 30 }}
