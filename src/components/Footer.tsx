@@ -163,8 +163,8 @@ export default function Footer({
       )}
 
       {/* Main Luxury 4-Column Grid */}
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 pt-14 sm:pt-20 pb-12 sm:pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/10">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 pt-12 sm:pt-16 pb-8 sm:pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-10 border-b border-white/10">
           {/* Column 1: Studio Brand, Manifesto & Direct Connect (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
@@ -409,19 +409,6 @@ export default function Footer({
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Large Bespoke Studio Watermark Display */}
-        <div className="relative pt-12 pb-6 flex items-center justify-center overflow-hidden pointer-events-none select-none">
-          <span
-            className={`font-display font-black tracking-tighter uppercase text-center leading-none text-4xl sm:text-7xl md:text-8xl lg:text-[118px] transition-colors ${
-              isLight
-                ? "text-black/[0.04]"
-                : "text-white/[0.04] bg-clip-text bg-gradient-to-b from-white/[0.08] to-transparent"
-            }`}
-          >
-            VIYANA PRODUCTIONS
-          </span>
         </div>
 
         {/* Bottom Utility, Legal & Credits Bar */}
