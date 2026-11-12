@@ -3,18 +3,22 @@
 error_reporting(0);
 ini_set('display_errors', '0');
 
+// 1. Never cache API responses (instruct Hostinger CDN and browser)
 header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0, s-maxage=0');
+header('Pragma: no-cache');
+header('Expires: 0');
 
-// 1. CORS Preflight
+// 2. CORS Preflight
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
 
-// 2. Health check
+// 3. Health check
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     http_response_code(200);
     echo json_encode([
@@ -32,12 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// 3. Extract and sanitize input
+// 4. Extract and sanitize input
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
 if (!$data) {
-    // Also try $_POST if form was submitted with multipart or urlencoded
     $data = $_POST;
 }
 
@@ -65,6 +68,43 @@ $effectiveEmail = !empty($email) ? $email : 'info.viyanaproductions@gmail.com';
 
 date_default_timezone_set('Asia/Kolkata');
 $formattedDate = date('l, d F Y \a\t h:i A') . ' IST';
+
+// 5. Save lead locally so it can never be lost
+$leadData = [
+    'id' => time() . rand(100, 999),
+    'name' => $name,
+    'email' => $email,
+    'phone' => $phone,
+    'service' => $service,
+    'message' => $message,
+    'date' => $formattedDate,
+    'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'
+];
+
+$logLocations = [
+    __DIR__ . '/inquiries.json',
+    __DIR__ . '/../data/inquiries.json',
+    dirname(__DIR__) . '/data/inquiries.json'
+];
+
+foreach ($logLocations as $loc) {
+    try {
+        $dir = dirname($loc);
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0755, true);
+        }
+        $existing = [];
+        if (file_exists($loc)) {
+            $parsed = @json_decode(file_get_contents($loc), true);
+            if (is_array($parsed)) $existing = $parsed;
+        }
+        array_unshift($existing, $leadData);
+        if (count($existing) > 200) $existing = array_slice($existing, 0, 200);
+        @file_put_contents($loc, json_encode($existing, JSON_PRETTY_PRINT));
+    } catch (Throwable $e) {
+        // Continue even if logging fails
+    }
+}
 
 $subject = "New Inquiry: {$name} [{$service}]";
 
@@ -221,16 +261,15 @@ if (!$sent) {
     }
 }
 
-// 3. Fallback: PHP mail with proper envelope sender -f
+// 3. Fallback: PHP mail using server domain sender (never rejected by SPF/DMARC)
 if (!$sent) {
-    $headers  = "From: Viyana Productions <{$smtpUser}>\r\n";
+    $headers  = "From: Viyana Productions <contact@viyana.productions>\r\n";
     $headers .= "Reply-To: <{$effectiveEmail}>\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-    $sent = @mail($to, $subject, $textContent, $headers, "-f{$smtpUser}");
+    $sent = @mail($to, $subject, $textContent, $headers, "-fcontact@viyana.productions");
 }
 
-// Always reply with success confirmation
 echo json_encode([
     'success' => true,
     'message' => 'Thank you! Your message has been sent successfully. Our team will contact you shortly.'
