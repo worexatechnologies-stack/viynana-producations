@@ -2128,55 +2128,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. CONTACT STRIP BANNER (VE-CONTACT-STRIP EXACT LAYOUT) */}
-      <section className="relative w-full py-12 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/30 text-center overflow-hidden">
-        {/* Central Ambient Gold Spotlight */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,rgba(5,10,18,0)_70%)] pointer-events-none" />
 
-        <div className="relative z-10 max-w-4xl mx-auto space-y-6">
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/80 block font-semibold px-3.5 py-1 rounded-full bg-white/5 border border-white/15 w-fit mx-auto">
-            GET IN TOUCH
-          </span>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
-            Tell us what you need to communicate.
-          </h2>
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs sm:text-sm text-[#fbf7ee]/75 font-mono tracking-wider max-w-2xl mx-auto">
-            <a href="mailto:creative@viyana.productions" className="hover:text-white underline underline-offset-4 transition-colors">
-              creative@viyana.productions
-            </a>
-            <span className="text-white/40">•</span>
-            <a href="mailto:director@viyana.productions" className="hover:text-white underline underline-offset-4 transition-colors">
-              director@viyana.productions
-            </a>
-            <span className="text-white/40">•</span>
-            <a href="tel:+919187233615" className="hover:text-white transition-colors">
-              +91 91872 33615
-            </a>
-            <span className="text-white/40">•</span>
-            <span>Bangalore, India</span>
-          </div>
-
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              className="px-9 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-widest font-bold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] flex items-center gap-2 group cursor-pointer"
-            >
-              <span>START A PROJECT</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-            </Link>
-
-            <a
-              href="/portfolio/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-9 py-4 rounded-full bg-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 text-[#fbf7ee] hover:bg-white/15 hover:text-white font-mono text-xs uppercase tracking-widest font-bold transition-all shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.06)] flex items-center gap-2 group cursor-pointer"
-            >
-              <span>VIYANA PORTFOLIO</span>
-              <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* Global Interactive Video Modal for Testimonials & Showreel */}
       {activeModalVideo && (
