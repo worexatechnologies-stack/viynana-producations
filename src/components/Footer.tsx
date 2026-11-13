@@ -59,7 +59,7 @@ const studioLinks = [
 ];
 
 export default function Footer({
-  variant = "dark",
+  variant = "light",
   hideCtaBanner = false,
 }: {
   variant?: "dark" | "light";
@@ -86,7 +86,7 @@ export default function Footer({
     <footer
       className={`relative w-full overflow-hidden transition-colors ${
         isLight
-          ? "bg-[#fbfbf9] text-neutral-900 border-t border-neutral-200"
+          ? "bg-white text-neutral-900 border-t border-neutral-200"
           : "bg-[#050507] text-[#f5f3ee] border-t border-white/10"
       }`}
     >
@@ -100,15 +100,21 @@ export default function Footer({
         <div
           className={`relative border-b ${
             isLight
-              ? "border-neutral-200 bg-neutral-100/70"
+              ? "border-neutral-200 bg-neutral-50/80"
               : "border-white/10 bg-gradient-to-b from-[#0b0c0f] to-[#050507]"
           }`}
         >
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 py-10 sm:py-14">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
               <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono tracking-widest uppercase mb-3 border backdrop-blur-md bg-emerald-500/10 text-emerald-400 border-emerald-500/20">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <div
+                  className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono tracking-widest uppercase mb-3 border backdrop-blur-md ${
+                    isLight
+                      ? "bg-emerald-500/10 text-emerald-800 border-emerald-500/30"
+                      : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                  }`}
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Accepting Commissions • Q2 / Q3 2026</span>
                 </div>
                 <h3
@@ -117,7 +123,11 @@ export default function Footer({
                   }`}
                 >
                   Have a vision to capture? <br className="hidden sm:inline" />
-                  <span className="italic font-serif font-normal lowercase tracking-normal text-white/70">
+                  <span
+                    className={`italic font-serif font-normal lowercase tracking-normal ${
+                      isLight ? "text-neutral-500" : "text-white/70"
+                    }`}
+                  >
                     let&apos;s produce something iconic.
                   </span>
                 </h3>
@@ -126,7 +136,11 @@ export default function Footer({
               <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
                 <Link
                   to="/contact"
-                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 bg-white text-black hover:bg-neutral-200 hover:shadow-[0_10px_30px_rgba(255,255,255,0.18)] active:scale-95"
+                  className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 active:scale-95 ${
+                    isLight
+                      ? "bg-neutral-900 text-white hover:bg-neutral-800 shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
+                      : "bg-white text-black hover:bg-neutral-200 hover:shadow-[0_10px_30px_rgba(255,255,255,0.18)]"
+                  }`}
                 >
                   <span>Start a Project</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -138,7 +152,7 @@ export default function Footer({
                   rel="noopener noreferrer"
                   className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 border active:scale-95 ${
                     isLight
-                      ? "border-neutral-300 text-neutral-900 hover:bg-neutral-200"
+                      ? "border-neutral-300 text-neutral-900 bg-white hover:bg-neutral-100 hover:border-neutral-400"
                       : "border-white/20 text-white hover:bg-white/10 hover:border-white/40"
                   }`}
                 >
@@ -151,7 +165,11 @@ export default function Footer({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Direct WhatsApp Message"
-                  className="p-3.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all duration-300"
+                  className={`p-3.5 rounded-full border transition-all duration-300 ${
+                    isLight
+                      ? "border-emerald-500/30 bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white"
+                      : "border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-black"
+                  }`}
                   title="Chat directly on WhatsApp"
                 >
                   <MessageCircle className="w-4 h-4" />
@@ -164,7 +182,11 @@ export default function Footer({
 
       {/* Main Luxury 4-Column Grid */}
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 pt-12 sm:pt-16 pb-8 sm:pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-10 border-b border-white/10">
+        <div
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-10 border-b ${
+            isLight ? "border-neutral-200" : "border-white/10"
+          }`}
+        >
           {/* Column 1: Studio Brand, Manifesto & Direct Connect (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
@@ -194,7 +216,7 @@ export default function Footer({
                 <div
                   className={`flex items-center justify-between p-3 rounded-xl border text-xs transition-colors ${
                     isLight
-                      ? "bg-neutral-100 border-neutral-200 text-neutral-800"
+                      ? "bg-neutral-50 border-neutral-200 text-neutral-800"
                       : "bg-[#0e0f13] border-white/10 text-white/80"
                   }`}
                 >
@@ -202,18 +224,22 @@ export default function Footer({
                     href="mailto:info.viyanaproductions@gmail.com"
                     className="flex items-center gap-2.5 hover:underline truncate"
                   >
-                    <Mail className="w-4 h-4 text-white/50 shrink-0" />
-                    <span className="truncate font-mono">info.viyanaproductions@gmail.com</span>
+                    <Mail className={`w-4 h-4 shrink-0 ${isLight ? "text-neutral-500" : "text-white/50"}`} />
+                    <span className="truncate font-mono font-medium">info.viyanaproductions@gmail.com</span>
                   </a>
                   <button
                     onClick={handleCopyEmail}
-                    className="ml-2 px-2.5 py-1 rounded-md text-[10px] font-mono uppercase tracking-wider font-semibold border flex items-center gap-1 shrink-0 transition-all hover:bg-white/10"
+                    className={`ml-2 px-2.5 py-1 rounded-md text-[10px] font-mono uppercase tracking-wider font-semibold border flex items-center gap-1 shrink-0 transition-all ${
+                      isLight
+                        ? "border-neutral-200 hover:bg-neutral-200/60 text-neutral-700"
+                        : "border-white/15 hover:bg-white/10 text-white/80"
+                    }`}
                     title="Copy Email Address"
                   >
                     {copiedEmail ? (
                       <>
-                        <Check className="w-3 h-3 text-emerald-400" />
-                        <span className="text-emerald-400">Copied</span>
+                        <Check className="w-3 h-3 text-emerald-600" />
+                        <span className="text-emerald-600">Copied</span>
                       </>
                     ) : (
                       <>
@@ -229,15 +255,21 @@ export default function Footer({
                   href="tel:+919187233615"
                   className={`flex items-center justify-between p-3 rounded-xl border text-xs font-mono transition-colors group ${
                     isLight
-                      ? "bg-neutral-100 border-neutral-200 text-neutral-800 hover:border-black"
+                      ? "bg-neutral-50 border-neutral-200 text-neutral-800 hover:border-neutral-400 hover:bg-neutral-100"
                       : "bg-[#0e0f13] border-white/10 text-white/80 hover:border-white/30"
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
-                    <Phone className="w-4 h-4 text-white/50" />
-                    <span>+91 91872 33615</span>
+                    <Phone className={`w-4 h-4 ${isLight ? "text-neutral-500" : "text-white/50"}`} />
+                    <span className="font-semibold">+91 91872 33615</span>
                   </div>
-                  <span className="text-[10px] uppercase tracking-wider text-white/40 group-hover:text-white transition-colors">
+                  <span
+                    className={`text-[10px] uppercase tracking-wider transition-colors ${
+                      isLight
+                        ? "text-neutral-400 group-hover:text-neutral-900"
+                        : "text-white/40 group-hover:text-white"
+                    }`}
+                  >
                     Call Direct ↗
                   </span>
                 </a>
@@ -249,17 +281,23 @@ export default function Footer({
                   rel="noopener noreferrer"
                   className={`flex items-start justify-between p-3 rounded-xl border text-xs transition-colors group ${
                     isLight
-                      ? "bg-neutral-100 border-neutral-200 text-neutral-700 hover:border-black"
+                      ? "bg-neutral-50 border-neutral-200 text-neutral-700 hover:border-neutral-400 hover:bg-neutral-100"
                       : "bg-[#0e0f13] border-white/10 text-white/70 hover:border-white/30"
                   }`}
                 >
                   <div className="flex items-start gap-2.5">
-                    <MapPin className="w-4 h-4 text-white/50 shrink-0 mt-0.5" />
+                    <MapPin className={`w-4 h-4 shrink-0 mt-0.5 ${isLight ? "text-neutral-500" : "text-white/50"}`} />
                     <span className="leading-snug">
                       4th Floor, Gopalan Workspace, Banashankari 3rd Stage, Bengaluru
                     </span>
                   </div>
-                  <span className="text-[10px] uppercase tracking-wider text-white/40 group-hover:text-white transition-colors shrink-0 ml-2">
+                  <span
+                    className={`text-[10px] uppercase tracking-wider shrink-0 ml-2 transition-colors ${
+                      isLight
+                        ? "text-neutral-400 group-hover:text-neutral-900"
+                        : "text-white/40 group-hover:text-white"
+                    }`}
+                  >
                     Maps ↗
                   </span>
                 </a>
@@ -271,10 +309,10 @@ export default function Footer({
           <div className="lg:col-span-3">
             <h4
               className={`text-xs font-mono uppercase tracking-[0.2em] font-semibold mb-6 flex items-center gap-2 ${
-                isLight ? "text-neutral-900" : "text-white"
+                isLight ? "text-neutral-900 font-bold" : "text-white"
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+              <span className={`w-1.5 h-1.5 rounded-full ${isLight ? "bg-neutral-900" : "bg-white/40"}`} />
               <span>Capabilities</span>
             </h4>
             <ul className="space-y-3.5 text-sm">
@@ -284,11 +322,11 @@ export default function Footer({
                     to={item.href}
                     className={`inline-flex items-center gap-1.5 transition-all duration-200 hover:translate-x-1 ${
                       isLight
-                        ? "text-neutral-600 hover:text-black font-medium"
+                        ? "text-neutral-600 hover:text-neutral-950 font-medium"
                         : "text-white/60 hover:text-white font-light"
                     }`}
                   >
-                    <span className="text-[10px] opacity-30">›</span>
+                    <span className={`text-[10px] ${isLight ? "text-neutral-400" : "opacity-30"}`}>›</span>
                     <span>{item.name}</span>
                   </Link>
                 </li>
@@ -300,10 +338,10 @@ export default function Footer({
           <div className="lg:col-span-2">
             <h4
               className={`text-xs font-mono uppercase tracking-[0.2em] font-semibold mb-6 flex items-center gap-2 ${
-                isLight ? "text-neutral-900" : "text-white"
+                isLight ? "text-neutral-900 font-bold" : "text-white"
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+              <span className={`w-1.5 h-1.5 rounded-full ${isLight ? "bg-neutral-900" : "bg-white/40"}`} />
               <span>The Studio</span>
             </h4>
             <ul className="space-y-3.5 text-sm">
@@ -313,11 +351,11 @@ export default function Footer({
                     to={item.href}
                     className={`inline-flex items-center gap-1.5 transition-all duration-200 hover:translate-x-1 ${
                       isLight
-                        ? "text-neutral-600 hover:text-black font-medium"
+                        ? "text-neutral-600 hover:text-neutral-950 font-medium"
                         : "text-white/60 hover:text-white font-light"
                     }`}
                   >
-                    <span className="text-[10px] opacity-30">›</span>
+                    <span className={`text-[10px] ${isLight ? "text-neutral-400" : "opacity-30"}`}>›</span>
                     <span>{item.name}</span>
                   </Link>
                 </li>
@@ -330,10 +368,10 @@ export default function Footer({
             <div>
               <h4
                 className={`text-xs font-mono uppercase tracking-[0.2em] font-semibold mb-6 flex items-center gap-2 ${
-                  isLight ? "text-neutral-900" : "text-white"
+                  isLight ? "text-neutral-900 font-bold" : "text-white"
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                <span className={`w-1.5 h-1.5 rounded-full ${isLight ? "bg-neutral-900" : "bg-white/40"}`} />
                 <span>Channels</span>
               </h4>
 
@@ -378,15 +416,23 @@ export default function Footer({
                       rel="noopener noreferrer"
                       className={`flex items-center justify-between p-2.5 rounded-lg border text-xs transition-all duration-200 group ${
                         isLight
-                          ? "bg-neutral-100 border-neutral-200 text-neutral-800 hover:bg-neutral-200"
+                          ? "bg-neutral-50 border-neutral-200 text-neutral-800 hover:bg-neutral-100 hover:border-neutral-300"
                           : `bg-[#0e0f13] border-white/10 text-white/70 ${social.accent} hover:bg-white/5`
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
-                        <Icon className="w-3.5 h-3.5 opacity-80" />
-                        <span className="font-medium text-white/90">{social.name}</span>
+                        <Icon className={`w-3.5 h-3.5 ${isLight ? "text-neutral-700" : "opacity-80"}`} />
+                        <span className={`font-medium ${isLight ? "text-neutral-900" : "text-white/90"}`}>
+                          {social.name}
+                        </span>
                       </div>
-                      <ArrowUpRight className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                      <ArrowUpRight
+                        className={`w-3 h-3 transition-opacity ${
+                          isLight
+                            ? "text-neutral-400 group-hover:text-neutral-900"
+                            : "opacity-40 group-hover:opacity-100"
+                        }`}
+                      />
                     </a>
                   );
                 })}
@@ -396,16 +442,18 @@ export default function Footer({
               <div
                 className={`p-3.5 rounded-xl border text-[11px] font-mono leading-relaxed ${
                   isLight
-                    ? "bg-neutral-100 border-neutral-200 text-neutral-600"
+                    ? "bg-neutral-50 border-neutral-200 text-neutral-600"
                     : "bg-[#0b0c10] border-white/10 text-white/50"
                 }`}
               >
-                <div className="flex items-center gap-1.5 text-white/80 font-semibold mb-1">
-                  <Clock className="w-3 h-3 text-emerald-400" />
+                <div className={`flex items-center gap-1.5 font-semibold mb-1 ${isLight ? "text-neutral-900" : "text-white/80"}`}>
+                  <Clock className="w-3 h-3 text-emerald-600" />
                   <span>STUDIO HOURS</span>
                 </div>
-                <div>Mon – Sat: 9:30 AM – 9:00 PM IST</div>
-                <div className="text-[10px] text-white/40 mt-1">Average Response: &lt; 2 Hours</div>
+                <div className={isLight ? "text-neutral-800" : "text-white/80"}>Mon – Sat: 9:30 AM – 9:00 PM IST</div>
+                <div className={`text-[10px] mt-1 ${isLight ? "text-neutral-500" : "text-white/40"}`}>
+                  Average Response: &lt; 2 Hours
+                </div>
               </div>
             </div>
           </div>
@@ -426,14 +474,14 @@ export default function Footer({
           <div className="flex items-center gap-4 text-center">
             <Link
               to="/privacy-policy"
-              className="hover:text-white transition-colors hover:underline"
+              className={`transition-colors hover:underline ${isLight ? "hover:text-neutral-900" : "hover:text-white"}`}
             >
               PRIVACY POLICY
             </Link>
             <span>•</span>
             <Link
               to="/terms-and-conditions"
-              className="hover:text-white transition-colors hover:underline"
+              className={`transition-colors hover:underline ${isLight ? "hover:text-neutral-900" : "hover:text-white"}`}
             >
               TERMS &amp; CONDITIONS
             </Link>
@@ -442,7 +490,7 @@ export default function Footer({
               href="/sitemap.xml"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors hover:underline"
+              className={`transition-colors hover:underline ${isLight ? "hover:text-neutral-900" : "hover:text-white"}`}
             >
               SITEMAP
             </a>
@@ -455,7 +503,7 @@ export default function Footer({
               target="_blank"
               rel="noopener noreferrer"
               className={`hover:underline font-bold transition-colors ${
-                isLight ? "text-neutral-800" : "text-white/70 hover:text-white"
+                isLight ? "text-neutral-900" : "text-white/70 hover:text-white"
               }`}
             >
               CRAFTED BY WOREXA
@@ -464,7 +512,7 @@ export default function Footer({
               onClick={scrollToTop}
               className={`w-7 h-7 rounded-full border flex items-center justify-center transition-all ${
                 isLight
-                  ? "border-neutral-300 text-neutral-700 hover:border-black hover:text-black"
+                  ? "border-neutral-300 text-neutral-700 hover:border-black hover:text-black hover:bg-neutral-100"
                   : "border-white/15 text-white/60 hover:border-white hover:text-white hover:bg-white/10"
               }`}
               title="Back to Top"
