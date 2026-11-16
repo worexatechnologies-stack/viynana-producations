@@ -660,7 +660,7 @@ export default function HomePage() {
   return (
     <main
       ref={containerRef}
-      className="home-cinematic relative w-full bg-brand-black text-[#fbf7ee] min-h-screen overflow-x-hidden selection:bg-white text-black selection:text-brand-black font-sans"
+      className="home-cinematic relative w-full bg-white text-neutral-900 min-h-screen overflow-x-hidden selection:bg-neutral-900 selection:text-white font-sans"
     >
       <SEO
         title="Video Production Company in Bangalore | Viyana Productions"
@@ -806,24 +806,21 @@ export default function HomePage() {
 
 
       {/* 3. COMPANY IMPACT BAND & 4-COLUMN STATS GRID (VE-BAND) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/25 overflow-hidden">
-        {/* Advanced Ambient Glow Mesh */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.15)_50%,transparent_80%)] pointer-events-none blur-2xl" />
-
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-neutral-200 bg-white overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12">
           {/* Two-Column Section Head */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-end">
             <div className="lg:col-span-7">
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-[1.12] sm:leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-neutral-900 leading-[1.12] sm:leading-tight">
                 VIDEO PRODUCTION THAT MOVES <br className="sm:hidden" />
                 PEOPLE &amp; BRANDS
               </h2>
             </div>
-            <div className="lg:col-span-5 text-sm sm:text-base text-white font-medium leading-relaxed space-y-2.5 sm:space-y-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+            <div className="lg:col-span-5 text-sm sm:text-base text-neutral-700 font-normal leading-relaxed space-y-2.5 sm:space-y-3">
               <p>
                 From the first idea to the final frame, Viyana Productions creates cinematic visual content that helps brands tell their story, showcase their products, and connect with their audience.
               </p>
-              <p className="text-[10px] sm:text-xs md:text-sm font-mono uppercase tracking-wider text-white/70 leading-relaxed">
+              <p className="text-[10px] sm:text-xs md:text-sm font-mono uppercase tracking-wider text-neutral-500 leading-relaxed">
                 CORPORATE FILMS • PRODUCT VIDEOS • INDUSTRIAL FILMS • <br className="sm:hidden" />
                 BRAND FILMS • DOCUMENTARIES • COMMERCIALS
               </p>
@@ -840,13 +837,10 @@ export default function HomePage() {
             ].map((item) => (
               <div
                 key={item.stat}
-                className="group relative p-4 min-[380px]:p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl bg-[#14110d]/80 backdrop-blur-2xl border border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:border-white/40/55 hover:shadow-[0_25px_60px_rgba(255,255,255,0.15)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[130px] sm:min-h-[155px] lg:min-h-[180px] overflow-hidden"
+                className="group relative p-4 min-[380px]:p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl bg-neutral-50 border border-neutral-200 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:border-neutral-400 hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[130px] sm:min-h-[155px] lg:min-h-[180px] overflow-hidden"
               >
-                {/* Subtle top-right specular rim light on hover */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-white/10 to-transparent rounded-bl-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
                 <strong
-                  className={`font-display font-extrabold text-[#f3f3ef] tracking-tight block leading-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] ${
+                  className={`font-display font-extrabold text-neutral-900 tracking-tight block leading-none ${
                     item.stat.length > 5
                       ? "text-base min-[360px]:text-[1.1rem] min-[400px]:text-xl sm:text-2xl md:text-lg lg:text-2xl xl:text-3xl"
                       : "text-2xl min-[360px]:text-3xl sm:text-4xl md:text-4xl lg:text-5xl"
@@ -854,7 +848,7 @@ export default function HomePage() {
                 >
                   {item.stat}
                 </strong>
-                <span className="text-[10px] sm:text-xs md:text-sm text-[#fbf7ee]/65 font-normal mt-2.5 sm:mt-3 block leading-relaxed uppercase tracking-wider font-mono">
+                <span className="text-[10px] sm:text-xs md:text-sm text-neutral-600 font-normal mt-2.5 sm:mt-3 block leading-relaxed uppercase tracking-wider font-mono">
                   {item.label}
                 </span>
               </div>
@@ -865,7 +859,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-1 sm:pt-2">
             <Link
               to="/work"
-              className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] cursor-pointer"
+              className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-neutral-900 text-white hover:bg-black font-mono text-xs uppercase tracking-wider font-bold hover:shadow-[0_15px_45px_rgba(0,0,0,0.15)] active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_10px_35px_rgba(0,0,0,0.12)] cursor-pointer"
             >
               <span>OUR WORK</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -873,10 +867,10 @@ export default function HomePage() {
 
             <Link
               to="/contact"
-              className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 hover:border-white/40 text-[#fbf7ee] font-mono text-xs uppercase tracking-wider font-medium hover:bg-white/15 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+              className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white border border-neutral-300 hover:border-neutral-400 text-neutral-900 font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-100 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-sm"
             >
               <span>START A PROJECT</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-white" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-neutral-900" />
             </Link>
           </div>
 
@@ -886,40 +880,31 @@ export default function HomePage() {
       <section
         ref={selectedWorkSectionRef}
         id="selected-work"
-        className="relative w-full py-6 sm:py-10 border-t border-white/15 bg-black/20 overflow-hidden"
+        className="relative w-full py-6 sm:py-10 border-t border-neutral-200 bg-white overflow-hidden"
       >
-        {/* Ambient Radial Spotlight Mesh */}
-        <div
-          className="absolute top-1/4 right-1/4 w-[850px] h-[500px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.15)_55%,transparent_80%)] rounded-full blur-3xl pointer-events-none"
-          style={{ contain: "strict", transform: "translateZ(0)" }}
-        />
-        <div
-          className="absolute bottom-10 left-10 w-[500px] h-[300px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,transparent_70%)] rounded-full blur-3xl pointer-events-none"
-        />
-
         <div className="w-full space-y-4 sm:space-y-5 relative z-10">
           {/* Top Header Bar */}
           <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-1 max-w-2xl">
               <div className="flex items-center gap-3">
-                <span className="text-xs sm:text-sm font-mono text-white tracking-widest font-bold px-3 py-1 rounded-full bg-white/10 border border-white/20">
+                <span className="text-xs sm:text-sm font-mono text-neutral-800 tracking-widest font-bold px-3 py-1 rounded-full bg-neutral-100 border border-neutral-300">
                   [ 02 / SELECTED WORK ]
                 </span>
-                <span className="hidden sm:inline-block text-xs font-mono text-white/60 uppercase tracking-widest font-semibold">
+                <span className="hidden sm:inline-block text-xs font-mono text-neutral-500 uppercase tracking-widest font-semibold">
                   CINEMA ARCHIVE
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-[#f3f3ef] uppercase drop-shadow-[0_2px_14px_rgba(0,0,0,0.8)]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-neutral-900 uppercase">
                 SELECTED WORK
               </h2>
-              <p className="text-sm sm:text-base text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+              <p className="text-sm sm:text-base text-neutral-600 font-medium leading-relaxed">
                 Commercials, brand films, and cinema productions crafted for broadcast &amp; digital impact.
               </p>
             </div>
 
             <div className="flex items-center gap-3 sm:gap-4 shrink-0 flex-wrap">
               {/* View Mode Toggle: Diagonal vs Grid */}
-              <div className="flex items-center p-1 rounded-full bg-[#13100c]/90 border border-white/20 shadow-md">
+              <div className="flex items-center p-1 rounded-full bg-neutral-100 border border-neutral-300 shadow-sm">
                 <button
                   type="button"
                   onClick={() => setViewMode("carousel")}
@@ -927,8 +912,8 @@ export default function HomePage() {
                   title="Diagonal Moving View"
                   className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
                     viewMode === "carousel"
-                      ? "bg-white text-black hover:bg-neutral-200 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
-                      : "text-[#fbf7ee]/70 hover:text-white"
+                      ? "bg-neutral-900 text-white shadow-sm"
+                      : "text-neutral-600 hover:text-neutral-900"
                   }`}
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5" />
@@ -941,8 +926,8 @@ export default function HomePage() {
                   title="Grid View"
                   className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
                     viewMode === "grid"
-                      ? "bg-white text-black hover:bg-neutral-200 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
-                      : "text-[#fbf7ee]/70 hover:text-white"
+                      ? "bg-neutral-900 text-white shadow-sm"
+                      : "text-neutral-600 hover:text-neutral-900"
                   }`}
                 >
                   <LayoutGrid className="w-3.5 h-3.5" />
@@ -952,7 +937,7 @@ export default function HomePage() {
 
               <Link
                 to="/work"
-                className="px-5 py-2.5 border border-white/20 hover:border-white/40 bg-[#14110d]/80 backdrop-blur-md rounded-full text-xs font-mono tracking-wider uppercase text-white hover:bg-white text-black hover:text-[#080706] transition-all flex items-center gap-2 group shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] font-bold"
+                className="px-5 py-2.5 border border-neutral-300 hover:border-neutral-400 bg-white rounded-full text-xs font-mono tracking-wider uppercase text-neutral-900 hover:bg-neutral-100 transition-all flex items-center gap-2 group shadow-sm font-bold"
               >
                 <span>VIEW ALL ({String(projects.length).padStart(2, "0")})</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -972,8 +957,8 @@ export default function HomePage() {
                     onClick={() => handleFilterChange(tab.id)}
                     className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
                       isActive
-                        ? "bg-white text-black hover:bg-neutral-200 font-bold shadow-[0_4px_20px_rgba(255,255,255,0.15)] scale-102"
-                        : "bg-[#14110d]/75 border border-white/15 text-[#fbf7ee]/75 hover:border-white/40/60 hover:text-white hover:bg-[#1a1611]/80 font-medium"
+                        ? "bg-neutral-900 text-white font-bold shadow-sm scale-102"
+                        : "bg-neutral-100 border border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:text-neutral-900 hover:bg-neutral-200/80 font-medium"
                     }`}
                   >
                     {tab.label}
@@ -987,8 +972,8 @@ export default function HomePage() {
           {viewMode === "carousel" ? (
             <div className="relative w-full overflow-hidden py-2 sm:py-4 select-none">
               {/* Edge Gradient Vignettes so cards gracefully glide in and out */}
-              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-r from-[#080706] via-[#080706]/75 to-transparent" />
-              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-l from-[#080706] via-[#080706]/75 to-transparent" />
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-r from-white via-white/80 to-transparent" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-l from-white via-white/80 to-transparent" />
 
               {/* Slanted Stage: -rotate-2 / -rotate-3 for the authentic diagonal flow */}
               <div className="transform -rotate-2 sm:-rotate-3 scale-[1.02] space-y-2.5 sm:space-y-3.5 -my-2 sm:-my-3">
@@ -1124,25 +1109,25 @@ export default function HomePage() {
               </div>
 
               {/* Status and instruction cue bar */}
-              <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-wrap items-center justify-between gap-3 text-[11px] sm:text-xs font-mono text-white/60 z-20 pt-4 sm:pt-6">
+              <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-wrap items-center justify-between gap-3 text-[11px] sm:text-xs font-mono text-neutral-600 z-20 pt-4 sm:pt-6">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white font-semibold">
-                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 border border-neutral-300 text-neutral-800 font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
                     <span>DUAL DIAGONAL CONTINUOUS FLOW</span>
                   </span>
-                  <span className="hidden md:inline text-white/30">•</span>
-                  <span className="hidden md:inline text-white/70">
+                  <span className="hidden md:inline text-neutral-300">•</span>
+                  <span className="hidden md:inline text-neutral-600">
                     ROW 1: RIGHT &rarr; LEFT &nbsp;|&nbsp; ROW 2: LEFT &rarr; RIGHT
                   </span>
                 </div>
-                <div className="flex items-center gap-3 text-white/70">
+                <div className="flex items-center gap-3 text-neutral-600">
                   <span className="text-[10.5px] tracking-wider uppercase font-semibold">
                     HOVER ANY CARD TO PAUSE &amp; EXPLORE
                   </span>
                   <span>•</span>
                   <Link
                     to="/work"
-                    className="text-white hover:text-amber-300 transition-colors font-bold flex items-center gap-1"
+                    className="text-neutral-900 hover:text-amber-600 transition-colors font-bold flex items-center gap-1"
                   >
                     <span>FULL ARCHIVE ({projects.length})</span>
                     <ArrowRight className="w-3 h-3" />
@@ -1239,24 +1224,18 @@ export default function HomePage() {
       </section>
 
       {/* MODELS & PORTFOLIO DIRECTION (WHERE CHARACTER MEETS CINEMATIC LIGHT) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/60 backdrop-blur-md text-[#fbf7ee] overflow-hidden">
-        {/* Subtle Ambient Radial Glow Mesh */}
-        <div
-          className="absolute top-1/3 right-1/4 w-[750px] h-[450px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,rgba(212,160,54,0.15)_60%,transparent_80%)] blur-3xl pointer-events-none rounded-full"
-          style={{ contain: "strict", transform: "translateZ(0)" }}
-        />
-
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-neutral-200 bg-neutral-50/60 text-neutral-900 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             
             {/* Left Column: Content */}
             <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase text-[#f3f3ef] tracking-tight leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase text-neutral-900 tracking-tight leading-tight">
                 WHERE CHARACTER MEETS <br className="hidden sm:inline" />
-                <span className="text-[#fbf7ee]/60">CINEMATIC LIGHT.</span>
+                <span className="text-neutral-500">CINEMATIC LIGHT.</span>
               </h2>
 
-              <div className="space-y-4 text-base sm:text-lg text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+              <div className="space-y-4 text-base sm:text-lg text-neutral-700 font-normal leading-relaxed">
                 <p>
                   Beyond traditional portraiture, Viyana Productions approaches model portfolios and commercial fashion shoots with the rigor of a cinema set. Every frame is composed with intentional lighting, authentic cultural presence, and high-fashion aesthetics that capture both vulnerability and undeniable strength.
                 </p>
@@ -1269,14 +1248,14 @@ export default function HomePage() {
               <div className="pt-2 flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto">
                 <Link
                   to="/work/models-portfolio-shoots"
-                  className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] inline-flex items-center justify-center gap-2.5 cursor-pointer"
+                  className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-neutral-900 text-white hover:bg-black font-mono text-xs uppercase tracking-wider font-bold hover:shadow-[0_15px_45px_rgba(0,0,0,0.15)] active:scale-95 transition-all shadow-[0_10px_35px_rgba(0,0,0,0.12)] inline-flex items-center justify-center gap-2.5 cursor-pointer"
                 >
                   <span>VIEW MODEL PORTFOLIOS</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   to="/contact"
-                  className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white/5 hover:bg-white/15 border border-white/20 hover:border-white/40 text-[#fbf7ee] font-mono text-xs uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2.5 active:scale-95 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+                  className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white hover:bg-neutral-100 border border-neutral-300 hover:border-neutral-400 text-neutral-900 font-mono text-xs uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2.5 active:scale-95 shadow-sm"
                 >
                   <span>BOOK A PORTFOLIO SHOOT</span>
                 </Link>
@@ -1285,8 +1264,8 @@ export default function HomePage() {
 
             {/* Right Column: Model Image with Luxury Dual-Border Halo */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] rounded-3xl p-1 bg-gradient-to-br from-white/30 via-white/10 to-white/20 shadow-[0_25px_80px_rgba(0,0,0,0.95)] group">
-                <div className="w-full h-full rounded-[22px] overflow-hidden bg-[#14110d] relative">
+              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] rounded-3xl p-1 bg-gradient-to-br from-neutral-300 via-neutral-100 to-neutral-200 shadow-[0_15px_40px_rgba(0,0,0,0.08)] group">
+                <div className="w-full h-full rounded-[22px] overflow-hidden bg-neutral-100 relative">
                   <img
                     src="/images/models-portfolio-saree.jpg"
                     alt="Viyana Productions Models Portfolio Shoot"
@@ -1305,17 +1284,17 @@ export default function HomePage() {
       </section>
 
       {/* 4. CLIENT STORIES VIDEO TESTIMONIALS (AUTOMATIC RUNNING MARQUEE) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 border-t border-neutral-200 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 space-y-6">
           {/* Header without arrow buttons */}
           <div className="max-w-3xl">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/70 block mb-3 font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-700 block mb-3 font-semibold px-2.5 py-1 rounded-full bg-neutral-100 border border-neutral-300 w-fit">
               03 / CLIENT PERSPECTIVES
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-neutral-900 leading-tight">
               Client stories, not just client logos.
             </h2>
-            <p className="text-base sm:text-lg text-white font-medium leading-relaxed mt-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+            <p className="text-base sm:text-lg text-neutral-600 font-normal leading-relaxed mt-3">
               Real client feedback that shows how brands and creators experience Viyana Productions&apos; planning, production, and delivery on shoots, films, and visual content.
             </p>
           </div>
@@ -1327,11 +1306,11 @@ export default function HomePage() {
             {[...testimonials, ...testimonials].map((item, idx) => (
               <article
                 key={`${item.id}-${idx}`}
-                className="group shrink-0 w-[84vw] sm:w-[460px] md:w-[500px] mx-3 sm:mx-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#1a1611]/95 via-[#14110d]/90 to-[#0a0907]/95 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.1)] hover:border-white/40/55 transition-all duration-300 flex flex-col justify-between select-none"
+                className="group shrink-0 w-[84vw] sm:w-[460px] md:w-[500px] mx-3 sm:mx-4 p-6 sm:p-8 rounded-3xl bg-neutral-50/80 border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:border-neutral-400 hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col justify-between select-none"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-white/70 font-medium px-2.5 py-1 rounded-full bg-white/5 border border-white/15">
+                    <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-neutral-700 font-medium px-2.5 py-1 rounded-full bg-white border border-neutral-200">
                       {item.label}
                     </span>
                     <button
@@ -1344,23 +1323,23 @@ export default function HomePage() {
                       }
                       type="button"
                       aria-label={`Play testimonial from ${item.client}`}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white text-black text-white hover:text-[#080706] border border-white/20 text-[10px] font-mono uppercase tracking-wider transition-all active:scale-95 cursor-pointer shadow-sm"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-neutral-900 hover:bg-black text-white text-[10px] font-mono uppercase tracking-wider transition-all active:scale-95 cursor-pointer shadow-sm"
                     >
                       <Play className="w-2.5 h-2.5 fill-current" />
                       <span>Watch</span>
                     </button>
                   </div>
 
-                  <blockquote className="text-sm sm:text-base md:text-lg font-display font-medium text-[#fbf7ee] leading-relaxed italic">
+                  <blockquote className="text-sm sm:text-base md:text-lg font-display font-medium text-neutral-800 leading-relaxed italic">
                     &ldquo;{item.quote}&rdquo;
                   </blockquote>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
-                  <cite className="text-xs sm:text-sm font-mono uppercase tracking-wider text-white font-semibold not-italic">
+                <div className="pt-4 mt-4 border-t border-neutral-200 flex items-center justify-between">
+                  <cite className="text-xs sm:text-sm font-mono uppercase tracking-wider text-neutral-900 font-semibold not-italic">
                     — {item.client}
                   </cite>
-                  <div className="flex items-center gap-0.5 text-white text-xs tracking-widest select-none drop-shadow-[0_0_6px_rgba(255,255,255,0.15)]" aria-label="5 stars rating">
+                  <div className="flex items-center gap-0.5 text-amber-500 text-xs tracking-widest select-none" aria-label="5 stars rating">
                     ★★★★★
                   </div>
                 </div>
@@ -1371,15 +1350,9 @@ export default function HomePage() {
       </section>
 
       {/* 5. CLIENT LOGOS (CONTINUOUS RUNNING MARQUEE CAPSULES) */}
-      <section className="relative w-full py-10 sm:py-14 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
-        {/* Subtle Ambient Radial Glow */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle,rgba(255,255,255,0.06)_0%,rgba(212,160,54,0.05)_50%,transparent_75%)] rounded-full blur-3xl pointer-events-none"
-          style={{ contain: "strict", transform: "translateZ(0)" }}
-        />
-
+      <section className="relative w-full py-10 sm:py-14 border-t border-neutral-200 bg-neutral-50/60 overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 text-center mb-4 sm:mb-6 relative z-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold uppercase tracking-tight text-neutral-900 leading-tight">
             CLIENT LOGOS
           </h2>
         </div>
@@ -1390,7 +1363,7 @@ export default function HomePage() {
             {[...clientMarqueeCards, ...clientMarqueeCards, ...clientMarqueeCards, ...clientMarqueeCards].map((card, idx) => (
               <div
                 key={`${card.id}-${idx}`}
-                className={`group shrink-0 w-[240px] sm:w-[270px] md:w-[290px] h-[115px] sm:h-[130px] rounded-[28px] mx-2.5 sm:mx-3 px-6 py-4 flex items-center justify-center transition-all duration-300 select-none cursor-pointer hover:scale-[1.04] ${card.bgClass} ${card.glowClass || ""}`}
+                className="group shrink-0 w-[240px] sm:w-[270px] md:w-[290px] h-[115px] sm:h-[130px] rounded-[28px] mx-2.5 sm:mx-3 px-6 py-4 flex items-center justify-center transition-all duration-300 select-none cursor-pointer hover:scale-[1.04] bg-white border border-neutral-200 shadow-sm hover:border-neutral-300 hover:shadow-md"
               >
                 <img
                   src={card.logo}
@@ -1406,23 +1379,17 @@ export default function HomePage() {
       </section>
 
       {/* 6. BUILT FOR BRANDS WITH BIG IDEAS (WHAT WE CREATE + BOTTOM CTA) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
-        {/* Subtle background ambient glow mesh */}
-        <div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[750px] h-[400px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.15)_50%,transparent_80%)] rounded-full blur-3xl pointer-events-none"
-          style={{ contain: "strict", transform: "translateZ(0)" }}
-        />
-
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-neutral-200 bg-white overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto space-y-8 sm:space-y-10">
           {/* Top Section Header */}
           <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/70 block font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-700 block font-semibold px-2.5 py-1 rounded-full bg-neutral-100 border border-neutral-300 w-fit">
               WHAT WE CREATE
             </span>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-[1.08] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight text-neutral-900 leading-[1.08]">
               BUILT FOR BRANDS WITH BIG IDEAS
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-white font-medium leading-relaxed pt-1 max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+            <p className="text-base sm:text-lg md:text-xl text-neutral-600 font-normal leading-relaxed pt-1 max-w-2xl">
               From startups and growing businesses to established brands, Viyana Productions creates impactful visual content that brings ideas to life and helps businesses connect with their audience.
             </p>
           </div>
@@ -1802,18 +1769,16 @@ export default function HomePage() {
           </div>
 
           {/* Bottom CTA Banner */}
-          <div className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-[#1a1611]/95 via-[#13100c]/85 to-[#0a0907] backdrop-blur-3xl p-8 sm:p-14 lg:p-16 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.12)]">
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
-            
+          <div className="relative rounded-3xl border border-neutral-800 bg-neutral-900 text-white p-8 sm:p-14 lg:p-16 overflow-hidden shadow-2xl">
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
               <div className="max-w-2xl space-y-3">
-                <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/70 block font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
+                <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/70 block font-semibold px-2.5 py-1 rounded-full bg-white/10 border border-white/20 w-fit">
                   GET STARTED
                 </span>
-                <h3 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+                <h3 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
                   HAVE A STORY TO TELL?
                 </h3>
-                <p className="text-sm sm:text-base text-[#fbf7ee]/80 font-normal leading-relaxed">
+                <p className="text-sm sm:text-base text-neutral-300 font-normal leading-relaxed">
                   Let’s turn your idea into something people remember.
                 </p>
               </div>
@@ -1821,7 +1786,7 @@ export default function HomePage() {
               <div className="shrink-0">
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] cursor-pointer"
+                  className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-[0_10px_35px_rgba(255,255,255,0.2)] cursor-pointer"
                 >
                   <span>START A PROJECT</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -1833,24 +1798,21 @@ export default function HomePage() {
       </section>
 
       {/* 6. LATEST WORK SHOWCASE GRID (VE-WORK-GRID) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/25 overflow-hidden">
-        {/* Ambient Top Glow */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
-
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-neutral-200 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/80 block mb-3 font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
+              <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-700 block mb-3 font-semibold px-3 py-1 rounded-full bg-neutral-100 border border-neutral-300 w-fit">
                 03 / SELECTED FILM ARCHIVE
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-neutral-900">
                 Latest corporate, product, and industrial video work.
               </h2>
             </div>
             <Link
               to="/work"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 hover:bg-white text-black hover:text-[#080706] text-white font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-[0_4px_20px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:shadow-[0_10px_30px_rgba(255,255,255,0.15)] shrink-0 w-fit"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 bg-neutral-50 hover:bg-neutral-900 hover:text-white text-neutral-900 font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-sm shrink-0 w-fit"
             >
               <span>VIEW ALL WORK (13)</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -1863,7 +1825,7 @@ export default function HomePage() {
               <Link
                 key={project.slug}
                 to={`/work/${project.slug}`}
-                className="group relative min-h-[380px] sm:min-h-[420px] rounded-2xl overflow-hidden border border-white/15 bg-[#14110d] shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.08)] flex flex-col justify-end p-6 sm:p-8 transition-all duration-500 hover:border-white/40/55 hover:shadow-[0_25px_60px_rgba(255,255,255,0.15)]"
+                className="group relative min-h-[380px] sm:min-h-[420px] rounded-2xl overflow-hidden border border-neutral-200 bg-neutral-900 shadow-[0_15px_40px_rgba(0,0,0,0.1)] flex flex-col justify-end p-6 sm:p-8 transition-all duration-500 hover:border-neutral-400 hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)]"
               >
                 <img
                   src={project.thumbnail}
@@ -1879,7 +1841,7 @@ export default function HomePage() {
                 {/* Card Tags & Details */}
                 <div className="relative z-10 space-y-2">
                   <div className="flex items-center justify-between text-[10px] font-mono">
-                    <span className="bg-black/20 px-3.5 py-1 rounded-full border border-white/20 uppercase tracking-wider text-white font-semibold shadow-sm">
+                    <span className="bg-black/40 px-3.5 py-1 rounded-full border border-white/20 uppercase tracking-wider text-white font-semibold shadow-sm">
                       {project.category}
                     </span>
                     <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-full bg-white/10 border border-white/20 text-white">
@@ -1907,31 +1869,28 @@ export default function HomePage() {
       </section>
 
       {/* 7. PRODUCTION WORKFLOW PROCESS CARD (VE-PROCESS-CARD) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/20 overflow-hidden">
-        {/* Ambient Glow */}
-        <div className="absolute bottom-0 left-1/3 w-[700px] h-[350px] bg-[radial-gradient(ellipse_at_bottom,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
-
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-neutral-200 bg-neutral-50/60 overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="max-w-3xl">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/80 block mb-3 font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-700 block mb-3 font-semibold px-3 py-1 rounded-full bg-neutral-100 border border-neutral-300 w-fit">
               04 / PRODUCTION ARCHITECTURE
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-neutral-900 leading-tight">
               One team from first idea to final film.
             </h2>
-            <p className="text-base sm:text-lg text-white font-medium leading-relaxed mt-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+            <p className="text-base sm:text-lg text-neutral-600 font-normal leading-relaxed mt-3">
               A disciplined 5-stage production pipeline designed for creative clarity, transparent collaboration, and broadcast-grade finishing.
             </p>
           </div>
 
           {/* 5-Step Process Flow */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-[#14110d]/90 to-[#0d0b09]/90 border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.08)] backdrop-blur-2xl space-y-8">
-            <div className="border-b border-white/15 pb-5 flex items-center justify-between">
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-white font-bold">
+          <div className="p-8 sm:p-12 rounded-3xl bg-white border border-neutral-200 shadow-[0_15px_45px_rgba(0,0,0,0.06)] space-y-8">
+            <div className="border-b border-neutral-200 pb-5 flex items-center justify-between">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-900 font-bold">
                 END-TO-END WORKFLOW PIPELINE
               </span>
-              <span className="text-xs font-mono text-white/60 font-semibold">5 PHASES • 100% TRANSPARENCY</span>
+              <span className="text-xs font-mono text-neutral-500 font-semibold">5 PHASES • 100% TRANSPARENCY</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
@@ -1964,19 +1923,19 @@ export default function HomePage() {
               ].map((item, idx) => (
                 <div
                   key={item.step}
-                  className="relative p-5 sm:p-6 rounded-2xl bg-[#1a1611]/70 border border-white/15 hover:border-white/40/55 hover:bg-[#221c14]/85 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.05)] flex flex-col justify-between min-h-[160px] group"
+                  className="relative p-5 sm:p-6 rounded-2xl bg-neutral-50 border border-neutral-200 hover:border-neutral-400 hover:bg-white transition-all duration-300 shadow-sm flex flex-col justify-between min-h-[160px] group"
                 >
                   <div className="flex items-center justify-between text-xs font-mono mb-4">
-                    <span className="font-bold text-white px-2.5 py-1 rounded-full bg-white/10 border border-white/20">
+                    <span className="font-bold text-white px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-900">
                       {item.step}
                     </span>
-                    {idx < 4 && <span className="hidden lg:inline text-white/50 font-bold group-hover:translate-x-0.5 transition-transform">→</span>}
+                    {idx < 4 && <span className="hidden lg:inline text-neutral-400 font-bold group-hover:translate-x-0.5 transition-transform">→</span>}
                   </div>
                   <div>
-                    <strong className="text-sm font-display font-bold text-white block uppercase tracking-tight mb-2">
+                    <strong className="text-sm font-display font-bold text-neutral-900 block uppercase tracking-tight mb-2">
                       {item.title}
                     </strong>
-                    <p className="text-xs text-neutral-200 leading-relaxed font-normal">
+                    <p className="text-xs text-neutral-600 leading-relaxed font-normal">
                       {item.desc}
                     </p>
                   </div>
@@ -1988,17 +1947,14 @@ export default function HomePage() {
       </section>
 
       {/* 8. VIDEO PRODUCTION FAQ ACCORDION (VE-FAQ) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/25 overflow-hidden">
-        {/* Ambient Top Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
-
+      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-neutral-200 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/80 block mb-3 font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/15 w-fit mx-auto">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-700 block mb-3 font-semibold px-3 py-1 rounded-full bg-neutral-100 border border-neutral-300 w-fit mx-auto">
               FAQ
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-neutral-900">
               Frequently Asked Questions
             </h2>
           </div>
@@ -2015,8 +1971,8 @@ export default function HomePage() {
                     key={faq.question}
                     className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                       isOpen
-                        ? "border-l-4 border-l-white border-white/30 bg-gradient-to-r from-[#1e1912]/95 to-[#16120e]/95 shadow-[0_12px_36px_rgba(0,0,0,0.6),0_0_25px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.08)]"
-                        : "border-white/10 bg-[#13100c]/60 hover:border-white/20 hover:bg-[#1a1611]/70 shadow-[0_6px_20px_rgba(0,0,0,0.3)]"
+                        ? "border-l-4 border-l-neutral-900 border-neutral-300 bg-white shadow-md"
+                        : "border-neutral-200 bg-neutral-50 hover:border-neutral-300 hover:bg-neutral-100/70 shadow-sm"
                     }`}
                   >
                     <button
@@ -2025,15 +1981,15 @@ export default function HomePage() {
                       className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 cursor-pointer"
                     >
                       <div className="flex items-start gap-3 sm:gap-4">
-                        <span className="font-mono text-xs text-white font-bold px-2 py-0.5 rounded bg-white/5 border border-white/15 pt-0.5 shrink-0">
+                        <span className="font-mono text-xs text-neutral-800 font-bold px-2 py-0.5 rounded bg-neutral-200 border border-neutral-300 pt-0.5 shrink-0">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="text-sm sm:text-base font-semibold text-white tracking-tight leading-snug">
+                        <span className="text-sm sm:text-base font-semibold text-neutral-900 tracking-tight leading-snug">
                           {faq.question}
                         </span>
                       </div>
                       <div className={`p-1.5 rounded-full border shrink-0 transition-colors duration-300 mt-0.5 ml-2 ${
-                        isOpen ? "bg-white/15 border-white/30 text-white" : "bg-white/5 border-white/10 text-white/60"
+                        isOpen ? "bg-neutral-900 border-neutral-900 text-white" : "bg-neutral-100 border-neutral-300 text-neutral-700"
                       }`}>
                         <ChevronDown
                           className={`w-4 h-4 transition-transform duration-300 ${
@@ -2052,8 +2008,8 @@ export default function HomePage() {
                           transition={{ duration: 0.25, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="bg-white text-neutral-900 px-5 py-4 sm:px-6 sm:py-5 text-xs sm:text-sm leading-relaxed border-t border-neutral-200">
-                            <p className="text-neutral-800 font-normal leading-relaxed pl-7 sm:pl-9">
+                          <div className="bg-white text-neutral-700 px-5 py-4 sm:px-6 sm:py-5 text-xs sm:text-sm leading-relaxed border-t border-neutral-200">
+                            <p className="text-neutral-700 font-normal leading-relaxed pl-7 sm:pl-9">
                               {faq.answer}
                             </p>
                           </div>
@@ -2075,8 +2031,8 @@ export default function HomePage() {
                     key={faq.question}
                     className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                       isOpen
-                        ? "border-l-4 border-l-white border-white/30 bg-gradient-to-r from-[#1e1912]/95 to-[#16120e]/95 shadow-[0_12px_36px_rgba(0,0,0,0.6),0_0_25px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.08)]"
-                        : "border-white/10 bg-[#13100c]/60 hover:border-white/20 hover:bg-[#1a1611]/70 shadow-[0_6px_20px_rgba(0,0,0,0.3)]"
+                        ? "border-l-4 border-l-neutral-900 border-neutral-300 bg-white shadow-md"
+                        : "border-neutral-200 bg-neutral-50 hover:border-neutral-300 hover:bg-neutral-100/70 shadow-sm"
                     }`}
                   >
                     <button
@@ -2085,15 +2041,15 @@ export default function HomePage() {
                       className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 cursor-pointer"
                     >
                       <div className="flex items-start gap-3 sm:gap-4">
-                        <span className="font-mono text-xs text-white font-bold px-2 py-0.5 rounded bg-white/5 border border-white/15 pt-0.5 shrink-0">
+                        <span className="font-mono text-xs text-neutral-800 font-bold px-2 py-0.5 rounded bg-neutral-200 border border-neutral-300 pt-0.5 shrink-0">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="text-sm sm:text-base font-semibold text-white tracking-tight leading-snug">
+                        <span className="text-sm sm:text-base font-semibold text-neutral-900 tracking-tight leading-snug">
                           {faq.question}
                         </span>
                       </div>
                       <div className={`p-1.5 rounded-full border shrink-0 transition-colors duration-300 mt-0.5 ml-2 ${
-                        isOpen ? "bg-white/15 border-white/30 text-white" : "bg-white/5 border-white/10 text-white/60"
+                        isOpen ? "bg-neutral-900 border-neutral-900 text-white" : "bg-neutral-100 border-neutral-300 text-neutral-700"
                       }`}>
                         <ChevronDown
                           className={`w-4 h-4 transition-transform duration-300 ${
@@ -2112,8 +2068,8 @@ export default function HomePage() {
                           transition={{ duration: 0.25, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="bg-white text-neutral-900 px-5 py-4 sm:px-6 sm:py-5 text-xs sm:text-sm leading-relaxed border-t border-neutral-200">
-                            <p className="text-neutral-800 font-normal leading-relaxed pl-7 sm:pl-9">
+                          <div className="bg-white text-neutral-700 px-5 py-4 sm:px-6 sm:py-5 text-xs sm:text-sm leading-relaxed border-t border-neutral-200">
+                            <p className="text-neutral-700 font-normal leading-relaxed pl-7 sm:pl-9">
                               {faq.answer}
                             </p>
                           </div>
