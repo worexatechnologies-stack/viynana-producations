@@ -41,12 +41,7 @@
   }
 }
 
-.home-cinematic {
-  background-color: #ffffff !important;
-  background-image: none !important;
-  color: #111111 !important;
-}
-
+.home-cinematic,
 .work-portfolio,
 .about-cinematic {
   background-color: #050505;

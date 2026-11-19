@@ -504,7 +504,7 @@ export default function ProductShootDetailPage({
             {/* Viewport Box */}
             <div
               onClick={togglePlay}
-              className="relative w-full aspect-[4/3] sm:aspect-[16/9] max-h-[640px] bg-black flex items-center justify-center cursor-pointer group"
+              className="relative w-full aspect-[9/14] sm:aspect-[16/9] max-h-[640px] max-w-sm sm:max-w-none mx-auto bg-transparent flex items-center justify-center cursor-pointer group rounded-2xl overflow-hidden"
             >
               <video
                 ref={videoRef}
@@ -516,7 +516,7 @@ export default function ProductShootDetailPage({
                 muted={isMuted}
                 playsInline
                 preload="metadata"
-                className="w-full h-full object-contain bg-black"
+                className="w-full h-full object-cover sm:object-contain bg-transparent rounded-2xl"
               />
 
               {/* Top Film Badge */}
