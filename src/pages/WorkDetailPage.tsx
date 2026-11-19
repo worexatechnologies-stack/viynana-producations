@@ -352,59 +352,58 @@ export function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
     project.videos.forEach((vSrc, idx) => {
       films.push({
         id: `${project.slug}-vid-${idx + 1}`,
-        title: `${project.title} — Production Reel ${String(idx + 1).padStart(2, "0")}`,
+        title: `${project.title} — Reel ${String(idx + 1).padStart(2, "0")}`,
         tag: project.deliverableType || "Commercial Film",
         category: project.category,
         src: vSrc,
         poster: project.gallery[idx] || defaultPoster,
-        badge: `0${idx + 1} / Cinema Reel`,
+        badge: `0${idx + 1} / Reel`,
         description: project.description,
       });
     });
   } else if (project.video) {
     films.push({
       id: `${project.slug}-vid-1`,
-      title: `${project.title} — Official Production Master`,
+      title: `${project.title} — Production Master`,
       tag: project.deliverableType || "Commercial Film",
       category: project.category,
       src: project.video,
       poster: defaultPoster,
-      badge: "01 / Production Master",
+      badge: "01 / Master",
       description: project.description,
     });
   } else if (project.youtubeVideoId) {
     films.push({
       id: `${project.slug}-yt-1`,
-      title: `${project.title} — 4K Showreel Master`,
+      title: `${project.title} — 4K Showreel`,
       tag: "4K Showreel",
       category: project.category,
       youtubeId: project.youtubeVideoId,
       poster: `https://img.youtube.com/vi/${project.youtubeVideoId}/hqdefault.jpg`,
-      badge: "01 / YouTube Master",
+      badge: "01 / YouTube",
       description: project.description,
     });
   } else {
     films.push(
       {
         id: `${project.slug}-reel-1`,
-        title: `${project.title} — 4K Theatrical Master Showcase`,
+        title: `${project.title} — Theatrical Master`,
         tag: project.deliverableType || "Studio Master",
         category: project.category,
         src: "/showreel-hero-4k.mp4",
         poster: defaultPoster,
-        badge: "01 / Cinema Master",
+        badge: "01 / Master",
         description: project.description,
       },
       {
         id: `${project.slug}-reel-2`,
-        title: `${project.title} — Behind The Scenes & Visual Process`,
+        title: `${project.title} — Behind The Scenes`,
         tag: "Production Process",
         category: project.category,
         src: "/website-video-2.mp4",
         poster: project.gallery[1] || defaultPoster,
-        badge: "02 / Production Process",
-        description:
-          "Directorial planning, large-format camera setups, and high-impact visual storytelling.",
+        badge: "02 / Process",
+        description: project.description,
       }
     );
   }
@@ -634,7 +633,7 @@ export function getProjectCinemaStills(project: Project): CinemaStillItem[] {
   });
 }
 
-function HorizontalVideoCard({ film, index }: { film: CinemaFilmItem; index: number }) {
+function CleanVideoCard({ film }: { film: CinemaFilmItem }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -669,90 +668,66 @@ function HorizontalVideoCard({ film, index }: { film: CinemaFilmItem; index: num
   };
 
   return (
-    <div className="w-[85vw] sm:w-[380px] md:w-[420px] shrink-0 snap-start flex flex-col rounded-2xl border border-[#e7e6e2] bg-white overflow-hidden transition-all hover:border-[#0284c7]/40">
-      {/* Video Viewport */}
-      <div
-        onClick={togglePlay}
-        className="relative w-full aspect-video bg-black/5 overflow-hidden group cursor-pointer"
-      >
-        {film.youtubeId ? (
-          <iframe
-            src={`https://www.youtube.com/embed/${film.youtubeId}?autoplay=0&rel=0`}
-            title={film.title}
-            className="w-full h-full border-0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
+    <div className="w-full rounded-2xl border border-[#e7e6e2] bg-white overflow-hidden transition-all duration-300 hover:border-[#0284c7]/50 relative aspect-video cursor-pointer">
+      {film.youtubeId ? (
+        <iframe
+          src={`https://www.youtube.com/embed/${film.youtubeId}?autoplay=0&rel=0`}
+          title={film.title}
+          className="w-full h-full border-0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      ) : (
+        <div onClick={togglePlay} className="w-full h-full relative group">
+          <video
+            ref={videoRef}
+            src={film.src}
+            poster={film.poster}
+            preload="metadata"
+            playsInline
+            loop
+            muted={isMuted}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            className="w-full h-full object-cover"
           />
-        ) : (
-          <>
-            <video
-              ref={videoRef}
-              src={film.src}
-              poster={film.poster}
-              preload="metadata"
-              playsInline
-              loop
-              muted={isMuted}
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
-              className="w-full h-full object-cover"
-            />
 
-            {/* Center Play / Pause Indicator */}
-            <div
-              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${
-                isPlaying ? "opacity-0 group-hover:opacity-100 bg-black/20" : "opacity-100 bg-black/30"
-              }`}
+          {/* Center Play / Pause Indicator */}
+          <div
+            className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${
+              isPlaying ? "opacity-0 group-hover:opacity-100 bg-black/20" : "opacity-100 bg-black/30"
+            }`}
+          >
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#20201e] shadow-lg transition-transform group-hover:scale-105">
+              {isPlaying ? (
+                <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#20201e]" />
+              ) : (
+                <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#20201e] ml-0.5 sm:ml-1" />
+              )}
+            </div>
+          </div>
+
+          {/* In-Video Action Pills */}
+          <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 z-10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+            <button
+              type="button"
+              onClick={toggleMute}
+              aria-label={isMuted ? "Unmute video" : "Mute video"}
+              className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90 shadow-sm"
             >
-              <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#20201e] shadow-lg transition-transform group-hover:scale-105">
-                {isPlaying ? (
-                  <Pause size={24} className="fill-current text-[#20201e]" />
-                ) : (
-                  <Play size={24} className="fill-current text-[#20201e] ml-1" />
-                )}
-              </div>
-            </div>
-
-            {/* Film Badge */}
-            <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#e7e6e2] text-[11px] font-portfolio-sans font-semibold text-[#20201e]">
-              {film.badge || `0${index + 1} / Reel`}
-            </div>
-
-            {/* In-Video Action Pills */}
-            <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
-              <button
-                type="button"
-                onClick={toggleMute}
-                aria-label={isMuted ? "Unmute video" : "Mute video"}
-                className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90"
-              >
-                {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-              </button>
-              <button
-                type="button"
-                onClick={handleFullscreen}
-                aria-label="Fullscreen video"
-                className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90"
-              >
-                <Maximize2 size={14} />
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Card Info */}
-      <div className="p-4 sm:p-5 flex flex-col flex-1">
-        <span className="text-[11px] font-semibold text-[#0284c7] uppercase tracking-wider font-portfolio-sans">
-          {film.tag || film.category}
-        </span>
-        <h3 className="font-portfolio-serif text-base sm:text-lg font-normal text-[#20201e] mt-1 line-clamp-1">
-          {film.title}
-        </h3>
-        <p className="font-portfolio-sans text-xs sm:text-sm text-[#686762] mt-1.5 line-clamp-2 leading-relaxed">
-          {film.description}
-        </p>
-      </div>
+              {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+            </button>
+            <button
+              type="button"
+              onClick={handleFullscreen}
+              aria-label="Fullscreen video"
+              className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90 shadow-sm"
+            >
+              <Maximize2 size={14} />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -784,16 +759,6 @@ export function UniversalWorkCinemaPage({
   const stills = getProjectCinemaStills(project);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const videoScrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollVideos = (direction: "left" | "right") => {
-    if (!videoScrollRef.current) return;
-    const scrollAmount = 420;
-    videoScrollRef.current.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
-  };
 
   // Keyboard navigation for Lightbox
   useEffect(() => {
@@ -829,21 +794,21 @@ export function UniversalWorkCinemaPage({
       <Navbar />
 
       {/* 1. HERO SECTION: TITLE AND CONTENT ONLY */}
-      <section className="pt-28 sm:pt-36 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-12 bg-white border-b border-[#e7e6e2]">
-        <div className="container mx-auto max-w-5xl">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.08]">
+      <section className="pt-24 sm:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#e7e6e2]">
+        <div className="container mx-auto max-w-7xl">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.1] sm:leading-[1.08] max-w-4xl">
             {project.title}
             <span className="text-[#0284c7]">.</span>
           </h1>
-          <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg font-portfolio-sans font-normal text-[#686762] leading-relaxed max-w-3xl">
+          <p className="mt-3 sm:mt-5 text-sm sm:text-base md:text-lg font-portfolio-sans font-normal text-[#686762] leading-relaxed max-w-3xl">
             {project.fullDescription || project.description}
           </p>
         </div>
       </section>
 
-      {/* 2. SECTION 1: VIDEOS SECTION (1 HORIZONTAL LINE) */}
+      {/* 2. SECTION 1: VIDEOS SECTION (3, 3 A ROW GRID WITHOUT ATTACHED CONTENT) */}
       {films.length > 0 && (
-        <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-12 bg-[#fbfaf8] border-b border-[#e7e6e2]">
+        <section className="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 bg-[#fbfaf8] border-b border-[#e7e6e2]">
           <div className="container mx-auto max-w-7xl">
             {/* Videos Section Header */}
             <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
@@ -855,35 +820,15 @@ export function UniversalWorkCinemaPage({
                   Videos<span className="text-[#0284c7]">.</span>
                 </h2>
               </div>
-              {films.length > 1 && (
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => scrollVideos("left")}
-                    aria-label="Previous video"
-                    className="w-10 h-10 rounded-full border border-[#dedbd4] bg-white hover:bg-[#111827] hover:text-white text-[#20201e] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-none"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => scrollVideos("right")}
-                    aria-label="Next video"
-                    className="w-10 h-10 rounded-full border border-[#dedbd4] bg-white hover:bg-[#111827] hover:text-white text-[#20201e] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-none"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
-              )}
+              <span className="text-xs font-portfolio-sans text-[#8e8d88] tracking-wider uppercase font-semibold">
+                {films.length} Films
+              </span>
             </div>
 
-            {/* 1 Horizontal Line of Videos */}
-            <div
-              ref={videoScrollRef}
-              className="flex overflow-x-auto gap-4 sm:gap-6 no-scrollbar snap-x snap-mandatory pb-4 items-stretch scroll-smooth"
-            >
+            {/* 3, 3 A Row Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {films.map((film, idx) => (
-                <HorizontalVideoCard key={film.id || idx} film={film} index={idx} />
+                <CleanVideoCard key={film.id || idx} film={film} />
               ))}
             </div>
           </div>
@@ -892,9 +837,9 @@ export function UniversalWorkCinemaPage({
 
       {/* 3. SECTION 2: IMAGES SECTION (ALL STILLS GALLERY WITHOUT FILTER TABS) */}
       {stills.length > 0 && (
-        <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-white border-b border-[#e7e6e2]">
+        <section className="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#e7e6e2]">
           <div className="container mx-auto max-w-7xl">
-            <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8 border-b border-[#e7e6e2] pb-5">
+            <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8 border-b border-[#e7e6e2] pb-4 sm:pb-5">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0284c7]">
                   Production Stills
@@ -908,13 +853,13 @@ export function UniversalWorkCinemaPage({
               </span>
             </div>
 
-            {/* Responsive Grid of All Images */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+            {/* Responsive Grid of All Images: 2 cols on mobile, 3 on tablet, 4 on desktop */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
               {stills.map((still, idx) => (
                 <div
                   key={still.id || idx}
                   onClick={() => setLightboxIndex(idx)}
-                  className="group relative aspect-square rounded-xl overflow-hidden bg-[#f0eee9] border border-[#e7e6e2] cursor-pointer"
+                  className="group relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden bg-[#f0eee9] border border-[#e7e6e2] cursor-pointer"
                 >
                   <img
                     src={still.image}
@@ -922,16 +867,16 @@ export function UniversalWorkCinemaPage({
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 sm:p-4 flex flex-col justify-end">
-                    <span className="text-[11px] font-semibold text-white/90 uppercase tracking-wider line-clamp-1 font-portfolio-sans">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-2.5 sm:p-4 flex flex-col justify-end">
+                    <span className="text-[10px] sm:text-[11px] font-semibold text-white/90 uppercase tracking-wider line-clamp-1 font-portfolio-sans">
                       {still.tag || still.title}
                     </span>
-                    <p className="text-xs text-white/80 line-clamp-1 mt-0.5 font-portfolio-sans">
+                    <p className="text-[11px] sm:text-xs text-white/80 line-clamp-1 mt-0.5 font-portfolio-sans hidden sm:block">
                       {still.title}
                     </p>
                   </div>
-                  <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 text-[#20201e] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <Maximize2 size={13} />
+                  <div className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 text-[#20201e] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <Maximize2 size={12} />
                   </div>
                 </div>
               ))}
@@ -941,7 +886,7 @@ export function UniversalWorkCinemaPage({
       )}
 
       {/* 4. SECTION 3: CONTACT / INQUIRY SECTION */}
-      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-12 bg-[#fbfaf8]">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-[#fbfaf8]">
         <div className="container mx-auto max-w-2xl">
           <div className="text-center mb-6 sm:mb-8">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0284c7]">
@@ -955,7 +900,7 @@ export function UniversalWorkCinemaPage({
             </p>
           </div>
 
-          <div className="bg-white border border-[#e7e6e2] rounded-2xl p-5 sm:p-8">
+          <div className="bg-white border border-[#e7e6e2] rounded-2xl p-4 sm:p-6 md:p-8">
             {inquirySubmitted ? (
               <div className="text-center py-8 space-y-3">
                 <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
@@ -976,9 +921,9 @@ export function UniversalWorkCinemaPage({
                 </button>
               </div>
             ) : (
-              <form onSubmit={onInquirySubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
+              <form onSubmit={onInquirySubmit} className="space-y-3.5 sm:space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="space-y-1">
                     <label className="text-xs font-portfolio-sans font-medium text-[#20201e]">
                       Your Name *
                     </label>
@@ -989,10 +934,10 @@ export function UniversalWorkCinemaPage({
                       onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })}
                       required
                       placeholder="Your full name"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-base sm:text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors"
                     />
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-1">
                     <label className="text-xs font-portfolio-sans font-medium text-[#20201e]">
                       Email Address *
                     </label>
@@ -1003,12 +948,12 @@ export function UniversalWorkCinemaPage({
                       onChange={(e) => setInquiry({ ...inquiry, email: e.target.value })}
                       required
                       placeholder="name@company.com"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-base sm:text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <label className="text-xs font-portfolio-sans font-medium text-[#20201e]">
                     Phone Number *
                   </label>
@@ -1019,11 +964,11 @@ export function UniversalWorkCinemaPage({
                     onChange={(e) => setInquiry({ ...inquiry, phone: e.target.value })}
                     required
                     placeholder="+91 98765 43210"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-base sm:text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors"
                   />
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <label className="text-xs font-portfolio-sans font-medium text-[#20201e]">
                     Project Details *
                   </label>
@@ -1034,7 +979,7 @@ export function UniversalWorkCinemaPage({
                     required
                     rows={4}
                     placeholder="Tell us about your requirements, deliverables, and timeline..."
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors resize-y"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-base sm:text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors resize-y"
                   />
                 </div>
 
@@ -1047,7 +992,7 @@ export function UniversalWorkCinemaPage({
                 <button
                   type="submit"
                   disabled={isSubmittingInquiry}
-                  className="w-full py-3.5 rounded-xl bg-[#111827] hover:bg-[#0284c7] text-white text-xs font-portfolio-sans uppercase tracking-widest font-bold transition-all disabled:opacity-60 cursor-pointer"
+                  className="w-full py-3.5 sm:py-4 rounded-xl bg-[#111827] hover:bg-[#0284c7] text-white text-xs sm:text-sm font-portfolio-sans uppercase tracking-widest font-bold transition-all disabled:opacity-60 cursor-pointer active:scale-[0.99]"
                 >
                   {isSubmittingInquiry ? "SENDING INQUIRY..." : `SUBMIT ${project.title.toUpperCase()} INQUIRY →`}
                 </button>
@@ -1062,16 +1007,16 @@ export function UniversalWorkCinemaPage({
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4"
           onClick={() => setLightboxIndex(null)}
         >
           <button
             type="button"
             onClick={() => setLightboxIndex(null)}
             aria-label="Close image lightbox"
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer z-50"
+            className="absolute top-3 right-3 sm:top-6 sm:right-6 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer z-50"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
 
           {stills.length > 1 && (
@@ -1083,9 +1028,9 @@ export function UniversalWorkCinemaPage({
                   setLightboxIndex((prev) => (prev === 0 ? stills.length - 1 : (prev ?? 1) - 1));
                 }}
                 aria-label="Previous image"
-                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer z-50"
+                className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer z-50"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={22} />
               </button>
               <button
                 type="button"
@@ -1094,9 +1039,9 @@ export function UniversalWorkCinemaPage({
                   setLightboxIndex((prev) => (prev === stills.length - 1 ? 0 : (prev ?? 0) + 1));
                 }}
                 aria-label="Next image"
-                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer z-50"
+                className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer z-50"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={22} />
               </button>
             </>
           )}
@@ -1110,7 +1055,7 @@ export function UniversalWorkCinemaPage({
               alt={stills[lightboxIndex].alt || stills[lightboxIndex].title}
               className="max-h-[75vh] max-w-full object-contain rounded-lg"
             />
-            <div className="mt-4 text-center text-white">
+            <div className="mt-3 sm:mt-4 text-center text-white px-4">
               <p className="text-sm sm:text-base font-portfolio-sans font-medium">
                 {stills[lightboxIndex].title}
               </p>
@@ -1262,7 +1207,6 @@ export default function WorkDetailPage() {
     }
   };
 
-  // Universal clean 4-part architecture for every work subpage
   return (
     <UniversalWorkCinemaPage
       project={project}
