@@ -715,18 +715,18 @@ export default function HomePage() {
         <div className="relative z-10 w-full h-2 pointer-events-none" />
 
         {/* Central Brand Showcase: Directly ON THE VIDEO (Clean Logo, Tagline & Action Buttons) */}
-        <div className="relative z-20 flex flex-col items-center justify-center text-center my-auto px-5 py-7 sm:px-10 sm:py-9 max-w-4xl mx-auto rounded-3xl border border-white/20 bg-black/40 backdrop-blur-md ">
+        <div className="relative z-20 flex flex-col items-center justify-center text-center my-auto px-4 max-w-4xl mx-auto">
           {/* Clean White Official Logo */}
           <div className="mb-2.5 sm:mb-3.5">
             <img
               src="/logo-white.png"
               alt="Viyana Productions"
-              className="h-10 sm:h-12 md:h-14 w-auto object-contain filter brightness-110"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain filter brightness-110 drop-shadow-md"
             />
           </div>
 
           {/* Cinema Tagline */}
-          <p className="text-[11px] sm:text-xs md:text-sm font-portfolio-sans uppercase tracking-[0.22em] text-white/90 max-w-sm sm:max-w-none">
+          <p className="text-[11px] sm:text-xs md:text-sm font-portfolio-sans uppercase tracking-[0.22em] text-white/95 max-w-sm sm:max-w-none font-medium drop-shadow-md">
             CINEMATIC VISUAL CONTENT &bull; PRODUCTION HOUSE &bull; BENGALURU
           </p>
 
