@@ -891,6 +891,7 @@ type ProductVideo = {
   badge: string
   description: string
   poster?: string
+  url?: string
 }
 
 const productShootVideos: ProductVideo[] = [
@@ -903,6 +904,7 @@ const productShootVideos: ProductVideo[] = [
     badge: '01 / BTS Studio Shoot',
     description: 'Exclusive behind-the-scenes breakdown showing creative lighting, paper-tear styling, and mannequin shoot precision in Bangalore.',
     poster: '/images/product-shoot/10-antique-gold-bangles-sculptural.jpg',
+    url: 'https://www.instagram.com/reel/DdlycB7Dn08/',
   },
   {
     id: 'jewellery-oole-commercial',
@@ -913,6 +915,7 @@ const productShootVideos: ProductVideo[] = [
     badge: '02 / Jewellery Reel',
     description: 'Artisanal jewellery cinematography, organic egg nest installation, and luxury macro ring details.',
     poster: '/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg',
+    url: 'https://www.instagram.com/reel/DdZHtpjB3kZ/',
   },
   {
     id: 'chopping-board',
@@ -923,6 +926,7 @@ const productShootVideos: ProductVideo[] = [
     badge: '03 / Chopping Board Film',
     description: 'Dynamic studio lighting, rich organic wood textures, and tactile commercial motion captured for premium kitchenware.',
     poster: '/images/product-shoot/01-melanex-serum.jpg',
+    url: 'https://www.instagram.com/reel/DfrvPj9vjAA/?lqvp=bHc2bWVjcnR6Y3Y3',
   },
   {
     id: 'commercial-render',
@@ -943,6 +947,7 @@ const productShootVideos: ProductVideo[] = [
     badge: '05 / Commercial Master',
     description: 'High-fidelity cinema lighting, crisp packaging reflections, and rhythmic commercial pacing engineered for luxury conversion.',
     poster: '/images/product-shoot/06-genex-serum.jpg',
+    url: 'https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl',
   },
 ]
 
@@ -1092,7 +1097,21 @@ function ProductShoot() {
               <strong>{activeProductVideo.title}</strong>
               <span className="product-film-sub">{activeProductVideo.description}</span>
             </div>
-            <span>{activeProductVideo.badge}</span>
+            <div className="product-film-meta-right">
+              {activeProductVideo.url && (
+                <a
+                  className="product-film-insta-btn"
+                  href={activeProductVideo.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Instagram size={13} />
+                  <span>Instagram</span>
+                  <ArrowUpRight size={12} />
+                </a>
+              )}
+              <span>{activeProductVideo.badge}</span>
+            </div>
           </figcaption>
         </figure>
 
@@ -1974,13 +1993,13 @@ type InfluencerReel = InfluencerNativeReel | InfluencerEmbedReel
 const influencerReels: InfluencerNativeReel[] = [
   {
     isNative: true,
-    id: 'viyana-influencer-feature',
+    id: 'Df4pDL5ytL6',
     videoSrc: '/final-output.mp4',
     poster: '/reel-01-poster.jpg',
     title: 'Featured Influencer Film · 4K Edition',
     tag: 'Creator Showcase',
     badge: '01 / Featured Reel',
-    url: 'https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==',
+    url: 'https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn',
   },
   {
     isNative: true,

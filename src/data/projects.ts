@@ -621,7 +621,8 @@ export const projects: Project[] = [
     instagramReels: [
       "https://www.instagram.com/reel/DdlycB7Dn08/",
       "https://www.instagram.com/reel/DdZHtpjB3kZ/",
-      "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl"
+      "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl",
+      "https://www.instagram.com/reel/DfrvPj9vjAA/?lqvp=bHc2bWVjcnR6Y3Y3"
     ],
     description: "We take clear, evocative, and attractive photos and videos of your products. It helps your customers fall in love with your product and buy it.",
     fullDescription: "Specializing in high-end cosmetic, beauty, skincare, and luxury goods photography. From clean packshots and high-resolution textures to editorial staging, our studio lighting and macro framing accentuate every fine product feature.",
@@ -705,8 +706,9 @@ export const projects: Project[] = [
       "/final-output.mp4",
       "/final-render-video-volpue.mp4"
     ],
-    instagramReelUrl: "https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==",
+    instagramReelUrl: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
     instagramReels: [
+      "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
       "https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==",
       "https://www.instagram.com/reel/DfCi048T8Jz/?dlrf=NHFnNzgxanY5dGpp",
       "https://www.instagram.com/reel/De9Vwv6CBSj/?dlrf=MW1zNThlbXlhcnN4Zw==",

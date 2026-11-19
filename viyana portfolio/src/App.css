@@ -592,6 +592,29 @@
   font-size: 13.5px;
   color: #8d8a82;
 }
+.product-film-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.product-film-insta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: #ffffff !important;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.product-film-insta-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
 
 /* Side Column for Product Shoot Videos */
 .product-film-side {
@@ -4078,6 +4101,14 @@
     overflow-wrap: break-word !important;
     max-width: 100% !important;
   }
+  .product-film-meta-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-top: 6px !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
   .product-film-side {
     padding: 0 !important;
     border-left: none !important;
@@ -5746,6 +5777,14 @@
     word-break: normal !important;
     overflow-wrap: break-word !important;
     max-width: 100% !important;
+  }
+  .product-film-meta-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-top: 6px !important;
+    width: 100% !important;
+    justify-content: space-between !important;
   }
 
   .product-film-side {

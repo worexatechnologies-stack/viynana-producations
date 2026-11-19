@@ -311,6 +311,19 @@ const instagramReels = [
     audio: "Viyana Productions • Studio Master",
     caption: "High-contrast fluid dynamics and packaging highlights engineered to convert social viewers into buyers.",
   },
+  {
+    id: "reel-04",
+    title: "Commercial Product Motion & Lifestyle Reel",
+    url: "https://www.instagram.com/reel/DfrvPj9vjAA/?lqvp=bHc2bWVjcnR6Y3Y3",
+    tag: "Commercial Reel",
+    videoSrc: "/videos/product-chopping-board.mp4",
+    poster: "/images/product-shoot/01-melanex-serum.jpg",
+    likes: "28.5K",
+    comments: "342",
+    handle: "viyana.productions",
+    audio: "Viyana Productions • Commercial Soundstage",
+    caption: "Tactile textures, high-precision lighting, and rhythmic commercial pacing engineered for product conversions.",
+  },
 ];
 
 export default function ProductShootDetailPage({
@@ -965,19 +978,19 @@ export default function ProductShootDetailPage({
                       key={reel.id}
                       type="button"
                       onClick={() => setActiveReelIdx(rIdx)}
-                      className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer ${
+                      className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer w-full overflow-hidden ${
                         activeReelIdx === rIdx
                           ? "bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-transparent border-pink-500/60 text-white shadow-lg"
                           : "bg-white/[0.02] border-white/10 text-white/70 hover:bg-white/[0.05] hover:text-white"
                       }`}
                     >
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs font-mono px-2 py-0.5 rounded bg-black/60 text-pink-300 font-bold">
+                      <div className="flex items-center gap-2.5 min-w-0 overflow-hidden pr-2">
+                        <span className="text-xs font-mono px-2 py-0.5 rounded bg-black/60 text-pink-300 font-bold shrink-0">
                           0{rIdx + 1}
                         </span>
-                        <span className="text-xs font-semibold">{reel.title}</span>
+                        <span className="text-xs font-semibold truncate">{reel.title}</span>
                       </div>
-                      <span className="text-[10px] font-mono text-white/50 uppercase tracking-wider">
+                      <span className="text-[10px] font-mono text-white/50 uppercase tracking-wider shrink-0 ml-2">
                         {reel.tag}
                       </span>
                     </button>
@@ -1000,11 +1013,11 @@ export default function ProductShootDetailPage({
             </div>
 
             {/* Right: Instagram Reel Native Video Player with Authentic Reel UI */}
-            <div className="lg:col-span-6 flex justify-center">
-              <div className="w-full max-w-[360px] sm:max-w-[390px] rounded-[32px] overflow-hidden border border-white/20 bg-[#0a0a0c] shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(253,29,29,0.18)] p-2.5 relative group">
+            <div className="lg:col-span-6 flex justify-center w-full">
+              <div className="w-full max-w-[340px] sm:max-w-[390px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-white/20 bg-[#0a0a0c] shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(253,29,29,0.18)] p-2 sm:p-2.5 relative group">
                 <div
                   onClick={toggleReelPlay}
-                  className="relative w-full h-[560px] sm:h-[600px] rounded-[24px] overflow-hidden bg-black flex items-center justify-center cursor-pointer select-none"
+                  className="relative w-full h-[520px] sm:h-[600px] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-black flex items-center justify-center cursor-pointer select-none"
                 >
                   {/* Actual High-Res Video */}
                   <video

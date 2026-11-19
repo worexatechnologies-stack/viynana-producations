@@ -319,7 +319,13 @@ export const services: ServiceItem[] = [
       "/images/product-shoot-5.jpg"
     ],
     video: "/videos/product-jewellery-behind-the-scenes.mp4",
-    instagramReelUrl: "https://www.instagram.com/reel/DdlycB7Dn08/",
+    instagramReelUrl: "https://www.instagram.com/reel/DfrvPj9vjAA/?lqvp=bHc2bWVjcnR6Y3Y3",
+    instagramReels: [
+      "https://www.instagram.com/reel/DdlycB7Dn08/",
+      "https://www.instagram.com/reel/DdZHtpjB3kZ/",
+      "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl",
+      "https://www.instagram.com/reel/DfrvPj9vjAA/?lqvp=bHc2bWVjcnR6Y3Y3"
+    ],
     services: [
       "Online store photos",
       "Lifestyle photos",
@@ -394,8 +400,9 @@ export const services: ServiceItem[] = [
       "/final-render-video-volpue.mp4",
       "/final-output.mp4"
     ],
-    instagramReelUrl: "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw==",
+    instagramReelUrl: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
     instagramReels: [
+      "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
       "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw=="
     ],
     services: [
