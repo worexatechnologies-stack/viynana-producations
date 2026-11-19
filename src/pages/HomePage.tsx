@@ -911,8 +911,8 @@ export default function HomePage() {
                 <button
                   type="button"
                   onClick={() => setViewMode("carousel")}
-                  aria-label="Diagonal Moving View"
-                  title="Diagonal Moving View"
+                  aria-label="Horizontal Stream View"
+                  title="Horizontal Stream View"
                   className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-portfolio-sans font-bold transition-all cursor-pointer ${
                     viewMode === "carousel"
                       ? "bg-[#111827] text-white shadow-sm"
@@ -920,7 +920,7 @@ export default function HomePage() {
                   }`}
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">DIAGONAL</span>
+                  <span className="hidden sm:inline">STREAM</span>
                 </button>
                 <button
                   type="button"
@@ -978,9 +978,9 @@ export default function HomePage() {
               <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-r from-white via-white/80 to-transparent" />
               <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-l from-white via-white/80 to-transparent" />
 
-              {/* Slanted Stage: -rotate-2 / -rotate-3 for the authentic diagonal flow */}
-              <div className="transform -rotate-2 sm:-rotate-3 scale-[1.02] space-y-2.5 sm:space-y-3.5 -my-2 sm:-my-3">
-                {/* ── DIAGONAL ROW 1: RIGHT TO LEFT AUTOMATIC CONTINUOUS MOVEMENT ── */}
+              {/* Straight Horizontal Stage */}
+              <div className="space-y-3.5 sm:space-y-4">
+                {/* ── ROW 1: RIGHT TO LEFT AUTOMATIC CONTINUOUS MOVEMENT ── */}
                 <div className="flex overflow-hidden py-1">
                   <div className="diagonal-track-left">
                     {row1Projects.map((project, idx) => {
