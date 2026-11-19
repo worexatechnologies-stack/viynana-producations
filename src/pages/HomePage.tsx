@@ -990,52 +990,52 @@ export default function HomePage() {
                           to={`/work/${project.slug}`}
                           key={`r1-${project.slug}-${idx}`}
                           draggable={false}
-                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500 select-none mx-2 sm:mx-3"
+                          className="group relative flex flex-col w-[250px] sm:w-[330px] md:w-[380px] aspect-[16/10] shrink-0 rounded-2xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500 select-none mx-2 sm:mx-2.5"
                           aria-label={`View ${project.title} - ${project.category}`}
                         >
                           <img
                             src={heroImg}
                             alt={`${project.title} - ${project.category}`}
                             loading="lazy"
-                            width="460"
-                            height="290"
+                            width="380"
+                            height="240"
                             decoding="async"
                             draggable={false}
                             className="object-cover w-full h-full absolute inset-0 filter contrast-[1.04] brightness-[0.92] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />
 
-                          <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
-                            <span className="px-3 py-1 bg-black/60 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 truncate max-w-[80%]">
+                          <div className="relative z-10 p-3 sm:p-4 flex items-center justify-between gap-2">
+                            <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xl text-[9px] sm:text-[10px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 truncate max-w-[80%]">
                               {project.category}
                             </span>
-                            <span className="text-[10px] sm:text-xs font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shrink-0">
+                            <span className="text-[9.5px] sm:text-[11px] font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-2 py-0.5 rounded-lg border border-white/20 backdrop-blur-xl shrink-0">
                               {project.year}
                             </span>
                           </div>
 
                           <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
-                              <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                            <div className="w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                              <Play className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 fill-current ml-0.5" />
                             </div>
                           </div>
 
-                          <div className="relative z-10 p-4 sm:p-6 mt-auto space-y-1.5 sm:space-y-2">
-                            <div className="flex items-center gap-2 text-[9.5px] sm:text-[10.5px] font-portfolio-sans text-white/80 tracking-widest uppercase font-semibold">
+                          <div className="relative z-10 p-3.5 sm:p-5 mt-auto space-y-1 sm:space-y-1.5">
+                            <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-portfolio-sans text-white/80 tracking-widest uppercase font-semibold">
                               <span>VIYANA PRODUCTIONS</span>
                               <span>•</span>
                               <span className="truncate">{project.client}</span>
                             </div>
-                            <h3 className="text-lg sm:text-2xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 ">
+                            <h3 className="text-base sm:text-xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1">
                               {project.title}
                             </h3>
-                            <div className="flex items-center justify-between text-[10.5px] sm:text-xs font-portfolio-sans text-white/85 pt-1.5 sm:pt-2 border-t border-white/20">
+                            <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-portfolio-sans text-white/85 pt-1.5 border-t border-white/20">
                               <span className="truncate max-w-[65%] font-medium text-white/80">
                                 {project.deliverableType}
                               </span>
-                              <span className="text-white font-bold group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5">
+                              <span className="text-white font-bold group-hover:translate-x-1 transition-transform shrink-0 ml-2 flex items-center gap-1">
                                 <span>CASE STUDY</span>
-                                <ArrowRight className="w-3.5 h-3.5" />
+                                <ArrowRight className="w-3 h-3" />
                               </span>
                             </div>
                           </div>
@@ -1055,52 +1055,52 @@ export default function HomePage() {
                           to={`/work/${project.slug}`}
                           key={`r2-${project.slug}-${idx}`}
                           draggable={false}
-                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500 select-none mx-2 sm:mx-3"
+                          className="group relative flex flex-col w-[250px] sm:w-[330px] md:w-[380px] aspect-[16/10] shrink-0 rounded-2xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500 select-none mx-2 sm:mx-2.5"
                           aria-label={`View ${project.title} - ${project.category}`}
                         >
                           <img
                             src={heroImg}
                             alt={`${project.title} - ${project.category}`}
                             loading="lazy"
-                            width="460"
-                            height="290"
+                            width="380"
+                            height="240"
                             decoding="async"
                             draggable={false}
                             className="object-cover w-full h-full absolute inset-0 filter contrast-[1.04] brightness-[0.92] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />
 
-                          <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
-                            <span className="px-3 py-1 bg-black/60 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 truncate max-w-[80%]">
+                          <div className="relative z-10 p-3 sm:p-4 flex items-center justify-between gap-2">
+                            <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xl text-[9px] sm:text-[10px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 truncate max-w-[80%]">
                               {project.category}
                             </span>
-                            <span className="text-[10px] sm:text-xs font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shrink-0">
+                            <span className="text-[9.5px] sm:text-[11px] font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-2 py-0.5 rounded-lg border border-white/20 backdrop-blur-xl shrink-0">
                               {project.year}
                             </span>
                           </div>
 
                           <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
-                              <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                            <div className="w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                              <Play className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 fill-current ml-0.5" />
                             </div>
                           </div>
 
-                          <div className="relative z-10 p-4 sm:p-6 mt-auto space-y-1.5 sm:space-y-2">
-                            <div className="flex items-center gap-2 text-[9.5px] sm:text-[10.5px] font-portfolio-sans text-white/80 tracking-widest uppercase font-semibold">
+                          <div className="relative z-10 p-3.5 sm:p-5 mt-auto space-y-1 sm:space-y-1.5">
+                            <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-portfolio-sans text-white/80 tracking-widest uppercase font-semibold">
                               <span>VIYANA PRODUCTIONS</span>
                               <span>•</span>
                               <span className="truncate">{project.client}</span>
                             </div>
-                            <h3 className="text-lg sm:text-2xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 ">
+                            <h3 className="text-base sm:text-xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1">
                               {project.title}
                             </h3>
-                            <div className="flex items-center justify-between text-[10.5px] sm:text-xs font-portfolio-sans text-white/85 pt-1.5 sm:pt-2 border-t border-white/20">
+                            <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-portfolio-sans text-white/85 pt-1.5 border-t border-white/20">
                               <span className="truncate max-w-[65%] font-medium text-white/80">
                                 {project.deliverableType}
                               </span>
-                              <span className="text-white font-bold group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5">
+                              <span className="text-white font-bold group-hover:translate-x-1 transition-transform shrink-0 ml-2 flex items-center gap-1">
                                 <span>CASE STUDY</span>
-                                <ArrowRight className="w-3.5 h-3.5" />
+                                <ArrowRight className="w-3 h-3" />
                               </span>
                             </div>
                           </div>

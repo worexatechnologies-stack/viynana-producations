@@ -668,7 +668,7 @@ function CleanVideoCard({ film }: { film: CinemaFilmItem }) {
   };
 
   return (
-    <div className="w-full rounded-2xl border border-[#e7e6e2] bg-white overflow-hidden transition-all duration-300 hover:border-[#0284c7]/50 relative aspect-video cursor-pointer">
+    <div className="w-full rounded-2xl border border-[#e7e6e2] bg-white overflow-hidden transition-all duration-300 hover:border-[#0284c7]/50 relative aspect-[16/10] min-h-[220px] sm:min-h-[270px] md:min-h-[300px] cursor-pointer shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
       {film.youtubeId ? (
         <iframe
           src={`https://www.youtube.com/embed/${film.youtubeId}?autoplay=0&rel=0`}
@@ -698,32 +698,32 @@ function CleanVideoCard({ film }: { film: CinemaFilmItem }) {
               isPlaying ? "opacity-0 group-hover:opacity-100 bg-black/20" : "opacity-100 bg-black/30"
             }`}
           >
-            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#20201e] shadow-lg transition-transform group-hover:scale-105">
+            <div className="w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center text-[#20201e] shadow-xl transition-transform group-hover:scale-105">
               {isPlaying ? (
-                <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#20201e]" />
+                <Pause className="w-6 h-6 sm:w-7 sm:h-7 fill-current text-[#20201e]" />
               ) : (
-                <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#20201e] ml-0.5 sm:ml-1" />
+                <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-current text-[#20201e] ml-0.5 sm:ml-1" />
               )}
             </div>
           </div>
 
           {/* In-Video Action Pills */}
-          <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 z-10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+          <div className="absolute bottom-3 right-3 sm:bottom-3.5 sm:right-3.5 z-10 flex items-center gap-2 opacity-90 group-hover:opacity-100 transition-opacity">
             <button
               type="button"
               onClick={toggleMute}
               aria-label={isMuted ? "Unmute video" : "Mute video"}
-              className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90 shadow-sm"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90 shadow-sm"
             >
-              {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+              {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>
             <button
               type="button"
               onClick={handleFullscreen}
               aria-label="Fullscreen video"
-              className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90 shadow-sm"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90 shadow-sm"
             >
-              <Maximize2 size={14} />
+              <Maximize2 size={16} />
             </button>
           </div>
         </div>
@@ -809,7 +809,7 @@ export function UniversalWorkCinemaPage({
       {/* 2. SECTION 1: VIDEOS SECTION (3, 3 A ROW GRID WITHOUT ATTACHED CONTENT) */}
       {films.length > 0 && (
         <section className="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 bg-[#fbfaf8] border-b border-[#e7e6e2]">
-          <div className="container mx-auto max-w-7xl">
+          <div className="container mx-auto max-w-[1440px]">
             {/* Videos Section Header */}
             <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
               <div>
@@ -826,7 +826,7 @@ export function UniversalWorkCinemaPage({
             </div>
 
             {/* 3, 3 A Row Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
               {films.map((film, idx) => (
                 <CleanVideoCard key={film.id || idx} film={film} />
               ))}
