@@ -8,22 +8,9 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import {
-  Tv,
-  Video,
-  Camera,
-  Clapperboard,
-  Palette,
   ArrowRight,
   ArrowUpRight,
 } from "lucide-react";
-
-const coreCapabilities = [
-  { name: "Advertisement & management", icon: Tv },
-  { name: "Production and shoot", icon: Video },
-  { name: "Photo & video shoot", icon: Camera },
-  { name: "Production house", icon: Clapperboard },
-  { name: "Branding", icon: Palette },
-];
 
 export default function WorkPage() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -67,149 +54,22 @@ export default function WorkPage() {
 
       <Navbar />
 
-      {/* 1. HERO HEADER (PORTFOLIO LIGHT THEME) */}
+      {/* 1. HERO HEADER */}
       <section
         ref={headerRef}
         className="relative pt-24 sm:pt-32 md:pt-36 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-12 border-b border-[#e7e6e2] bg-[#fbfaf8] overflow-hidden"
       >
-        {/* Subtle Ambient Light Blue Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.06)_0%,transparent_75%)] pointer-events-none blur-2xl" />
-
         <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="flex flex-col">
-            
-            {/* Top Brand & Discipline Status Strip */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 sm:gap-3 mb-4 sm:mb-6">
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[#0ea5e9]/20 bg-[#0ea5e9]/10 text-[#0284c7] w-fit">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] animate-pulse" />
-                <span className="text-[10px] sm:text-xs font-portfolio-sans uppercase tracking-[0.2em] font-bold text-[#0284c7]">
-                  VIYANA PRODUCTIONS
-                </span>
-                <span className="text-[#0284c7]/40 hidden sm:inline">•</span>
-                <span className="text-[10px] sm:text-xs font-portfolio-sans uppercase tracking-widest hidden sm:inline text-[#0284c7]/80 font-medium">
-                  STUDIO ARCHIVE
-                </span>
-              </div>
-
-              <div className="hidden sm:block text-[10px] sm:text-xs font-portfolio-sans tracking-widest uppercase overflow-hidden text-ellipsis whitespace-nowrap text-[#8e8d88]">
-                CREATIVE ADVERTISING × VIDEO PRODUCTION × GRAPHIC DESIGN × BRANDING × PHOTO &amp; VIDEO SHOOT
-              </div>
-            </div>
-
-            {/* Monumental Headline: SELECTED WORK. */}
-            <div className="mb-4 sm:mb-6">
-              <span className="text-[11px] font-portfolio-sans tracking-[0.2em] uppercase block mb-2 text-[#0284c7] font-bold">
-                [ 01 // PORTFOLIO ARCHIVE ]
-              </span>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.05]">
-                SELECTED{" "}
-                <em className="italic text-[#0284c7] font-normal">
-                  WORK.
-                </em>
-              </h1>
-            </div>
-
-            {/* Headline Subtitle & Core Capabilities Deck */}
-            <div className="space-y-4 pt-1 pb-6 border-b border-[#e7e6e2]">
-              <div className="border-l-2 border-[#0284c7] pl-4 sm:pl-6 py-0.5">
-                <p className="text-base sm:text-lg md:text-xl font-portfolio-sans font-normal max-w-3xl leading-relaxed text-[#686762]">
-                  We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
-                </p>
-              </div>
-
-              {/* Core Capabilities Pills */}
-              <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-1">
-                {coreCapabilities.map((cap) => {
-                  const Icon = cap.icon;
-                  return (
-                    <span
-                      key={cap.name}
-                      className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full border border-[#e7e6e2] hover:border-[#0ea5e9] bg-white text-[#20201e] text-[11px] sm:text-xs font-portfolio-sans uppercase tracking-wider font-medium transition-all duration-300 hover:scale-[1.02]"
-                    >
-                      <Icon className="w-3.5 h-3.5 text-[#0284c7]" />
-                      <span>{cap.name}</span>
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Creative Philosophy & About Viyana Architectural Card */}
-            <div className="mt-6 sm:mt-10 p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl border border-[#e7e6e2] bg-white relative overflow-hidden">
-              {/* Philosophy Header Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0ea5e9]/20 bg-[#0ea5e9]/10 text-[#0284c7] text-[10px] sm:text-xs font-portfolio-sans uppercase tracking-[0.2em] font-bold mb-6 sm:mb-8 w-fit">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] animate-pulse" />
-                <span>OUR CREATIVE PHILOSOPHY</span>
-              </div>
-
-              {/* 3 Pillars in Elevated Clean Panels */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pb-6 sm:pb-8 mb-6 sm:mb-8 border-b border-[#e7e6e2]">
-                <div className="p-6 rounded-2xl border border-[#e7e6e2] hover:border-[#0ea5e9] bg-[#fbfaf8] hover:bg-white transition-all duration-300 relative overflow-hidden group">
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0ea5e9]/40 to-transparent group-hover:via-[#0ea5e9] transition-all duration-500" />
-                  <span className="text-xs mb-2 font-portfolio-sans uppercase tracking-widest block text-[#0284c7] font-bold">[ 01 ]</span>
-                  <h3 className="text-xl sm:text-2xl font-portfolio-serif font-normal text-[#20201e] group-hover:text-[#0284c7] transition-colors">
-                    IDEAS FIRST.
-                  </h3>
-                </div>
-
-                <div className="p-6 rounded-2xl border border-[#e7e6e2] hover:border-[#0ea5e9] bg-[#fbfaf8] hover:bg-white transition-all duration-300 relative overflow-hidden group">
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0ea5e9]/40 to-transparent group-hover:via-[#0ea5e9] transition-all duration-500" />
-                  <span className="text-xs mb-2 font-portfolio-sans uppercase tracking-widest block text-[#0284c7] font-bold">[ 02 ]</span>
-                  <h3 className="text-xl sm:text-2xl font-portfolio-serif font-normal text-[#20201e] group-hover:text-[#0284c7] transition-colors">
-                    VISUALS WITH PURPOSE.
-                  </h3>
-                </div>
-
-                <div className="p-6 rounded-2xl border border-[#e7e6e2] hover:border-[#0ea5e9] bg-[#fbfaf8] hover:bg-white transition-all duration-300 relative overflow-hidden group">
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0ea5e9]/40 to-transparent group-hover:via-[#0ea5e9] transition-all duration-500" />
-                  <span className="text-xs mb-2 font-portfolio-sans uppercase tracking-widest block text-[#0284c7] font-bold">[ 03 ]</span>
-                  <h3 className="text-xl sm:text-2xl font-portfolio-serif font-normal text-[#20201e] group-hover:text-[#0284c7] transition-colors">
-                    STORIES THAT STAY.
-                  </h3>
-                </div>
-              </div>
-
-              {/* About Viyana Sub-Block */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-start">
-                <div className="lg:col-span-5 space-y-3">
-                  <span className="text-xs font-portfolio-sans uppercase tracking-[0.2em] font-bold block text-[#0284c7]">
-                    ABOUT VIYANA
-                  </span>
-                  <h4 className="text-2xl sm:text-3xl md:text-4xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
-                    We Turn Ideas Into <br />
-                    <em className="italic text-[#0284c7] font-normal">Visual Experiences.</em>
-                  </h4>
-                </div>
-
-                <div className="lg:col-span-7 space-y-4 text-sm sm:text-base font-portfolio-sans text-[#686762] leading-relaxed border-t lg:border-t-0 lg:border-l border-[#e7e6e2] pt-6 lg:pt-0 lg:pl-10">
-                  <p>
-                    Viyana Productions is a creative production and advertising agency focused on helping ambitious brands communicate through powerful visuals.
-                  </p>
-                  <p>
-                    We combine creative thinking, advertising strategy, storytelling, video production, and graphic design to create content that doesn&apos;t just look good — it has a purpose.
-                  </p>
-                  <p className="text-[#20201e] font-medium">
-                    Whether you&apos;re launching a new product, promoting a service, building a brand, or running an advertising campaign, we help transform your vision into content that people notice.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Total 13 Services Stats Strip */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-6 sm:pt-8 text-xs uppercase font-portfolio-sans tracking-widest text-[#686762]">
-              <div className="flex items-center gap-3">
-                <span className="w-8 h-px bg-[#0284c7]" />
-                <span className="font-bold text-[#20201e]">13 SPECIALIZED SERVICES &amp; DISCIPLINES</span>
-              </div>
-              <div className="flex items-center gap-3 sm:gap-6">
-                <span>
-                  TOTAL // <strong className="font-bold text-[#0284c7]">{String(projects.length).padStart(2, "0")} SERVICES</strong>
-                </span>
-                <span className="text-[#dedbd4]">•</span>
-                <span className="font-semibold text-[#20201e]">CLICK ANY CARD TO VIEW FULL EXPLANATION</span>
-              </div>
-            </div>
-
+          <div className="max-w-4xl space-y-4">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.05]">
+              SELECTED{" "}
+              <em className="italic text-[#0284c7] font-normal">
+                WORK.
+              </em>
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl font-portfolio-sans font-normal max-w-3xl leading-relaxed text-[#686762]">
+              We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
+            </p>
           </div>
         </div>
       </section>

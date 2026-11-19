@@ -82,42 +82,42 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
     return [
       {
         id: "influencer-master",
-        title: "Luxury Influencer & Creator Commercial Campaign",
-        tag: "Creator Master",
-        category: "Influencer Cinema",
+        title: "Featured Influencer Film · 4K Edition",
+        tag: "Creator Showcase",
+        category: "Influencer Shoot",
         src: "/final-output.mp4",
         poster: "/reel-01-poster.jpg",
-        badge: "01 / Influencer Film",
+        badge: "01 / Featured Reel",
         description:
-          "High-engagement commercial motion engineered for digital creator brands, luxury apparel, and lifestyle partnerships.",
+          "High-retention 9:16 vertical cuts and cinematic 4K creator storytelling engineered to capture attention on Instagram feeds.",
       },
       {
         id: "influencer-render",
         title: "Influencer Lifestyle Editorial Motion Master",
         tag: "Lifestyle Motion",
-        category: "Lifestyle Cinema",
+        category: "Influencer Shoot",
         src: "/final-render-video-volpue.mp4",
         poster: "/reel-02-poster.jpg",
-        badge: "02 / Lifestyle Cinema",
+        badge: "02 / Creator Cinema",
         description:
           "Trend-conscious color grading and visual rhythm engineered to captivate social feeds and maximize audience retention.",
       },
       {
         id: "influencer-commercial-reel",
-        title: "Model & Creator Fashion Commercial Reel",
+        title: "Model & Brand Fashion Reel",
         tag: "Fashion Reel",
-        category: "Fashion Motion",
+        category: "Influencer Shoot",
         src: "/viyana-commercial-reel.mp4",
         poster: "/images/model-shoot/01-emerald-saree-model.jpg",
-        badge: "03 / Fashion Reel",
+        badge: "03 / Brand Collab",
         description:
           "Dynamic model movement and sculpted lighting for viral creator content and brand campaigns.",
       },
       {
         id: "influencer-production-final",
-        title: "High-Fashion Creator & Comp-Card Motion",
+        title: "Style Motion & High-Fashion Aesthetics Cut",
         tag: "Viral Style",
-        category: "Creator Cinema",
+        category: "Influencer Shoot",
         src: "/viyana-production-final-video.mp4",
         poster: "/images/model-shoot/02-black-sequin-saree.jpg",
         badge: "04 / Viral Style",
@@ -126,9 +126,9 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
       },
       {
         id: "influencer-editorial-runway",
-        title: "Creator Runway & Editorial Studio Pacing",
+        title: "Editorial Model Portrait & Comp-Card Reel",
         tag: "Editorial Cut",
-        category: "Editorial Motion",
+        category: "Influencer Shoot",
         src: "/2.mp4",
         poster: "/images/model-shoot/03-temple-heritage-pose.jpg",
         badge: "05 / Runway Cut",
@@ -322,66 +322,6 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
     ];
   }
 
-  if (project.slug === "influencer-shoot") {
-    return [
-      {
-        id: "influencer-1",
-        title: "Featured Influencer Film · 4K Edition",
-        tag: "Creator Showcase",
-        category: "Influencer Shoot",
-        src: "/final-output.mp4",
-        poster: "/reel-01-poster.jpg",
-        badge: "01 / Featured Reel",
-        description:
-          "High-retention 9:16 vertical cuts and cinematic 4K creator storytelling engineered to capture attention on Instagram feeds.",
-      },
-      {
-        id: "influencer-2",
-        title: "Creator Lifestyle & Viral Motion Master",
-        tag: "Creator Cinema",
-        category: "Influencer Shoot",
-        src: "/final-render-video-volpue.mp4",
-        poster: "/reel-02-poster.jpg",
-        badge: "02 / Creator Cinema",
-        description:
-          "Dynamic handheld motion, high-energy pacing, and OLED-optimized color grading for lifestyle influencers and brand collaborators.",
-      },
-      {
-        id: "influencer-3",
-        title: "Model & Creator Fashion Commercial Reel",
-        tag: "Fashion Reel",
-        category: "Influencer Shoot",
-        src: "/viyana-commercial-reel.mp4",
-        poster: "/images/model-shoot/01-emerald-saree-model.jpg",
-        badge: "03 / Fashion Reel",
-        description:
-          "Dynamic model movement and sculpted lighting for viral creator content and brand campaigns.",
-      },
-      {
-        id: "influencer-4",
-        title: "High-Fashion Creator & Comp-Card Motion",
-        tag: "Viral Style",
-        category: "Influencer Shoot",
-        src: "/viyana-production-final-video.mp4",
-        poster: "/images/model-shoot/02-black-sequin-saree.jpg",
-        badge: "04 / Viral Style",
-        description:
-          "Fluid high-fashion posing movement and beauty grades engineered for audience retention.",
-      },
-      {
-        id: "influencer-5",
-        title: "Creator Runway & Editorial Studio Pacing",
-        tag: "Editorial Cut",
-        category: "Influencer Shoot",
-        src: "/2.mp4",
-        poster: "/images/model-shoot/03-temple-heritage-pose.jpg",
-        badge: "05 / Runway Cut",
-        description:
-          "Sculpted directional key lighting and rhythmic creator motion crafted for international talent comp cards.",
-      },
-    ];
-  }
-
   // Generic / Default for other categories (web series, short films, feature films, etc.)
   const films: CinemaFilmItem[] = [];
 
@@ -450,6 +390,56 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
 }
 
 function getProjectCinemaStills(project: Project): CinemaStillItem[] {
+  if (project.slug === "influencer-shoot") {
+    return [
+      {
+        id: "01",
+        title: "Featured Influencer Film · 4K Edition",
+        category: "Creator Showcase",
+        tag: "Creator Showcase",
+        image: "/reel-01-poster.jpg",
+        alt: "Featured Influencer Film · 4K Edition",
+        description: "Editorial portrait and high-engagement creator storytelling shot in Bangalore.",
+      },
+      {
+        id: "02",
+        title: "Influencer Lifestyle Editorial Motion Master",
+        category: "Lifestyle Motion",
+        tag: "Lifestyle Motion",
+        image: "/reel-02-poster.jpg",
+        alt: "Influencer Lifestyle Editorial Motion Master",
+        description: "Lifestyle creator motion master with calibrated natural light.",
+      },
+      {
+        id: "03",
+        title: "Model & Brand Fashion Reel",
+        category: "Fashion Reel",
+        tag: "Fashion Reel",
+        image: "/images/model-shoot/01-emerald-saree-model.jpg",
+        alt: "Model & Brand Fashion Reel",
+        description: "High-fashion apparel editorial and brand collaboration.",
+      },
+      {
+        id: "04",
+        title: "Style Motion & High-Fashion Aesthetics Cut",
+        category: "Viral Style",
+        tag: "Viral Style",
+        image: "/images/model-shoot/02-black-sequin-saree.jpg",
+        alt: "Style Motion & High-Fashion Aesthetics Cut",
+        description: "Black sequin saree styling with sculpted rim lighting.",
+      },
+      {
+        id: "05",
+        title: "Editorial Model Portrait & Comp-Card Reel",
+        category: "Editorial Motion",
+        tag: "Editorial Cut",
+        image: "/images/model-shoot/03-temple-heritage-pose.jpg",
+        alt: "Editorial Model Portrait & Comp-Card Reel",
+        description: "Temple heritage architectural pose and talent comp card master.",
+      },
+    ];
+  }
+
   const images =
     Array.isArray(project.gallery) && project.gallery.length > 0
       ? project.gallery
@@ -480,6 +470,51 @@ function getProjectCinemaStills(project: Project): CinemaStillItem[] {
 }
 
 function getProjectInstagramReels(project: Project): InstagramReelItem[] {
+  if (project.slug === "influencer-shoot") {
+    return [
+      {
+        id: "Df4pDL5ytL6",
+        title: "Featured Influencer Film · 4K Edition",
+        url: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
+        tag: "Creator Showcase",
+        videoSrc: "/final-output.mp4",
+        poster: "/reel-01-poster.jpg",
+      },
+      {
+        id: "volpue-influencer-master",
+        title: "Influencer Lifestyle Editorial Motion Master",
+        url: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
+        tag: "Lifestyle Motion",
+        videoSrc: "/final-render-video-volpue.mp4",
+        poster: "/reel-02-poster.jpg",
+      },
+      {
+        id: "DfPiKmuMugc",
+        title: "Model & Brand Fashion Reel",
+        url: "https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==",
+        tag: "Fashion Reel",
+        videoSrc: "/viyana-commercial-reel.mp4",
+        poster: "/images/model-shoot/01-emerald-saree-model.jpg",
+      },
+      {
+        id: "DfCi048T8Jz",
+        title: "Style Motion & High-Fashion Aesthetics Cut",
+        url: "https://www.instagram.com/reel/DfCi048T8Jz/?dlrf=NHFnNzgxanY5dGpp",
+        tag: "Viral Reel",
+        videoSrc: "/viyana-production-final-video.mp4",
+        poster: "/images/model-shoot/02-black-sequin-saree.jpg",
+      },
+      {
+        id: "creator-editorial-runway",
+        title: "Editorial Model Portrait & Comp-Card Reel",
+        url: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
+        tag: "Editorial Cut",
+        videoSrc: "/2.mp4",
+        poster: "/images/model-shoot/03-temple-heritage-pose.jpg",
+      },
+    ];
+  }
+
   const reels: InstagramReelItem[] = [];
 
   const rawList =
