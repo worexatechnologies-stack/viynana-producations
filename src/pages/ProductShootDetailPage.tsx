@@ -504,7 +504,7 @@ export default function ProductShootDetailPage({
             {/* Viewport Box */}
             <div
               onClick={togglePlay}
-              className="relative w-full aspect-[9/14] sm:aspect-[16/9] max-h-[640px] max-w-sm sm:max-w-none mx-auto bg-transparent flex items-center justify-center cursor-pointer group rounded-2xl overflow-hidden"
+              className="relative w-full aspect-[9/14] sm:aspect-[16/9] max-h-[640px] bg-transparent flex items-center justify-center cursor-pointer group rounded-2xl overflow-hidden"
             >
               <video
                 ref={videoRef}
