@@ -1402,9 +1402,9 @@ export default function HomePage() {
           </div>
 
           {/* ORBITAL HUB & SPOKE SHOWCASE (WHAT WE CREATE) */}
-          <div className="relative w-full max-w-6xl mx-auto py-8 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-12 rounded-[32px] sm:rounded-[44px] bg-gradient-to-b from-[#fcfcfd] via-[#f8fafc] to-[#ffffff] border border-white/80 shadow-[0_30px_90px_rgba(0,0,0,0.5),inset_0_1px_2px_rgba(255,255,255,0.95)] overflow-hidden">
-            {/* Ambient Multi-spectrum Glow Canvas */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-[radial-gradient(circle,rgba(168,85,247,0.18)_0%,rgba(59,130,246,0.1)_35%,transparent_70%)] blur-3xl pointer-events-none" />
+          <div className="relative w-full max-w-6xl mx-auto py-8 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-12 rounded-[32px] sm:rounded-[44px] bg-[#ffffff] border border-[#e7e6e2] shadow-[0_20px_60px_rgba(0,0,0,0.04)] overflow-hidden">
+            {/* Ambient Multi-spectrum Subtle Gold Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-[radial-gradient(circle,rgba(202,138,4,0.08)_0%,rgba(202,138,4,0.02)_40%,transparent_70%)] blur-2xl pointer-events-none" />
 
             <div className="relative">
               {/* Concentric Animated Radar & Orbital Rings (Emerges from Center on Scroll) */}
@@ -1417,33 +1417,33 @@ export default function HomePage() {
               >
                 {/* Expanding Radar Wave Ring 1 */}
                 <motion.div
-                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-purple-500/20"
+                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#ca8a04]/20"
                   animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.65, 0.25, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
                 />
                 {/* Expanding Radar Wave Ring 2 (delayed) */}
                 <motion.div
-                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-blue-500/15"
+                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#ca8a04]/15"
                   animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.55, 0.2, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 2 }}
                 />
                 {/* Slow Rotating Outer Dashed Orbit Ring */}
                 <motion.div
-                  className="absolute w-[290px] h-[290px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] rounded-full border border-dashed border-purple-400/25"
+                  className="absolute w-[290px] h-[290px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] rounded-full border border-dashed border-[#dedbd4]"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
                 />
                 {/* Middle Delicate Orbital Ring */}
-                <div className="absolute w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border border-purple-500/25" />
+                <div className="absolute w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border border-[#e7e6e2]" />
                 {/* Inner Glow Aura Ring */}
-                <div className="absolute w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border border-purple-400/35 shadow-[0_0_25px_rgba(168,85,247,0.3)]" />
+                <div className="absolute w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border border-[#ca8a04]/25 shadow-[0_0_20px_rgba(202,138,4,0.12)]" />
               </motion.div>
 
               {/* SVG Connecting Diagonal Beams with Flowing Light Particles (Desktop lg+) */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 hidden lg:block" viewBox="0 0 1000 620" preserveAspectRatio="none">
                 <defs>
                   <filter id="hubNodeGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3.5" result="blur" />
+                    <feGaussianBlur stdDeviation="3" result="blur" />
                     <feMerge>
                       <feMergeNode in="blur" />
                       <feMergeNode in="SourceGraphic" />
@@ -1454,82 +1454,82 @@ export default function HomePage() {
                 {/* Line 1: Center to Top-Left (Corporate) - Draws outward from center */}
                 <motion.line
                   x1="480" y1="285" x2="380" y2="195"
-                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
+                  stroke="#ca8a04" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 0.65 }}
                   viewport={{ once: false, amount: 0.2 }}
                   transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
                 />
                 <motion.circle
-                  r="4"
-                  fill="#e9d5ff"
+                  r="3.5"
+                  fill="#ca8a04"
                   filter="url(#hubNodeGlow)"
                   animate={{ cx: [480, 380, 480], cy: [285, 195, 285] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
                 />
-                <circle cx="380" cy="195" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-                <circle cx="380" cy="195" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
-                <circle cx="480" cy="285" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+                <circle cx="380" cy="195" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
+                <circle cx="380" cy="195" r="8.5" fill="none" stroke="#ca8a04" strokeWidth="1.2" opacity="0.6" />
+                <circle cx="480" cy="285" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
 
                 {/* Line 2: Center to Top-Right (Product) - Draws outward from center */}
                 <motion.line
                   x1="520" y1="285" x2="620" y2="195"
-                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
+                  stroke="#ca8a04" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 0.65 }}
                   viewport={{ once: false, amount: 0.2 }}
                   transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
                 />
                 <motion.circle
-                  r="4"
-                  fill="#e9d5ff"
+                  r="3.5"
+                  fill="#ca8a04"
                   filter="url(#hubNodeGlow)"
                   animate={{ cx: [520, 620, 520], cy: [285, 195, 285] }}
                   transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 />
-                <circle cx="620" cy="195" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-                <circle cx="620" cy="195" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
-                <circle cx="520" cy="285" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+                <circle cx="620" cy="195" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
+                <circle cx="620" cy="195" r="8.5" fill="none" stroke="#ca8a04" strokeWidth="1.2" opacity="0.6" />
+                <circle cx="520" cy="285" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
 
                 {/* Line 3: Center to Bottom-Left (Brand Stories) - Draws outward from center */}
                 <motion.line
                   x1="480" y1="335" x2="380" y2="425"
-                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
+                  stroke="#ca8a04" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 0.65 }}
                   viewport={{ once: false, amount: 0.2 }}
                   transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
                 />
                 <motion.circle
-                  r="4"
-                  fill="#e9d5ff"
+                  r="3.5"
+                  fill="#ca8a04"
                   filter="url(#hubNodeGlow)"
                   animate={{ cx: [480, 380, 480], cy: [335, 425, 335] }}
                   transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
                 />
-                <circle cx="380" cy="425" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-                <circle cx="380" cy="425" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
-                <circle cx="480" cy="335" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+                <circle cx="380" cy="425" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
+                <circle cx="380" cy="425" r="8.5" fill="none" stroke="#ca8a04" strokeWidth="1.2" opacity="0.6" />
+                <circle cx="480" cy="335" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
 
                 {/* Line 4: Center to Bottom-Right (Digital Content) - Draws outward from center */}
                 <motion.line
                   x1="520" y1="335" x2="620" y2="425"
-                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
+                  stroke="#ca8a04" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 0.65 }}
                   viewport={{ once: false, amount: 0.2 }}
                   transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
                 />
                 <motion.circle
-                  r="4"
-                  fill="#e9d5ff"
+                  r="3.5"
+                  fill="#ca8a04"
                   filter="url(#hubNodeGlow)"
                   animate={{ cx: [520, 620, 520], cy: [335, 425, 335] }}
                   transition={{ duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
                 />
-                <circle cx="620" cy="425" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-                <circle cx="620" cy="425" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
-                <circle cx="520" cy="335" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
+                <circle cx="620" cy="425" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
+                <circle cx="620" cy="425" r="8.5" fill="none" stroke="#ca8a04" strokeWidth="1.2" opacity="0.6" />
+                <circle cx="520" cy="335" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
               </svg>
 
               {/* 4 Satellite Cards (2x2 Grid) - Expanding outward from center on scroll */}
@@ -1556,9 +1556,9 @@ export default function HomePage() {
                     title: "Product",
                     description: "Visual content that makes your products stand out.",
                     icon: Box,
-                    iconColor: "text-[#7c3aed]",
-                    iconBg: "bg-purple-500/10 border border-purple-500/25",
-                    accentShadow: "hover:shadow-[0_25px_60px_rgba(168,85,247,0.3),0_10px_25px_rgba(0,0,0,0.15)]",
+                    iconColor: "text-[#ca8a04]",
+                    iconBg: "bg-[#ca8a04]/10 border border-[#ca8a04]/25",
+                    accentShadow: "hover:shadow-[0_25px_60px_rgba(202,138,4,0.22),0_10px_25px_rgba(0,0,0,0.06)]",
                     image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
                     link: "/work/product-shoot",
                     position: "top-right",
@@ -1665,9 +1665,9 @@ export default function HomePage() {
                             </div>
                           </div>
 
-                          {/* Corner glowing node dot on card (matching the reference image) */}
+                          {/* Corner glowing node dot on card */}
                           <div
-                            className={`hidden lg:block absolute w-3 h-3 rounded-full bg-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.95)] z-20 ${
+                            className={`hidden lg:block absolute w-2.5 h-2.5 rounded-full bg-[#ca8a04] shadow-[0_0_10px_rgba(202,138,4,0.7)] z-20 ${
                               card.position === "top-left"
                                 ? "bottom-3 right-3"
                                 : card.position === "top-right"
@@ -1677,7 +1677,7 @@ export default function HomePage() {
                                 : "top-3 left-3"
                             }`}
                           >
-                            <span className="absolute inset-0 rounded-full bg-purple-400 animate-ping opacity-75" />
+                            <span className="absolute inset-0 rounded-full bg-[#ca8a04] animate-ping opacity-60" />
                           </div>
                         </Link>
                       </motion.div>
@@ -1689,7 +1689,7 @@ export default function HomePage() {
               {/* Central VIYANA PRODUCTIONS Hub (Desktop: pops outward from middle on scroll) */}
               <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none items-center justify-center">
                 <motion.div
-                  initial={{ scale: 0, opacity: 0, rotate: -25 }}
+                  initial={{ scale: 0, opacity: 0, rotate: -15 }}
                   whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
                   viewport={{ once: false, amount: 0.2 }}
                   transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
@@ -1698,53 +1698,23 @@ export default function HomePage() {
                   <motion.div
                     animate={{
                       boxShadow: [
-                        "0 0 35px rgba(168, 85, 247, 0.35), 0 0 70px rgba(59, 130, 246, 0.2)",
-                        "0 0 55px rgba(168, 85, 247, 0.6), 0 0 95px rgba(59, 130, 246, 0.35)",
-                        "0 0 35px rgba(168, 85, 247, 0.35), 0 0 70px rgba(59, 130, 246, 0.2)",
+                        "0 0 25px rgba(202, 138, 4, 0.15), 0 10px 30px rgba(0, 0, 0, 0.05)",
+                        "0 0 45px rgba(202, 138, 4, 0.28), 0 16px 40px rgba(0, 0, 0, 0.08)",
+                        "0 0 25px rgba(202, 138, 4, 0.15), 0 10px 30px rgba(0, 0, 0, 0.05)",
                       ],
                     }}
                     transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-white border-2 border-[#e7e6e2] p-4 flex flex-col items-center justify-center text-center shadow-[0_12px_36px_rgba(0,0,0,0.06)] relative overflow-hidden group"
+                    className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-white border-2 border-[#e7e6e2] p-5 flex flex-col items-center justify-center text-center shadow-[0_12px_36px_rgba(0,0,0,0.06)] relative overflow-hidden group"
                   >
                     {/* Subtle inner radial ambient shine */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(202,138,4,0.08)_0%,transparent_80%)] pointer-events-none" />
 
-                    {/* Golden stylized filmstrip "V" icon */}
-                    <svg className="w-12 h-12 xl:w-14 xl:h-14 relative z-10 drop-shadow-[0_4px_14px_rgba(234,179,8,0.55)] group-hover:scale-105 transition-transform duration-300" viewBox="0 0 64 64" fill="none">
-                      <defs>
-                        <linearGradient id="hubGoldFilmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#fef08a" />
-                          <stop offset="30%" stopColor="#eab308" />
-                          <stop offset="70%" stopColor="#ca8a04" />
-                          <stop offset="100%" stopColor="#a16207" />
-                        </linearGradient>
-                        <linearGradient id="hubGoldBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#ffffff" />
-                          <stop offset="50%" stopColor="#facc15" />
-                          <stop offset="100%" stopColor="#854d0e" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M14 12 L28 52 L36 52 L22 12 Z" fill="url(#hubGoldFilmGrad)" stroke="url(#hubGoldBorderGrad)" strokeWidth="1.2" strokeLinejoin="round" />
-                      <path d="M50 12 L36 52 L28 52 L42 12 Z" fill="url(#hubGoldFilmGrad)" stroke="url(#hubGoldBorderGrad)" strokeWidth="1.2" strokeLinejoin="round" />
-                      <rect x="17" y="16" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 17 16)" />
-                      <rect x="20.5" y="24" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 20.5 24)" />
-                      <rect x="24" y="32" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 24 32)" />
-                      <rect x="27.5" y="40" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 27.5 40)" />
-                      <rect x="43.5" y="16" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 43.5 16)" />
-                      <rect x="40" y="24" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 40 24)" />
-                      <rect x="36.5" y="32" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 36.5 32)" />
-                      <rect x="33" y="40" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 33 40)" />
-                      <circle cx="47" cy="18" r="3.5" fill="#fef08a" stroke="#ca8a04" strokeWidth="1" />
-                      <circle cx="47" cy="18" r="1.5" fill="#0c0a0f" />
-                    </svg>
-
-                    {/* Brand Typography */}
-                    <span className="font-portfolio-serif font-bold text-[#20201e] text-lg xl:text-xl tracking-tight uppercase leading-none mt-2 relative z-10">
-                      VIYANA
-                    </span>
-                    <span className="font-portfolio-sans font-semibold text-[#686762] text-[8.5px] xl:text-[9.5px] tracking-[0.28em] uppercase mt-1 relative z-10">
-                      PRODUCTIONS
-                    </span>
+                    {/* Official Viyana Productions Logo Design */}
+                    <img
+                      src="/logo-black.png"
+                      alt="Viyana Productions"
+                      className="w-28 sm:w-32 xl:w-36 h-auto object-contain relative z-10 drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
+                    />
                   </motion.div>
                 </motion.div>
               </div>
@@ -1757,19 +1727,13 @@ export default function HomePage() {
                 transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
                 className="lg:hidden flex justify-center py-6"
               >
-                <div className="w-36 h-36 rounded-full bg-white border-2 border-[#e7e6e2] p-3 flex flex-col items-center justify-center text-center shadow-[0_8px_24px_rgba(0,0,0,0.06)] relative overflow-hidden">
+                <div className="w-36 h-36 rounded-full bg-white border-2 border-[#e7e6e2] p-4 flex flex-col items-center justify-center text-center shadow-[0_8px_24px_rgba(0,0,0,0.06)] relative overflow-hidden">
                   <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(202,138,4,0.08)_0%,transparent_70%)] pointer-events-none" />
-                  <svg className="w-9 h-9 relative z-10 drop-shadow-sm" viewBox="0 0 64 64" fill="none">
-                    <path d="M14 12 L28 52 L36 52 L22 12 Z" fill="#eab308" />
-                    <path d="M50 12 L36 52 L28 52 L42 12 Z" fill="#ca8a04" />
-                    <circle cx="47" cy="18" r="3" fill="#fef08a" />
-                  </svg>
-                  <span className="font-portfolio-serif font-bold text-[#20201e] text-base tracking-tight uppercase leading-none mt-1.5">
-                    VIYANA
-                  </span>
-                  <span className="font-portfolio-sans font-medium text-[#686762] text-[7.5px] tracking-[0.24em] uppercase mt-0.5">
-                    PRODUCTIONS
-                  </span>
+                  <img
+                    src="/logo-black.png"
+                    alt="Viyana Productions"
+                    className="w-24 h-auto object-contain relative z-10 drop-shadow-sm"
+                  />
                 </div>
               </motion.div>
             </div>
