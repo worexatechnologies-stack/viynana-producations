@@ -84,7 +84,15 @@ export default defineConfig({
     allowedHosts: true,
   },
   base: "/",
+  environments: {
+    client: {
+      build: {
+        target: "es2022",
+      },
+    },
+  },
   build: {
+    target: "es2022",
     outDir: "build",
     assetsDir: "assets",
     // Increase chunk size warning threshold slightly for animation-heavy app
