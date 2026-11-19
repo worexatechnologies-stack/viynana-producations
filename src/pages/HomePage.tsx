@@ -1401,339 +1401,370 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* ORBITAL HUB & SPOKE SHOWCASE (WHAT WE CREATE) */}
-          <div className="relative w-full max-w-6xl mx-auto py-8 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-12 rounded-[32px] sm:rounded-[44px] bg-[#ffffff] border border-[#e7e6e2] overflow-hidden">
-            {/* Ambient Multi-spectrum Subtle Gold Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-[radial-gradient(circle,rgba(14,165,233,0.08)_0%,rgba(14,165,233,0.02)_40%,transparent_70%)] blur-2xl pointer-events-none" />
+          {/* 4 CREATIVE DISCIPLINES SHOWCASE (WHAT WE CREATE) */}
+          {(() => {
+            const disciplines = [
+              {
+                id: "corporate",
+                title: "Corporate",
+                description: "Professional films that showcase your company, people, and vision.",
+                icon: Building2,
+                iconColor: "text-[#0284c7]",
+                iconBg: "bg-[#0ea5e9]/10 border border-[#0ea5e9]/25",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+                link: "/work/corporate-film",
+                position: "top-left",
+                initialX: 180,
+                initialY: 130,
+                entryDelay: 0.15,
+                floatY: -8, duration: 5, delay: 0,
+              },
+              {
+                id: "product",
+                title: "Product",
+                description: "Visual content that makes your products stand out.",
+                icon: Box,
+                iconColor: "text-[#0284c7]",
+                iconBg: "bg-[#0ea5e9]/10 border border-[#0ea5e9]/25",
+                image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+                link: "/work/product-shoot",
+                position: "top-right",
+                initialX: -180,
+                initialY: 130,
+                entryDelay: 0.22,
+                floatY: 8, duration: 5.4, delay: 0.4,
+              },
+              {
+                id: "brand-stories",
+                title: "Brand Stories",
+                description: "Creative storytelling that builds brand identity and connection.",
+                icon: Clapperboard,
+                iconColor: "text-[#059669]",
+                iconBg: "bg-emerald-500/10 border border-emerald-500/25",
+                image: "https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?q=80&w=800&auto=format&fit=crop",
+                link: "/work/commercial-video-production",
+                position: "bottom-left",
+                initialX: 180,
+                initialY: -130,
+                entryDelay: 0.28,
+                floatY: -7, duration: 5.8, delay: 0.8,
+              },
+              {
+                id: "digital-content",
+                title: "Digital Content",
+                description: "Engaging videos designed for websites, social media, and campaigns.",
+                icon: Play,
+                iconColor: "text-[#2563eb]",
+                iconBg: "bg-blue-500/10 border border-blue-500/25",
+                image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop",
+                link: "/work/social-media-content",
+                position: "bottom-right",
+                initialX: -180,
+                initialY: -130,
+                entryDelay: 0.35,
+                floatY: 7, duration: 5.2, delay: 1.2,
+              },
+            ];
 
-            <div className="relative">
-              {/* Concentric Animated Radar & Orbital Rings (Emerges from Center on Scroll) */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 flex items-center justify-center"
-              >
-                {/* Expanding Radar Wave Ring 1 */}
-                <motion.div
-                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#0ea5e9]/20"
-                  animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.65, 0.25, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
-                />
-                {/* Expanding Radar Wave Ring 2 (delayed) */}
-                <motion.div
-                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#0ea5e9]/15"
-                  animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.55, 0.2, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 2 }}
-                />
-                {/* Slow Rotating Outer Dashed Orbit Ring */}
-                <motion.div
-                  className="absolute w-[290px] h-[290px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] rounded-full border border-dashed border-[#dedbd4]"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-                />
-                {/* Middle Delicate Orbital Ring */}
-                <div className="absolute w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border border-[#e7e6e2]" />
-                {/* Inner Glow Aura Ring */}
-                <div className="absolute w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border border-[#0ea5e9]/25 " />
-              </motion.div>
+            return (
+              <>
+                {/* ── MOBILE / TABLET VIEW (< lg): CLEAN, BEAUTIFUL & PERFECTLY ALIGNED ── */}
+                <div className="block lg:hidden w-full max-w-xl mx-auto space-y-3.5">
+                  {/* Branded Header Pod */}
+                  <div className="flex items-center justify-between p-4 rounded-2xl bg-white border border-[#e7e6e2]">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-12 h-12 rounded-full bg-[#fbfaf8] border border-[#e7e6e2] p-2 flex items-center justify-center shrink-0">
+                        <img src="/logo-black.png" alt="Viyana Productions" className="w-8 h-auto object-contain" />
+                      </div>
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-portfolio-sans uppercase tracking-[0.2em] text-[#0284c7] font-bold block">
+                          CORE DISCIPLINES
+                        </span>
+                        <h3 className="text-base sm:text-lg font-portfolio-serif font-normal text-[#20201e] tracking-tight truncate">
+                          What We <em>Create.</em>
+                        </h3>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-portfolio-sans text-[#777671] uppercase tracking-wider font-semibold px-2.5 py-1 rounded-full bg-[#f7f6f3] border border-[#dedbd4] shrink-0">
+                      4 SERVICES
+                    </span>
+                  </div>
 
-              {/* SVG Connecting Diagonal Beams with Flowing Light Particles (Desktop lg+) */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 hidden lg:block" viewBox="0 0 1000 620" preserveAspectRatio="none">
-                <defs>
-                  <filter id="hubNodeGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-
-                {/* Line 1: Center to Top-Left (Corporate) - Draws outward from center */}
-                <motion.line
-                  x1="480" y1="285" x2="380" y2="195"
-                  stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 0.65 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-                />
-                <motion.circle
-                  r="3.5"
-                  fill="#0ea5e9"
-                  animate={{ cx: [480, 380, 480], cy: [285, 195, 285] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                />
-                <circle cx="380" cy="195" r="4.5" fill="#0ea5e9" />
-                <circle cx="380" cy="195" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
-                <circle cx="480" cy="285" r="4.5" fill="#0ea5e9" />
-
-                {/* Line 2: Center to Top-Right (Product) - Draws outward from center */}
-                <motion.line
-                  x1="520" y1="285" x2="620" y2="195"
-                  stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 0.65 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-                />
-                <motion.circle
-                  r="3.5"
-                  fill="#0ea5e9"
-                  animate={{ cx: [520, 620, 520], cy: [285, 195, 285] }}
-                  transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                />
-                <circle cx="620" cy="195" r="4.5" fill="#0ea5e9" />
-                <circle cx="620" cy="195" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
-                <circle cx="520" cy="285" r="4.5" fill="#0ea5e9" />
-
-                {/* Line 3: Center to Bottom-Left (Brand Stories) - Draws outward from center */}
-                <motion.line
-                  x1="480" y1="335" x2="380" y2="425"
-                  stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 0.65 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-                />
-                <motion.circle
-                  r="3.5"
-                  fill="#0ea5e9"
-                  animate={{ cx: [480, 380, 480], cy: [335, 425, 335] }}
-                  transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
-                />
-                <circle cx="380" cy="425" r="4.5" fill="#0ea5e9" />
-                <circle cx="380" cy="425" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
-                <circle cx="480" cy="335" r="4.5" fill="#0ea5e9" />
-
-                {/* Line 4: Center to Bottom-Right (Digital Content) - Draws outward from center */}
-                <motion.line
-                  x1="520" y1="335" x2="620" y2="425"
-                  stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 0.65 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-                />
-                <motion.circle
-                  r="3.5"
-                  fill="#0ea5e9"
-                  animate={{ cx: [520, 620, 520], cy: [335, 425, 335] }}
-                  transition={{ duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
-                />
-                <circle cx="620" cy="425" r="4.5" fill="#0ea5e9" />
-                <circle cx="620" cy="425" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
-                <circle cx="520" cy="335" r="4.5" fill="#0ea5e9" />
-              </svg>
-
-              {/* 4 Satellite Cards (2x2 Grid) - Expanding outward from center on scroll */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-x-28 lg:gap-y-10 xl:gap-x-32 xl:gap-y-12 relative z-10">
-                {[
-                  {
-                    id: "corporate",
-                    title: "Corporate",
-                    description: "Professional films that showcase your company, people, and vision.",
-                    icon: Building2,
-                    iconColor: "text-[#0284c7]",
-                    iconBg: "bg-[#0ea5e9]/10 border border-[#0ea5e9]/25",
-                    accentShadow: "",
-                    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
-                    link: "/work/corporate-film",
-                    position: "top-left",
-                    initialX: 180,
-                    initialY: 130,
-                    entryDelay: 0.15,
-                    floatY: -8, duration: 5, delay: 0,
-                  },
-                  {
-                    id: "product",
-                    title: "Product",
-                    description: "Visual content that makes your products stand out.",
-                    icon: Box,
-                    iconColor: "text-[#0284c7]",
-                    iconBg: "bg-[#0ea5e9]/10 border border-[#0ea5e9]/25",
-                    accentShadow: "",
-                    image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
-                    link: "/work/product-shoot",
-                    position: "top-right",
-                    initialX: -180,
-                    initialY: 130,
-                    entryDelay: 0.22,
-                    floatY: 8, duration: 5.4, delay: 0.4,
-                  },
-                  {
-                    id: "brand-stories",
-                    title: "Brand Stories",
-                    description: "Creative storytelling that builds brand identity and connection.",
-                    icon: Clapperboard,
-                    iconColor: "text-[#059669]",
-                    iconBg: "bg-emerald-500/10 border border-emerald-500/25",
-                    accentShadow: "",
-                    image: "https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?q=80&w=800&auto=format&fit=crop",
-                    link: "/work/commercial-video-production",
-                    position: "bottom-left",
-                    initialX: 180,
-                    initialY: -130,
-                    entryDelay: 0.28,
-                    floatY: -7, duration: 5.8, delay: 0.8,
-                  },
-                  {
-                    id: "digital-content",
-                    title: "Digital Content",
-                    description: "Engaging videos designed for websites, social media, and campaigns.",
-                    icon: Play,
-                    iconColor: "text-[#2563eb]",
-                    iconBg: "bg-blue-500/10 border border-blue-500/25",
-                    accentShadow: "",
-                    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop",
-                    link: "/work/social-media-content",
-                    position: "bottom-right",
-                    initialX: -180,
-                    initialY: -130,
-                    entryDelay: 0.35,
-                    floatY: 7, duration: 5.2, delay: 1.2,
-                  },
-                ].map((card) => {
-                  const Icon = card.icon;
-                  return (
-                    <motion.div
-                      key={card.id}
-                      initial={{
-                        x: typeof window !== "undefined" && window.innerWidth < 1024 ? 0 : card.initialX,
-                        y: typeof window !== "undefined" && window.innerWidth < 1024 ? (card.position.includes("top") ? 35 : -35) : card.initialY,
-                        scale: 0.3,
-                        opacity: 0,
-                      }}
-                      whileInView={{
-                        x: 0,
-                        y: 0,
-                        scale: 1,
-                        opacity: 1,
-                      }}
-                      viewport={{ once: false, amount: 0.2 }}
-                      transition={{
-                        duration: 0.85,
-                        delay: card.entryDelay,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                      className="relative"
-                    >
-                      <motion.div
-                        animate={{ y: [0, card.floatY, 0] }}
-                        transition={{ duration: card.duration, repeat: Infinity, ease: "easeInOut", delay: card.delay }}
-                        whileHover={{ scale: 1.025, y: -6 }}
-                        className="relative"
-                      >
+                  {/* 4 Clean Mobile Service Cards */}
+                  <div className="space-y-3">
+                    {disciplines.map((card) => {
+                      const Icon = card.icon;
+                      return (
                         <Link
                           to={card.link}
-                          className={`group relative block w-full rounded-[26px] sm:rounded-[32px] bg-white text-neutral-900 border border-white/90 ${card.accentShadow} transition-all duration-500 overflow-hidden cursor-pointer`}
+                          key={`mob-${card.id}`}
+                          className="group flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white hover:bg-[#fbfaf8] border border-[#e7e6e2] hover:border-[#0ea5e9] active:scale-[0.99] transition-all duration-300"
                         >
-                          <div className="relative flex items-center justify-between min-h-[145px] sm:min-h-[160px] p-5 sm:p-6 lg:p-7 z-10">
-                            {/* Left text & icon (takes ~62% width) */}
-                            <div className="flex-1 pr-3 sm:pr-4 z-10 max-w-[64%]">
-                              <div className="flex items-center gap-3 mb-2 sm:mb-2.5">
-                                <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${card.iconBg}`}>
-                                  <Icon className={`w-5 h-5 ${card.iconColor}`} />
-                                </div>
-                                <h3 className="text-xl sm:text-2xl font-display font-extrabold text-neutral-900 tracking-tight leading-none">
-                                  {card.title}
-                                </h3>
-                              </div>
-                              <p className="text-xs sm:text-[13px] text-neutral-600 font-normal leading-relaxed">
-                                {card.description}
-                              </p>
-                            </div>
-
-                            {/* Right image with seamless horizontal fade into white card */}
-                            <div className="absolute right-0 top-0 bottom-0 w-[42%] overflow-hidden pointer-events-none">
+                          <div className="flex items-center gap-3.5 min-w-0 flex-1 pr-2">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 border border-[#e7e6e2] bg-[#f7f6f3]">
                               <img
                                 src={card.image}
                                 alt={card.title}
                                 loading="lazy"
-                                decoding="async"
-                                className="w-full h-full object-cover object-center filter contrast-[1.05] brightness-95 group-hover:scale-110 group-hover:brightness-105 transition-all duration-700 ease-out"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
-                              {/* Smooth gradient mask to pure white */}
-                              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/20" />
+                            </div>
+                            <div className="min-w-0 space-y-1">
+                              <div className="flex items-center gap-2">
+                                <div className={`w-6 h-6 rounded-md flex items-center justify-center shrink-0 ${card.iconBg}`}>
+                                  <Icon className={`w-3.5 h-3.5 ${card.iconColor}`} />
+                                </div>
+                                <h4 className="text-base sm:text-lg font-portfolio-serif font-bold text-[#20201e] group-hover:text-[#0284c7] transition-colors truncate">
+                                  {card.title}
+                                </h4>
+                              </div>
+                              <p className="text-xs font-portfolio-sans text-[#686762] leading-relaxed line-clamp-2">
+                                {card.description}
+                              </p>
                             </div>
                           </div>
-
-                          {/* Corner glowing node dot on card */}
-                          <div
-                            className={`hidden lg:block absolute w-2.5 h-2.5 rounded-full bg-[#0ea5e9] z-20 ${
-                              card.position === "top-left"
-                                ? "bottom-3 right-3"
-                                : card.position === "top-right"
-                                ? "bottom-3 left-3"
-                                : card.position === "bottom-left"
-                                ? "top-3 right-3"
-                                : "top-3 left-3"
-                            }`}
-                          >
-                            <span className="absolute inset-0 rounded-full bg-[#0ea5e9] animate-ping opacity-60" />
+                          <div className="w-8 h-8 rounded-full bg-[#f7f6f3] border border-[#dedbd4] group-hover:border-[#0ea5e9] group-hover:bg-[#0284c7] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
+                            <ArrowRight className="w-3.5 h-3.5" />
                           </div>
                         </Link>
-                      </motion.div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* Central VIYANA PRODUCTIONS Hub (Desktop: pops outward from middle on scroll) */}
-              <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none items-center justify-center">
-                <motion.div
-                  initial={{ scale: 0, opacity: 0, rotate: -15 }}
-                  whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative flex items-center justify-center pointer-events-auto"
-                >
-                  <motion.div
-                    animate={{
-                      boxShadow: [
-                        "0 0 25px rgba(14, 165, 233, 0.15), 0 10px 30px rgba(0, 0, 0, 0.05)",
-                        "0 0 45px rgba(14, 165, 233, 0.28), 0 16px 40px rgba(0, 0, 0, 0.08)",
-                        "0 0 25px rgba(14, 165, 233, 0.15), 0 10px 30px rgba(0, 0, 0, 0.05)",
-                      ],
-                    }}
-                    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-white border-2 border-[#e7e6e2] p-5 flex flex-col items-center justify-center text-center relative overflow-hidden group"
-                  >
-                    {/* Subtle inner radial ambient shine */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(14,165,233,0.08)_0%,transparent_80%)] pointer-events-none" />
-
-                    {/* Official Viyana Productions Logo Design */}
-                    <img
-                      src="/logo-black.png"
-                      alt="Viyana Productions"
-                      className="w-28 sm:w-32 xl:w-36 h-auto object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </motion.div>
-                </motion.div>
-              </div>
-
-              {/* Mobile / Tablet Center Emblem Display (Emerges from Middle on Scroll) */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:hidden flex justify-center py-6"
-              >
-                <div className="w-36 h-36 rounded-full bg-white border-2 border-[#e7e6e2] p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(14,165,233,0.08)_0%,transparent_70%)] pointer-events-none" />
-                  <img
-                    src="/logo-black.png"
-                    alt="Viyana Productions"
-                    className="w-24 h-auto object-contain relative z-10 "
-                  />
+                      );
+                    })}
+                  </div>
                 </div>
-              </motion.div>
-            </div>
-          </div>
+
+                {/* ── DESKTOP VIEW (lg+): CINEMATIC ORBITAL HUB & SPOKE SHOWCASE ── */}
+                <div className="hidden lg:block relative w-full max-w-6xl mx-auto py-12 lg:py-16 px-8 lg:px-12 rounded-[44px] bg-[#ffffff] border border-[#e7e6e2] overflow-hidden">
+                  {/* Ambient Subtle Blue Glow */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-[radial-gradient(circle,rgba(14,165,233,0.08)_0%,rgba(14,165,233,0.02)_40%,transparent_70%)] blur-2xl pointer-events-none" />
+
+                  <div className="relative">
+                    {/* Concentric Animated Radar & Orbital Rings */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: false, amount: 0.2 }}
+                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 flex items-center justify-center"
+                    >
+                      {/* Expanding Radar Wave Ring 1 */}
+                      <motion.div
+                        className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#0ea5e9]/20"
+                        animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.65, 0.25, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
+                      />
+                      {/* Expanding Radar Wave Ring 2 (delayed) */}
+                      <motion.div
+                        className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#0ea5e9]/15"
+                        animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.55, 0.2, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 2 }}
+                      />
+                      {/* Slow Rotating Outer Dashed Orbit Ring */}
+                      <motion.div
+                        className="absolute w-[290px] h-[290px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] rounded-full border border-dashed border-[#dedbd4]"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                      />
+                      {/* Middle Delicate Orbital Ring */}
+                      <div className="absolute w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border border-[#e7e6e2]" />
+                      {/* Inner Glow Aura Ring */}
+                      <div className="absolute w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border border-[#0ea5e9]/25" />
+                    </motion.div>
+
+                    {/* SVG Connecting Diagonal Beams with Flowing Light Particles */}
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 1000 620" preserveAspectRatio="none">
+                      {/* Line 1: Center to Top-Left (Corporate) */}
+                      <motion.line
+                        x1="480" y1="285" x2="380" y2="195"
+                        stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.65 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+                      />
+                      <motion.circle
+                        r="3.5"
+                        fill="#0ea5e9"
+                        animate={{ cx: [480, 380, 480], cy: [285, 195, 285] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                      />
+                      <circle cx="380" cy="195" r="4.5" fill="#0ea5e9" />
+                      <circle cx="380" cy="195" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                      <circle cx="480" cy="285" r="4.5" fill="#0ea5e9" />
+
+                      {/* Line 2: Center to Top-Right (Product) */}
+                      <motion.line
+                        x1="520" y1="285" x2="620" y2="195"
+                        stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.65 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                      />
+                      <motion.circle
+                        r="3.5"
+                        fill="#0ea5e9"
+                        animate={{ cx: [520, 620, 520], cy: [285, 195, 285] }}
+                        transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                      />
+                      <circle cx="620" cy="195" r="4.5" fill="#0ea5e9" />
+                      <circle cx="620" cy="195" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                      <circle cx="520" cy="285" r="4.5" fill="#0ea5e9" />
+
+                      {/* Line 3: Center to Bottom-Left (Brand Stories) */}
+                      <motion.line
+                        x1="480" y1="335" x2="380" y2="425"
+                        stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.65 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+                      />
+                      <motion.circle
+                        r="3.5"
+                        fill="#0ea5e9"
+                        animate={{ cx: [480, 380, 480], cy: [335, 425, 335] }}
+                        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+                      />
+                      <circle cx="380" cy="425" r="4.5" fill="#0ea5e9" />
+                      <circle cx="380" cy="425" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                      <circle cx="480" cy="335" r="4.5" fill="#0ea5e9" />
+
+                      {/* Line 4: Center to Bottom-Right (Digital Content) */}
+                      <motion.line
+                        x1="520" y1="335" x2="620" y2="425"
+                        stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.65 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+                      />
+                      <motion.circle
+                        r="3.5"
+                        fill="#0ea5e9"
+                        animate={{ cx: [520, 620, 520], cy: [335, 425, 335] }}
+                        transition={{ duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
+                      />
+                      <circle cx="620" cy="425" r="4.5" fill="#0ea5e9" />
+                      <circle cx="620" cy="425" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                      <circle cx="520" cy="335" r="4.5" fill="#0ea5e9" />
+                    </svg>
+
+                    {/* 4 Satellite Cards (2x2 Grid) */}
+                    <div className="grid grid-cols-2 gap-x-28 gap-y-10 xl:gap-x-32 xl:gap-y-12 relative z-10">
+                      {disciplines.map((card) => {
+                        const Icon = card.icon;
+                        return (
+                          <motion.div
+                            key={card.id}
+                            initial={{
+                              x: card.initialX,
+                              y: card.initialY,
+                              scale: 0.3,
+                              opacity: 0,
+                            }}
+                            whileInView={{
+                              x: 0,
+                              y: 0,
+                              scale: 1,
+                              opacity: 1,
+                            }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            transition={{
+                              duration: 0.85,
+                              delay: card.entryDelay,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
+                            className="relative"
+                          >
+                            <motion.div
+                              animate={{ y: [0, card.floatY, 0] }}
+                              transition={{ duration: card.duration, repeat: Infinity, ease: "easeInOut", delay: card.delay }}
+                              whileHover={{ scale: 1.025, y: -6 }}
+                              className="relative"
+                            >
+                              <Link
+                                to={card.link}
+                                className="group relative block w-full rounded-[32px] bg-white text-neutral-900 border border-[#e7e6e2] hover:border-[#0ea5e9] transition-all duration-500 overflow-hidden cursor-pointer"
+                              >
+                                <div className="relative flex items-center justify-between min-h-[160px] p-6 lg:p-7 z-10">
+                                  {/* Left text & icon (takes ~60% width) */}
+                                  <div className="flex-1 pr-4 z-10 max-w-[62%]">
+                                    <div className="flex items-center gap-3 mb-2.5">
+                                      <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${card.iconBg}`}>
+                                        <Icon className={`w-5 h-5 ${card.iconColor}`} />
+                                      </div>
+                                      <h3 className="text-xl sm:text-2xl font-display font-extrabold text-neutral-900 tracking-tight leading-none">
+                                        {card.title}
+                                      </h3>
+                                    </div>
+                                    <p className="text-[13px] text-neutral-600 font-normal leading-relaxed">
+                                      {card.description}
+                                    </p>
+                                  </div>
+
+                                  {/* Right image with seamless horizontal fade into white card */}
+                                  <div className="absolute right-0 top-0 bottom-0 w-[42%] overflow-hidden pointer-events-none">
+                                    <img
+                                      src={card.image}
+                                      alt={card.title}
+                                      loading="lazy"
+                                      decoding="async"
+                                      className="w-full h-full object-cover object-center filter contrast-[1.05] brightness-95 group-hover:scale-110 group-hover:brightness-105 transition-all duration-700 ease-out"
+                                    />
+                                    {/* Smooth gradient mask to pure white */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/20" />
+                                  </div>
+                                </div>
+
+                                {/* Corner glowing node dot on card */}
+                                <div
+                                  className={`absolute w-2.5 h-2.5 rounded-full bg-[#0ea5e9] z-20 ${
+                                    card.position === "top-left"
+                                      ? "bottom-3 right-3"
+                                      : card.position === "top-right"
+                                      ? "bottom-3 left-3"
+                                      : card.position === "bottom-left"
+                                      ? "top-3 right-3"
+                                      : "top-3 left-3"
+                                  }`}
+                                >
+                                  <span className="absolute inset-0 rounded-full bg-[#0ea5e9] animate-ping opacity-60" />
+                                </div>
+                              </Link>
+                            </motion.div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Central VIYANA PRODUCTIONS Hub Medallion */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none flex items-center justify-center">
+                      <motion.div
+                        initial={{ scale: 0, opacity: 0, rotate: -15 }}
+                        whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative flex items-center justify-center pointer-events-auto"
+                      >
+                        <div className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-white border-2 border-[#e7e6e2] p-5 flex flex-col items-center justify-center text-center relative overflow-hidden group">
+                          {/* Subtle inner radial ambient shine */}
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(14,165,233,0.08)_0%,transparent_80%)] pointer-events-none" />
+
+                          {/* Official Viyana Productions Logo Design */}
+                          <img
+                            src="/logo-black.png"
+                            alt="Viyana Productions"
+                            className="w-28 sm:w-32 xl:w-36 h-auto object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
+                          />
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          })()}
 
           {/* Bottom CTA Banner */}
           <div className="relative rounded-3xl border border-[#e7e6e2] bg-[#ffffff] p-8 sm:p-14 lg:p-16 overflow-hidden ">
