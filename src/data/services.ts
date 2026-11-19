@@ -395,15 +395,19 @@ export const services: ServiceItem[] = [
     longDescription: "Stand out in a crowded digital landscape with striking visuals. We provide professional shooting services for models, influencers, and YouTubers looking to elevate their personal brand. From viral Instagram Reels to high-fashion model portfolios and brand collaboration shoots, we capture your unique personality and style. Our content is designed to maximize engagement, attract more followers, and help you secure lucrative brand partnerships.",
     image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=75&w=900&auto=format&fit=crop",
     gallery: [],
-    video: "/final-render-video-volpue.mp4",
+    video: "/final-output.mp4",
     videos: [
+      "/final-output.mp4",
       "/final-render-video-volpue.mp4",
-      "/final-output.mp4"
+      "/viyana-commercial-reel.mp4",
+      "/viyana-production-final-video.mp4",
+      "/2.mp4"
     ],
     instagramReelUrl: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
     instagramReels: [
       "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
-      "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw=="
+      "https://www.instagram.com/reel/DfPiKmuMugc/?psln=MXdzcmd4MTB1YXVjYw==",
+      "https://www.instagram.com/reel/DfCi048T8Jz/?dlrf=NHFnNzgxanY5dGpp"
     ],
     services: [
       "Instagram Reels",

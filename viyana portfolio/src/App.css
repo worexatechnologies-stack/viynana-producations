@@ -811,6 +811,11 @@
   }
 }
 
+.product-reels-showcase-section {
+  margin-top: 52px;
+  margin-bottom: 24px;
+}
+
 .product-marquee-showcase {
   margin-top: 32px;
   position: relative;
@@ -1099,7 +1104,12 @@
 }
 
 @media (max-width: 640px) {
-  .product-marquee-showcase {
+  .product-reels-showcase-section {
+  margin-top: 52px;
+  margin-bottom: 24px;
+}
+
+.product-marquee-showcase {
     gap: 14px;
     padding: 6px 0 16px;
   }

@@ -704,15 +704,16 @@ export const projects: Project[] = [
     video: "/final-output.mp4",
     videos: [
       "/final-output.mp4",
-      "/final-render-video-volpue.mp4"
+      "/final-render-video-volpue.mp4",
+      "/viyana-commercial-reel.mp4",
+      "/viyana-production-final-video.mp4",
+      "/2.mp4"
     ],
     instagramReelUrl: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
     instagramReels: [
       "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
       "https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==",
-      "https://www.instagram.com/reel/DfCi048T8Jz/?dlrf=NHFnNzgxanY5dGpp",
-      "https://www.instagram.com/reel/De9Vwv6CBSj/?dlrf=MW1zNThlbXlhcnN4Zw==",
-      "https://www.instagram.com/reel/DeuCeLIzMWk/?psln=MXZucjJlc2pwMHQ3ZQ=="
+      "https://www.instagram.com/reel/DfCi048T8Jz/?dlrf=NHFnNzgxanY5dGpp"
     ],
     videoDuration: "1:30",
     description: "We shoot stylish videos and photos for influencers. It helps you to get more followers and brand deals.",
@@ -732,7 +733,10 @@ export const projects: Project[] = [
     tagline: "STYLISH VIDEOS & PHOTOS.",
     gallery: [
       "/reel-01-poster.jpg",
-      "/reel-02-poster.jpg"
+      "/reel-02-poster.jpg",
+      "/images/model-shoot/01-emerald-saree-model.jpg",
+      "/images/model-shoot/02-black-sequin-saree.jpg",
+      "/images/model-shoot/03-temple-heritage-pose.jpg"
     ],
     seo: {
       metaTitle: "Influencer shoot in Bangalore | Viyana Productions",

@@ -951,13 +951,202 @@ const productShootVideos: ProductVideo[] = [
   },
 ]
 
+interface InfluencerNativeReel {
+  isNative: true
+  id: string
+  videoSrc: string
+  poster?: string
+  title: string
+  tag: string
+  badge: string
+  url?: string
+}
+
+const productReels: InfluencerNativeReel[] = [
+  {
+    isNative: true,
+    id: 'product-reel-bts',
+    videoSrc: '/videos/product-jewellery-behind-the-scenes.mp4',
+    poster: '/images/product-shoot/10-antique-gold-bangles-sculptural.jpg',
+    title: 'Behind The Scenes — Luxury Jewellery Production Breakdown',
+    tag: 'BTS Breakdown',
+    badge: '01 / BTS Reel',
+    url: 'https://www.instagram.com/reel/DdlycB7Dn08/',
+  },
+  {
+    isNative: true,
+    id: 'product-reel-oole',
+    videoSrc: '/videos/product-jewellery-oole-commercial.mp4',
+    poster: '/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg',
+    title: 'Oole Style Everyday — Fine Jewellery Commercial Reel',
+    tag: 'Jewellery Reel',
+    badge: '02 / Jewellery Reel',
+    url: 'https://www.instagram.com/reel/DdZHtpjB3kZ/',
+  },
+  {
+    isNative: true,
+    id: 'product-reel-chopping-board',
+    videoSrc: '/videos/product-chopping-board.mp4',
+    poster: '/images/product-shoot/01-melanex-serum.jpg',
+    title: 'Precision Craft & Kitchenware — Chopping Board Commercial',
+    tag: 'Commercial Reel',
+    badge: '03 / Commercial Reel',
+    url: 'https://www.instagram.com/reel/DfrvPj9vjAA/?lqvp=bHc2bWVjcnR6Y3Y3',
+  },
+  {
+    id: 'product-reel-dermera',
+    isNative: true,
+    videoSrc: '/videos/product-final-output.mp4',
+    poster: '/images/product-shoot/03-dewexa-cloud-cream.jpg',
+    title: 'Dermera Luxury Skincare Product Reel',
+    tag: 'Skincare Reel',
+    badge: '04 / Skincare Reel',
+    url: 'https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl',
+  },
+  {
+    id: 'product-reel-macro',
+    isNative: true,
+    videoSrc: '/videos/product-commercial-render.mp4',
+    poster: '/images/product-shoot/02-luminex-face-wash.jpg',
+    title: 'Product Motion & Macro Studio Render',
+    tag: '3D Macro',
+    badge: '05 / Macro Motion',
+    url: 'https://www.instagram.com/viyana.productions/reels/',
+  },
+]
+
+function InfluencerReelItem({ reel }: { reel: InfluencerNativeReel }) {
+  const [isMuted, setIsMuted] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  useVideoInView(videoRef, isPlaying)
+
+  const togglePlay = () => {
+    if (!videoRef.current) return
+    if (videoRef.current.paused) {
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {})
+    } else {
+      videoRef.current.pause()
+      setIsPlaying(false)
+    }
+  }
+
+  const toggleMute = () => {
+    if (!videoRef.current) return
+    videoRef.current.muted = !isMuted
+    setIsMuted(!isMuted)
+  }
+
+  return (
+    <div className="influencer-reel-card influencer-native-reel-card" key={reel.id}>
+      <div
+        className="influencer-video-crop-wrap influencer-native-crop-wrap"
+        onClick={togglePlay}
+        role="button"
+        tabIndex={0}
+      >
+        <video
+          aria-label={reel.title}
+          autoPlay
+          className="influencer-native-video"
+          loop
+          muted={isMuted}
+          onPause={() => setIsPlaying(false)}
+          onPlay={() => setIsPlaying(true)}
+          playsInline
+          poster={reel.poster || '/reel-01-poster.jpg'}
+          preload="metadata"
+          ref={videoRef}
+          src={reel.videoSrc}
+        />
+        <div className="influencer-native-tag">
+          <span className="live-dot" />
+          <span>{reel.tag} · {reel.badge}</span>
+        </div>
+
+        {/* Centered Play Button when Paused */}
+        {!isPlaying && (
+          <div className="influencer-center-play-overlay">
+            <div className="influencer-center-play-circle">
+              <Play fill="#ffffff" size={26} />
+            </div>
+            <span className="influencer-center-play-text">Tap to Play Reel</span>
+          </div>
+        )}
+
+        {/* Native Video Controls */}
+        <div className="influencer-video-actions" onClick={(e) => e.stopPropagation()}>
+          <button
+            aria-label={isMuted ? 'Unmute reel' : 'Mute reel'}
+            className="influencer-video-pill"
+            onClick={toggleMute}
+            type="button"
+          >
+            {isMuted ? <VolumeX size={12} /> : <Volume2 size={12} />}
+            <span>{isMuted ? 'Unmute' : 'Mute'}</span>
+          </button>
+          <button
+            aria-label={isPlaying ? 'Pause reel' : 'Play reel'}
+            className="influencer-video-pill"
+            onClick={togglePlay}
+            type="button"
+          >
+            {isPlaying ? <Pause size={12} /> : <Play size={12} />}
+            <span>{isPlaying ? 'Pause' : 'Play'}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Direct 4K Watch / Visit on Instagram button */}
+      <a
+        className="influencer-visit-insta-link influencer-native-link"
+        href={reel.url || 'https://www.instagram.com/viyana.productions/reels/'}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Instagram size={14} />
+        <span>Visit on Instagram</span>
+        <ArrowUpRight size={13} />
+      </a>
+    </div>
+  )
+}
+
 function ProductShoot() {
   const [activeProductVideoIndex, setActiveProductVideoIndex] = useState(0)
   const [isProductVideoMuted, setIsProductVideoMuted] = useState(true)
   const [isProductVideoPlaying, setIsProductVideoPlaying] = useState(true)
   const productVideoRef = useRef<HTMLVideoElement>(null)
+  const productSliderRef = useRef<HTMLDivElement>(null)
   useVideoInView(productVideoRef, isProductVideoPlaying)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
+  const scrollProductSlider = (direction: 'prev' | 'next') => {
+    if (!productSliderRef.current) return
+    const container = productSliderRef.current
+    const cards = Array.from(container.querySelectorAll<HTMLElement>('.influencer-reel-card'))
+    if (!cards.length) return
+
+    const currentScroll = container.scrollLeft
+    const maxScroll = container.scrollWidth - container.clientWidth
+
+    if (direction === 'next') {
+      const nextCard = cards.find((c) => c.offsetLeft > currentScroll + 20)
+      if (nextCard) {
+        container.scrollTo({ left: nextCard.offsetLeft - 16, behavior: 'smooth' })
+      } else {
+        container.scrollTo({ left: 0, behavior: 'smooth' })
+      }
+    } else {
+      const prevCards = cards.filter((c) => c.offsetLeft < currentScroll - 20)
+      if (prevCards.length > 0) {
+        const target = prevCards[prevCards.length - 1]
+        container.scrollTo({ left: target.offsetLeft - 16, behavior: 'smooth' })
+      } else {
+        container.scrollTo({ left: maxScroll, behavior: 'smooth' })
+      }
+    }
+  }
 
   const activeProductVideo = productShootVideos[activeProductVideoIndex]
   const productShootImagesRow2 = [...productShootImages.slice(5), ...productShootImages.slice(0, 5)]
@@ -1171,6 +1360,62 @@ function ProductShoot() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Product Shoot Vertical Reels Showcase */}
+      <div className="product-reels-showcase-section" data-reveal>
+        <div className="influencer-shoot-heading">
+          <div className="influencer-top-nav-btns">
+            <button
+              aria-label="Previous product reel"
+              className="influencer-nav-arrow-btn"
+              onClick={() => scrollProductSlider('prev')}
+              type="button"
+            >
+              <ChevronLeft size={16} />
+              <span>Previous</span>
+            </button>
+            <button
+              aria-label="Next product reel"
+              className="influencer-nav-arrow-btn"
+              onClick={() => scrollProductSlider('next')}
+              type="button"
+            >
+              <span>Next</span>
+              <ChevronRight size={16} />
+            </button>
+          </div>
+          <div>
+            <Eyebrow>Commercial &amp; Brand Reels</Eyebrow>
+            <h3 className="section-title">Product Shoot <em>Reels.</em></h3>
+          </div>
+        </div>
+
+        <div className="influencer-slider-wrapper">
+          <button
+            aria-label="Previous product reel"
+            className="influencer-edge-btn influencer-edge-prev"
+            onClick={() => scrollProductSlider('prev')}
+            type="button"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <div className="influencer-reels-track" ref={productSliderRef}>
+            {productReels.map((reel) => (
+              <InfluencerReelItem key={reel.id} reel={reel} />
+            ))}
+          </div>
+
+          <button
+            aria-label="Next product reel"
+            className="influencer-edge-btn influencer-edge-next"
+            onClick={() => scrollProductSlider('next')}
+            type="button"
+          >
+            <ChevronRight size={20} />
+          </button>
         </div>
       </div>
 
@@ -1971,25 +2216,6 @@ function PodcastShoot({ onSelectService: _onSelectService }: { onSelectService?:
 /* ========================================================
    Influencer Shoot & Creator Series Section
    ======================================================== */
-interface InfluencerNativeReel {
-  isNative: true
-  id: string
-  videoSrc: string
-  poster?: string
-  title: string
-  tag: string
-  badge: string
-  url?: string
-}
-
-interface InfluencerEmbedReel {
-  isNative: false
-  id: string
-  url: string
-}
-
-type InfluencerReel = InfluencerNativeReel | InfluencerEmbedReel
-
 const influencerReels: InfluencerNativeReel[] = [
   {
     isNative: true,
@@ -2003,142 +2229,45 @@ const influencerReels: InfluencerNativeReel[] = [
   },
   {
     isNative: true,
+    id: 'volpue-influencer-master',
+    videoSrc: '/final-render-video-volpue.mp4',
+    poster: '/reel-02-poster.jpg',
+    title: 'Influencer Lifestyle Editorial Motion Master',
+    tag: 'Lifestyle Motion',
+    badge: '02 / Creator Cinema',
+    url: 'https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn',
+  },
+  {
+    isNative: true,
     id: 'DfPiKmuMugc',
     videoSrc: '/viyana-commercial-reel.mp4',
-    poster: '/images/product-shoot/01-melanex-serum.jpg',
+    poster: '/images/model-shoot/01-emerald-saree-model.jpg',
     title: 'Model & Brand Fashion Reel',
     tag: 'Fashion Reel',
-    badge: '02 / Brand Collab',
+    badge: '03 / Brand Collab',
     url: 'https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==',
   },
   {
     isNative: true,
     id: 'DfCi048T8Jz',
     videoSrc: '/viyana-production-final-video.mp4',
-    poster: '/images/product-shoot/10-antique-gold-bangles-sculptural.jpg',
-    title: 'Style Motion & Aesthetics Cut',
+    poster: '/images/model-shoot/02-black-sequin-saree.jpg',
+    title: 'Style Motion & High-Fashion Aesthetics Cut',
     tag: 'Viral Reel',
-    badge: '03 / Viral Style',
+    badge: '04 / Viral Style',
     url: 'https://www.instagram.com/reel/DfCi048T8Jz/?dlrf=NHFnNzgxanY5dGpp',
   },
   {
     isNative: true,
-    id: 'De9Vwv6CBSj',
-    videoSrc: '/videos/product-jewellery-oole-commercial.mp4',
-    poster: '/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg',
-    title: 'Luxury Editorial Collab Reel',
-    tag: 'Editorial Reel',
-    badge: '04 / Editorial Cut',
-    url: 'https://www.instagram.com/reel/De9Vwv6CBSj/?dlrf=MW1zNThlbXlhcnN4Zw==',
-  },
-  {
-    isNative: true,
-    id: 'DeuCeLIzMWk',
-    videoSrc: '/videos/product-jewellery-behind-the-scenes.mp4',
-    poster: '/images/product-shoot/03-dewexa-cloud-cream.jpg',
-    title: 'Behind The Scenes Creator Shoot',
-    tag: 'BTS Reel',
-    badge: '05 / Creator BTS',
-    url: 'https://www.instagram.com/reel/DeuCeLIzMWk/?psln=MXZucjJlc2pwMHQ3ZQ==',
+    id: 'creator-editorial-runway',
+    videoSrc: '/2.mp4',
+    poster: '/images/model-shoot/03-temple-heritage-pose.jpg',
+    title: 'Editorial Model Portrait & Comp-Card Reel',
+    tag: 'Editorial Motion',
+    badge: '05 / Runway Cut',
+    url: 'https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn',
   },
 ]
-
-function InfluencerReelItem({ reel }: { reel: InfluencerNativeReel }) {
-  const [isMuted, setIsMuted] = useState(true)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  useVideoInView(videoRef, isPlaying)
-
-  const togglePlay = () => {
-    if (!videoRef.current) return
-    if (videoRef.current.paused) {
-      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {})
-    } else {
-      videoRef.current.pause()
-      setIsPlaying(false)
-    }
-  }
-
-  const toggleMute = () => {
-    if (!videoRef.current) return
-    videoRef.current.muted = !isMuted
-    setIsMuted(!isMuted)
-  }
-
-  return (
-    <div className="influencer-reel-card influencer-native-reel-card" key={reel.id}>
-      <div
-        className="influencer-video-crop-wrap influencer-native-crop-wrap"
-        onClick={togglePlay}
-        role="button"
-        tabIndex={0}
-      >
-        <video
-          aria-label={reel.title}
-          autoPlay
-          className="influencer-native-video"
-          loop
-          muted={isMuted}
-          onPause={() => setIsPlaying(false)}
-          onPlay={() => setIsPlaying(true)}
-          playsInline
-          poster={reel.poster || '/reel-01-poster.jpg'}
-          preload="metadata"
-          ref={videoRef}
-          src={reel.videoSrc}
-        />
-        <div className="influencer-native-tag">
-          <span className="live-dot" />
-          <span>{reel.tag} · {reel.badge}</span>
-        </div>
-
-        {/* Centered Play Button when Paused */}
-        {!isPlaying && (
-          <div className="influencer-center-play-overlay">
-            <div className="influencer-center-play-circle">
-              <Play fill="#ffffff" size={26} />
-            </div>
-            <span className="influencer-center-play-text">Tap to Play Reel</span>
-          </div>
-        )}
-
-        {/* Native Video Controls */}
-        <div className="influencer-video-actions" onClick={(e) => e.stopPropagation()}>
-          <button
-            aria-label={isMuted ? 'Unmute reel' : 'Mute reel'}
-            className="influencer-video-pill"
-            onClick={toggleMute}
-            type="button"
-          >
-            {isMuted ? <VolumeX size={12} /> : <Volume2 size={12} />}
-            <span>{isMuted ? 'Unmute' : 'Mute'}</span>
-          </button>
-          <button
-            aria-label={isPlaying ? 'Pause reel' : 'Play reel'}
-            className="influencer-video-pill"
-            onClick={togglePlay}
-            type="button"
-          >
-            {isPlaying ? <Pause size={12} /> : <Play size={12} />}
-            <span>{isPlaying ? 'Pause' : 'Play'}</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Direct 4K Watch / Visit on Instagram button */}
-      <a
-        className="influencer-visit-insta-link influencer-native-link"
-        href={reel.url || 'https://www.instagram.com/viyana.productions/reels/'}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <Instagram size={14} />
-        <span>Visit on Instagram</span>
-        <ArrowUpRight size={13} />
-      </a>
-    </div>
-  )
-}
 
 function InfluencerShoot({ onSelectService: _onSelectService }: { onSelectService?: (service: string) => void }) {
   const influencerSliderRef = useRef<HTMLDivElement>(null)

@@ -86,7 +86,7 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
         tag: "Creator Master",
         category: "Influencer Cinema",
         src: "/final-output.mp4",
-        poster: "/images/influencer-shoot/01-influencer.jpg",
+        poster: "/reel-01-poster.jpg",
         badge: "01 / Influencer Film",
         description:
           "High-engagement commercial motion engineered for digital creator brands, luxury apparel, and lifestyle partnerships.",
@@ -97,10 +97,43 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
         tag: "Lifestyle Motion",
         category: "Lifestyle Cinema",
         src: "/final-render-video-volpue.mp4",
-        poster: "/images/influencer-shoot/02-influencer.jpg",
+        poster: "/reel-02-poster.jpg",
         badge: "02 / Lifestyle Cinema",
         description:
           "Trend-conscious color grading and visual rhythm engineered to captivate social feeds and maximize audience retention.",
+      },
+      {
+        id: "influencer-commercial-reel",
+        title: "Model & Creator Fashion Commercial Reel",
+        tag: "Fashion Reel",
+        category: "Fashion Motion",
+        src: "/viyana-commercial-reel.mp4",
+        poster: "/images/model-shoot/01-emerald-saree-model.jpg",
+        badge: "03 / Fashion Reel",
+        description:
+          "Dynamic model movement and sculpted lighting for viral creator content and brand campaigns.",
+      },
+      {
+        id: "influencer-production-final",
+        title: "High-Fashion Creator & Comp-Card Motion",
+        tag: "Viral Style",
+        category: "Creator Cinema",
+        src: "/viyana-production-final-video.mp4",
+        poster: "/images/model-shoot/02-black-sequin-saree.jpg",
+        badge: "04 / Viral Style",
+        description:
+          "Fluid high-fashion posing movement and beauty grades engineered for audience retention.",
+      },
+      {
+        id: "influencer-editorial-runway",
+        title: "Creator Runway & Editorial Studio Pacing",
+        tag: "Editorial Cut",
+        category: "Editorial Motion",
+        src: "/2.mp4",
+        poster: "/images/model-shoot/03-temple-heritage-pose.jpg",
+        badge: "05 / Runway Cut",
+        description:
+          "Sculpted directional key lighting and rhythmic creator motion crafted for international talent comp cards.",
       },
     ];
   }
@@ -312,6 +345,39 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
         badge: "02 / Creator Cinema",
         description:
           "Dynamic handheld motion, high-energy pacing, and OLED-optimized color grading for lifestyle influencers and brand collaborators.",
+      },
+      {
+        id: "influencer-3",
+        title: "Model & Creator Fashion Commercial Reel",
+        tag: "Fashion Reel",
+        category: "Influencer Shoot",
+        src: "/viyana-commercial-reel.mp4",
+        poster: "/images/model-shoot/01-emerald-saree-model.jpg",
+        badge: "03 / Fashion Reel",
+        description:
+          "Dynamic model movement and sculpted lighting for viral creator content and brand campaigns.",
+      },
+      {
+        id: "influencer-4",
+        title: "High-Fashion Creator & Comp-Card Motion",
+        tag: "Viral Style",
+        category: "Influencer Shoot",
+        src: "/viyana-production-final-video.mp4",
+        poster: "/images/model-shoot/02-black-sequin-saree.jpg",
+        badge: "04 / Viral Style",
+        description:
+          "Fluid high-fashion posing movement and beauty grades engineered for audience retention.",
+      },
+      {
+        id: "influencer-5",
+        title: "Creator Runway & Editorial Studio Pacing",
+        tag: "Editorial Cut",
+        category: "Influencer Shoot",
+        src: "/2.mp4",
+        poster: "/images/model-shoot/03-temple-heritage-pose.jpg",
+        badge: "05 / Runway Cut",
+        description:
+          "Sculpted directional key lighting and rhythmic creator motion crafted for international talent comp cards.",
       },
     ];
   }
