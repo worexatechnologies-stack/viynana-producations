@@ -1960,6 +1960,7 @@ interface InfluencerNativeReel {
   title: string
   tag: string
   badge: string
+  url?: string
 }
 
 interface InfluencerEmbedReel {
@@ -1970,7 +1971,7 @@ interface InfluencerEmbedReel {
 
 type InfluencerReel = InfluencerNativeReel | InfluencerEmbedReel
 
-const influencerReels: InfluencerReel[] = [
+const influencerReels: InfluencerNativeReel[] = [
   {
     isNative: true,
     id: 'viyana-influencer-feature',
@@ -1979,84 +1980,149 @@ const influencerReels: InfluencerReel[] = [
     title: 'Featured Influencer Film · 4K Edition',
     tag: 'Creator Showcase',
     badge: '01 / Featured Reel',
-  },
-  {
-    isNative: false,
-    id: 'DfPiKmuMugc',
     url: 'https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==',
   },
   {
-    isNative: false,
+    isNative: true,
+    id: 'DfPiKmuMugc',
+    videoSrc: '/viyana-commercial-reel.mp4',
+    poster: '/images/product-shoot/01-melanex-serum.jpg',
+    title: 'Model & Brand Fashion Reel',
+    tag: 'Fashion Reel',
+    badge: '02 / Brand Collab',
+    url: 'https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==',
+  },
+  {
+    isNative: true,
     id: 'DfCi048T8Jz',
+    videoSrc: '/viyana-production-final-video.mp4',
+    poster: '/images/product-shoot/10-antique-gold-bangles-sculptural.jpg',
+    title: 'Style Motion & Aesthetics Cut',
+    tag: 'Viral Reel',
+    badge: '03 / Viral Style',
     url: 'https://www.instagram.com/reel/DfCi048T8Jz/?dlrf=NHFnNzgxanY5dGpp',
   },
   {
-    isNative: false,
+    isNative: true,
     id: 'De9Vwv6CBSj',
+    videoSrc: '/videos/product-jewellery-oole-commercial.mp4',
+    poster: '/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg',
+    title: 'Luxury Editorial Collab Reel',
+    tag: 'Editorial Reel',
+    badge: '04 / Editorial Cut',
     url: 'https://www.instagram.com/reel/De9Vwv6CBSj/?dlrf=MW1zNThlbXlhcnN4Zw==',
   },
   {
-    isNative: false,
+    isNative: true,
     id: 'DeuCeLIzMWk',
+    videoSrc: '/videos/product-jewellery-behind-the-scenes.mp4',
+    poster: '/images/product-shoot/03-dewexa-cloud-cream.jpg',
+    title: 'Behind The Scenes Creator Shoot',
+    tag: 'BTS Reel',
+    badge: '05 / Creator BTS',
     url: 'https://www.instagram.com/reel/DeuCeLIzMWk/?psln=MXZucjJlc2pwMHQ3ZQ==',
   },
 ]
 
+function InfluencerReelItem({ reel }: { reel: InfluencerNativeReel }) {
+  const [isMuted, setIsMuted] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  useVideoInView(videoRef, isPlaying)
+
+  const togglePlay = () => {
+    if (!videoRef.current) return
+    if (videoRef.current.paused) {
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {})
+    } else {
+      videoRef.current.pause()
+      setIsPlaying(false)
+    }
+  }
+
+  const toggleMute = () => {
+    if (!videoRef.current) return
+    videoRef.current.muted = !isMuted
+    setIsMuted(!isMuted)
+  }
+
+  return (
+    <div className="influencer-reel-card influencer-native-reel-card" key={reel.id}>
+      <div
+        className="influencer-video-crop-wrap influencer-native-crop-wrap"
+        onClick={togglePlay}
+        role="button"
+        tabIndex={0}
+      >
+        <video
+          aria-label={reel.title}
+          autoPlay
+          className="influencer-native-video"
+          loop
+          muted={isMuted}
+          onPause={() => setIsPlaying(false)}
+          onPlay={() => setIsPlaying(true)}
+          playsInline
+          poster={reel.poster || '/reel-01-poster.jpg'}
+          preload="metadata"
+          ref={videoRef}
+          src={reel.videoSrc}
+        />
+        <div className="influencer-native-tag">
+          <span className="live-dot" />
+          <span>{reel.tag} · {reel.badge}</span>
+        </div>
+
+        {/* Centered Play Button when Paused */}
+        {!isPlaying && (
+          <div className="influencer-center-play-overlay">
+            <div className="influencer-center-play-circle">
+              <Play fill="#ffffff" size={26} />
+            </div>
+            <span className="influencer-center-play-text">Tap to Play Reel</span>
+          </div>
+        )}
+
+        {/* Native Video Controls */}
+        <div className="influencer-video-actions" onClick={(e) => e.stopPropagation()}>
+          <button
+            aria-label={isMuted ? 'Unmute reel' : 'Mute reel'}
+            className="influencer-video-pill"
+            onClick={toggleMute}
+            type="button"
+          >
+            {isMuted ? <VolumeX size={12} /> : <Volume2 size={12} />}
+            <span>{isMuted ? 'Unmute' : 'Mute'}</span>
+          </button>
+          <button
+            aria-label={isPlaying ? 'Pause reel' : 'Play reel'}
+            className="influencer-video-pill"
+            onClick={togglePlay}
+            type="button"
+          >
+            {isPlaying ? <Pause size={12} /> : <Play size={12} />}
+            <span>{isPlaying ? 'Pause' : 'Play'}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Direct 4K Watch / Visit on Instagram button */}
+      <a
+        className="influencer-visit-insta-link influencer-native-link"
+        href={reel.url || 'https://www.instagram.com/viyana.productions/reels/'}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Instagram size={14} />
+        <span>Visit on Instagram</span>
+        <ArrowUpRight size={13} />
+      </a>
+    </div>
+  )
+}
+
 function InfluencerShoot({ onSelectService: _onSelectService }: { onSelectService?: (service: string) => void }) {
   const influencerSliderRef = useRef<HTMLDivElement>(null)
-  const [nativeMuted, setNativeMuted] = useState(true)
-  const [nativePlaying, setNativePlaying] = useState(false)
-  const nativeVideoRef = useRef<HTMLVideoElement>(null)
-  useVideoInView(nativeVideoRef, nativePlaying)
-
-  const toggleNativePlay = () => {
-    if (!nativeVideoRef.current) return
-    if (nativeVideoRef.current.paused) {
-      nativeVideoRef.current.play().then(() => setNativePlaying(true)).catch(() => {})
-    } else {
-      nativeVideoRef.current.pause()
-      setNativePlaying(false)
-    }
-  }
-
-  const toggleNativeMute = () => {
-    if (!nativeVideoRef.current) return
-    nativeVideoRef.current.muted = !nativeMuted
-    setNativeMuted(!nativeMuted)
-  }
-
-  // Ensure video reliably plays on mount and when scrolled into view
-  useEffect(() => {
-    const video = nativeVideoRef.current
-    if (!video) return
-
-    video.defaultMuted = true
-    video.muted = true
-    video.playsInline = true
-
-    const tryAutoPlay = () => {
-      video.play().then(() => setNativePlaying(true)).catch(() => {
-        // Autoplay policy prevented playback until user interaction
-        setNativePlaying(false)
-      })
-    }
-
-    tryAutoPlay()
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && video.paused) {
-            tryAutoPlay()
-          }
-        })
-      },
-      { threshold: 0.25 }
-    )
-
-    observer.observe(video)
-    return () => observer.disconnect()
-  }, [])
 
   const scrollInfluencerSlider = (direction: 'prev' | 'next') => {
     if (!influencerSliderRef.current) return
@@ -2137,106 +2203,7 @@ function InfluencerShoot({ onSelectService: _onSelectService }: { onSelectServic
 
         <div className="influencer-reels-track" ref={influencerSliderRef}>
           {influencerReels.map((reel) => (
-            reel.isNative ? (
-              <div className="influencer-reel-card influencer-native-reel-card" key={reel.id}>
-                <div
-                  className="influencer-video-crop-wrap influencer-native-crop-wrap"
-                  onClick={toggleNativePlay}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <video
-                    aria-label={reel.title}
-                    autoPlay
-                    className="influencer-native-video"
-                    loop
-                    muted={nativeMuted}
-                    onPause={() => setNativePlaying(false)}
-                    onPlay={() => setNativePlaying(true)}
-                    onVolumeChange={(e) => setNativeMuted(e.currentTarget.muted)}
-                    playsInline
-                    poster={reel.poster || '/reel-01-poster.jpg'}
-                    preload="metadata"
-                    ref={nativeVideoRef}
-                    src={reel.videoSrc}
-                  />
-                  <div className="influencer-native-tag">
-                    <span className="live-dot" />
-                    <span>{reel.tag} · {reel.badge}</span>
-                  </div>
-
-                  {/* Centered Play Button when Paused */}
-                  {!nativePlaying && (
-                    <div className="influencer-center-play-overlay">
-                      <div className="influencer-center-play-circle">
-                        <Play fill="#ffffff" size={26} />
-                      </div>
-                      <span className="influencer-center-play-text">Tap to Play Reel</span>
-                    </div>
-                  )}
-
-                  {/* Native Video Controls */}
-                  <div className="influencer-video-actions" onClick={(e) => e.stopPropagation()}>
-                    <button
-                      aria-label={nativeMuted ? 'Unmute reel' : 'Mute reel'}
-                      className="influencer-video-pill"
-                      onClick={toggleNativeMute}
-                      type="button"
-                    >
-                      {nativeMuted ? <VolumeX size={12} /> : <Volume2 size={12} />}
-                      <span>{nativeMuted ? 'Unmute' : 'Mute'}</span>
-                    </button>
-                    <button
-                      aria-label={nativePlaying ? 'Pause reel' : 'Play reel'}
-                      className="influencer-video-pill"
-                      onClick={toggleNativePlay}
-                      type="button"
-                    >
-                      {nativePlaying ? <Pause size={12} /> : <Play size={12} />}
-                      <span>{nativePlaying ? 'Pause' : 'Play'}</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Direct 4K Watch / Play Action Button matching Instagram button */}
-                <button
-                  className="influencer-visit-insta-link influencer-native-link"
-                  onClick={toggleNativePlay}
-                  type="button"
-                >
-                  {nativePlaying ? <Pause size={14} /> : <Play size={14} />}
-                  <span>{nativePlaying ? 'Pause Reel' : 'Play Full Reel · 4K'}</span>
-                  <ArrowUpRight size={13} />
-                </button>
-              </div>
-            ) : (
-              <div className="influencer-reel-card" key={reel.id}>
-                {/* Cropped Video Container - Only Pure Video, Hides Bottom Comments & Likes */}
-                <div className="influencer-video-crop-wrap">
-                  <iframe
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                    className="instagram-pure-reel-iframe"
-                    frameBorder="0"
-                    loading="lazy"
-                    scrolling="no"
-                    src={`https://www.instagram.com/reel/${reel.id}/embed/`}
-                    title={`Instagram Reel ${reel.id}`}
-                  />
-                </div>
-
-                {/* Minimal Clean Visit on Instagram Button */}
-                <a
-                  className="influencer-visit-insta-link"
-                  href={reel.url}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <Instagram size={14} />
-                  <span>Visit on Instagram</span>
-                  <ArrowUpRight size={13} />
-                </a>
-              </div>
-            )
+            <InfluencerReelItem key={reel.id} reel={reel} />
           ))}
         </div>
       </div>

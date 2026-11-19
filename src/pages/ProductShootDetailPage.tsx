@@ -274,21 +274,42 @@ const productStills: ProductStillItem[] = [
 const instagramReels = [
   {
     id: "reel-01",
-    title: "Behind The Scenes — Jewellery Production Breakdown",
+    title: "Behind The Scenes — Luxury Jewellery Production Breakdown",
     url: "https://www.instagram.com/reel/DdlycB7Dn08/",
     tag: "BTS Breakdown",
+    videoSrc: "/videos/product-jewellery-behind-the-scenes.mp4",
+    poster: "/images/product-shoot/10-antique-gold-bangles-sculptural.jpg",
+    likes: "14.8K",
+    comments: "192",
+    handle: "viyana.productions",
+    audio: "Original Audio • Viyana Soundstage",
+    caption: "Behind the scenes: Custom shadow play, paper-tear styling & macro lighting for luxury Bangalore jewellery.",
   },
   {
     id: "reel-02",
-    title: "Oole Fine Jewellery Commercial Reel",
+    title: "Oole Style Everyday — Fine Jewellery Commercial Reel",
     url: "https://www.instagram.com/reel/DdZHtpjB3kZ/",
     tag: "Jewellery Reel",
+    videoSrc: "/videos/product-jewellery-oole-commercial.mp4",
+    poster: "/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg",
+    likes: "32.4K",
+    comments: "428",
+    handle: "viyana.productions",
+    audio: "Oole Style • Commercial Campaign Cut",
+    caption: "Organic nest framing, glistening gold macro textures, and high-retention movement crafted for conversion.",
   },
   {
     id: "reel-03",
     title: "Dermera Luxury Skincare Product Reel",
     url: "https://www.instagram.com/reel/DfFIBz-ESJx/?exln=OGJ1bGl6bGhxeWxl",
     tag: "Skincare Reel",
+    videoSrc: "/videos/product-final-output.mp4",
+    poster: "/images/product-shoot/03-dewexa-cloud-cream.jpg",
+    likes: "21.6K",
+    comments: "284",
+    handle: "viyana.productions",
+    audio: "Viyana Productions • Studio Master",
+    caption: "High-contrast fluid dynamics and packaging highlights engineered to convert social viewers into buyers.",
   },
 ];
 
@@ -309,8 +330,11 @@ export default function ProductShootDetailPage({
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [activeReelIdx, setActiveReelIdx] = useState(0);
+  const [isReelPlaying, setIsReelPlaying] = useState(true);
+  const [isReelMuted, setIsReelMuted] = useState(true);
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const reelVideoRef = useRef<HTMLVideoElement>(null);
   const activeVideo = productVideos[activeVideoIdx];
 
   const filteredStills =
@@ -329,6 +353,17 @@ export default function ProductShootDetailPage({
     }
   }, [activeVideoIdx]);
 
+  // Auto-play when activeReelIdx changes
+  useEffect(() => {
+    if (reelVideoRef.current) {
+      reelVideoRef.current.currentTime = 0;
+      reelVideoRef.current
+        .play()
+        .then(() => setIsReelPlaying(true))
+        .catch(() => setIsReelPlaying(false));
+    }
+  }, [activeReelIdx]);
+
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (isPlaying) {
@@ -346,6 +381,25 @@ export default function ProductShootDetailPage({
     if (!videoRef.current) return;
     videoRef.current.muted = !isMuted;
     setIsMuted(!isMuted);
+  };
+
+  const toggleReelPlay = () => {
+    if (!reelVideoRef.current) return;
+    if (isReelPlaying) {
+      reelVideoRef.current.pause();
+      setIsReelPlaying(false);
+    } else {
+      reelVideoRef.current
+        .play()
+        .then(() => setIsReelPlaying(true))
+        .catch(() => {});
+    }
+  };
+
+  const toggleReelMute = () => {
+    if (!reelVideoRef.current) return;
+    reelVideoRef.current.muted = !isReelMuted;
+    setIsReelMuted(!isReelMuted);
   };
 
   const handlePrevVideo = () => {
@@ -945,21 +999,154 @@ export default function ProductShootDetailPage({
               </div>
             </div>
 
-            {/* Right: Embedded Instagram Player */}
+            {/* Right: Instagram Reel Native Video Player with Authentic Reel UI */}
             <div className="lg:col-span-6 flex justify-center">
-              <div className="w-full max-w-[360px] sm:max-w-[400px] rounded-3xl overflow-hidden border border-white/20 bg-black shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(253,29,29,0.15)] p-2.5 relative group">
-                <div className="w-full h-[560px] sm:h-[600px] rounded-2xl overflow-hidden bg-black flex items-center justify-center">
-                  <iframe
-                    key={activeReelIdx}
-                    src={`https://www.instagram.com/reel/${
-                      instagramReels[activeReelIdx].url.split("/reel/")[1]?.replace(/\/.*$/, "") || ""
-                    }/embed/`}
-                    title={`${instagramReels[activeReelIdx].title} Instagram Reel`}
-                    className="w-full h-full border-0"
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                    allowFullScreen
-                    scrolling="no"
+              <div className="w-full max-w-[360px] sm:max-w-[390px] rounded-[32px] overflow-hidden border border-white/20 bg-[#0a0a0c] shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(253,29,29,0.18)] p-2.5 relative group">
+                <div
+                  onClick={toggleReelPlay}
+                  className="relative w-full h-[560px] sm:h-[600px] rounded-[24px] overflow-hidden bg-black flex items-center justify-center cursor-pointer select-none"
+                >
+                  {/* Actual High-Res Video */}
+                  <video
+                    ref={reelVideoRef}
+                    key={instagramReels[activeReelIdx].videoSrc}
+                    src={instagramReels[activeReelIdx].videoSrc}
+                    poster={instagramReels[activeReelIdx].poster}
+                    autoPlay
+                    loop
+                    muted={isReelMuted}
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover"
                   />
+
+                  {/* Gradient Vignette Overlays for UI legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85 pointer-events-none" />
+
+                  {/* Top Bar: Profile & Follow Badge */}
+                  <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 rounded-full p-[2px] bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] shadow-md">
+                        <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden border border-black">
+                          <span className="font-display font-black text-[11px] text-white tracking-tighter">VP</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs font-semibold text-white tracking-tight">viyana.productions</span>
+                          <span className="w-3.5 h-3.5 rounded-full bg-[#0095f6] flex items-center justify-center text-[8px] text-white font-bold">✓</span>
+                        </div>
+                        <span className="text-[10px] text-white/70 font-mono block">Instagram Reel</span>
+                      </div>
+                    </div>
+
+                    <a
+                      href={instagramReels[activeReelIdx].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="px-3 py-1 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md text-[11px] font-semibold transition-all border border-white/25"
+                    >
+                      Follow
+                    </a>
+                  </div>
+
+                  {/* Center Play / Pause Indicator */}
+                  <div
+                    className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-200 ${
+                      !isReelPlaying ? "opacity-100 bg-black/40" : "opacity-0 group-hover:opacity-100"
+                    }`}
+                  >
+                    <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl">
+                      {!isReelPlaying ? (
+                        <Play className="w-7 h-7 fill-current ml-1 text-white" />
+                      ) : (
+                        <Pause className="w-7 h-7 fill-current text-white" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Right Vertical Action Stack */}
+                  <div className="absolute right-3 bottom-20 z-20 flex flex-col items-center gap-4 text-white">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      className="flex flex-col items-center gap-1 group/btn cursor-pointer"
+                    >
+                      <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover/btn:scale-110 transition-transform">
+                        <svg className="w-5 h-5 text-pink-500 fill-current" viewBox="0 0 24 24">
+                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                      </div>
+                      <span className="text-[11px] font-mono font-medium drop-shadow">
+                        {instagramReels[activeReelIdx].likes}
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(instagramReels[activeReelIdx].url, "_blank");
+                      }}
+                      className="flex flex-col items-center gap-1 group/btn cursor-pointer"
+                    >
+                      <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover/btn:scale-110 transition-transform">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                      </div>
+                      <span className="text-[11px] font-mono font-medium drop-shadow">
+                        {instagramReels[activeReelIdx].comments}
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleReelMute();
+                      }}
+                      className="flex flex-col items-center gap-1 group/btn cursor-pointer"
+                    >
+                      <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover/btn:scale-110 transition-transform">
+                        {isReelMuted ? <VolumeX className="w-5 h-5 text-white" /> : <Volume2 className="w-5 h-5 text-white" />}
+                      </div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider drop-shadow">
+                        {isReelMuted ? "Muted" : "Sound"}
+                      </span>
+                    </button>
+                  </div>
+
+                  {/* Bottom Caption & Audio Track */}
+                  <div className="absolute left-4 right-16 bottom-4 z-20 text-white space-y-2 pointer-events-none text-left">
+                    <p className="text-xs text-white/95 line-clamp-2 leading-relaxed drop-shadow font-normal">
+                      {instagramReels[activeReelIdx].caption}
+                    </p>
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] font-mono text-white/90">
+                      <span>🎵</span>
+                      <span className="truncate max-w-[170px]">{instagramReels[activeReelIdx].audio}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Direct External Link Pill Bar Below */}
+                <div className="p-2 pt-3 flex items-center justify-between text-xs font-mono text-white/70">
+                  <div className="flex items-center gap-1.5 text-pink-400">
+                    <span className="w-2 h-2 rounded-full bg-pink-500 animate-ping" />
+                    <span>4K REEL PLAYING</span>
+                  </div>
+                  <a
+                    href={instagramReels[activeReelIdx].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-pink-300 transition-colors flex items-center gap-1 underline underline-offset-4"
+                  >
+                    <span>View on app</span>
+                    <span>↗</span>
+                  </a>
                 </div>
               </div>
             </div>
