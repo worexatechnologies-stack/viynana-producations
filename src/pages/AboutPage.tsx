@@ -215,7 +215,7 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="about-cinematic min-h-screen bg-[#fbfaf8] text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans relative overflow-x-hidden">
+    <main className="about-cinematic min-h-screen bg-[#fbfaf8] text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans relative overflow-x-hidden pb-24 md:pb-0">
       <SEO
         title="About Viyana Productions | Our Story and Creative Vision"
         description="Learn about Viyana Productions, our creative vision, and our approach to filmmaking, commercial advertising, cinematic storytelling, and professional video production."

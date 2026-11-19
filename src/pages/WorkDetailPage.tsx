@@ -777,7 +777,7 @@ export function UniversalWorkCinemaPage({
   }, [lightboxIndex, stills.length]);
 
   return (
-    <main className="bg-[#fbfaf8] text-[#20201e] min-h-screen selection:bg-[#111827] selection:text-white overflow-x-hidden font-portfolio-sans">
+    <main className="bg-[#fbfaf8] text-[#20201e] min-h-screen selection:bg-[#111827] selection:text-white overflow-x-hidden font-portfolio-sans pb-24 md:pb-0">
       <SEO
         title={project.seo?.metaTitle || `${project.title} | Viyana Productions`}
         description={project.seo?.metaDescription || project.description}

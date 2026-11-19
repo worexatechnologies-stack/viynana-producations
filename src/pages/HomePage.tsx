@@ -660,7 +660,7 @@ export default function HomePage() {
   return (
     <main
       ref={containerRef}
-      className="home-cinematic relative w-full bg-[#fbfaf8] text-[#20201e] min-h-screen overflow-x-hidden selection:bg-[#111827] selection:text-white font-portfolio-sans"
+      className="home-cinematic relative w-full bg-[#fbfaf8] text-[#20201e] min-h-screen overflow-x-hidden selection:bg-[#111827] selection:text-white font-portfolio-sans pb-24 md:pb-0"
     >
       <SEO
         title="Video Production Company in Bangalore | Viyana Productions"

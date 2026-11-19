@@ -436,7 +436,7 @@ export default function ShowreelPage() {
   }, [isHeroMuted]);
 
   return (
-    <main className="min-h-screen bg-[#fbfaf8] text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans select-none">
+    <main className="min-h-screen bg-[#fbfaf8] text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans select-none pb-24 md:pb-0">
       <SEO
         title="Video Production Company in Bangalore | Viyana Productions"
         description="Looking for a video production company in Bangalore? Viyana Productions creates high-quality films, commercial ads, and engaging visual content for brands."
