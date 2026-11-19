@@ -715,18 +715,18 @@ export default function HomePage() {
         <div className="relative z-10 w-full h-2 pointer-events-none" />
 
         {/* Central Brand Showcase: Directly ON THE VIDEO (Clean Logo, Tagline & Action Buttons) */}
-        <div className="relative z-20 flex flex-col items-center justify-center text-center my-auto px-5 py-7 sm:px-10 sm:py-9 max-w-4xl mx-auto rounded-3xl border border-white/20 bg-black/40 backdrop-blur-md shadow-[0_24px_80px_rgba(0,0,0,0.6)]">
+        <div className="relative z-20 flex flex-col items-center justify-center text-center my-auto px-5 py-7 sm:px-10 sm:py-9 max-w-4xl mx-auto rounded-3xl border border-white/20 bg-black/40 backdrop-blur-md ">
           {/* Clean White Official Logo */}
           <div className="mb-2.5 sm:mb-3.5">
             <img
               src="/logo-white.png"
               alt="Viyana Productions"
-              className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)] filter brightness-110"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain filter brightness-110"
             />
           </div>
 
           {/* Cinema Tagline */}
-          <p className="text-[11px] sm:text-xs md:text-sm font-portfolio-sans uppercase tracking-[0.22em] text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-sm sm:max-w-none">
+          <p className="text-[11px] sm:text-xs md:text-sm font-portfolio-sans uppercase tracking-[0.22em] text-white/90 max-w-sm sm:max-w-none">
             CINEMATIC VISUAL CONTENT &bull; PRODUCTION HOUSE &bull; BENGALURU
           </p>
 
@@ -735,7 +735,7 @@ export default function HomePage() {
             <button
               type="button"
               onClick={openSignatureShowreelModal}
-              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/30 hover:border-white/60 text-white font-portfolio-sans text-xs uppercase tracking-wider font-semibold shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/30 hover:border-white/60 text-white font-portfolio-sans text-xs uppercase tracking-wider font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
               <Play className="w-3.5 h-3.5 fill-current text-white" />
               <span>WATCH REELS</span>
@@ -744,7 +744,7 @@ export default function HomePage() {
               href="/portfolio/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-[#111827] hover:bg-[#ca8a04] hover:text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold shadow-[0_0_30px_rgba(255,255,255,0.35)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold transition-all hover:scale-105 active:scale-95 cursor-pointer"
               title="Open Viyana Portfolio"
             >
               <span>VIYANA PORTFOLIO</span>
@@ -756,8 +756,8 @@ export default function HomePage() {
         {/* Bottom Ambient Controls (Floating along the bottom of viewport) */}
         <div className="relative z-20 flex items-center justify-between w-full">
           {/* Production Reel Status Badge */}
-          <div className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-[10px] sm:text-xs font-portfolio-sans tracking-widest text-white uppercase shadow-lg">
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#ca8a04] animate-pulse" />
+          <div className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-[10px] sm:text-xs font-portfolio-sans tracking-widest text-white uppercase ">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
             <span>VIYANA PRODUCTIONS</span>
           </div>
 
@@ -769,9 +769,9 @@ export default function HomePage() {
               onClick={toggleHeroMute}
               aria-label={isHeroMuted ? "Unmute video sound" : "Mute video sound"}
               title={isHeroMuted ? "Unmute sound" : "Mute sound"}
-              className={`group/sound relative w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.8)] backdrop-blur-md active:scale-95 hover:scale-105 ${
+              className={`group/sound relative w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer backdrop-blur-md active:scale-95 hover:scale-105 ${
                 !isHeroMuted
-                  ? "bg-white text-black hover:bg-neutral-200 border border-white/40 shadow-[0_0_25px_rgba(255,255,255,0.15)]"
+                  ? "bg-white text-black hover:bg-neutral-200 border border-white/40 "
                   : "bg-black/60 hover:bg-black/80 text-white border border-white/20"
               }`}
             >
@@ -791,7 +791,7 @@ export default function HomePage() {
               onClick={toggleHeroPlay}
               aria-label={isPlaying ? "Pause ambient video" : "Play ambient video"}
               title={isPlaying ? "Pause ambient video" : "Play ambient video"}
-              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
             >
               {isPlaying ? (
                 <Pause className="w-4 h-4 text-white" />
@@ -806,14 +806,14 @@ export default function HomePage() {
       {/* 3. COMPANY IMPACT BAND & 4-COLUMN STATS GRID (VE-BAND) */}
       <section className="relative w-full py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-16 border-t border-[#e7e6e2] bg-[#fbfaf8] overflow-hidden">
         {/* Subtle Ambient Paper Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_top,rgba(202,138,4,0.06)_0%,transparent_75%)] pointer-events-none blur-2xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.06)_0%,transparent_75%)] pointer-events-none blur-2xl" />
 
         <div className="relative z-10 max-w-7xl mx-auto space-y-8 sm:space-y-12 lg:space-y-14">
           {/* Two-Column Section Head */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-end">
             <div className="lg:col-span-7 space-y-3">
-              <p className="inline-flex items-center gap-2 text-[#a68e67] text-[11.5px] font-semibold uppercase tracking-[0.14em] font-portfolio-sans">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ca8a04]" />
+              <p className="inline-flex items-center gap-2 text-[#0284c7] text-[11.5px] font-semibold uppercase tracking-[0.14em] font-portfolio-sans">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9]" />
                 Viyana Productions · Studio Master
               </p>
               <h2 className="font-portfolio-serif text-3xl sm:text-5xl lg:text-6xl text-[#20201e] leading-[1.12] tracking-tight">
@@ -825,7 +825,7 @@ export default function HomePage() {
               <p>
                 From the first idea to the final frame, Viyana Productions creates cinematic visual content that helps brands tell their story, showcase their products, and connect with their audience.
               </p>
-              <p className="text-[11px] sm:text-xs font-portfolio-sans uppercase tracking-wider text-[#a68e67] font-semibold">
+              <p className="text-[11px] sm:text-xs font-portfolio-sans uppercase tracking-wider text-[#0284c7] font-semibold">
                 Corporate Films • Product Videos • Industrial Films • Brand Films • Commercials
               </p>
             </div>
@@ -841,7 +841,7 @@ export default function HomePage() {
             ].map((item) => (
               <div
                 key={item.stat}
-                className="group relative p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl bg-white border border-[#e7e6e2] shadow-[0_8px_24px_-10px_rgba(0,0,0,0.05)] hover:border-[#ca8a04] hover:shadow-[0_16px_36px_rgba(202,138,4,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[130px] sm:min-h-[155px] lg:min-h-[180px] overflow-hidden"
+                className="group relative p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl bg-white border border-[#e7e6e2] hover:border-[#0ea5e9] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[130px] sm:min-h-[155px] lg:min-h-[180px] overflow-hidden"
               >
                 <strong
                   className={`font-portfolio-serif font-semibold text-[#20201e] tracking-tight block leading-none ${
@@ -863,7 +863,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-1 sm:pt-2">
             <Link
               to="/work"
-              className="group w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-[#111827] text-white hover:bg-[#ca8a04] font-portfolio-sans text-xs uppercase tracking-wider font-bold shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+              className="group w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-[#111827] text-white hover:bg-[#0284c7] font-portfolio-sans text-xs uppercase tracking-wider font-bold active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <span>Our Work</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -871,10 +871,10 @@ export default function HomePage() {
 
             <Link
               to="/contact"
-              className="group w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-white text-[#20201e] border border-[#dedbd4] hover:bg-[#f7f6f3] font-portfolio-sans text-xs uppercase tracking-wider font-medium active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-sm"
+              className="group w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-white text-[#20201e] border border-[#dedbd4] hover:bg-[#f7f6f3] font-portfolio-sans text-xs uppercase tracking-wider font-medium active:scale-95 transition-all flex items-center justify-center gap-2.5 "
             >
               <span>Start a Project</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-[#ca8a04]" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-[#0284c7]" />
             </Link>
           </div>
         </div>
@@ -890,7 +890,7 @@ export default function HomePage() {
           <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-2 max-w-2xl">
               <div className="flex items-center gap-3">
-                <span className="text-xs font-portfolio-sans text-[#ca8a04] tracking-widest font-bold px-3 py-1 rounded-full bg-[#ca8a04]/10 border border-[#ca8a04]/20 uppercase">
+                <span className="text-xs font-portfolio-sans text-[#0284c7] tracking-widest font-bold px-3 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 uppercase">
                   [ 02 / Selected Work ]
                 </span>
                 <span className="hidden sm:inline-block text-xs font-portfolio-sans text-[#777671] uppercase tracking-widest font-semibold">
@@ -907,7 +907,7 @@ export default function HomePage() {
 
             <div className="flex items-center gap-3 sm:gap-4 shrink-0 flex-wrap">
               {/* View Mode Toggle: Diagonal vs Grid */}
-              <div className="flex items-center p-1 rounded-full bg-[#f7f6f3] border border-[#e7e6e2] shadow-sm">
+              <div className="flex items-center p-1 rounded-full bg-[#f7f6f3] border border-[#e7e6e2] ">
                 <button
                   type="button"
                   onClick={() => setViewMode("carousel")}
@@ -915,7 +915,7 @@ export default function HomePage() {
                   title="Horizontal Stream View"
                   className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-portfolio-sans font-bold transition-all cursor-pointer ${
                     viewMode === "carousel"
-                      ? "bg-[#111827] text-white shadow-sm"
+                      ? "bg-[#111827] text-white "
                       : "text-[#777671] hover:text-[#20201e]"
                   }`}
                 >
@@ -929,7 +929,7 @@ export default function HomePage() {
                   title="Grid View"
                   className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-portfolio-sans font-bold transition-all cursor-pointer ${
                     viewMode === "grid"
-                      ? "bg-[#111827] text-white shadow-sm"
+                      ? "bg-[#111827] text-white "
                       : "text-[#777671] hover:text-[#20201e]"
                   }`}
                 >
@@ -940,7 +940,7 @@ export default function HomePage() {
 
               <Link
                 to="/work"
-                className="px-5 py-2.5 border border-[#dedbd4] hover:border-[#111827] bg-white rounded-full text-xs font-portfolio-sans tracking-wider uppercase text-[#20201e] hover:bg-[#111827] hover:text-white transition-all flex items-center gap-2 group shadow-sm font-bold"
+                className="px-5 py-2.5 border border-[#dedbd4] hover:border-[#111827] bg-white rounded-full text-xs font-portfolio-sans tracking-wider uppercase text-[#20201e] hover:bg-[#111827] hover:text-white transition-all flex items-center gap-2 group font-bold"
               >
                 <span>VIEW ALL ({String(projects.length).padStart(2, "0")})</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -960,7 +960,7 @@ export default function HomePage() {
                     onClick={() => handleFilterChange(tab.id)}
                     className={`px-4 py-2 rounded-full text-xs font-portfolio-sans tracking-wider uppercase transition-all duration-300 cursor-pointer ${
                       isActive
-                        ? "bg-[#111827] text-white font-bold shadow-md scale-102"
+                        ? "bg-[#111827] text-white font-bold scale-102"
                         : "bg-white border border-[#dedbd4] text-[#686762] hover:border-[#111827] hover:text-[#20201e] font-medium"
                     }`}
                   >
@@ -990,7 +990,7 @@ export default function HomePage() {
                           to={`/work/${project.slug}`}
                           key={`r1-${project.slug}-${idx}`}
                           draggable={false}
-                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white shadow-[0_12px_36px_rgba(0,0,0,0.06)] hover:border-[#ca8a04] hover:shadow-[0_20px_45px_rgba(202,138,4,0.12)] transition-all duration-500 select-none mx-2 sm:mx-3"
+                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500 select-none mx-2 sm:mx-3"
                           aria-label={`View ${project.title} - ${project.category}`}
                         >
                           <img
@@ -1006,16 +1006,16 @@ export default function HomePage() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />
 
                           <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
-                            <span className="px-3 py-1 bg-black/60 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
+                            <span className="px-3 py-1 bg-black/60 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 truncate max-w-[80%]">
                               {project.category}
                             </span>
-                            <span className="text-[10px] sm:text-xs font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
+                            <span className="text-[10px] sm:text-xs font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shrink-0">
                               {project.year}
                             </span>
                           </div>
 
                           <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-[#111827] hover:bg-[#ca8a04] hover:text-white flex items-center justify-center shadow-[0_0_35px_rgba(0,0,0,0.25)] scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
                               <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
                             </div>
                           </div>
@@ -1026,7 +1026,7 @@ export default function HomePage() {
                               <span>•</span>
                               <span className="truncate">{project.client}</span>
                             </div>
-                            <h3 className="text-lg sm:text-2xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 drop-shadow-md">
+                            <h3 className="text-lg sm:text-2xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 ">
                               {project.title}
                             </h3>
                             <div className="flex items-center justify-between text-[10.5px] sm:text-xs font-portfolio-sans text-white/85 pt-1.5 sm:pt-2 border-t border-white/20">
@@ -1055,7 +1055,7 @@ export default function HomePage() {
                           to={`/work/${project.slug}`}
                           key={`r2-${project.slug}-${idx}`}
                           draggable={false}
-                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white shadow-[0_12px_36px_rgba(0,0,0,0.06)] hover:border-[#ca8a04] hover:shadow-[0_20px_45px_rgba(202,138,4,0.12)] transition-all duration-500 select-none mx-2 sm:mx-3"
+                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500 select-none mx-2 sm:mx-3"
                           aria-label={`View ${project.title} - ${project.category}`}
                         >
                           <img
@@ -1071,16 +1071,16 @@ export default function HomePage() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />
 
                           <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
-                            <span className="px-3 py-1 bg-black/60 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
+                            <span className="px-3 py-1 bg-black/60 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 truncate max-w-[80%]">
                               {project.category}
                             </span>
-                            <span className="text-[10px] sm:text-xs font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
+                            <span className="text-[10px] sm:text-xs font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shrink-0">
                               {project.year}
                             </span>
                           </div>
 
                           <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-[#111827] hover:bg-[#ca8a04] hover:text-white flex items-center justify-center shadow-[0_0_35px_rgba(0,0,0,0.25)] scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
                               <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
                             </div>
                           </div>
@@ -1091,7 +1091,7 @@ export default function HomePage() {
                               <span>•</span>
                               <span className="truncate">{project.client}</span>
                             </div>
-                            <h3 className="text-lg sm:text-2xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 drop-shadow-md">
+                            <h3 className="text-lg sm:text-2xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 ">
                               {project.title}
                             </h3>
                             <div className="flex items-center justify-between text-[10.5px] sm:text-xs font-portfolio-sans text-white/85 pt-1.5 sm:pt-2 border-t border-white/20">
@@ -1114,8 +1114,8 @@ export default function HomePage() {
               {/* Status and instruction cue bar */}
               <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-wrap items-center justify-between gap-3 text-[11px] sm:text-xs font-portfolio-sans text-[#686762] z-20 pt-4 sm:pt-6">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#e7e6e2] text-[#20201e] font-semibold shadow-xs">
-                    <span className="w-2 h-2 rounded-full bg-[#ca8a04] animate-pulse" />
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#e7e6e2] text-[#20201e] font-semibold ">
+                    <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
                     <span>DUAL DIAGONAL CONTINUOUS FLOW</span>
                   </span>
                   <span className="hidden md:inline text-[#dedbd4]">•</span>
@@ -1130,7 +1130,7 @@ export default function HomePage() {
                   <span>•</span>
                   <Link
                     to="/work"
-                    className="text-[#111827] hover:text-[#ca8a04] transition-colors font-bold flex items-center gap-1"
+                    className="text-[#111827] hover:text-[#0284c7] transition-colors font-bold flex items-center gap-1"
                   >
                     <span>FULL ARCHIVE ({projects.length})</span>
                     <ArrowRight className="w-3 h-3" />
@@ -1149,7 +1149,7 @@ export default function HomePage() {
                   <Link
                     to={`/work/${project.slug}`}
                     key={project.slug}
-                    className="group relative flex flex-col aspect-[16/11] rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white shadow-[0_12px_36px_rgba(0,0,0,0.06)] hover:border-[#ca8a04] hover:shadow-[0_20px_45px_rgba(202,138,4,0.12)] transition-all duration-500"
+                    className="group relative flex flex-col aspect-[16/11] rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500"
                     aria-label={`View ${project.title} service`}
                   >
                     <img
@@ -1164,16 +1164,16 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />
 
                     <div className="relative z-10 p-4 sm:p-5 flex items-center justify-between gap-3">
-                      <span className="px-3.5 py-1.5 bg-black/60 backdrop-blur-xl text-[10px] sm:text-[11px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[75%]">
+                      <span className="px-3.5 py-1.5 bg-black/60 backdrop-blur-xl text-[10px] sm:text-[11px] font-portfolio-sans font-bold tracking-wider uppercase text-white rounded-full border border-white/20 truncate max-w-[75%]">
                         {project.category}
                       </span>
-                      <span className="text-[11px] sm:text-xs font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-3 py-1.5 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
+                      <span className="text-[11px] sm:text-xs font-portfolio-sans font-bold tracking-widest text-white/90 bg-black/60 px-3 py-1.5 rounded-xl border border-white/20 backdrop-blur-xl shrink-0">
                         {displayNumber}
                       </span>
                     </div>
 
                     <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                      <div className="w-14 h-14 rounded-full bg-white text-[#111827] hover:bg-[#ca8a04] hover:text-white flex items-center justify-center shadow-[0_0_35px_rgba(0,0,0,0.25)] scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                      <div className="w-14 h-14 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
                         <Play className="w-5 h-5 fill-current ml-0.5" />
                       </div>
                     </div>
@@ -1186,7 +1186,7 @@ export default function HomePage() {
                         <span>•</span>
                         <span className="truncate">{project.client}</span>
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 drop-shadow-md">
+                      <h3 className="text-xl sm:text-2xl font-portfolio-serif font-bold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 ">
                         {project.title}
                       </h3>
                       <div className="flex items-center justify-between text-xs font-portfolio-sans text-white/85 pt-2 border-t border-white/20">
@@ -1203,18 +1203,18 @@ export default function HomePage() {
                 );
               })}
 
-              <div className="aspect-[16/11] flex items-center justify-center p-6 border border-[#e7e6e2] rounded-3xl bg-white hover:border-[#ca8a04] hover:shadow-[0_20px_45px_rgba(202,138,4,0.12)] transition-all duration-300 shadow-[0_12px_36px_rgba(0,0,0,0.06)]">
+              <div className="aspect-[16/11] flex items-center justify-center p-6 border border-[#e7e6e2] rounded-3xl bg-white hover:border-[#0ea5e9] transition-all duration-300 ">
                 <Link
                   to="/work"
                   className="text-center group flex flex-col items-center justify-center gap-3.5 w-full h-full"
                 >
-                  <div className="w-14 h-14 rounded-full bg-[#111827] text-white hover:bg-[#ca8a04] flex items-center justify-center transition-all duration-300 shadow-md group-hover:scale-110">
+                  <div className="w-14 h-14 rounded-full bg-[#111827] text-white hover:bg-[#0284c7] flex items-center justify-center transition-all duration-300 group-hover:scale-110">
                     <ArrowRight className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
                   </div>
-                  <span className="text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#ca8a04] font-bold">
+                  <span className="text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] font-bold">
                     FULL ARCHIVE
                   </span>
-                  <span className="text-xl sm:text-2xl font-portfolio-serif font-bold tracking-tight text-[#20201e] group-hover:text-[#ca8a04] transition-colors leading-tight">
+                  <span className="text-xl sm:text-2xl font-portfolio-serif font-bold tracking-tight text-[#20201e] group-hover:text-[#0284c7] transition-colors leading-tight">
                     EXPLORE ALL 13 PRODUCTIONS
                   </span>
                 </Link>
@@ -1233,8 +1233,8 @@ export default function HomePage() {
             
             {/* Left Column: Content */}
             <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-              <p className="inline-flex items-center gap-2 text-[#a68e67] text-[11.5px] font-semibold uppercase tracking-[0.14em] font-portfolio-sans">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ca8a04]" />
+              <p className="inline-flex items-center gap-2 text-[#0284c7] text-[11.5px] font-semibold uppercase tracking-[0.14em] font-portfolio-sans">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9]" />
                 Editorial &amp; Fashion · Studio Master
               </p>
               <h2 className="text-3xl sm:text-5xl md:text-6xl font-portfolio-serif font-normal text-[#20201e] tracking-tight leading-tight">
@@ -1255,14 +1255,14 @@ export default function HomePage() {
               <div className="pt-2 flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto">
                 <Link
                   to="/work/models-portfolio-shoots"
-                  className="group w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-[#111827] text-white hover:bg-[#ca8a04] font-portfolio-sans text-xs uppercase tracking-wider font-bold shadow-md hover:shadow-lg active:scale-95 transition-all inline-flex items-center justify-center gap-2.5 cursor-pointer"
+                  className="group w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-[#111827] text-white hover:bg-[#0284c7] font-portfolio-sans text-xs uppercase tracking-wider font-bold active:scale-95 transition-all inline-flex items-center justify-center gap-2.5 cursor-pointer"
                 >
                   <span>VIEW MODEL PORTFOLIOS</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   to="/contact"
-                  className="group w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider font-medium transition-all inline-flex items-center justify-center gap-2.5 active:scale-95 shadow-sm"
+                  className="group w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider font-medium transition-all inline-flex items-center justify-center gap-2.5 active:scale-95 "
                 >
                   <span>BOOK A PORTFOLIO SHOOT</span>
                 </Link>
@@ -1271,7 +1271,7 @@ export default function HomePage() {
 
             {/* Right Column: Model Image with Clean Luxury Border */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] rounded-3xl p-1.5 bg-white border border-[#e7e6e2] shadow-[0_20px_50px_rgba(0,0,0,0.06)] group">
+              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] rounded-3xl p-1.5 bg-white border border-[#e7e6e2] group">
                 <div className="w-full h-full rounded-[22px] overflow-hidden bg-[#f7f6f3] relative">
                   <img
                     src="/images/models-portfolio-saree.jpg"
@@ -1295,7 +1295,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 space-y-6">
           {/* Header without arrow buttons */}
           <div className="max-w-3xl space-y-2">
-            <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#ca8a04] block font-bold px-3 py-1 rounded-full bg-[#ca8a04]/10 border border-[#ca8a04]/20 w-fit">
+            <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#0284c7] block font-bold px-3 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 w-fit">
               03 / CLIENT PERSPECTIVES
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
@@ -1313,11 +1313,11 @@ export default function HomePage() {
             {[...testimonials, ...testimonials].map((item, idx) => (
               <article
                 key={`${item.id}-${idx}`}
-                className="group shrink-0 w-[84vw] sm:w-[460px] md:w-[500px] mx-3 sm:mx-4 p-6 sm:p-8 rounded-3xl bg-white border border-[#e7e6e2] shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:border-[#ca8a04] hover:shadow-[0_16px_36px_rgba(202,138,4,0.1)] transition-all duration-300 flex flex-col justify-between select-none"
+                className="group shrink-0 w-[84vw] sm:w-[460px] md:w-[500px] mx-3 sm:mx-4 p-6 sm:p-8 rounded-3xl bg-white border border-[#e7e6e2] hover:border-[#0ea5e9] transition-all duration-300 flex flex-col justify-between select-none"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] sm:text-[11px] font-portfolio-sans uppercase tracking-wider text-[#a68e67] font-semibold px-2.5 py-1 rounded-full bg-[#fbf9f4] border border-[#e7e2d7]">
+                    <span className="text-[10px] sm:text-[11px] font-portfolio-sans uppercase tracking-wider text-[#0284c7] font-semibold px-2.5 py-1 rounded-full bg-[#fbf9f4] border border-[#e7e2d7]">
                       {item.label}
                     </span>
                     <button
@@ -1330,7 +1330,7 @@ export default function HomePage() {
                       }
                       type="button"
                       aria-label={`Play testimonial from ${item.client}`}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#f7f6f3] hover:bg-[#111827] text-[#20201e] hover:text-white border border-[#dedbd4] text-[10px] font-portfolio-sans uppercase tracking-wider transition-all active:scale-95 cursor-pointer shadow-sm font-semibold"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#f7f6f3] hover:bg-[#111827] text-[#20201e] hover:text-white border border-[#dedbd4] text-[10px] font-portfolio-sans uppercase tracking-wider transition-all active:scale-95 cursor-pointer font-semibold"
                     >
                       <Play className="w-2.5 h-2.5 fill-current" />
                       <span>Watch</span>
@@ -1346,7 +1346,7 @@ export default function HomePage() {
                   <cite className="text-xs sm:text-sm font-portfolio-sans uppercase tracking-wider text-[#20201e] font-semibold not-italic">
                     — {item.client}
                   </cite>
-                  <div className="flex items-center gap-0.5 text-[#ca8a04] text-xs tracking-widest select-none" aria-label="5 stars rating">
+                  <div className="flex items-center gap-0.5 text-[#0284c7] text-xs tracking-widest select-none" aria-label="5 stars rating">
                     ★★★★★
                   </div>
                 </div>
@@ -1370,7 +1370,7 @@ export default function HomePage() {
             {[...clientMarqueeCards, ...clientMarqueeCards, ...clientMarqueeCards, ...clientMarqueeCards].map((card, idx) => (
               <div
                 key={`${card.id}-${idx}`}
-                className="group shrink-0 w-[240px] sm:w-[270px] md:w-[290px] h-[115px] sm:h-[130px] rounded-[28px] mx-2.5 sm:mx-3 px-6 py-4 flex items-center justify-center transition-all duration-300 select-none cursor-pointer hover:scale-[1.04] bg-white border border-[#e7e6e2] shadow-[0_4px_16px_rgba(0,0,0,0.04)] hover:border-[#ca8a04] hover:shadow-[0_8px_24px_rgba(202,138,4,0.1)]"
+                className="group shrink-0 w-[240px] sm:w-[270px] md:w-[290px] h-[115px] sm:h-[130px] rounded-[28px] mx-2.5 sm:mx-3 px-6 py-4 flex items-center justify-center transition-all duration-300 select-none cursor-pointer hover:scale-[1.04] bg-white border border-[#e7e6e2] hover:border-[#0ea5e9] "
               >
                 <img
                   src={card.logo}
@@ -1390,7 +1390,7 @@ export default function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto space-y-8 sm:space-y-10">
           {/* Top Section Header */}
           <div className="max-w-3xl space-y-3">
-            <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#ca8a04] block font-bold px-3 py-1 rounded-full bg-[#ca8a04]/10 border border-[#ca8a04]/20 w-fit">
+            <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#0284c7] block font-bold px-3 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 w-fit">
               04 / WHAT WE CREATE
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.08]">
@@ -1402,9 +1402,9 @@ export default function HomePage() {
           </div>
 
           {/* ORBITAL HUB & SPOKE SHOWCASE (WHAT WE CREATE) */}
-          <div className="relative w-full max-w-6xl mx-auto py-8 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-12 rounded-[32px] sm:rounded-[44px] bg-[#ffffff] border border-[#e7e6e2] shadow-[0_20px_60px_rgba(0,0,0,0.04)] overflow-hidden">
+          <div className="relative w-full max-w-6xl mx-auto py-8 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-12 rounded-[32px] sm:rounded-[44px] bg-[#ffffff] border border-[#e7e6e2] overflow-hidden">
             {/* Ambient Multi-spectrum Subtle Gold Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-[radial-gradient(circle,rgba(202,138,4,0.08)_0%,rgba(202,138,4,0.02)_40%,transparent_70%)] blur-2xl pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-[radial-gradient(circle,rgba(14,165,233,0.08)_0%,rgba(14,165,233,0.02)_40%,transparent_70%)] blur-2xl pointer-events-none" />
 
             <div className="relative">
               {/* Concentric Animated Radar & Orbital Rings (Emerges from Center on Scroll) */}
@@ -1417,13 +1417,13 @@ export default function HomePage() {
               >
                 {/* Expanding Radar Wave Ring 1 */}
                 <motion.div
-                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#ca8a04]/20"
+                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#0ea5e9]/20"
                   animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.65, 0.25, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
                 />
                 {/* Expanding Radar Wave Ring 2 (delayed) */}
                 <motion.div
-                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#ca8a04]/15"
+                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#0ea5e9]/15"
                   animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.55, 0.2, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 2 }}
                 />
@@ -1436,7 +1436,7 @@ export default function HomePage() {
                 {/* Middle Delicate Orbital Ring */}
                 <div className="absolute w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border border-[#e7e6e2]" />
                 {/* Inner Glow Aura Ring */}
-                <div className="absolute w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border border-[#ca8a04]/25 shadow-[0_0_20px_rgba(202,138,4,0.12)]" />
+                <div className="absolute w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border border-[#0ea5e9]/25 " />
               </motion.div>
 
               {/* SVG Connecting Diagonal Beams with Flowing Light Particles (Desktop lg+) */}
@@ -1454,7 +1454,7 @@ export default function HomePage() {
                 {/* Line 1: Center to Top-Left (Corporate) - Draws outward from center */}
                 <motion.line
                   x1="480" y1="285" x2="380" y2="195"
-                  stroke="#ca8a04" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                  stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 0.65 }}
                   viewport={{ once: false, amount: 0.2 }}
@@ -1462,19 +1462,18 @@ export default function HomePage() {
                 />
                 <motion.circle
                   r="3.5"
-                  fill="#ca8a04"
-                  filter="url(#hubNodeGlow)"
+                  fill="#0ea5e9"
                   animate={{ cx: [480, 380, 480], cy: [285, 195, 285] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
                 />
-                <circle cx="380" cy="195" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
-                <circle cx="380" cy="195" r="8.5" fill="none" stroke="#ca8a04" strokeWidth="1.2" opacity="0.6" />
-                <circle cx="480" cy="285" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
+                <circle cx="380" cy="195" r="4.5" fill="#0ea5e9" />
+                <circle cx="380" cy="195" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                <circle cx="480" cy="285" r="4.5" fill="#0ea5e9" />
 
                 {/* Line 2: Center to Top-Right (Product) - Draws outward from center */}
                 <motion.line
                   x1="520" y1="285" x2="620" y2="195"
-                  stroke="#ca8a04" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                  stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 0.65 }}
                   viewport={{ once: false, amount: 0.2 }}
@@ -1482,19 +1481,18 @@ export default function HomePage() {
                 />
                 <motion.circle
                   r="3.5"
-                  fill="#ca8a04"
-                  filter="url(#hubNodeGlow)"
+                  fill="#0ea5e9"
                   animate={{ cx: [520, 620, 520], cy: [285, 195, 285] }}
                   transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 />
-                <circle cx="620" cy="195" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
-                <circle cx="620" cy="195" r="8.5" fill="none" stroke="#ca8a04" strokeWidth="1.2" opacity="0.6" />
-                <circle cx="520" cy="285" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
+                <circle cx="620" cy="195" r="4.5" fill="#0ea5e9" />
+                <circle cx="620" cy="195" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                <circle cx="520" cy="285" r="4.5" fill="#0ea5e9" />
 
                 {/* Line 3: Center to Bottom-Left (Brand Stories) - Draws outward from center */}
                 <motion.line
                   x1="480" y1="335" x2="380" y2="425"
-                  stroke="#ca8a04" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                  stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 0.65 }}
                   viewport={{ once: false, amount: 0.2 }}
@@ -1502,19 +1500,18 @@ export default function HomePage() {
                 />
                 <motion.circle
                   r="3.5"
-                  fill="#ca8a04"
-                  filter="url(#hubNodeGlow)"
+                  fill="#0ea5e9"
                   animate={{ cx: [480, 380, 480], cy: [335, 425, 335] }}
                   transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
                 />
-                <circle cx="380" cy="425" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
-                <circle cx="380" cy="425" r="8.5" fill="none" stroke="#ca8a04" strokeWidth="1.2" opacity="0.6" />
-                <circle cx="480" cy="335" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
+                <circle cx="380" cy="425" r="4.5" fill="#0ea5e9" />
+                <circle cx="380" cy="425" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                <circle cx="480" cy="335" r="4.5" fill="#0ea5e9" />
 
                 {/* Line 4: Center to Bottom-Right (Digital Content) - Draws outward from center */}
                 <motion.line
                   x1="520" y1="335" x2="620" y2="425"
-                  stroke="#ca8a04" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                  stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 0.65 }}
                   viewport={{ once: false, amount: 0.2 }}
@@ -1522,14 +1519,13 @@ export default function HomePage() {
                 />
                 <motion.circle
                   r="3.5"
-                  fill="#ca8a04"
-                  filter="url(#hubNodeGlow)"
+                  fill="#0ea5e9"
                   animate={{ cx: [520, 620, 520], cy: [335, 425, 335] }}
                   transition={{ duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
                 />
-                <circle cx="620" cy="425" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
-                <circle cx="620" cy="425" r="8.5" fill="none" stroke="#ca8a04" strokeWidth="1.2" opacity="0.6" />
-                <circle cx="520" cy="335" r="4.5" fill="#ca8a04" filter="url(#hubNodeGlow)" />
+                <circle cx="620" cy="425" r="4.5" fill="#0ea5e9" />
+                <circle cx="620" cy="425" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                <circle cx="520" cy="335" r="4.5" fill="#0ea5e9" />
               </svg>
 
               {/* 4 Satellite Cards (2x2 Grid) - Expanding outward from center on scroll */}
@@ -1540,9 +1536,9 @@ export default function HomePage() {
                     title: "Corporate",
                     description: "Professional films that showcase your company, people, and vision.",
                     icon: Building2,
-                    iconColor: "text-[#d97706]",
-                    iconBg: "bg-amber-500/10 border border-amber-500/25",
-                    accentShadow: "hover:shadow-[0_25px_60px_rgba(245,158,11,0.28),0_10px_25px_rgba(0,0,0,0.15)]",
+                    iconColor: "text-[#0284c7]",
+                    iconBg: "bg-[#0ea5e9]/10 border border-[#0ea5e9]/25",
+                    accentShadow: "",
                     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
                     link: "/work/corporate-film",
                     position: "top-left",
@@ -1556,9 +1552,9 @@ export default function HomePage() {
                     title: "Product",
                     description: "Visual content that makes your products stand out.",
                     icon: Box,
-                    iconColor: "text-[#ca8a04]",
-                    iconBg: "bg-[#ca8a04]/10 border border-[#ca8a04]/25",
-                    accentShadow: "hover:shadow-[0_25px_60px_rgba(202,138,4,0.22),0_10px_25px_rgba(0,0,0,0.06)]",
+                    iconColor: "text-[#0284c7]",
+                    iconBg: "bg-[#0ea5e9]/10 border border-[#0ea5e9]/25",
+                    accentShadow: "",
                     image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
                     link: "/work/product-shoot",
                     position: "top-right",
@@ -1574,7 +1570,7 @@ export default function HomePage() {
                     icon: Clapperboard,
                     iconColor: "text-[#059669]",
                     iconBg: "bg-emerald-500/10 border border-emerald-500/25",
-                    accentShadow: "hover:shadow-[0_25px_60px_rgba(16,185,129,0.28),0_10px_25px_rgba(0,0,0,0.15)]",
+                    accentShadow: "",
                     image: "https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?q=80&w=800&auto=format&fit=crop",
                     link: "/work/commercial-video-production",
                     position: "bottom-left",
@@ -1590,7 +1586,7 @@ export default function HomePage() {
                     icon: Play,
                     iconColor: "text-[#2563eb]",
                     iconBg: "bg-blue-500/10 border border-blue-500/25",
-                    accentShadow: "hover:shadow-[0_25px_60px_rgba(59,130,246,0.28),0_10px_25px_rgba(0,0,0,0.15)]",
+                    accentShadow: "",
                     image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop",
                     link: "/work/social-media-content",
                     position: "bottom-right",
@@ -1632,13 +1628,13 @@ export default function HomePage() {
                       >
                         <Link
                           to={card.link}
-                          className={`group relative block w-full rounded-[26px] sm:rounded-[32px] bg-white text-neutral-900 border border-white/90 shadow-[0_15px_45px_rgba(0,0,0,0.14),0_3px_10px_rgba(0,0,0,0.06)] ${card.accentShadow} transition-all duration-500 overflow-hidden cursor-pointer`}
+                          className={`group relative block w-full rounded-[26px] sm:rounded-[32px] bg-white text-neutral-900 border border-white/90 ${card.accentShadow} transition-all duration-500 overflow-hidden cursor-pointer`}
                         >
                           <div className="relative flex items-center justify-between min-h-[145px] sm:min-h-[160px] p-5 sm:p-6 lg:p-7 z-10">
                             {/* Left text & icon (takes ~62% width) */}
                             <div className="flex-1 pr-3 sm:pr-4 z-10 max-w-[64%]">
                               <div className="flex items-center gap-3 mb-2 sm:mb-2.5">
-                                <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${card.iconBg}`}>
+                                <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${card.iconBg}`}>
                                   <Icon className={`w-5 h-5 ${card.iconColor}`} />
                                 </div>
                                 <h3 className="text-xl sm:text-2xl font-display font-extrabold text-neutral-900 tracking-tight leading-none">
@@ -1667,7 +1663,7 @@ export default function HomePage() {
 
                           {/* Corner glowing node dot on card */}
                           <div
-                            className={`hidden lg:block absolute w-2.5 h-2.5 rounded-full bg-[#ca8a04] shadow-[0_0_10px_rgba(202,138,4,0.7)] z-20 ${
+                            className={`hidden lg:block absolute w-2.5 h-2.5 rounded-full bg-[#0ea5e9] z-20 ${
                               card.position === "top-left"
                                 ? "bottom-3 right-3"
                                 : card.position === "top-right"
@@ -1677,7 +1673,7 @@ export default function HomePage() {
                                 : "top-3 left-3"
                             }`}
                           >
-                            <span className="absolute inset-0 rounded-full bg-[#ca8a04] animate-ping opacity-60" />
+                            <span className="absolute inset-0 rounded-full bg-[#0ea5e9] animate-ping opacity-60" />
                           </div>
                         </Link>
                       </motion.div>
@@ -1698,22 +1694,22 @@ export default function HomePage() {
                   <motion.div
                     animate={{
                       boxShadow: [
-                        "0 0 25px rgba(202, 138, 4, 0.15), 0 10px 30px rgba(0, 0, 0, 0.05)",
-                        "0 0 45px rgba(202, 138, 4, 0.28), 0 16px 40px rgba(0, 0, 0, 0.08)",
-                        "0 0 25px rgba(202, 138, 4, 0.15), 0 10px 30px rgba(0, 0, 0, 0.05)",
+                        "0 0 25px rgba(14, 165, 233, 0.15), 0 10px 30px rgba(0, 0, 0, 0.05)",
+                        "0 0 45px rgba(14, 165, 233, 0.28), 0 16px 40px rgba(0, 0, 0, 0.08)",
+                        "0 0 25px rgba(14, 165, 233, 0.15), 0 10px 30px rgba(0, 0, 0, 0.05)",
                       ],
                     }}
                     transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-white border-2 border-[#e7e6e2] p-5 flex flex-col items-center justify-center text-center shadow-[0_12px_36px_rgba(0,0,0,0.06)] relative overflow-hidden group"
+                    className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-white border-2 border-[#e7e6e2] p-5 flex flex-col items-center justify-center text-center relative overflow-hidden group"
                   >
                     {/* Subtle inner radial ambient shine */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(202,138,4,0.08)_0%,transparent_80%)] pointer-events-none" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(14,165,233,0.08)_0%,transparent_80%)] pointer-events-none" />
 
                     {/* Official Viyana Productions Logo Design */}
                     <img
                       src="/logo-black.png"
                       alt="Viyana Productions"
-                      className="w-28 sm:w-32 xl:w-36 h-auto object-contain relative z-10 drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
+                      className="w-28 sm:w-32 xl:w-36 h-auto object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
                     />
                   </motion.div>
                 </motion.div>
@@ -1727,12 +1723,12 @@ export default function HomePage() {
                 transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
                 className="lg:hidden flex justify-center py-6"
               >
-                <div className="w-36 h-36 rounded-full bg-white border-2 border-[#e7e6e2] p-4 flex flex-col items-center justify-center text-center shadow-[0_8px_24px_rgba(0,0,0,0.06)] relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(202,138,4,0.08)_0%,transparent_70%)] pointer-events-none" />
+                <div className="w-36 h-36 rounded-full bg-white border-2 border-[#e7e6e2] p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(14,165,233,0.08)_0%,transparent_70%)] pointer-events-none" />
                   <img
                     src="/logo-black.png"
                     alt="Viyana Productions"
-                    className="w-24 h-auto object-contain relative z-10 drop-shadow-sm"
+                    className="w-24 h-auto object-contain relative z-10 "
                   />
                 </div>
               </motion.div>
@@ -1740,12 +1736,12 @@ export default function HomePage() {
           </div>
 
           {/* Bottom CTA Banner */}
-          <div className="relative rounded-3xl border border-[#e7e6e2] bg-[#ffffff] p-8 sm:p-14 lg:p-16 overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.04)]">
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[radial-gradient(circle,rgba(202,138,4,0.08)_0%,transparent_70%)] pointer-events-none blur-3xl" />
+          <div className="relative rounded-3xl border border-[#e7e6e2] bg-[#ffffff] p-8 sm:p-14 lg:p-16 overflow-hidden ">
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[radial-gradient(circle,rgba(14,165,233,0.08)_0%,transparent_70%)] pointer-events-none blur-3xl" />
             
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
               <div className="max-w-2xl space-y-3">
-                <span className="text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#ca8a04] block font-bold px-3 py-1 rounded-full bg-[#ca8a04]/10 border border-[#ca8a04]/20 w-fit">
+                <span className="text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] block font-bold px-3 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 w-fit">
                   GET STARTED
                 </span>
                 <h3 className="text-2xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
@@ -1759,7 +1755,7 @@ export default function HomePage() {
               <div className="shrink-0">
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-[#111827] text-white hover:bg-[#ca8a04] font-portfolio-sans text-xs uppercase tracking-wider font-bold shadow-md hover:shadow-lg active:scale-95 transition-all cursor-pointer"
+                  className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-[#111827] text-white hover:bg-[#0284c7] font-portfolio-sans text-xs uppercase tracking-wider font-bold active:scale-95 transition-all cursor-pointer"
                 >
                   <span>START A PROJECT</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -1776,7 +1772,7 @@ export default function HomePage() {
           {/* Section Head */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div className="space-y-2">
-              <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#ca8a04] block font-bold px-3 py-1 rounded-full bg-[#ca8a04]/10 border border-[#ca8a04]/20 w-fit">
+              <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#0284c7] block font-bold px-3 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 w-fit">
                 05 / SELECTED FILM ARCHIVE
               </span>
               <h2 className="text-3xl sm:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e]">
@@ -1785,7 +1781,7 @@ export default function HomePage() {
             </div>
             <Link
               to="/work"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#dedbd4] hover:border-[#111827] bg-white text-[#20201e] hover:bg-[#111827] hover:text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold transition-all shadow-sm shrink-0 w-fit"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#dedbd4] hover:border-[#111827] bg-white text-[#20201e] hover:bg-[#111827] hover:text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold transition-all shrink-0 w-fit"
             >
               <span>VIEW ALL WORK (13)</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -1798,7 +1794,7 @@ export default function HomePage() {
               <Link
                 key={project.slug}
                 to={`/work/${project.slug}`}
-                className="group relative min-h-[380px] sm:min-h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white shadow-[0_12px_36px_rgba(0,0,0,0.06)] flex flex-col justify-end p-6 sm:p-8 transition-all duration-500 hover:border-[#ca8a04] hover:shadow-[0_20px_45px_rgba(202,138,4,0.12)]"
+                className="group relative min-h-[380px] sm:min-h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white flex flex-col justify-end p-6 sm:p-8 transition-all duration-500 hover:border-[#0ea5e9] "
               >
                 <img
                   src={project.thumbnail}
@@ -1814,7 +1810,7 @@ export default function HomePage() {
                 {/* Card Tags & Details */}
                 <div className="relative z-10 space-y-2">
                   <div className="flex items-center justify-between text-[10px] font-portfolio-sans">
-                    <span className="bg-black/60 px-3.5 py-1 rounded-full border border-white/20 uppercase tracking-wider text-white font-semibold shadow-sm">
+                    <span className="bg-black/60 px-3.5 py-1 rounded-full border border-white/20 uppercase tracking-wider text-white font-semibold ">
                       {project.category}
                     </span>
                     <span className="font-portfolio-sans text-xs font-semibold px-2 py-0.5 rounded-full bg-black/60 border border-white/20 text-white">
@@ -1822,7 +1818,7 @@ export default function HomePage() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-portfolio-serif font-bold text-white transition-colors tracking-tight pt-1 drop-shadow-md">
+                  <h3 className="text-xl sm:text-2xl font-portfolio-serif font-bold text-white transition-colors tracking-tight pt-1 ">
                     {project.title}
                   </h3>
 
@@ -1846,7 +1842,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="max-w-3xl space-y-2">
-            <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#ca8a04] block font-bold px-3 py-1 rounded-full bg-[#ca8a04]/10 border border-[#ca8a04]/20 w-fit">
+            <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#0284c7] block font-bold px-3 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 w-fit">
               06 / PRODUCTION ARCHITECTURE
             </span>
             <h2 className="text-3xl sm:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
@@ -1858,7 +1854,7 @@ export default function HomePage() {
           </div>
 
           {/* 5-Step Process Flow */}
-          <div className="p-6 sm:p-10 lg:p-12 rounded-3xl bg-[#f7f6f3] border border-[#e7e6e2] shadow-[0_12px_36px_rgba(0,0,0,0.03)] space-y-8">
+          <div className="p-6 sm:p-10 lg:p-12 rounded-3xl bg-[#f7f6f3] border border-[#e7e6e2] space-y-8">
             <div className="border-b border-[#e7e6e2] pb-5 flex items-center justify-between">
               <span className="text-xs font-portfolio-sans uppercase tracking-[0.16em] text-[#20201e] font-bold">
                 END-TO-END WORKFLOW PIPELINE
@@ -1896,13 +1892,13 @@ export default function HomePage() {
               ].map((item, idx) => (
                 <div
                   key={item.step}
-                  className="relative p-5 sm:p-6 rounded-2xl bg-white border border-[#dedbd4] hover:border-[#ca8a04] hover:shadow-[0_8px_24px_rgba(202,138,4,0.1)] transition-all duration-300 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex flex-col justify-between min-h-[160px] group"
+                  className="relative p-5 sm:p-6 rounded-2xl bg-white border border-[#dedbd4] hover:border-[#0ea5e9] transition-all duration-300 flex flex-col justify-between min-h-[160px] group"
                 >
                   <div className="flex items-center justify-between text-xs font-portfolio-sans mb-4">
-                    <span className="font-bold text-[#ca8a04] px-2.5 py-1 rounded-full bg-[#ca8a04]/10 border border-[#ca8a04]/20">
+                    <span className="font-bold text-[#0284c7] px-2.5 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20">
                       {item.step}
                     </span>
-                    {idx < 4 && <span className="hidden lg:inline text-[#a68e67] font-bold group-hover:translate-x-0.5 transition-transform">→</span>}
+                    {idx < 4 && <span className="hidden lg:inline text-[#0284c7] font-bold group-hover:translate-x-0.5 transition-transform">→</span>}
                   </div>
                   <div>
                     <strong className="text-sm font-portfolio-serif font-bold text-[#20201e] block uppercase tracking-tight mb-2">
@@ -1924,7 +1920,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#ca8a04] block font-bold px-3 py-1 rounded-full bg-[#ca8a04]/10 border border-[#ca8a04]/20 w-fit mx-auto">
+            <span className="text-xs font-portfolio-sans uppercase tracking-[0.22em] text-[#0284c7] block font-bold px-3 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 w-fit mx-auto">
               FAQ · CLEAR ANSWERS
             </span>
             <h2 className="text-3xl sm:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e]">
@@ -1944,8 +1940,8 @@ export default function HomePage() {
                     key={faq.question}
                     className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                       isOpen
-                        ? "border-l-4 border-l-[#ca8a04] border-[#dedbd4] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.05)]"
-                        : "border-[#e7e6e2] bg-white hover:border-[#dedbd4] hover:shadow-[0_4px_16px_rgba(0,0,0,0.03)]"
+                        ? "border-l-4 border-l-[#0ea5e9] border-[#dedbd4] bg-white "
+                        : "border-[#e7e6e2] bg-white hover:border-[#dedbd4] "
                     }`}
                   >
                     <button
@@ -1954,7 +1950,7 @@ export default function HomePage() {
                       className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 cursor-pointer"
                     >
                       <div className="flex items-start gap-3 sm:gap-4">
-                        <span className="font-portfolio-sans text-xs text-[#ca8a04] font-bold px-2 py-0.5 rounded bg-[#f7f6f3] border border-[#e7e6e2] pt-0.5 shrink-0">
+                        <span className="font-portfolio-sans text-xs text-[#0284c7] font-bold px-2 py-0.5 rounded bg-[#f7f6f3] border border-[#e7e6e2] pt-0.5 shrink-0">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                         <span className="text-sm sm:text-base font-portfolio-serif font-semibold text-[#20201e] tracking-tight leading-snug">
@@ -1962,7 +1958,7 @@ export default function HomePage() {
                         </span>
                       </div>
                       <div className={`p-1.5 rounded-full border shrink-0 transition-colors duration-300 mt-0.5 ml-2 ${
-                        isOpen ? "bg-[#ca8a04]/10 border-[#ca8a04]/30 text-[#ca8a04]" : "bg-[#f7f6f3] border-[#e7e6e2] text-[#777671]"
+                        isOpen ? "bg-[#0ea5e9]/10 border-[#0ea5e9]/30 text-[#0284c7]" : "bg-[#f7f6f3] border-[#e7e6e2] text-[#777671]"
                       }`}>
                         <ChevronDown
                           className={`w-4 h-4 transition-transform duration-300 ${
@@ -2004,8 +2000,8 @@ export default function HomePage() {
                     key={faq.question}
                     className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                       isOpen
-                        ? "border-l-4 border-l-[#ca8a04] border-[#dedbd4] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.05)]"
-                        : "border-[#e7e6e2] bg-white hover:border-[#dedbd4] hover:shadow-[0_4px_16px_rgba(0,0,0,0.03)]"
+                        ? "border-l-4 border-l-[#0ea5e9] border-[#dedbd4] bg-white "
+                        : "border-[#e7e6e2] bg-white hover:border-[#dedbd4] "
                     }`}
                   >
                     <button
@@ -2014,7 +2010,7 @@ export default function HomePage() {
                       className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 cursor-pointer"
                     >
                       <div className="flex items-start gap-3 sm:gap-4">
-                        <span className="font-portfolio-sans text-xs text-[#ca8a04] font-bold px-2 py-0.5 rounded bg-[#f7f6f3] border border-[#e7e6e2] pt-0.5 shrink-0">
+                        <span className="font-portfolio-sans text-xs text-[#0284c7] font-bold px-2 py-0.5 rounded bg-[#f7f6f3] border border-[#e7e6e2] pt-0.5 shrink-0">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                         <span className="text-sm sm:text-base font-portfolio-serif font-semibold text-[#20201e] tracking-tight leading-snug">
@@ -2022,7 +2018,7 @@ export default function HomePage() {
                         </span>
                       </div>
                       <div className={`p-1.5 rounded-full border shrink-0 transition-colors duration-300 mt-0.5 ml-2 ${
-                        isOpen ? "bg-[#ca8a04]/10 border-[#ca8a04]/30 text-[#ca8a04]" : "bg-[#f7f6f3] border-[#e7e6e2] text-[#777671]"
+                        isOpen ? "bg-[#0ea5e9]/10 border-[#0ea5e9]/30 text-[#0284c7]" : "bg-[#f7f6f3] border-[#e7e6e2] text-[#777671]"
                       }`}>
                         <ChevronDown
                           className={`w-4 h-4 transition-transform duration-300 ${
