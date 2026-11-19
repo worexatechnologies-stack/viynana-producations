@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams, Navigate, Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { useParams, Navigate } from "react-router-dom";
 import {
   Play,
   Pause,
@@ -10,41 +9,14 @@ import {
   ChevronRight,
   Maximize2,
   X,
-  ArrowUpRight,
-  Sparkles,
-  Camera,
-  Film,
   CheckCircle2,
-  ArrowRight,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { projects, Project } from "@/data/projects";
-import ProductShootDetailPage from "@/pages/ProductShootDetailPage";
 
-function InstagramIcon({
-  className = "w-4 h-4",
-  size = 16,
-}: {
-  className?: string;
-  size?: number;
-}) {
-  return (
-    <svg
-      className={className}
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-    </svg>
-  );
-}
-
-interface CinemaFilmItem {
+export interface CinemaFilmItem {
   id: string;
   title: string;
   tag: string;
@@ -56,7 +28,7 @@ interface CinemaFilmItem {
   description: string;
 }
 
-interface CinemaStillItem {
+export interface CinemaStillItem {
   id: string;
   title: string;
   category: string;
@@ -66,17 +38,68 @@ interface CinemaStillItem {
   description: string;
 }
 
-interface InstagramReelItem {
-  id: string;
-  title: string;
-  url: string;
-  tag: string;
-  videoSrc?: string;
-  poster?: string;
-}
-
-function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
+export function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
   const defaultPoster = project.thumbnail || (project.gallery && project.gallery[0]) || "/images/hero-bg.jpg";
+
+  if (project.slug === "product-shoot") {
+    return [
+      {
+        id: "jewellery-bts",
+        title: "Behind The Scenes — Luxury Jewellery Production Breakdown",
+        tag: "BTS Studio Breakdown",
+        category: "Fine Jewellery",
+        src: "/videos/product-jewellery-behind-the-scenes.mp4",
+        poster: "/images/product-shoot/10-antique-gold-bangles-sculptural.jpg",
+        badge: "01 / BTS Reel",
+        description:
+          "Exclusive BTS breakdown showing paper-tear styling, precision directional lighting, and mannequin hand composition in Bangalore.",
+      },
+      {
+        id: "jewellery-oole",
+        title: "Oole Style Everyday — Fine Jewellery Commercial Reel",
+        tag: "Commercial Film",
+        category: "Fine Jewellery",
+        src: "/videos/product-jewellery-oole-commercial.mp4",
+        poster: "/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg",
+        badge: "02 / Fine Jewellery",
+        description:
+          "Artisanal gold metallurgy, egg nest conceptual still life, and luxury ring details engineered for social conversion.",
+      },
+      {
+        id: "chopping-board",
+        title: "Precision Craft & Kitchenware — Chopping Board Commercial",
+        tag: "Kitchenware Film",
+        category: "Commercial Ads",
+        src: "/videos/product-chopping-board.mp4",
+        poster: "/images/product-shoot/01-melanex-serum.jpg",
+        badge: "03 / Tactile Kitchenware",
+        description:
+          "Dynamic studio lighting, organic wood grain textures, and tactile commercial pacing for premium cookware.",
+      },
+      {
+        id: "commercial-render",
+        title: "Product Motion & Macro Studio Render",
+        tag: "Motion & CGI",
+        category: "3D Motion",
+        src: "/videos/product-commercial-render.mp4",
+        poster: "/images/product-shoot/03-dewexa-cloud-cream.jpg",
+        badge: "04 / 3D Macro Motion",
+        description:
+          "High-contrast studio lighting highlighting product silhouettes, glass reflections, and cinematic brand pacing.",
+      },
+      {
+        id: "final-output",
+        title: "Luxury Product Commercial & Visual Motion Master",
+        tag: "Commercial Master",
+        category: "Product Cinema",
+        src: "/videos/product-final-output.mp4",
+        poster: "/images/product-shoot/06-genex-serum.jpg",
+        badge: "05 / Commercial Master",
+        description:
+          "High-fidelity cinema lighting, crisp packaging reflections, and rhythmic commercial pacing engineered for luxury conversion.",
+      },
+    ];
+  }
 
   if (project.slug === "influencer-shoot") {
     return [
@@ -297,7 +320,7 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
         title: "3D Brand Motion & Comprehensive Visual Identity",
         tag: "3D Motion",
         category: "Visual Identity",
-        src: "/product-commercial-render.mp4",
+        src: "/videos/product-commercial-render.mp4",
         poster: project.gallery[0] || defaultPoster,
         badge: "01 / Visual Identity",
         description:
@@ -322,7 +345,7 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
     ];
   }
 
-  // Generic / Default for other categories (web series, short films, feature films, etc.)
+  // Generic / Default for other categories
   const films: CinemaFilmItem[] = [];
 
   if (project.videos && project.videos.length > 0) {
@@ -381,7 +404,7 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
         poster: project.gallery[1] || defaultPoster,
         badge: "02 / Production Process",
         description:
-          "A look into Viyana's meticulous directorial planning, large-format camera setups, and high-impact storytelling.",
+          "Directorial planning, large-format camera setups, and high-impact visual storytelling.",
       }
     );
   }
@@ -389,7 +412,149 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
   return films;
 }
 
-function getProjectCinemaStills(project: Project): CinemaStillItem[] {
+export function getProjectCinemaStills(project: Project): CinemaStillItem[] {
+  if (project.slug === "product-shoot") {
+    return [
+      {
+        id: "01",
+        title: "Antique Temple Gold Necklace — Chessboard Study",
+        category: "Jewellery",
+        tag: "Fine Jewellery · Antique Gold",
+        image: "/images/product-shoot/07-antique-gold-necklace-chess.jpg",
+        alt: "Handcrafted antique gold necklace and jhumkas on wooden chessboard",
+        description:
+          "Rich warm temple gold with handcrafted filigree and ruby bead accents, staged across a rustic chessboard with royal chess pieces.",
+      },
+      {
+        id: "02",
+        title: "Artisanal Gold Filigree Jhumkas with Sapphire Beads",
+        category: "Jewellery",
+        tag: "Earrings · Bridal & Festive",
+        image: "/images/product-shoot/08-filigree-jhumkas-blue-beads.jpg",
+        alt: "Gold filigree jhumka earrings with deep blue droplet beads suspended against architectural lattice",
+        description:
+          "Intricate jaali dome work adorned with royal blue droplet beads, highlighting delicate gold metallurgy against clean architectural contrast.",
+      },
+      {
+        id: "03",
+        title: "Peacock Motif Antique Gold Studs — Parisian Accent",
+        category: "Jewellery",
+        tag: "Earrings · Heritage Craft",
+        image: "/images/product-shoot/09-peacock-gold-earrings-eiffel.jpg",
+        alt: "Peacock motif antique gold stud earrings with ruby stones mounted on bronze Eiffel tower",
+        description:
+          "Traditional Mayura peacock carvings with ruby eyes mounted on a Parisian bronze spire, blending heritage craftsmanship with contemporary concept.",
+      },
+      {
+        id: "04",
+        title: "Sculptural Antique Gold Bangles — Contrast Composition",
+        category: "Jewellery",
+        tag: "Bangles · Luxury Editorial",
+        image: "/images/product-shoot/10-antique-gold-bangles-sculptural.jpg",
+        alt: "Antique gold bangles displayed on matte black mannequin hands breaking through white paper",
+        description:
+          "High-contrast studio editorial featuring antique gold floral kadas held by matte black sculptural hands emerging from torn white paper.",
+      },
+      {
+        id: "05",
+        title: "Pearl Butterfly Fine Gold Chain — Nest Installation",
+        category: "Jewellery",
+        tag: "Neckwear · Minimalist Luxury",
+        image: "/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg",
+        alt: "Delicate gold link chain with sculpted pearl butterflies draped over porcelain egg in straw nest",
+        description:
+          "Organic conceptual still life featuring iridescent mother-of-pearl butterflies on a fine gold chain, delicately draped over an egg in a natural twig nest.",
+      },
+      {
+        id: "06",
+        title: "Dermera Melanex Face & Body Serum",
+        category: "Skincare",
+        tag: "Serum · 100 ml",
+        image: "/images/product-shoot/01-melanex-serum.jpg",
+        alt: "Dermera Melanex face and body serum bottle",
+        description:
+          "Clean studio strobe highlighting pure white glass bottle, precision pump, and minimalist luxury typography.",
+      },
+      {
+        id: "07",
+        title: "Genex Advanced PDRN+ Revitalizing Serum",
+        category: "Skincare",
+        tag: "Serum · 30 ml",
+        image: "/images/product-shoot/06-genex-serum.jpg",
+        alt: "Dermera Genex Advanced PDRN+ Revitalizing face serum bottle",
+        description:
+          "Frosted matte finish with delicate pastel amber gradient, showcasing precision dispenser typography.",
+      },
+      {
+        id: "08",
+        title: "Luminex Luminous Face Wash & Packaging",
+        category: "Skincare",
+        tag: "Cleanser · 100 ml",
+        image: "/images/product-shoot/02-luminex-face-wash.jpg",
+        alt: "Dermera Luminex luminous face wash tube and packaging box",
+        description:
+          "High-contrast studio lighting capturing the rich metallic gold foil and deep charcoal black luxury carton.",
+      },
+      {
+        id: "09",
+        title: "Dewexa Dermal Bio Cloud Cream",
+        category: "Skincare",
+        tag: "Moisturizer · 50 g",
+        image: "/images/product-shoot/03-dewexa-cloud-cream.jpg",
+        alt: "Dermera Dewexa Dermal Bio Cloud Cream jar and crimson box",
+        description:
+          "Polished gold metallic lid paired with crimson red textured box, angled with razor-sharp reflection.",
+      },
+      {
+        id: "10",
+        title: "Spiculex Advanced Bio Micro Needle Serum",
+        category: "Skincare",
+        tag: "Micro Needle Serum · 30 ml",
+        image: "/images/product-shoot/04-spiculex-serum.jpg",
+        alt: "Dermera Spiculex Advanced Bio micro needle serum bottle and box",
+        description:
+          "Amber glass bottle paired with artisanal textured box, highlighting micro-needle bio formulation details.",
+      },
+      {
+        id: "11",
+        title: "Dewexa Bio Cloud Cream — Angle View",
+        category: "Skincare",
+        tag: "Packaging & Perspective Study · 50 g",
+        image: "/images/product-shoot/05-dewexa-detail.jpg",
+        alt: "Dermera Dewexa Bio Cloud Cream studio perspective view",
+        description:
+          "Perspective 3D angle composition showcasing gold metallic reflection, box typography, and glass jar depth.",
+      },
+      {
+        id: "12",
+        title: "Studio Product Editorial — E-Commerce Packshot 01",
+        category: "Commercial",
+        tag: "E-Commerce · Studio Lighting",
+        image: "/images/product-shoot-1.jpg",
+        alt: "Studio lighting product editorial packshot",
+        description: "Studio strobe setup with reflection control.",
+      },
+      {
+        id: "13",
+        title: "Studio Product Editorial — E-Commerce Packshot 02",
+        category: "Commercial",
+        tag: "E-Commerce · High Key",
+        image: "/images/product-shoot-2.jpg",
+        alt: "Studio product photography with crisp shadows",
+        description: "High-key studio product lighting on clean pedestal.",
+      },
+      {
+        id: "14",
+        title: "Studio Product Editorial — E-Commerce Packshot 03",
+        category: "Commercial",
+        tag: "E-Commerce · Dark Editorial",
+        image: "/images/product-shoot-3.jpg",
+        alt: "Luxury editorial product composition with directional light",
+        description: "Dark, moody luxury editorial product setup.",
+      },
+    ];
+  }
+
   if (project.slug === "influencer-shoot") {
     return [
       {
@@ -469,92 +634,502 @@ function getProjectCinemaStills(project: Project): CinemaStillItem[] {
   });
 }
 
-function getProjectInstagramReels(project: Project): InstagramReelItem[] {
-  if (project.slug === "influencer-shoot") {
-    return [
-      {
-        id: "Df4pDL5ytL6",
-        title: "Featured Influencer Film · 4K Edition",
-        url: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
-        tag: "Creator Showcase",
-        videoSrc: "/final-output.mp4",
-        poster: "/reel-01-poster.jpg",
-      },
-      {
-        id: "volpue-influencer-master",
-        title: "Influencer Lifestyle Editorial Motion Master",
-        url: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
-        tag: "Lifestyle Motion",
-        videoSrc: "/final-render-video-volpue.mp4",
-        poster: "/reel-02-poster.jpg",
-      },
-      {
-        id: "DfPiKmuMugc",
-        title: "Model & Brand Fashion Reel",
-        url: "https://www.instagram.com/reel/DfPiKmuMugc/?exln=MXdzcmd4MTB1YXVjYw==",
-        tag: "Fashion Reel",
-        videoSrc: "/viyana-commercial-reel.mp4",
-        poster: "/images/model-shoot/01-emerald-saree-model.jpg",
-      },
-      {
-        id: "DfCi048T8Jz",
-        title: "Style Motion & High-Fashion Aesthetics Cut",
-        url: "https://www.instagram.com/reel/DfCi048T8Jz/?dlrf=NHFnNzgxanY5dGpp",
-        tag: "Viral Reel",
-        videoSrc: "/viyana-production-final-video.mp4",
-        poster: "/images/model-shoot/02-black-sequin-saree.jpg",
-      },
-      {
-        id: "creator-editorial-runway",
-        title: "Editorial Model Portrait & Comp-Card Reel",
-        url: "https://www.instagram.com/reel/Df4pDL5ytL6/?dmpr=ZTB6bW43NDJ1aWdn",
-        tag: "Editorial Cut",
-        videoSrc: "/2.mp4",
-        poster: "/images/model-shoot/03-temple-heritage-pose.jpg",
-      },
-    ];
-  }
+function HorizontalVideoCard({ film, index }: { film: CinemaFilmItem; index: number }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const reels: InstagramReelItem[] = [];
-
-  const rawList =
-    project.instagramReels && project.instagramReels.length > 0
-      ? project.instagramReels
-      : project.instagramReelUrl
-      ? [project.instagramReelUrl]
-      : [];
-
-  const customReelTitles: Record<string, string[]> = {
-    "influencer-shoot": [
-      "Featured Influencer Fashion & Lifestyle Reel",
-      "Creator Lifestyle & Fashion Reel",
-      "High-Retention Beauty & Viral Motion",
-      "Cinematic Brand Collaboration Cut",
-      "Dynamic Portrait & Street Editorial",
-    ],
-    "product-shoot": [
-      "Behind The Scenes — Luxury Jewellery Breakdown",
-      "Oole Style Everyday — Fine Jewellery Reel",
-      "Dermera Luxury Skincare Product Reel",
-      "Commercial Product Motion & Lifestyle Reel",
-    ],
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => setIsPlaying(false));
+    }
   };
 
-  const projectTitles = customReelTitles[project.slug] || [];
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    videoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
 
-  rawList.forEach((url, idx) => {
-    const fallbackVideo = project.videos?.[idx] || project.video || (project.slug === "product-shoot" ? "/videos/product-jewellery-behind-the-scenes.mp4" : "/final-output.mp4");
-    reels.push({
-      id: `reel-${idx + 1}`,
-      title: projectTitles[idx] || `${project.title} Official Instagram Reel ${rawList.length > 1 ? `#${idx + 1}` : ""}`,
-      url,
-      tag: `${project.category} Reel`,
-      videoSrc: fallbackVideo,
-      poster: project.gallery?.[idx] || project.thumbnail || "/reel-01-poster.jpg",
+  const handleFullscreen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    if (videoRef.current.requestFullscreen) {
+      videoRef.current.requestFullscreen();
+    }
+  };
+
+  return (
+    <div className="w-[85vw] sm:w-[380px] md:w-[420px] shrink-0 snap-start flex flex-col rounded-2xl border border-[#e7e6e2] bg-white overflow-hidden transition-all hover:border-[#0284c7]/40">
+      {/* Video Viewport */}
+      <div
+        onClick={togglePlay}
+        className="relative w-full aspect-video bg-black/5 overflow-hidden group cursor-pointer"
+      >
+        {film.youtubeId ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${film.youtubeId}?autoplay=0&rel=0`}
+            title={film.title}
+            className="w-full h-full border-0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <>
+            <video
+              ref={videoRef}
+              src={film.src}
+              poster={film.poster}
+              preload="metadata"
+              playsInline
+              loop
+              muted={isMuted}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              className="w-full h-full object-cover"
+            />
+
+            {/* Center Play / Pause Indicator */}
+            <div
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${
+                isPlaying ? "opacity-0 group-hover:opacity-100 bg-black/20" : "opacity-100 bg-black/30"
+              }`}
+            >
+              <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#20201e] shadow-lg transition-transform group-hover:scale-105">
+                {isPlaying ? (
+                  <Pause size={24} className="fill-current text-[#20201e]" />
+                ) : (
+                  <Play size={24} className="fill-current text-[#20201e] ml-1" />
+                )}
+              </div>
+            </div>
+
+            {/* Film Badge */}
+            <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#e7e6e2] text-[11px] font-portfolio-sans font-semibold text-[#20201e]">
+              {film.badge || `0${index + 1} / Reel`}
+            </div>
+
+            {/* In-Video Action Pills */}
+            <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+              <button
+                type="button"
+                onClick={toggleMute}
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+                className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90"
+              >
+                {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+              </button>
+              <button
+                type="button"
+                onClick={handleFullscreen}
+                aria-label="Fullscreen video"
+                className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#20201e] backdrop-blur-md flex items-center justify-center text-xs transition-transform active:scale-90"
+              >
+                <Maximize2 size={14} />
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Card Info */}
+      <div className="p-4 sm:p-5 flex flex-col flex-1">
+        <span className="text-[11px] font-semibold text-[#0284c7] uppercase tracking-wider font-portfolio-sans">
+          {film.tag || film.category}
+        </span>
+        <h3 className="font-portfolio-serif text-base sm:text-lg font-normal text-[#20201e] mt-1 line-clamp-1">
+          {film.title}
+        </h3>
+        <p className="font-portfolio-sans text-xs sm:text-sm text-[#686762] mt-1.5 line-clamp-2 leading-relaxed">
+          {film.description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export function UniversalWorkCinemaPage({
+  project,
+  onInquirySubmit,
+  inquiry,
+  setInquiry,
+  isSubmittingInquiry,
+  inquirySubmitted,
+  inquiryError,
+  setInquirySubmitted,
+}: {
+  project: Project;
+  nextProject?: Project;
+  categoryIndex?: number;
+  onInquirySubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  inquiry: { name: string; email: string; phone: string; message: string };
+  setInquiry: React.Dispatch<
+    React.SetStateAction<{ name: string; email: string; phone: string; message: string }>
+  >;
+  isSubmittingInquiry: boolean;
+  inquirySubmitted: boolean;
+  inquiryError: string | null;
+  setInquirySubmitted: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const films = getProjectCinemaFilms(project);
+  const stills = getProjectCinemaStills(project);
+
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const videoScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollVideos = (direction: "left" | "right") => {
+    if (!videoScrollRef.current) return;
+    const scrollAmount = 420;
+    videoScrollRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
     });
-  });
+  };
 
-  return reels;
+  // Keyboard navigation for Lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (lightboxIndex === null) return;
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowLeft") {
+        setLightboxIndex((prev) => (prev === 0 ? stills.length - 1 : (prev ?? 1) - 1));
+      }
+      if (e.key === "ArrowRight") {
+        setLightboxIndex((prev) => (prev === stills.length - 1 ? 0 : (prev ?? 0) + 1));
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxIndex, stills.length]);
+
+  return (
+    <main className="bg-[#fbfaf8] text-[#20201e] min-h-screen selection:bg-[#111827] selection:text-white overflow-x-hidden font-portfolio-sans">
+      <SEO
+        title={project.seo?.metaTitle || `${project.title} | Viyana Productions`}
+        description={project.seo?.metaDescription || project.description}
+        keywords={project.seo?.metaKeywords || `${project.title.toLowerCase()}, video production, bangalore`}
+        ogTitle={project.seo?.ogTitle || `${project.title} | Viyana Productions`}
+        ogType={project.seo?.ogType || "website"}
+        ogDescription={project.seo?.ogDescription || project.description}
+        ogUrl={project.seo?.ogUrl || `https://viyana.productions/work/${project.slug}`}
+        ogSiteName="Viyana Productions"
+        ogImage={project.seo?.ogImage || project.thumbnail || "https://viyana.productions/logo-black.png"}
+        canonical={project.seo?.canonical || `https://viyana.productions/work/${project.slug}`}
+      />
+
+      <Navbar />
+
+      {/* 1. HERO SECTION: TITLE AND CONTENT ONLY */}
+      <section className="pt-28 sm:pt-36 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-12 bg-white border-b border-[#e7e6e2]">
+        <div className="container mx-auto max-w-5xl">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.08]">
+            {project.title}
+            <span className="text-[#0284c7]">.</span>
+          </h1>
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg font-portfolio-sans font-normal text-[#686762] leading-relaxed max-w-3xl">
+            {project.fullDescription || project.description}
+          </p>
+        </div>
+      </section>
+
+      {/* 2. SECTION 1: VIDEOS SECTION (1 HORIZONTAL LINE) */}
+      {films.length > 0 && (
+        <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-12 bg-[#fbfaf8] border-b border-[#e7e6e2]">
+          <div className="container mx-auto max-w-7xl">
+            {/* Videos Section Header */}
+            <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0284c7]">
+                  Commercial Films &amp; Motion
+                </span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-portfolio-serif font-normal text-[#20201e] mt-1">
+                  Videos<span className="text-[#0284c7]">.</span>
+                </h2>
+              </div>
+              {films.length > 1 && (
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => scrollVideos("left")}
+                    aria-label="Previous video"
+                    className="w-10 h-10 rounded-full border border-[#dedbd4] bg-white hover:bg-[#111827] hover:text-white text-[#20201e] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-none"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => scrollVideos("right")}
+                    aria-label="Next video"
+                    className="w-10 h-10 rounded-full border border-[#dedbd4] bg-white hover:bg-[#111827] hover:text-white text-[#20201e] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-none"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* 1 Horizontal Line of Videos */}
+            <div
+              ref={videoScrollRef}
+              className="flex overflow-x-auto gap-4 sm:gap-6 no-scrollbar snap-x snap-mandatory pb-4 items-stretch scroll-smooth"
+            >
+              {films.map((film, idx) => (
+                <HorizontalVideoCard key={film.id || idx} film={film} index={idx} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 3. SECTION 2: IMAGES SECTION (ALL STILLS GALLERY WITHOUT FILTER TABS) */}
+      {stills.length > 0 && (
+        <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-white border-b border-[#e7e6e2]">
+          <div className="container mx-auto max-w-7xl">
+            <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8 border-b border-[#e7e6e2] pb-5">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0284c7]">
+                  Production Stills
+                </span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-portfolio-serif font-normal text-[#20201e] mt-1">
+                  Images &amp; Photography<span className="text-[#0284c7]">.</span>
+                </h2>
+              </div>
+              <span className="text-xs font-portfolio-sans text-[#8e8d88] tracking-wider uppercase font-semibold">
+                {stills.length} Images
+              </span>
+            </div>
+
+            {/* Responsive Grid of All Images */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+              {stills.map((still, idx) => (
+                <div
+                  key={still.id || idx}
+                  onClick={() => setLightboxIndex(idx)}
+                  className="group relative aspect-square rounded-xl overflow-hidden bg-[#f0eee9] border border-[#e7e6e2] cursor-pointer"
+                >
+                  <img
+                    src={still.image}
+                    alt={still.alt || still.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 sm:p-4 flex flex-col justify-end">
+                    <span className="text-[11px] font-semibold text-white/90 uppercase tracking-wider line-clamp-1 font-portfolio-sans">
+                      {still.tag || still.title}
+                    </span>
+                    <p className="text-xs text-white/80 line-clamp-1 mt-0.5 font-portfolio-sans">
+                      {still.title}
+                    </p>
+                  </div>
+                  <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 text-[#20201e] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <Maximize2 size={13} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 4. SECTION 3: CONTACT / INQUIRY SECTION */}
+      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-12 bg-[#fbfaf8]">
+        <div className="container mx-auto max-w-2xl">
+          <div className="text-center mb-6 sm:mb-8">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0284c7]">
+              Start A Project
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-portfolio-serif font-normal text-[#20201e] mt-1.5">
+              Book {project.title}<span className="text-[#0284c7]">.</span>
+            </h2>
+            <p className="font-portfolio-sans text-xs sm:text-sm text-[#686762] mt-2 max-w-md mx-auto">
+              Tell us about your brand vision, deliverables, and timeline. Our production team responds within 24 hours.
+            </p>
+          </div>
+
+          <div className="bg-white border border-[#e7e6e2] rounded-2xl p-5 sm:p-8">
+            {inquirySubmitted ? (
+              <div className="text-center py-8 space-y-3">
+                <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
+                  <CheckCircle2 size={24} />
+                </div>
+                <h3 className="font-portfolio-serif text-xl font-normal text-[#20201e]">
+                  Inquiry Received
+                </h3>
+                <p className="text-sm font-portfolio-sans text-[#686762] max-w-md mx-auto">
+                  Thank you! Our team has received your project request and will be in touch shortly.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setInquirySubmitted(false)}
+                  className="mt-3 px-5 py-2 rounded-full bg-[#111827] text-white text-xs font-portfolio-sans uppercase tracking-wider font-semibold hover:bg-[#0284c7] transition-all cursor-pointer"
+                >
+                  Send Another Inquiry
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={onInquirySubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-portfolio-sans font-medium text-[#20201e]">
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={inquiry.name}
+                      onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })}
+                      required
+                      placeholder="Your full name"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-portfolio-sans font-medium text-[#20201e]">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={inquiry.email}
+                      onChange={(e) => setInquiry({ ...inquiry, email: e.target.value })}
+                      required
+                      placeholder="name@company.com"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-portfolio-sans font-medium text-[#20201e]">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={inquiry.phone}
+                    onChange={(e) => setInquiry({ ...inquiry, phone: e.target.value })}
+                    required
+                    placeholder="+91 98765 43210"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-portfolio-sans font-medium text-[#20201e]">
+                    Project Details *
+                  </label>
+                  <textarea
+                    name="message"
+                    value={inquiry.message}
+                    onChange={(e) => setInquiry({ ...inquiry, message: e.target.value })}
+                    required
+                    rows={4}
+                    placeholder="Tell us about your requirements, deliverables, and timeline..."
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#e7e6e2] bg-[#fbfaf8] text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:bg-white focus:outline-none transition-colors resize-y"
+                  />
+                </div>
+
+                {inquiryError && (
+                  <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700">
+                    {inquiryError}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmittingInquiry}
+                  className="w-full py-3.5 rounded-xl bg-[#111827] hover:bg-[#0284c7] text-white text-xs font-portfolio-sans uppercase tracking-widest font-bold transition-all disabled:opacity-60 cursor-pointer"
+                >
+                  {isSubmittingInquiry ? "SENDING INQUIRY..." : `SUBMIT ${project.title.toUpperCase()} INQUIRY →`}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* FULLSCREEN LIGHTBOX MODAL */}
+      {lightboxIndex !== null && stills[lightboxIndex] && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxIndex(null)}
+            aria-label="Close image lightbox"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer z-50"
+          >
+            <X size={20} />
+          </button>
+
+          {stills.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxIndex((prev) => (prev === 0 ? stills.length - 1 : (prev ?? 1) - 1));
+                }}
+                aria-label="Previous image"
+                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer z-50"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxIndex((prev) => (prev === stills.length - 1 ? 0 : (prev ?? 0) + 1));
+                }}
+                aria-label="Next image"
+                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer z-50"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </>
+          )}
+
+          <div
+            className="max-w-5xl max-h-[90vh] flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={stills[lightboxIndex].image}
+              alt={stills[lightboxIndex].alt || stills[lightboxIndex].title}
+              className="max-h-[75vh] max-w-full object-contain rounded-lg"
+            />
+            <div className="mt-4 text-center text-white">
+              <p className="text-sm sm:text-base font-portfolio-sans font-medium">
+                {stills[lightboxIndex].title}
+              </p>
+              {stills[lightboxIndex].description && (
+                <p className="text-xs text-white/70 mt-1 max-w-xl mx-auto font-portfolio-sans">
+                  {stills[lightboxIndex].description}
+                </p>
+              )}
+              <span className="text-[11px] text-white/50 mt-1 block font-portfolio-sans">
+                {lightboxIndex + 1} of {stills.length}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <Footer variant="light" hideCtaBanner={true} />
+    </main>
+  );
 }
 
 export default function WorkDetailPage() {
@@ -687,24 +1262,7 @@ export default function WorkDetailPage() {
     }
   };
 
-  // Dedicated bespoke luxury showcase for Product Shoot
-  if (project.slug === "product-shoot") {
-    return (
-      <ProductShootDetailPage
-        project={project}
-        nextProject={nextProject}
-        onInquirySubmit={handleInquirySubmit}
-        inquiry={inquiry}
-        setInquiry={setInquiry}
-        isSubmittingInquiry={isSubmittingInquiry}
-        inquirySubmitted={inquirySubmitted}
-        inquiryError={inquiryError}
-        setInquirySubmitted={setInquirySubmitted}
-      />
-    );
-  }
-
-  // Universal Cinema Architecture for all other 12 projects
+  // Universal clean 4-part architecture for every work subpage
   return (
     <UniversalWorkCinemaPage
       project={project}
@@ -718,1125 +1276,5 @@ export default function WorkDetailPage() {
       inquiryError={inquiryError}
       setInquirySubmitted={setInquirySubmitted}
     />
-  );
-}
-
-function UniversalWorkCinemaPage({
-  project,
-  nextProject,
-  categoryIndex,
-  onInquirySubmit,
-  inquiry,
-  setInquiry,
-  isSubmittingInquiry,
-  inquirySubmitted,
-  inquiryError,
-  setInquirySubmitted,
-}: {
-  project: Project;
-  nextProject: Project;
-  categoryIndex: number;
-  onInquirySubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
-  inquiry: { name: string; email: string; phone: string; message: string };
-  setInquiry: React.Dispatch<
-    React.SetStateAction<{ name: string; email: string; phone: string; message: string }>
-  >;
-  isSubmittingInquiry: boolean;
-  inquirySubmitted: boolean;
-  inquiryError: string | null;
-  setInquirySubmitted: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
-  const films = getProjectCinemaFilms(project);
-  const stills = getProjectCinemaStills(project);
-  const reels = getProjectInstagramReels(project);
-
-  const [activeVideoIdx, setActiveVideoIdx] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [activeFilter, setActiveFilter] = useState<string>("All");
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [activeReelIdx, setActiveReelIdx] = useState(0);
-  const [isReelPlaying, setIsReelPlaying] = useState(true);
-  const [isReelMuted, setIsReelMuted] = useState(true);
-
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const reelVideoRef = useRef<HTMLVideoElement>(null);
-  const activeVideo = films[activeVideoIdx] || films[0];
-
-  const filteredStills =
-    activeFilter === "All"
-      ? stills
-      : stills.filter((s) => s.category === activeFilter);
-
-  // Auto-play when activeVideo changes
-  useEffect(() => {
-    if (videoRef.current && activeVideo?.src) {
-      videoRef.current.currentTime = 0;
-      videoRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => setIsPlaying(false));
-    }
-  }, [activeVideoIdx, activeVideo?.src]);
-
-  // Auto-play when activeReelIdx changes
-  useEffect(() => {
-    if (reelVideoRef.current) {
-      reelVideoRef.current.currentTime = 0;
-      reelVideoRef.current
-        .play()
-        .then(() => setIsReelPlaying(true))
-        .catch(() => setIsReelPlaying(false));
-    }
-  }, [activeReelIdx]);
-
-  const toggleReelPlay = () => {
-    if (!reelVideoRef.current) return;
-    if (isReelPlaying) {
-      reelVideoRef.current.pause();
-      setIsReelPlaying(false);
-    } else {
-      reelVideoRef.current
-        .play()
-        .then(() => setIsReelPlaying(true))
-        .catch(() => {});
-    }
-  };
-
-  const toggleReelMute = () => {
-    if (!reelVideoRef.current) return;
-    reelVideoRef.current.muted = !isReelMuted;
-    setIsReelMuted(!isReelMuted);
-  };
-
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      videoRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => {});
-    }
-  };
-
-  const toggleMute = () => {
-    if (!videoRef.current) return;
-    videoRef.current.muted = !isMuted;
-    setIsMuted(!isMuted);
-  };
-
-  const handlePrevVideo = () => {
-    setActiveVideoIdx((prev) => (prev === 0 ? films.length - 1 : prev - 1));
-  };
-
-  const handleNextVideo = () => {
-    setActiveVideoIdx((prev) => (prev === films.length - 1 ? 0 : prev + 1));
-  };
-
-  // Keyboard navigation for Lightbox
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (lightboxIndex === null) return;
-      if (e.key === "Escape") setLightboxIndex(null);
-      if (e.key === "ArrowLeft") {
-        setLightboxIndex((prev) => (prev === 0 ? filteredStills.length - 1 : (prev ?? 1) - 1));
-      }
-      if (e.key === "ArrowRight") {
-        setLightboxIndex((prev) => (prev === filteredStills.length - 1 ? 0 : (prev ?? 0) + 1));
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxIndex, filteredStills.length]);
-
-  // Extract highlight badges
-  const highlightCards = [
-    {
-      title: "CINEMATIC DIRECTION",
-      description: "Strategic narrative, distinctive framing, and uncompromising visual rhythm.",
-    },
-    {
-      title: "RAPID PAN-INDIA DELIVERY",
-      description: "Studio stages in Bangalore with seamless on-location agile crews across India.",
-    },
-    {
-      title: "ACEScc COLOR WORKFLOW",
-      description: "Color-calibrated Hollywood workflow ensuring accurate brand palettes on all screens.",
-    },
-    {
-      title: "HIGH-CONVERSION PACING",
-      description: "Engineered for TVC, theatrical distribution, and high-retention digital feeds.",
-    },
-  ];
-
-  return (
-    <main className="bg-[#fbfaf8] text-[#20201e] min-h-screen selection:bg-[#111827] selection:text-white overflow-x-hidden font-portfolio-sans">
-      <SEO
-        title={project.seo?.metaTitle || `${project.title} | Viyana Productions`}
-        description={project.seo?.metaDescription || project.description}
-        keywords={project.seo?.metaKeywords || `${project.title.toLowerCase()}, video production, bangalore`}
-        ogTitle={project.seo?.ogTitle || `${project.title} | Viyana Productions`}
-        ogType={project.seo?.ogType || "website"}
-        ogDescription={project.seo?.ogDescription || project.description}
-        ogUrl={project.seo?.ogUrl || `https://viyana.productions/work/${project.slug}`}
-        ogSiteName="Viyana Productions"
-        ogImage={project.seo?.ogImage || project.thumbnail || "https://viyana.productions/logo-black.png"}
-        canonical={project.seo?.canonical || `https://viyana.productions/work/${project.slug}`}
-      />
-
-      <Navbar />
-
-      {/* 1. BESPOKE EDITORIAL HERO SECTION */}
-      <section className="relative pt-24 sm:pt-32 md:pt-36 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-12 border-b border-[#e7e6e2] bg-[#ffffff] overflow-hidden">
-        {/* Subtle Ambient Light Blue Glow */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.06)_0%,transparent_75%)] blur-2xl pointer-events-none rounded-full" />
-
-        <div className="container mx-auto max-w-7xl relative z-10">
-          {/* Eyebrow Breadcrumb */}
-          <div className="flex flex-wrap items-center gap-2.5 mb-4 sm:mb-6 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#8e8d88]">
-            <Link to="/work" className="hover:text-[#20201e] transition-colors">
-              WORK ARCHIVE
-            </Link>
-            <span>/</span>
-            <span className="text-[#0284c7] font-bold">
-              CATEGORY {String(categoryIndex).padStart(2, "0")}
-            </span>
-            <span>/</span>
-            <span className="text-[#20201e] font-semibold">{project.deliverableType || project.category}</span>
-          </div>
-
-          {/* Hero Title with Balanced Responsive Typography */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-6 sm:mb-8">
-            <div className="lg:col-span-8 xl:col-span-9 space-y-3 sm:space-y-4">
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.05] max-w-5xl">
-                {project.title}
-                <span className="text-[#0284c7]">.</span>
-              </h1>
-              <p className="text-sm sm:text-base md:text-lg font-portfolio-sans font-normal text-[#686762] leading-relaxed max-w-3xl">
-                {project.description}
-              </p>
-            </div>
-
-            {/* Quick Metrics Bar */}
-            <div className="lg:col-span-4 xl:col-span-3 flex flex-col sm:flex-row lg:flex-col gap-3">
-              <div className="p-4 rounded-2xl bg-[#fbfaf8] border border-[#e7e6e2]">
-                <div className="flex items-center justify-between text-xs font-portfolio-sans text-[#8e8d88] mb-1 font-bold">
-                  <span>PRODUCTION CATALOG</span>
-                  <span className="text-[#0284c7]">
-                    {films.length} FILMS · {stills.length}+ STILLS
-                  </span>
-                </div>
-                <span className="text-sm font-semibold text-[#20201e]">
-                  {project.deliverableType || project.category}
-                </span>
-              </div>
-              <div className="p-4 rounded-2xl bg-[#fbfaf8] border border-[#e7e6e2]">
-                <div className="flex items-center justify-between text-xs font-portfolio-sans text-[#8e8d88] mb-1 font-bold">
-                  <span>STUDIO BASE</span>
-                  <span className="text-[#0284c7]">BANGALORE HQ</span>
-                </div>
-                <span className="text-sm font-semibold text-[#20201e]">
-                  4K Commercial Cameras &amp; Soundstages
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation Quick Anchors */}
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-4 border-t border-[#e7e6e2]">
-            <a
-              href="#cinema-films"
-              className="px-5 py-2.5 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold hover:bg-[#0284c7] transition-all flex items-center gap-2 cursor-pointer"
-            >
-              <Film size={14} />
-              <span>Watch Films ({films.length})</span>
-            </a>
-            <a
-              href="#stills-catalog"
-              className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer font-semibold"
-            >
-              <Camera size={14} />
-              <span>Stills &amp; Production Catalog ({stills.length})</span>
-            </a>
-            {reels.length > 0 && (
-              <a
-                href="#instagram-reels"
-                className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer font-semibold"
-              >
-                <InstagramIcon size={14} />
-                <span>Instagram Reels ({reels.length})</span>
-              </a>
-            )}
-            <a
-              href="#book-shoot"
-              className="px-5 py-2.5 rounded-full bg-[#0ea5e9]/10 hover:bg-[#0ea5e9]/20 border border-[#0ea5e9]/30 text-[#0284c7] font-portfolio-sans text-xs uppercase tracking-wider transition-all ml-auto flex items-center gap-1.5 font-bold cursor-pointer"
-            >
-              <span>Book this Shoot</span>
-              <ArrowRight size={13} />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. THEATER CINEMA PLAYER */}
-      <section id="cinema-films" className="py-10 sm:py-16 px-4 sm:px-6 lg:px-12 bg-[#fbfaf8] relative">
-        <div className="container mx-auto max-w-7xl space-y-6 sm:space-y-8">
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-[#e7e6e2] pb-5">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] mb-2 font-bold">
-                <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-ping" />
-                <span>COMMERCIAL MOTION &amp; REELS</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
-                {project.title} <em className="italic text-[#0284c7] font-normal">Cinema.</em>
-              </h2>
-            </div>
-            <p className="text-sm font-portfolio-sans text-[#686762] max-w-md">
-              From behind-the-scenes breakdown to 4K commercial broadcast masters, each film is shot with razor-sharp glass and cinematic lighting.
-            </p>
-          </div>
-
-          {/* Main Cinema Screen Container */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white">
-            {/* Viewport Box */}
-            <div
-              onClick={togglePlay}
-              className="relative w-full aspect-[4/3] sm:aspect-[16/9] max-h-[640px] bg-black flex items-center justify-center cursor-pointer group"
-            >
-              {activeVideo.youtubeId ? (
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${activeVideo.youtubeId}?autoplay=1&playsinline=1&rel=0`}
-                  title={`${activeVideo.title} YouTube Video`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full border-0"
-                />
-              ) : (
-                <video
-                  ref={videoRef}
-                  key={activeVideo.src}
-                  src={activeVideo.src}
-                  poster={activeVideo.poster}
-                  autoPlay
-                  loop
-                  muted={isMuted}
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-full object-contain bg-black"
-                />
-              )}
-
-              {/* Top Film Badge */}
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-xs font-portfolio-sans text-white">
-                <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
-                <span>
-                  {activeVideo.badge} · {activeVideo.category}
-                </span>
-              </div>
-
-              {/* Prev / Next Floating Navigation Buttons */}
-              {films.length > 1 && (
-                <>
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handlePrevVideo();
-                    }}
-                    aria-label="Previous film"
-                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-white hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all active:scale-90 cursor-pointer"
-                  >
-                    <ChevronLeft size={24} />
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleNextVideo();
-                    }}
-                    aria-label="Next film"
-                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-white hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all active:scale-90 cursor-pointer"
-                  >
-                    <ChevronRight size={24} />
-                  </button>
-                </>
-              )}
-
-              {/* Center Play / Pause Indicator */}
-              {!activeVideo.youtubeId && (
-                <div
-                  className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-200 ${
-                    !isPlaying ? "opacity-100 bg-black/40" : "opacity-0 group-hover:opacity-100"
-                  }`}
-                >
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white">
-                    {!isPlaying ? (
-                      <Play className="w-8 h-8 fill-current ml-1 text-white" />
-                    ) : (
-                      <Pause className="w-8 h-8 fill-current text-white" />
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Bottom In-Video Action Pills */}
-              {!activeVideo.youtubeId && (
-                <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleMute();
-                    }}
-                    className="px-3.5 py-1.5 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 backdrop-blur-md text-xs font-portfolio-sans flex items-center gap-2 transition-all cursor-pointer"
-                  >
-                    {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-                    <span>{isMuted ? "UNMUTE" : "MUTED"}</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (videoRef.current) {
-                        if (document.fullscreenElement) {
-                          document.exitFullscreen().catch(() => {});
-                        } else {
-                          videoRef.current.requestFullscreen().catch(() => {});
-                        }
-                      }
-                    }}
-                    className="w-8 h-8 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer"
-                    title="Fullscreen"
-                  >
-                    <Maximize2 size={14} />
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Bottom Meta Bar */}
-            <div className="p-5 sm:p-7 bg-white border-t border-[#e7e6e2] flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 text-xs font-portfolio-sans text-[#0284c7] font-bold">
-                  <span>
-                    FILM 0{activeVideoIdx + 1} OF 0{films.length}
-                  </span>
-                  <span>•</span>
-                  <span>{activeVideo.tag}</span>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-portfolio-serif font-normal text-[#20201e]">
-                  {activeVideo.title}
-                </h3>
-                <p className="text-sm text-[#686762] font-portfolio-sans font-normal max-w-3xl">
-                  {activeVideo.description}
-                </p>
-              </div>
-
-              {/* Film Switcher Pills */}
-              {films.length > 1 && (
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-xs font-portfolio-sans text-[#8e8d88] uppercase tracking-wider mr-1 font-bold">
-                    Switch:
-                  </span>
-                  {films.map((film, idx) => (
-                    <button
-                      key={film.id}
-                      type="button"
-                      onClick={() => setActiveVideoIdx(idx)}
-                      className={`w-9 h-9 rounded-full text-xs font-portfolio-sans font-bold transition-all flex items-center justify-center cursor-pointer ${
-                        activeVideoIdx === idx
-                          ? "bg-[#0284c7] text-white scale-105"
-                          : "bg-[#fbfaf8] border border-[#dedbd4] text-[#20201e] hover:bg-[#f0eee9]"
-                      }`}
-                    >
-                      0{idx + 1}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Video Catalog Playlist Cards */}
-          {films.length > 1 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
-              {films.map((film, fIdx) => {
-                const isSelected = activeVideoIdx === fIdx;
-                return (
-                  <button
-                    key={film.id}
-                    type="button"
-                    onClick={() => setActiveVideoIdx(fIdx)}
-                    className={`p-3.5 rounded-2xl text-left transition-all border cursor-pointer relative overflow-hidden group ${
-                      isSelected
-                        ? "bg-[#0ea5e9]/5 border-[#0284c7] ring-1 ring-[#0284c7]"
-                        : "bg-white border-[#e7e6e2] hover:border-[#dedbd4]"
-                    }`}
-                  >
-                    <div className="aspect-video w-full rounded-xl overflow-hidden bg-black mb-3 relative">
-                      <img
-                        src={film.poster}
-                        alt={film.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                        <span
-                          className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform ${
-                            isSelected
-                              ? "bg-[#0284c7] text-white scale-110"
-                              : "bg-white/40 text-white group-hover:scale-110"
-                          }`}
-                        >
-                          <Play size={13} className="fill-current ml-0.5" />
-                        </span>
-                      </div>
-                      <span className="absolute bottom-1.5 right-1.5 text-[9px] font-portfolio-sans px-1.5 py-0.5 rounded bg-black/80 text-white font-bold">
-                        0{fIdx + 1}
-                      </span>
-                    </div>
-
-                    <span className="text-[10px] font-portfolio-sans uppercase tracking-wider text-[#0284c7] block mb-1 font-bold">
-                      {film.tag}
-                    </span>
-                    <h4 className="text-xs font-semibold text-[#20201e] line-clamp-2 leading-snug">
-                      {film.title}
-                    </h4>
-                  </button>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* 3. CURATED EDITORIAL STILLS & PRODUCTION CATALOG */}
-      <section id="stills-catalog" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#ffffff] relative">
-        <div className="container mx-auto max-w-7xl space-y-10">
-          {/* Header & Filter Controls */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] mb-2 font-bold">
-                <Sparkles size={14} />
-                <span>HIGH-RESOLUTION CATALOG</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
-                Editorial Stills &amp; Production Master<span className="text-[#0284c7]">.</span>
-              </h2>
-              <p className="text-sm font-portfolio-sans text-[#686762] mt-1 max-w-xl">
-                Pin-sharp macro glass, cinematic color science, and calibrated lighting workflow. Tap any photo to expand into the fullscreen craft viewer.
-              </p>
-            </div>
-
-            {/* Filter Tabs */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <button
-                type="button"
-                onClick={() => setActiveFilter("All")}
-                className={`px-4 py-2 rounded-full text-xs font-portfolio-sans uppercase tracking-wider transition-all cursor-pointer ${
-                  activeFilter === "All"
-                    ? "bg-[#111827] text-white font-bold"
-                    : "bg-[#fbfaf8] border border-[#dedbd4] text-[#20201e] hover:bg-[#f0eee9]"
-                }`}
-              >
-                All Works ({stills.length})
-              </button>
-            </div>
-          </div>
-
-          {/* Stills Gallery Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6"
-          >
-            <AnimatePresence>
-              {filteredStills.map((still, idx) => (
-                <motion.div
-                  layout
-                  key={still.image + idx}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.35, delay: idx * 0.03 }}
-                  onClick={() => setLightboxIndex(idx)}
-                  className="group rounded-2xl overflow-hidden bg-[#fbfaf8] border border-[#e7e6e2] hover:border-[#0284c7] transition-all duration-300 flex flex-col cursor-pointer"
-                >
-                  {/* Image Card Container */}
-                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#f0eee9] flex items-center justify-center p-3">
-                    <img
-                      src={still.image}
-                      alt={still.alt}
-                      loading="lazy"
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
-
-                    {/* Category Pill Tag */}
-                    <span className="absolute top-3 left-3 text-[10px] font-portfolio-sans uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#dedbd4] text-[#20201e] font-semibold">
-                      {still.category}
-                    </span>
-
-                    {/* Zoom Icon Hover Overlay */}
-                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-[#111827] group-hover:bg-[#0284c7] text-white flex items-center justify-center transition-all duration-300">
-                      <ArrowUpRight size={16} />
-                    </span>
-                  </div>
-
-                  {/* Caption Meta */}
-                  <div className="p-4 space-y-1 bg-white border-t border-[#e7e6e2] flex-1 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] font-portfolio-sans text-[#0284c7] uppercase tracking-wider block font-bold">
-                        {still.tag}
-                      </span>
-                      <h3 className="text-sm font-semibold text-[#20201e] line-clamp-1 group-hover:text-[#0284c7] transition-colors">
-                        {still.title}
-                      </h3>
-                    </div>
-                    <p className="text-[11px] text-[#686762] line-clamp-2 font-portfolio-sans pt-1">
-                      {still.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 4. LIGHTBOX HIGH-RESOLUTION MODAL */}
-      <AnimatePresence>
-        {lightboxIndex !== null && filteredStills[lightboxIndex] && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-8"
-            onClick={() => setLightboxIndex(null)}
-          >
-            {/* Top Bar */}
-            <div
-              className="flex items-center justify-between z-10 max-w-7xl mx-auto w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="space-y-0.5">
-                <span className="text-xs font-portfolio-sans uppercase tracking-widest text-[#0284c7] font-bold">
-                  FRAME 0{lightboxIndex + 1} OF 0{filteredStills.length} · {filteredStills[lightboxIndex].category}
-                </span>
-                <h3 className="text-base sm:text-lg font-portfolio-serif text-white font-normal line-clamp-1">
-                  {filteredStills[lightboxIndex].title}
-                </h3>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setLightboxIndex(null)}
-                aria-label="Close modal"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white text-white hover:text-black flex items-center justify-center transition-all cursor-pointer border border-white/20"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            {/* Central Media Container with Prev/Next */}
-            <div
-              className="relative flex-1 flex items-center justify-center my-4 max-w-7xl mx-auto w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={() =>
-                  setLightboxIndex((prev) => (prev === 0 ? filteredStills.length - 1 : (prev ?? 1) - 1))
-                }
-                aria-label="Previous image"
-                className="absolute left-2 sm:left-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
-              >
-                <ChevronLeft size={24} />
-              </button>
-
-              <img
-                src={filteredStills[lightboxIndex].image}
-                alt={filteredStills[lightboxIndex].alt}
-                className="max-h-[70vh] sm:max-h-[75vh] max-w-full object-contain rounded-xl select-none"
-              />
-
-              <button
-                type="button"
-                onClick={() =>
-                  setLightboxIndex((prev) => (prev === filteredStills.length - 1 ? 0 : (prev ?? 0) + 1))
-                }
-                aria-label="Next image"
-                className="absolute right-2 sm:right-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-
-            {/* Bottom Caption */}
-            <div
-              className="max-w-4xl mx-auto w-full text-center space-y-2 z-10"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <p className="text-xs sm:text-sm text-white/80 font-portfolio-sans">
-                {filteredStills[lightboxIndex].description}
-              </p>
-              <span className="text-[10px] font-portfolio-sans text-white/50 block">
-                Use Left &amp; Right arrows to navigate • Press Esc to close
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* 5. OFFICIAL INSTAGRAM VERTICAL REELS SHOWCASE */}
-      {reels.length > 0 && (
-        <section
-          id="instagram-reels"
-          className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#fbfaf8] relative overflow-hidden"
-        >
-          <div className="container mx-auto max-w-6xl relative z-10 space-y-10">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#e7e6e2] pb-6">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 text-xs font-portfolio-sans text-[#0284c7] font-bold mb-2">
-                  <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-pulse" />
-                  <span>OFFICIAL INSTAGRAM REELS // @VIYANA.PRODUCTIONS</span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
-                  Vertical Motion Stories<span className="text-[#0284c7]">.</span>
-                </h2>
-              </div>
-              <p className="text-sm font-portfolio-sans text-[#686762] max-w-md">
-                High-retention 9:16 vertical cuts engineered specifically to stop thumbs on Instagram feeds and build deep audience connection.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              {/* Left: Reel Details & Selectors */}
-              <div className="lg:col-span-6 space-y-6">
-                <div className="space-y-3">
-                  <span className="text-xs font-portfolio-sans text-[#0284c7] uppercase tracking-widest block font-bold">
-                    SELECTED VERTICAL CAMPAIGN
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-portfolio-serif font-normal text-[#20201e] leading-snug">
-                    {reels[activeReelIdx]?.title || project.title}
-                  </h3>
-                  <p className="text-sm text-[#686762] font-portfolio-sans leading-relaxed">
-                    Tailored specifically for social algorithms with crisp keyframe animation, tactile audio design, and cinematic grade that pops on OLED smartphone screens.
-                  </p>
-                </div>
-
-                {/* Multi-Reel Selector Tabs */}
-                {reels.length > 1 && (
-                  <div className="space-y-2">
-                    <span className="text-xs font-portfolio-sans text-[#8e8d88] uppercase tracking-wider block font-bold">
-                      Available Reels:
-                    </span>
-                    <div className="flex flex-col gap-2">
-                      {reels.map((reel, rIdx) => (
-                        <button
-                          key={reel.id}
-                          type="button"
-                          onClick={() => setActiveReelIdx(rIdx)}
-                          className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer w-full overflow-hidden ${
-                            activeReelIdx === rIdx
-                              ? "bg-white border-[#0284c7] ring-1 ring-[#0284c7]/30 text-[#20201e]"
-                              : "bg-[#fbfaf8] border-[#e7e6e2] text-[#686762] hover:bg-white"
-                          }`}
-                        >
-                          <div className="flex items-center gap-2.5 min-w-0 overflow-hidden pr-2">
-                            <span className="text-xs font-portfolio-sans px-2 py-0.5 rounded bg-[#f0eee9] text-[#0284c7] font-bold shrink-0">
-                              0{rIdx + 1}
-                            </span>
-                            <span className="text-xs font-semibold truncate text-[#20201e]">{reel.title}</span>
-                          </div>
-                          <span className="text-[10px] font-portfolio-sans text-[#8e8d88] uppercase tracking-wider shrink-0 ml-2 font-semibold">
-                            {reel.tag}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div className="pt-2 flex flex-wrap items-center gap-4">
-                  <a
-                    href={reels[activeReelIdx]?.url || "https://www.instagram.com/viyana.productions/reels/"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#111827] hover:bg-[#0284c7] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold transition-all active:scale-95"
-                  >
-                    <InstagramIcon size={16} />
-                    <span>Open Directly on Instagram</span>
-                    <span className="text-sm">↗</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Right: Instagram Reel Native Video Player */}
-              <div className="lg:col-span-6 flex justify-center w-full">
-                <div className="w-full max-w-[340px] sm:max-w-[390px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-[#e7e6e2] bg-white p-2 sm:p-2.5 relative group">
-                  <div
-                    onClick={toggleReelPlay}
-                    className="relative w-full h-[520px] sm:h-[600px] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-black flex items-center justify-center cursor-pointer select-none"
-                  >
-                    <video
-                      ref={reelVideoRef}
-                      key={reels[activeReelIdx]?.videoSrc || activeReelIdx}
-                      src={reels[activeReelIdx]?.videoSrc || "/final-output.mp4"}
-                      poster={reels[activeReelIdx]?.poster || "/reel-01-poster.jpg"}
-                      autoPlay
-                      loop
-                      muted={isReelMuted}
-                      playsInline
-                      preload="metadata"
-                      className="w-full h-full object-cover"
-                    />
-
-                    {/* Gradient Vignette Overlays for UI legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85 pointer-events-none" />
-
-                    {/* Top Bar: Profile & Follow Badge */}
-                    <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-9 h-9 rounded-full p-[2px] bg-gradient-to-tr from-[#0284c7] via-[#0ea5e9] to-[#38bdf8]">
-                          <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden border border-black">
-                            <span className="font-portfolio-sans font-black text-[11px] text-white tracking-tighter">VP</span>
-                          </div>
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-xs font-semibold text-white tracking-tight">viyana.productions</span>
-                            <span className="w-3.5 h-3.5 rounded-full bg-[#0284c7] flex items-center justify-center text-[8px] text-white font-bold">✓</span>
-                          </div>
-                          <span className="text-[10px] text-white/70 font-portfolio-sans block">Instagram Reel</span>
-                        </div>
-                      </div>
-
-                      <a
-                        href={reels[activeReelIdx]?.url || "https://www.instagram.com/viyana.productions/reels/"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="px-3 py-1 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md text-[11px] font-semibold transition-all border border-white/25"
-                      >
-                        Follow
-                      </a>
-                    </div>
-
-                    {/* Center Play / Pause Indicator */}
-                    <div
-                      className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-200 ${
-                        !isReelPlaying ? "opacity-100 bg-black/40" : "opacity-0 group-hover:opacity-100"
-                      }`}
-                    >
-                      <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md border border-white/30 flex items-center justify-center text-white">
-                        {!isReelPlaying ? (
-                          <Play className="w-7 h-7 fill-current ml-1 text-white" />
-                        ) : (
-                          <Pause className="w-7 h-7 fill-current text-white" />
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Right Vertical Action Stack */}
-                    <div className="absolute right-3 bottom-20 z-20 flex flex-col items-center gap-4 text-white">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                        className="flex flex-col items-center gap-1 group/btn cursor-pointer"
-                      >
-                        <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover/btn:scale-110 transition-transform">
-                          <svg className="w-5 h-5 text-[#0ea5e9] fill-current" viewBox="0 0 24 24">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                          </svg>
-                        </div>
-                        <span className="text-[11px] font-portfolio-sans font-medium">
-                          18.4K
-                        </span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (reels[activeReelIdx]?.url) window.open(reels[activeReelIdx].url, "_blank");
-                        }}
-                        className="flex flex-col items-center gap-1 group/btn cursor-pointer"
-                      >
-                        <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover/btn:scale-110 transition-transform">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                          </svg>
-                        </div>
-                        <span className="text-[11px] font-portfolio-sans font-medium">
-                          240
-                        </span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleReelMute();
-                        }}
-                        className="flex flex-col items-center gap-1 group/btn cursor-pointer"
-                      >
-                        <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover/btn:scale-110 transition-transform">
-                          {isReelMuted ? <VolumeX className="w-5 h-5 text-white" /> : <Volume2 className="w-5 h-5 text-white" />}
-                        </div>
-                        <span className="text-[10px] font-portfolio-sans uppercase tracking-wider">
-                          {isReelMuted ? "Muted" : "Sound"}
-                        </span>
-                      </button>
-                    </div>
-
-                    {/* Bottom Caption & Audio Track */}
-                    <div className="absolute left-4 right-16 bottom-4 z-20 text-white space-y-2 pointer-events-none text-left">
-                      <p className="text-xs text-white/95 line-clamp-2 leading-relaxed font-normal">
-                        {reels[activeReelIdx]?.title || project.title}
-                      </p>
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] font-portfolio-sans text-white/90">
-                        <span>🎵</span>
-                        <span className="truncate max-w-[170px]">Viyana Productions • Studio Cut</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Direct External Link Pill Bar Below */}
-                  <div className="p-2 pt-3 flex items-center justify-between text-xs font-portfolio-sans text-[#686762]">
-                    <div className="flex items-center gap-1.5 text-[#0284c7] font-semibold">
-                      <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-ping" />
-                      <span>4K REEL PLAYING</span>
-                    </div>
-                    <a
-                      href={reels[activeReelIdx]?.url || "https://www.instagram.com/viyana.productions/reels/"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#20201e] hover:text-[#0284c7] transition-colors flex items-center gap-1 underline underline-offset-4 font-bold"
-                    >
-                      <span>View on app</span>
-                      <span>↗</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* 6. CRAFT, METHODOLOGY & HIGH-CONVERSION INQUIRY BOOKING */}
-      <section id="book-shoot" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#ffffff] relative">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Column: Creative Narrative & Scope */}
-            <div className="lg:col-span-7 space-y-10">
-              <div className="space-y-3">
-                <span className="text-xs font-portfolio-sans uppercase tracking-[0.3em] text-[#0284c7] block font-bold">
-                  THE VIYANA METHODOLOGY
-                </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal text-[#20201e] leading-tight tracking-tight">
-                  &ldquo;{project.tagline || "Clear, evocative, and attractive visuals that command desire."}&rdquo;
-                </h2>
-              </div>
-
-              <div className="space-y-4 text-[#686762] font-portfolio-sans text-base leading-relaxed border-t border-[#e7e6e2] pt-6">
-                <p className="text-[#20201e] font-medium">
-                  {project.fullDescription || project.description}
-                </p>
-                <p>
-                  At Viyana Productions in Bangalore, our dedicated cinema stage and on-location production infrastructure are engineered around visual discipline. Whether directing actors for high-stakes broadcast commercials or orchestrating precise studio lighting for luxury brands, every setup is crafted for measurable brand impact.
-                </p>
-              </div>
-
-              {/* Highlights 4-Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                {highlightCards.map((h, hIdx) => (
-                  <div
-                    key={hIdx}
-                    className="p-4 rounded-2xl bg-[#fbfaf8] border border-[#e7e6e2] space-y-1.5"
-                  >
-                    <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#0284c7] flex items-center gap-1.5">
-                      <CheckCircle2 size={14} />
-                      <span>{h.title}</span>
-                    </span>
-                    <p className="text-xs text-[#686762] font-portfolio-sans leading-relaxed">
-                      {h.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Column: Inquiry / Booking Form */}
-            <div className="lg:col-span-5">
-              <div className="lg:sticky lg:top-28 p-7 sm:p-9 rounded-3xl bg-[#fbfaf8] text-[#20201e] border border-[#e7e6e2] relative overflow-hidden">
-                {inquirySubmitted ? (
-                  <div className="py-10 text-center space-y-4">
-                    <div className="w-14 h-14 rounded-full bg-[#0ea5e9]/10 text-[#0284c7] border border-[#0ea5e9]/30 flex items-center justify-center mx-auto text-2xl font-bold">
-                      ✓
-                    </div>
-                    <div className="space-y-1.5">
-                      <h3 className="text-2xl font-portfolio-serif font-normal text-[#20201e]">
-                        Inquiry Received
-                      </h3>
-                      <p className="text-sm text-[#686762] font-portfolio-sans max-w-xs mx-auto">
-                        Thank you, {inquiry.name}. Our production team will contact you within 24 hours.
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setInquiry({ name: "", email: "", phone: "", message: "" });
-                        setInquirySubmitted(false);
-                      }}
-                      className="mt-3 text-xs font-portfolio-sans uppercase tracking-wider text-[#0284c7] hover:underline cursor-pointer transition-colors font-bold"
-                    >
-                      Send another message
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={onInquirySubmit} className="space-y-4 relative z-10">
-                    <div className="space-y-1.5 border-b border-[#e7e6e2] pb-4">
-                      <span className="text-[11px] font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] block font-bold">
-                        BOOK A {project.title}
-                      </span>
-                      <h3 className="text-2xl font-portfolio-serif font-normal text-[#20201e]">
-                        Start Your Campaign
-                      </h3>
-                      <p className="text-xs text-[#686762] font-portfolio-sans">
-                        Let us craft unforgettable stills and cinematic films for your brand.
-                      </p>
-                    </div>
-
-                    <label className="block space-y-1.5">
-                      <span className="text-[11px] font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
-                        Name *
-                      </span>
-                      <input
-                        type="text"
-                        name="name"
-                        value={inquiry.name}
-                        onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })}
-                        required
-                        className="w-full rounded-xl border border-[#dedbd4] bg-white px-4 py-3 text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:outline-none transition-all font-portfolio-sans"
-                        placeholder="Your full name"
-                      />
-                    </label>
-
-                    <label className="block space-y-1.5">
-                      <span className="text-[11px] font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
-                        Email Address *
-                      </span>
-                      <input
-                        type="email"
-                        name="email"
-                        value={inquiry.email}
-                        onChange={(e) => setInquiry({ ...inquiry, email: e.target.value })}
-                        required
-                        className="w-full rounded-xl border border-[#dedbd4] bg-white px-4 py-3 text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:outline-none transition-all font-portfolio-sans"
-                        placeholder="name@company.com"
-                      />
-                    </label>
-
-                    <label className="block space-y-1.5">
-                      <span className="text-[11px] font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
-                        Phone Number *
-                      </span>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={inquiry.phone}
-                        onChange={(e) => setInquiry({ ...inquiry, phone: e.target.value })}
-                        required
-                        className="w-full rounded-xl border border-[#dedbd4] bg-white px-4 py-3 text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:outline-none transition-all font-portfolio-sans"
-                        placeholder="+91 98765 43210"
-                      />
-                    </label>
-
-                    <label className="block space-y-1.5">
-                      <span className="text-[11px] font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
-                        Project Details *
-                      </span>
-                      <textarea
-                        name="message"
-                        value={inquiry.message}
-                        onChange={(e) => setInquiry({ ...inquiry, message: e.target.value })}
-                        required
-                        rows={4}
-                        className="w-full resize-y rounded-xl border border-[#dedbd4] bg-white px-4 py-3 text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:outline-none transition-all font-portfolio-sans"
-                        placeholder={`Tell us about your ${project.title.toLowerCase()} goals, timeline, and deliverables...`}
-                      />
-                    </label>
-
-                    {inquiryError && (
-                      <div
-                        role="alert"
-                        className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs font-portfolio-sans text-red-700 leading-relaxed flex items-start gap-2"
-                      >
-                        <span className="text-red-500 font-bold">!</span>
-                        <span>{inquiryError}</span>
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={isSubmittingInquiry}
-                      className="w-full py-4 px-6 rounded-xl bg-[#111827] hover:bg-[#0284c7] text-white font-portfolio-sans text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-60 cursor-pointer"
-                    >
-                      {isSubmittingInquiry ? "PROCESSING INQUIRY..." : `SUBMIT ${project.title.toUpperCase()} INQUIRY →`}
-                    </button>
-                  </form>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. NEXT PROJECT TEASER */}
-      <section className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] overflow-hidden bg-[#fbfaf8] group/next">
-        <div className="relative z-10 container mx-auto max-w-4xl text-center flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#dedbd4] mb-4">
-            <span className="text-[10px] sm:text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] font-bold">
-              NEXT DISCIPLINE // {String((categoryIndex % projects.length) + 1).padStart(2, "0")} OF {String(projects.length).padStart(2, "0")}
-            </span>
-          </div>
-
-          <span className="text-xs sm:text-sm font-portfolio-sans uppercase tracking-widest text-[#8e8d88] mb-3 font-semibold">
-            {nextProject.category} • {nextProject.client}
-          </span>
-
-          <Link
-            to={`/work/${nextProject.slug}`}
-            className="group/title block mb-6 max-w-2xl"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] group-hover/title:text-[#0284c7] transition-colors leading-tight">
-              <span>{nextProject.title}</span>
-            </h2>
-          </Link>
-
-          <p className="text-xs font-portfolio-sans text-[#686762] uppercase tracking-wider mb-8 max-w-lg">
-            {nextProject.deliverableType}
-          </p>
-
-          <Link
-            to={`/work/${nextProject.slug}`}
-            className="w-full sm:w-auto max-w-xs sm:max-w-none group/btn inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-widest font-bold hover:bg-[#0284c7] active:scale-95 transition-all"
-          >
-            <span>EXPLORE {nextProject.category}</span>
-            <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* 8. STREAMLINED LUXURY REDUCED WHITE FOOTER */}
-      <Footer variant="light" hideCtaBanner={true} />
-    </main>
   );
 }
