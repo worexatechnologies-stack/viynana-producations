@@ -262,13 +262,13 @@ export default function AboutPage() {
             {/* SPLIT HERO COMPOSITION (TYPOGRAPHY NARRATIVE + CLEAN CINEMATIC SHOWREEL) */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center mb-10 sm:mb-16">
               
-              {/* LEFT COLUMN: BRAND MANIFESTO & STRATEGIC VISION (6 COLS) */}
-              <div className="lg:col-span-6 space-y-6 sm:space-y-7">
-                {/* Monumental Headline */}
+              {/* LEFT COLUMN: BRAND MANIFESTO & STRATEGIC VISION (7 COLS) */}
+              <div className="lg:col-span-7 space-y-6 sm:space-y-7">
+                {/* Monumental Headline - Exactly 2 Lines */}
                 <div>
-                  <h1 className="text-3xl sm:text-5xl lg:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.12]">
-                    Where High&#8209;Impact Strategy <br className="hidden sm:inline" />
-                    Meets <em>Cinema&#8209;Grade Craft.</em>
+                  <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-[3.35rem] font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.14]">
+                    Where High&#8209;Impact Strategy <br />
+                    Meets <em className="italic text-[#0284c7] font-normal">Cinema&#8209;Grade Craft.</em>
                   </h1>
                 </div>
 
@@ -323,8 +323,8 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: CINEMATIC SHOWREEL VIDEO */}
-              <div className="lg:col-span-6 relative">
+              {/* RIGHT COLUMN: CINEMATIC SHOWREEL VIDEO (5 COLS) */}
+              <div className="lg:col-span-5 relative">
                 {/* Ambient Soft Paper Glow */}
                 <div className="absolute -inset-2 bg-[radial-gradient(circle,rgba(14,165,233,0.12)_0%,transparent_70%)] rounded-[32px] blur-2xl pointer-events-none" />
 
