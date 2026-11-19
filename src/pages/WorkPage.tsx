@@ -44,7 +44,7 @@ export default function WorkPage() {
     : "https://viyana.productions/work";
 
   return (
-    <main className="work-portfolio min-h-screen bg-[#fbfaf8] text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans relative overflow-x-hidden">
+    <main className="min-h-screen bg-[#fbfaf8] text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans relative overflow-x-hidden">
       <SEO
         title={metaTitle}
         description={metaDescription}

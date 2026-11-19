@@ -440,7 +440,7 @@ export default function ProductShootDetailPage({
   }, [lightboxIndex, filteredStills.length]);
 
   return (
-    <main className="bg-[#fbfaf8] text-[#20201e] min-h-screen selection:bg-[#ca8a04] selection:text-white overflow-x-hidden font-portfolio-sans">
+    <main className="bg-[#fbfaf8] text-[#20201e] min-h-screen selection:bg-[#111827] selection:text-white overflow-x-hidden font-portfolio-sans">
       <SEO
         title={project.seo?.metaTitle || "Product Photo Shoot in Bangalore | Viyana Productions"}
         description={
@@ -478,7 +478,7 @@ export default function ProductShootDetailPage({
               WORK ARCHIVE
             </Link>
             <span>/</span>
-            <span className="text-[#ca8a04] font-semibold">CATEGORY 10</span>
+            <span className="text-[#0284c7] font-semibold">CATEGORY 10</span>
             <span>/</span>
             <span className="text-[#20201e]">PRODUCT CINEMA &amp; MACRO STILLS</span>
           </div>
@@ -487,7 +487,7 @@ export default function ProductShootDetailPage({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-10 items-end mb-5 sm:mb-6">
             <div className="lg:col-span-8 xl:col-span-9 space-y-2.5 sm:space-y-3">
               <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.1] sm:leading-[1.04] max-w-5xl">
-                Product Shoot<span className="text-[#ca8a04]">.</span>
+                Product Shoot<span className="text-[#0284c7]">.</span>
               </h1>
               <p className="text-xs sm:text-base md:text-lg font-portfolio-sans font-normal text-[#686762] leading-relaxed max-w-3xl">
                 Tactile macro lighting, fine jewellery metallurgy, and commercial motion engineered to make customers fall in love with your brand.
@@ -499,14 +499,14 @@ export default function ProductShootDetailPage({
               <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2]">
                 <div className="flex items-center justify-between text-xs font-portfolio-sans text-[#777671] mb-1">
                   <span>PRODUCTION CATALOG</span>
-                  <span className="text-[#ca8a04] font-bold">5 FILMS · 14+ STILLS</span>
+                  <span className="text-[#0284c7] font-bold">5 FILMS · 14+ STILLS</span>
                 </div>
                 <span className="text-sm font-semibold text-[#20201e]">Fine Jewellery, Skincare &amp; E-Commerce</span>
               </div>
               <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2]">
                 <div className="flex items-center justify-between text-xs font-portfolio-sans text-[#777671] mb-1">
                   <span>STUDIO BASE</span>
-                  <span className="text-[#ca8a04] font-bold">BANGALORE HQ</span>
+                  <span className="text-[#0284c7] font-bold">BANGALORE HQ</span>
                 </div>
                 <span className="text-sm font-semibold text-[#20201e]">Macro Precision Stages &amp; Set Builds</span>
               </div>
@@ -517,28 +517,28 @@ export default function ProductShootDetailPage({
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-3 sm:pt-4 border-t border-[#e7e6e2]">
             <a
               href="#cinema-films"
-              className="px-5 py-2.5 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold hover:bg-[#ca8a04] transition-all shadow-md flex items-center gap-2 cursor-pointer"
+              className="px-5 py-2.5 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold hover:bg-[#0284c7] transition-all  flex items-center gap-2 cursor-pointer"
             >
               <Film size={14} />
               <span>Watch Commercial Films ({productVideos.length})</span>
             </a>
             <a
               href="#stills-catalog"
-              className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-xs cursor-pointer"
+              className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2  cursor-pointer"
             >
               <Camera size={14} />
               <span>Stills &amp; Jewellery Catalog ({productStills.length})</span>
             </a>
             <a
               href="#instagram-reels"
-              className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-xs cursor-pointer"
+              className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2  cursor-pointer"
             >
               <InstagramIcon size={14} />
               <span>Instagram Reels</span>
             </a>
             <a
               href="#book-shoot"
-              className="px-5 py-2.5 rounded-full bg-[#ca8a04]/10 hover:bg-[#ca8a04]/20 border border-[#ca8a04]/30 text-[#ca8a04] font-portfolio-sans text-xs uppercase tracking-wider transition-all ml-auto flex items-center gap-1.5 font-bold cursor-pointer"
+              className="px-5 py-2.5 rounded-full bg-[#0284c7]/10 hover:bg-[#0284c7]/20 border border-[#0284c7]/30 text-[#0284c7] font-portfolio-sans text-xs uppercase tracking-wider transition-all ml-auto flex items-center gap-1.5 font-bold cursor-pointer"
             >
               <span>Book a Product Shoot</span>
               <ArrowRight size={13} />
@@ -553,12 +553,12 @@ export default function ProductShootDetailPage({
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-[#e7e6e2] pb-4 sm:pb-5">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#ca8a04] mb-2 font-bold">
-                <span className="w-2 h-2 rounded-full bg-[#ca8a04] animate-ping" />
+              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] mb-2 font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-ping" />
                 <span>COMMERCIAL MOTION &amp; REELS</span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
-                Commercial Product Cinema<span className="text-[#ca8a04]">.</span>
+                Commercial Product Cinema<span className="text-[#0284c7]">.</span>
               </h2>
             </div>
             <p className="text-sm font-portfolio-sans text-[#686762] max-w-md">
@@ -567,7 +567,7 @@ export default function ProductShootDetailPage({
           </div>
 
           {/* Main Cinema Screen Container */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white shadow-[0_12px_36px_rgba(0,0,0,0.06)]">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white ">
             {/* Viewport Box */}
             <div
               onClick={togglePlay}
@@ -590,7 +590,7 @@ export default function ProductShootDetailPage({
 
               {/* Top Film Badge */}
               <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#e7e6e2] text-xs font-portfolio-sans text-[#20201e] shadow-sm font-semibold">
-                <span className="w-2 h-2 rounded-full bg-[#ca8a04] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-pulse" />
                 <span>{activeVideo.badge} · {activeVideo.category}</span>
               </div>
 
@@ -602,7 +602,7 @@ export default function ProductShootDetailPage({
                   handlePrevVideo();
                 }}
                 aria-label="Previous film"
-                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all active:scale-90 shadow-lg cursor-pointer"
+                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all active:scale-90  cursor-pointer"
               >
                 <ChevronLeft size={24} />
               </button>
@@ -614,7 +614,7 @@ export default function ProductShootDetailPage({
                   handleNextVideo();
                 }}
                 aria-label="Next film"
-                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all active:scale-90 shadow-lg cursor-pointer"
+                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all active:scale-90  cursor-pointer"
               >
                 <ChevronRight size={24} />
               </button>
@@ -642,7 +642,7 @@ export default function ProductShootDetailPage({
                     e.stopPropagation();
                     toggleMute();
                   }}
-                  className="px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md text-xs font-portfolio-sans flex items-center gap-2 transition-all cursor-pointer shadow-md font-semibold"
+                  className="px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md text-xs font-portfolio-sans flex items-center gap-2 transition-all cursor-pointer  font-semibold"
                 >
                   {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
                   <span>{isMuted ? "UNMUTE" : "MUTED"}</span>
@@ -660,7 +660,7 @@ export default function ProductShootDetailPage({
                       }
                     }
                   }}
-                  className="w-8 h-8 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all cursor-pointer shadow-md"
+                  className="w-8 h-8 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all cursor-pointer "
                   title="Fullscreen"
                 >
                   <Maximize2 size={14} />
@@ -671,7 +671,7 @@ export default function ProductShootDetailPage({
             {/* Bottom Meta Bar */}
             <div className="p-5 sm:p-7 bg-[#f7f6f3] border-t border-[#e7e6e2] flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-xs font-portfolio-sans text-[#ca8a04]">
+                <div className="flex items-center gap-2 text-xs font-portfolio-sans text-[#0284c7]">
                   <span className="font-bold">FILM 0{activeVideoIdx + 1} OF 0{productVideos.length}</span>
                   <span>•</span>
                   <span>{activeVideo.tag}</span>
@@ -694,7 +694,7 @@ export default function ProductShootDetailPage({
                     onClick={() => setActiveVideoIdx(idx)}
                     className={`w-9 h-9 rounded-full text-xs font-portfolio-sans font-bold transition-all flex items-center justify-center cursor-pointer ${
                       activeVideoIdx === idx
-                        ? "bg-[#111827] text-white shadow-md scale-105"
+                        ? "bg-[#111827] text-white  scale-105"
                         : "bg-white border border-[#dedbd4] text-[#686762] hover:border-[#111827] hover:text-[#20201e]"
                     }`}
                   >
@@ -716,7 +716,7 @@ export default function ProductShootDetailPage({
                   onClick={() => setActiveVideoIdx(fIdx)}
                   className={`p-3.5 rounded-2xl text-left transition-all border cursor-pointer relative overflow-hidden group ${
                     isSelected
-                      ? "bg-white border-[#ca8a04] shadow-md ring-1 ring-[#ca8a04]"
+                      ? "bg-white border-[#0284c7]  ring-1 ring-[#0284c7]"
                       : "bg-white border-[#e7e6e2] hover:border-[#dedbd4]"
                   }`}
                 >
@@ -730,7 +730,7 @@ export default function ProductShootDetailPage({
                       <span
                         className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform ${
                           isSelected
-                            ? "bg-[#111827] text-white scale-110 shadow-lg"
+                            ? "bg-[#111827] text-white scale-110 "
                             : "bg-white/80 text-[#20201e] group-hover:scale-110"
                         }`}
                       >
@@ -742,7 +742,7 @@ export default function ProductShootDetailPage({
                     </span>
                   </div>
 
-                  <span className="text-[10px] font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] block mb-1">
+                  <span className="text-[10px] font-portfolio-sans font-bold uppercase tracking-wider text-[#0284c7] block mb-1">
                     {film.tag}
                   </span>
                   <h4 className="text-xs font-semibold text-[#20201e] line-clamp-2 leading-snug">
@@ -761,12 +761,12 @@ export default function ProductShootDetailPage({
           {/* Header & Filter Controls */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#ca8a04] mb-2 font-bold">
+              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] mb-2 font-bold">
                 <Sparkles size={14} />
                 <span>HIGH-RESOLUTION CATALOG</span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
-                Editorial Stills &amp; Jewellery Master<span className="text-[#ca8a04]">.</span>
+                Editorial Stills &amp; Jewellery Master<span className="text-[#0284c7]">.</span>
               </h2>
               <p className="text-sm font-portfolio-sans text-[#686762] mt-1 max-w-xl">
                 Pin-sharp macro glass, organic props, and color-accurate ACEScc workflow. Tap any photo to expand into the fullscreen craft viewer.
@@ -782,7 +782,7 @@ export default function ProductShootDetailPage({
                   onClick={() => setActiveFilter(cat)}
                   className={`px-4 py-2 rounded-full text-xs font-portfolio-sans uppercase tracking-wider transition-all cursor-pointer ${
                     activeFilter === cat
-                      ? "bg-[#111827] text-white font-bold shadow-md scale-102"
+                      ? "bg-[#111827] text-white font-bold  scale-102"
                       : "bg-white border border-[#dedbd4] text-[#686762] hover:border-[#111827] hover:text-[#20201e] font-medium"
                   }`}
                 >
@@ -807,7 +807,7 @@ export default function ProductShootDetailPage({
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35, delay: idx * 0.03 }}
                   onClick={() => setLightboxIndex(idx)}
-                  className="group rounded-2xl overflow-hidden bg-white border border-[#e7e6e2] hover:border-[#ca8a04] transition-all duration-300 hover:shadow-[0_16px_36px_rgba(202,138,4,0.1)] flex flex-col cursor-pointer shadow-xs"
+                  className="group rounded-2xl overflow-hidden bg-white border border-[#e7e6e2] hover:border-[#0284c7] transition-all duration-300  flex flex-col cursor-pointer "
                 >
                   {/* Image Card Container */}
                   <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#fbfaf8] flex items-center justify-center p-3">
@@ -819,12 +819,12 @@ export default function ProductShootDetailPage({
                     />
 
                     {/* Category Pill Tag */}
-                    <span className="absolute top-3 left-3 text-[10px] font-portfolio-sans font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#e7e6e2] text-[#20201e] shadow-xs">
+                    <span className="absolute top-3 left-3 text-[10px] font-portfolio-sans font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#e7e6e2] text-[#20201e] ">
                       {still.category}
                     </span>
 
                     {/* Zoom Icon Hover Overlay */}
-                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 group-hover:bg-[#111827] group-hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-md">
+                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 group-hover:bg-[#111827] group-hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all duration-300 ">
                       <ArrowUpRight size={16} />
                     </span>
                   </div>
@@ -832,10 +832,10 @@ export default function ProductShootDetailPage({
                   {/* Caption Meta */}
                   <div className="p-4 space-y-1 bg-white border-t border-[#e7e6e2] flex-1 flex flex-col justify-between">
                     <div>
-                      <span className="text-[10px] font-portfolio-sans font-bold text-[#ca8a04] uppercase tracking-wider block">
+                      <span className="text-[10px] font-portfolio-sans font-bold text-[#0284c7] uppercase tracking-wider block">
                         {still.tag}
                       </span>
-                      <h3 className="text-sm font-semibold text-[#20201e] line-clamp-1 group-hover:text-[#ca8a04] transition-colors">
+                      <h3 className="text-sm font-semibold text-[#20201e] line-clamp-1 group-hover:text-[#0284c7] transition-colors">
                         {still.title}
                       </h3>
                     </div>
@@ -895,7 +895,7 @@ export default function ProductShootDetailPage({
                   setLightboxIndex((prev) => (prev === 0 ? filteredStills.length - 1 : (prev ?? 1) - 1))
                 }
                 aria-label="Previous image"
-                className="absolute left-2 sm:left-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-2xl"
+                className="absolute left-2 sm:left-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer "
               >
                 <ChevronLeft size={24} />
               </button>
@@ -903,7 +903,7 @@ export default function ProductShootDetailPage({
               <img
                 src={filteredStills[lightboxIndex].image}
                 alt={filteredStills[lightboxIndex].alt}
-                className="max-h-[70vh] sm:max-h-[75vh] max-w-full object-contain rounded-xl shadow-2xl select-none"
+                className="max-h-[70vh] sm:max-h-[75vh] max-w-full object-contain rounded-xl  select-none"
               />
 
               <button
@@ -912,7 +912,7 @@ export default function ProductShootDetailPage({
                   setLightboxIndex((prev) => (prev === filteredStills.length - 1 ? 0 : (prev ?? 0) + 1))
                 }
                 aria-label="Next image"
-                className="absolute right-2 sm:right-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-2xl"
+                className="absolute right-2 sm:right-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer "
               >
                 <ChevronRight size={24} />
               </button>
@@ -958,7 +958,7 @@ export default function ProductShootDetailPage({
             {/* Left: Reel Details & Selectors */}
             <div className="lg:col-span-6 space-y-6">
               <div className="space-y-3">
-                <span className="text-xs font-portfolio-sans text-[#ca8a04] uppercase tracking-widest block font-bold">
+                <span className="text-xs font-portfolio-sans text-[#0284c7] uppercase tracking-widest block font-bold">
                   SELECTED VERTICAL CAMPAIGN
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-portfolio-serif text-[#20201e] font-medium leading-snug">
@@ -982,7 +982,7 @@ export default function ProductShootDetailPage({
                       onClick={() => setActiveReelIdx(rIdx)}
                       className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer w-full overflow-hidden ${
                         activeReelIdx === rIdx
-                          ? "bg-white border-pink-500 text-[#20201e] shadow-md ring-1 ring-pink-500/30"
+                          ? "bg-white border-pink-500 text-[#20201e]  ring-1 ring-pink-500/30"
                           : "bg-white border-[#e7e6e2] text-[#686762] hover:border-[#dedbd4] hover:text-[#20201e]"
                       }`}
                     >
@@ -1041,7 +1041,7 @@ export default function ProductShootDetailPage({
                   {/* Top Bar: Profile & Follow Badge */}
                   <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-full p-[2px] bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] shadow-md">
+                      <div className="w-9 h-9 rounded-full p-[2px] bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] ">
                         <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden border border-black">
                           <span className="font-display font-black text-[11px] text-white tracking-tighter">VP</span>
                         </div>
@@ -1072,7 +1072,7 @@ export default function ProductShootDetailPage({
                       !isReelPlaying ? "opacity-100 bg-black/40" : "opacity-0 group-hover:opacity-100"
                     }`}
                   >
-                    <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl">
+                    <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md border border-white/30 flex items-center justify-center text-white ">
                       {!isReelPlaying ? (
                         <Play className="w-7 h-7 fill-current ml-1 text-white" />
                       ) : (
@@ -1177,7 +1177,7 @@ export default function ProductShootDetailPage({
             {/* Left Column: Creative Narrative & Scope */}
             <div className="lg:col-span-7 space-y-10">
               <div className="space-y-3">
-                <span className="text-xs font-portfolio-sans uppercase tracking-[0.3em] text-[#ca8a04] block font-bold">
+                <span className="text-xs font-portfolio-sans uppercase tracking-[0.3em] text-[#0284c7] block font-bold">
                   THE VIYANA METHODOLOGY
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-portfolio-serif text-[#20201e] leading-tight tracking-tight">
@@ -1198,7 +1198,7 @@ export default function ProductShootDetailPage({
               {/* Highlights 4-Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
                 <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2] space-y-1.5">
-                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] flex items-center gap-1.5">
+                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#0284c7] flex items-center gap-1.5">
                     <CheckCircle2 size={14} />
                     <span>MACRO PRECISION</span>
                   </span>
@@ -1208,7 +1208,7 @@ export default function ProductShootDetailPage({
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2] space-y-1.5">
-                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] flex items-center gap-1.5">
+                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#0284c7] flex items-center gap-1.5">
                     <CheckCircle2 size={14} />
                     <span>EDITORIAL STYLING</span>
                   </span>
@@ -1218,7 +1218,7 @@ export default function ProductShootDetailPage({
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2] space-y-1.5">
-                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] flex items-center gap-1.5">
+                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#0284c7] flex items-center gap-1.5">
                     <CheckCircle2 size={14} />
                     <span>STROBE SCIENCE</span>
                   </span>
@@ -1228,7 +1228,7 @@ export default function ProductShootDetailPage({
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2] space-y-1.5">
-                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] flex items-center gap-1.5">
+                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#0284c7] flex items-center gap-1.5">
                     <CheckCircle2 size={14} />
                     <span>COMMERCIAL REELS</span>
                   </span>
@@ -1241,7 +1241,7 @@ export default function ProductShootDetailPage({
 
             {/* Right Column: Inquiry / Booking Form (Luxury White Card) */}
             <div className="lg:col-span-5">
-              <div className="lg:sticky lg:top-28 p-7 sm:p-9 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-2xl relative overflow-hidden">
+              <div className="lg:sticky lg:top-28 p-7 sm:p-9 rounded-3xl bg-white text-neutral-900 border border-neutral-200  relative overflow-hidden">
                 {inquirySubmitted ? (
                   <div className="py-10 text-center space-y-4">
                     <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-2xl font-bold">
@@ -1353,7 +1353,7 @@ export default function ProductShootDetailPage({
                     <button
                       type="submit"
                       disabled={isSubmittingInquiry}
-                      className="w-full py-4 px-6 rounded-xl bg-neutral-900 hover:bg-black text-white font-mono text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 disabled:opacity-60 cursor-pointer"
+                      className="w-full py-4 px-6 rounded-xl bg-neutral-900 hover:bg-black text-white font-mono text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2 transition-all  active:scale-95 disabled:opacity-60 cursor-pointer"
                     >
                       {isSubmittingInquiry ? "PROCESSING INQUIRY..." : "SUBMIT PRODUCT SHOOT INQUIRY →"}
                     </button>

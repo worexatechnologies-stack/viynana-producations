@@ -838,7 +838,7 @@ function UniversalWorkCinemaPage({
   ];
 
   return (
-    <main className="bg-[#070709] text-white min-h-screen selection:bg-amber-400 selection:text-black overflow-x-hidden font-sans">
+    <main className="bg-[#fbfaf8] text-[#20201e] min-h-screen selection:bg-[#111827] selection:text-white overflow-x-hidden font-portfolio-sans">
       <SEO
         title={project.seo?.metaTitle || `${project.title} | Viyana Productions`}
         description={project.seo?.metaDescription || project.description}
@@ -855,56 +855,55 @@ function UniversalWorkCinemaPage({
       <Navbar />
 
       {/* 1. BESPOKE EDITORIAL HERO SECTION */}
-      <section className="relative pt-20 sm:pt-24 md:pt-28 pb-5 sm:pb-7 px-4 sm:px-6 lg:px-12 border-b border-white/[0.08] overflow-hidden">
-        {/* Ambient Golden / Violet Atmospheric Glow */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-amber-500/10 via-amber-700/5 to-transparent blur-[140px] pointer-events-none rounded-full" />
-        <div className="absolute top-1/3 left-10 w-[450px] h-[450px] bg-gradient-to-tr from-purple-500/8 via-transparent to-transparent blur-[120px] pointer-events-none rounded-full" />
+      <section className="relative pt-24 sm:pt-32 md:pt-36 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-12 border-b border-[#e7e6e2] bg-[#ffffff] overflow-hidden">
+        {/* Subtle Ambient Light Blue Glow */}
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.06)_0%,transparent_75%)] blur-2xl pointer-events-none rounded-full" />
 
         <div className="container mx-auto max-w-7xl relative z-10">
           {/* Eyebrow Breadcrumb */}
-          <div className="flex flex-wrap items-center gap-2.5 mb-3 sm:mb-4 text-xs font-mono uppercase tracking-[0.25em] text-white/50">
-            <Link to="/work" className="hover:text-white transition-colors">
+          <div className="flex flex-wrap items-center gap-2.5 mb-4 sm:mb-6 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#8e8d88]">
+            <Link to="/work" className="hover:text-[#20201e] transition-colors">
               WORK ARCHIVE
             </Link>
             <span>/</span>
-            <span className="text-amber-400 font-semibold">
+            <span className="text-[#0284c7] font-bold">
               CATEGORY {String(categoryIndex).padStart(2, "0")}
             </span>
             <span>/</span>
-            <span className="text-white/80">{project.deliverableType || project.category}</span>
+            <span className="text-[#20201e] font-semibold">{project.deliverableType || project.category}</span>
           </div>
 
-          {/* Hero Title with Balanced Responsive Typography (1-2 Lines Max) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-10 items-end mb-5 sm:mb-6">
-            <div className="lg:col-span-8 xl:col-span-9 space-y-2.5 sm:space-y-3">
-              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-[2.65rem] xl:text-[3.15rem] font-display font-extrabold uppercase tracking-tight text-white leading-[1.1] sm:leading-[1.04] max-w-5xl">
+          {/* Hero Title with Balanced Responsive Typography */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-6 sm:mb-8">
+            <div className="lg:col-span-8 xl:col-span-9 space-y-3 sm:space-y-4">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.05] max-w-5xl">
                 {project.title}
-                <span className="text-amber-400">.</span>
+                <span className="text-[#0284c7]">.</span>
               </h1>
-              <p className="text-xs sm:text-base md:text-lg font-serif font-light text-white/80 leading-relaxed max-w-3xl">
+              <p className="text-sm sm:text-base md:text-lg font-portfolio-sans font-normal text-[#686762] leading-relaxed max-w-3xl">
                 {project.description}
               </p>
             </div>
 
             {/* Quick Metrics Bar */}
             <div className="lg:col-span-4 xl:col-span-3 flex flex-col sm:flex-row lg:flex-col gap-3">
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
-                <div className="flex items-center justify-between text-xs font-mono text-white/50 mb-1">
+              <div className="p-4 rounded-2xl bg-[#fbfaf8] border border-[#e7e6e2]">
+                <div className="flex items-center justify-between text-xs font-portfolio-sans text-[#8e8d88] mb-1 font-bold">
                   <span>PRODUCTION CATALOG</span>
-                  <span className="text-amber-400 font-bold">
+                  <span className="text-[#0284c7]">
                     {films.length} FILMS · {stills.length}+ STILLS
                   </span>
                 </div>
-                <span className="text-sm font-semibold text-white">
+                <span className="text-sm font-semibold text-[#20201e]">
                   {project.deliverableType || project.category}
                 </span>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
-                <div className="flex items-center justify-between text-xs font-mono text-white/50 mb-1">
+              <div className="p-4 rounded-2xl bg-[#fbfaf8] border border-[#e7e6e2]">
+                <div className="flex items-center justify-between text-xs font-portfolio-sans text-[#8e8d88] mb-1 font-bold">
                   <span>STUDIO BASE</span>
-                  <span className="text-emerald-400 font-bold">BANGALORE HQ</span>
+                  <span className="text-[#0284c7]">BANGALORE HQ</span>
                 </div>
-                <span className="text-sm font-semibold text-white">
+                <span className="text-sm font-semibold text-[#20201e]">
                   4K Commercial Cameras &amp; Soundstages
                 </span>
               </div>
@@ -912,17 +911,17 @@ function UniversalWorkCinemaPage({
           </div>
 
           {/* Navigation Quick Anchors */}
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-3 sm:pt-4 border-t border-white/[0.08]">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-4 border-t border-[#e7e6e2]">
             <a
               href="#cinema-films"
-              className="px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-amber-300 transition-all shadow-lg flex items-center gap-2"
+              className="px-5 py-2.5 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold hover:bg-[#0284c7] transition-all flex items-center gap-2 cursor-pointer"
             >
               <Film size={14} />
               <span>Watch Films ({films.length})</span>
             </a>
             <a
               href="#stills-catalog"
-              className="px-5 py-2.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-2"
+              className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer font-semibold"
             >
               <Camera size={14} />
               <span>Stills &amp; Production Catalog ({stills.length})</span>
@@ -930,7 +929,7 @@ function UniversalWorkCinemaPage({
             {reels.length > 0 && (
               <a
                 href="#instagram-reels"
-                className="px-5 py-2.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-2"
+                className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer font-semibold"
               >
                 <InstagramIcon size={14} />
                 <span>Instagram Reels ({reels.length})</span>
@@ -938,7 +937,7 @@ function UniversalWorkCinemaPage({
             )}
             <a
               href="#book-shoot"
-              className="px-5 py-2.5 rounded-full bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/40 text-amber-300 font-mono text-xs uppercase tracking-wider transition-all ml-auto flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-full bg-[#0ea5e9]/10 hover:bg-[#0ea5e9]/20 border border-[#0ea5e9]/30 text-[#0284c7] font-portfolio-sans text-xs uppercase tracking-wider transition-all ml-auto flex items-center gap-1.5 font-bold cursor-pointer"
             >
               <span>Book this Shoot</span>
               <ArrowRight size={13} />
@@ -948,27 +947,26 @@ function UniversalWorkCinemaPage({
       </section>
 
       {/* 2. THEATER CINEMA PLAYER */}
-      <section id="cinema-films" className="py-8 sm:py-14 px-4 sm:px-6 lg:px-12 bg-black relative">
+      <section id="cinema-films" className="py-10 sm:py-16 px-4 sm:px-6 lg:px-12 bg-[#fbfaf8] relative">
         <div className="container mx-auto max-w-7xl space-y-6 sm:space-y-8">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-white/10 pb-4 sm:pb-5">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-[#e7e6e2] pb-5">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-amber-400 mb-2">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] mb-2 font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-ping" />
                 <span>COMMERCIAL MOTION &amp; REELS</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
-                {project.title} Cinema
-                <span className="text-amber-400">.</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
+                {project.title} <em className="italic text-[#0284c7] font-normal">Cinema.</em>
               </h2>
             </div>
-            <p className="text-sm font-mono text-white/60 max-w-md">
+            <p className="text-sm font-portfolio-sans text-[#686762] max-w-md">
               From behind-the-scenes breakdown to 4K commercial broadcast masters, each film is shot with razor-sharp glass and cinematic lighting.
             </p>
           </div>
 
           {/* Main Cinema Screen Container */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-[#0a0a0c] shadow-[0_30px_90px_rgba(0,0,0,0.95)]">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white">
             {/* Viewport Box */}
             <div
               onClick={togglePlay}
@@ -998,14 +996,14 @@ function UniversalWorkCinemaPage({
               )}
 
               {/* Top Film Badge */}
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-xs font-portfolio-sans text-white">
+                <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
                 <span>
                   {activeVideo.badge} · {activeVideo.category}
                 </span>
               </div>
 
-              {/* Prev / Next Floating Navigation Buttons (when multiple films) */}
+              {/* Prev / Next Floating Navigation Buttons */}
               {films.length > 1 && (
                 <>
                   <button
@@ -1015,7 +1013,7 @@ function UniversalWorkCinemaPage({
                       handlePrevVideo();
                     }}
                     aria-label="Previous film"
-                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-white hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all active:scale-90 shadow-2xl cursor-pointer"
+                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-white hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all active:scale-90 cursor-pointer"
                   >
                     <ChevronLeft size={24} />
                   </button>
@@ -1027,21 +1025,21 @@ function UniversalWorkCinemaPage({
                       handleNextVideo();
                     }}
                     aria-label="Next film"
-                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-white hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all active:scale-90 shadow-2xl cursor-pointer"
+                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-white hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all active:scale-90 cursor-pointer"
                   >
                     <ChevronRight size={24} />
                   </button>
                 </>
               )}
 
-              {/* Center Play / Pause Indicator (for HTML5 video) */}
+              {/* Center Play / Pause Indicator */}
               {!activeVideo.youtubeId && (
                 <div
                   className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-200 ${
                     !isPlaying ? "opacity-100 bg-black/40" : "opacity-0 group-hover:opacity-100"
                   }`}
                 >
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white">
                     {!isPlaying ? (
                       <Play className="w-8 h-8 fill-current ml-1 text-white" />
                     ) : (
@@ -1060,7 +1058,7 @@ function UniversalWorkCinemaPage({
                       e.stopPropagation();
                       toggleMute();
                     }}
-                    className="px-3.5 py-1.5 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 backdrop-blur-md text-xs font-mono flex items-center gap-2 transition-all cursor-pointer shadow-lg"
+                    className="px-3.5 py-1.5 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 backdrop-blur-md text-xs font-portfolio-sans flex items-center gap-2 transition-all cursor-pointer"
                   >
                     {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
                     <span>{isMuted ? "UNMUTE" : "MUTED"}</span>
@@ -1078,7 +1076,7 @@ function UniversalWorkCinemaPage({
                         }
                       }
                     }}
-                    className="w-8 h-8 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer shadow-lg"
+                    className="w-8 h-8 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer"
                     title="Fullscreen"
                   >
                     <Maximize2 size={14} />
@@ -1088,27 +1086,27 @@ function UniversalWorkCinemaPage({
             </div>
 
             {/* Bottom Meta Bar */}
-            <div className="p-5 sm:p-7 bg-[#0d0d11] border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="p-5 sm:p-7 bg-white border-t border-[#e7e6e2] flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-xs font-mono text-amber-400">
-                  <span className="font-bold">
+                <div className="flex items-center gap-2 text-xs font-portfolio-sans text-[#0284c7] font-bold">
+                  <span>
                     FILM 0{activeVideoIdx + 1} OF 0{films.length}
                   </span>
                   <span>•</span>
                   <span>{activeVideo.tag}</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-serif text-white font-medium">
+                <h3 className="text-xl sm:text-2xl font-portfolio-serif font-normal text-[#20201e]">
                   {activeVideo.title}
                 </h3>
-                <p className="text-sm text-white/70 font-light max-w-3xl">
+                <p className="text-sm text-[#686762] font-portfolio-sans font-normal max-w-3xl">
                   {activeVideo.description}
                 </p>
               </div>
 
-              {/* Film Switcher Pills (when multiple films) */}
+              {/* Film Switcher Pills */}
               {films.length > 1 && (
                 <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-xs font-mono text-white/50 uppercase tracking-wider mr-1">
+                  <span className="text-xs font-portfolio-sans text-[#8e8d88] uppercase tracking-wider mr-1 font-bold">
                     Switch:
                   </span>
                   {films.map((film, idx) => (
@@ -1116,10 +1114,10 @@ function UniversalWorkCinemaPage({
                       key={film.id}
                       type="button"
                       onClick={() => setActiveVideoIdx(idx)}
-                      className={`w-9 h-9 rounded-full text-xs font-mono font-bold transition-all flex items-center justify-center cursor-pointer ${
+                      className={`w-9 h-9 rounded-full text-xs font-portfolio-sans font-bold transition-all flex items-center justify-center cursor-pointer ${
                         activeVideoIdx === idx
-                          ? "bg-amber-400 text-black shadow-[0_0_15px_rgba(251,191,36,0.5)] scale-105"
-                          : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+                          ? "bg-[#0284c7] text-white scale-105"
+                          : "bg-[#fbfaf8] border border-[#dedbd4] text-[#20201e] hover:bg-[#f0eee9]"
                       }`}
                     >
                       0{idx + 1}
@@ -1130,7 +1128,7 @@ function UniversalWorkCinemaPage({
             </div>
           </div>
 
-          {/* Video Catalog Playlist Cards (when multiple films) */}
+          {/* Video Catalog Playlist Cards */}
           {films.length > 1 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
               {films.map((film, fIdx) => {
@@ -1142,8 +1140,8 @@ function UniversalWorkCinemaPage({
                     onClick={() => setActiveVideoIdx(fIdx)}
                     className={`p-3.5 rounded-2xl text-left transition-all border cursor-pointer relative overflow-hidden group ${
                       isSelected
-                        ? "bg-white/[0.08] border-amber-400/80 shadow-[0_0_20px_rgba(251,191,36,0.2)] ring-1 ring-amber-400/40"
-                        : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20"
+                        ? "bg-[#0ea5e9]/5 border-[#0284c7] ring-1 ring-[#0284c7]"
+                        : "bg-white border-[#e7e6e2] hover:border-[#dedbd4]"
                     }`}
                   >
                     <div className="aspect-video w-full rounded-xl overflow-hidden bg-black mb-3 relative">
@@ -1152,26 +1150,26 @@ function UniversalWorkCinemaPage({
                         alt={film.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                         <span
                           className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform ${
                             isSelected
-                              ? "bg-amber-400 text-black scale-110 shadow-lg"
-                              : "bg-white/30 text-white group-hover:scale-110"
+                              ? "bg-[#0284c7] text-white scale-110"
+                              : "bg-white/40 text-white group-hover:scale-110"
                           }`}
                         >
                           <Play size={13} className="fill-current ml-0.5" />
                         </span>
                       </div>
-                      <span className="absolute bottom-1.5 right-1.5 text-[9px] font-mono px-1.5 py-0.5 rounded bg-black/80 text-white">
+                      <span className="absolute bottom-1.5 right-1.5 text-[9px] font-portfolio-sans px-1.5 py-0.5 rounded bg-black/80 text-white font-bold">
                         0{fIdx + 1}
                       </span>
                     </div>
 
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 block mb-1">
+                    <span className="text-[10px] font-portfolio-sans uppercase tracking-wider text-[#0284c7] block mb-1 font-bold">
                       {film.tag}
                     </span>
-                    <h4 className="text-xs font-semibold text-white line-clamp-2 leading-snug">
+                    <h4 className="text-xs font-semibold text-[#20201e] line-clamp-2 leading-snug">
                       {film.title}
                     </h4>
                   </button>
@@ -1183,20 +1181,19 @@ function UniversalWorkCinemaPage({
       </section>
 
       {/* 3. CURATED EDITORIAL STILLS & PRODUCTION CATALOG */}
-      <section id="stills-catalog" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-[#070709] relative">
+      <section id="stills-catalog" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#ffffff] relative">
         <div className="container mx-auto max-w-7xl space-y-10">
           {/* Header & Filter Controls */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-amber-400 mb-2">
+              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] mb-2 font-bold">
                 <Sparkles size={14} />
                 <span>HIGH-RESOLUTION CATALOG</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
-                Editorial Stills &amp; Production Master
-                <span className="text-amber-400">.</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
+                Editorial Stills &amp; Production Master<span className="text-[#0284c7]">.</span>
               </h2>
-              <p className="text-sm font-mono text-white/60 mt-1 max-w-xl">
+              <p className="text-sm font-portfolio-sans text-[#686762] mt-1 max-w-xl">
                 Pin-sharp macro glass, cinematic color science, and calibrated lighting workflow. Tap any photo to expand into the fullscreen craft viewer.
               </p>
             </div>
@@ -1206,10 +1203,10 @@ function UniversalWorkCinemaPage({
               <button
                 type="button"
                 onClick={() => setActiveFilter("All")}
-                className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-full text-xs font-portfolio-sans uppercase tracking-wider transition-all cursor-pointer ${
                   activeFilter === "All"
-                    ? "bg-white text-black font-bold shadow-lg scale-105"
-                    : "bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white"
+                    ? "bg-[#111827] text-white font-bold"
+                    : "bg-[#fbfaf8] border border-[#dedbd4] text-[#20201e] hover:bg-[#f0eee9]"
                 }`}
               >
                 All Works ({stills.length})
@@ -1232,10 +1229,10 @@ function UniversalWorkCinemaPage({
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35, delay: idx * 0.03 }}
                   onClick={() => setLightboxIndex(idx)}
-                  className="group rounded-2xl overflow-hidden bg-white/[0.02] border border-white/10 hover:border-amber-400/60 transition-all duration-300 hover:shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(251,191,36,0.15)] flex flex-col cursor-pointer"
+                  className="group rounded-2xl overflow-hidden bg-[#fbfaf8] border border-[#e7e6e2] hover:border-[#0284c7] transition-all duration-300 flex flex-col cursor-pointer"
                 >
                   {/* Image Card Container */}
-                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/60 flex items-center justify-center p-3">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#f0eee9] flex items-center justify-center p-3">
                     <img
                       src={still.image}
                       alt={still.alt}
@@ -1244,27 +1241,27 @@ function UniversalWorkCinemaPage({
                     />
 
                     {/* Category Pill Tag */}
-                    <span className="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-white/90">
+                    <span className="absolute top-3 left-3 text-[10px] font-portfolio-sans uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#dedbd4] text-[#20201e] font-semibold">
                       {still.category}
                     </span>
 
                     {/* Zoom Icon Hover Overlay */}
-                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/80 group-hover:bg-amber-400 group-hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-lg">
+                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-[#111827] group-hover:bg-[#0284c7] text-white flex items-center justify-center transition-all duration-300">
                       <ArrowUpRight size={16} />
                     </span>
                   </div>
 
                   {/* Caption Meta */}
-                  <div className="p-4 space-y-1 bg-[#0c0c10] border-t border-white/10 flex-1 flex flex-col justify-between">
+                  <div className="p-4 space-y-1 bg-white border-t border-[#e7e6e2] flex-1 flex flex-col justify-between">
                     <div>
-                      <span className="text-[10px] font-mono text-amber-400/90 uppercase tracking-wider block">
+                      <span className="text-[10px] font-portfolio-sans text-[#0284c7] uppercase tracking-wider block font-bold">
                         {still.tag}
                       </span>
-                      <h3 className="text-sm font-semibold text-white line-clamp-1 group-hover:text-amber-300 transition-colors">
+                      <h3 className="text-sm font-semibold text-[#20201e] line-clamp-1 group-hover:text-[#0284c7] transition-colors">
                         {still.title}
                       </h3>
                     </div>
-                    <p className="text-[11px] text-white/50 line-clamp-2 font-light pt-1">
+                    <p className="text-[11px] text-[#686762] line-clamp-2 font-portfolio-sans pt-1">
                       {still.description}
                     </p>
                   </div>
@@ -1291,10 +1288,10 @@ function UniversalWorkCinemaPage({
               onClick={(e) => e.stopPropagation()}
             >
               <div className="space-y-0.5">
-                <span className="text-xs font-mono uppercase tracking-widest text-amber-400">
+                <span className="text-xs font-portfolio-sans uppercase tracking-widest text-[#0284c7] font-bold">
                   FRAME 0{lightboxIndex + 1} OF 0{filteredStills.length} · {filteredStills[lightboxIndex].category}
                 </span>
-                <h3 className="text-base sm:text-lg font-serif text-white font-medium line-clamp-1">
+                <h3 className="text-base sm:text-lg font-portfolio-serif text-white font-normal line-clamp-1">
                   {filteredStills[lightboxIndex].title}
                 </h3>
               </div>
@@ -1320,7 +1317,7 @@ function UniversalWorkCinemaPage({
                   setLightboxIndex((prev) => (prev === 0 ? filteredStills.length - 1 : (prev ?? 1) - 1))
                 }
                 aria-label="Previous image"
-                className="absolute left-2 sm:left-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-2xl"
+                className="absolute left-2 sm:left-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
               >
                 <ChevronLeft size={24} />
               </button>
@@ -1328,7 +1325,7 @@ function UniversalWorkCinemaPage({
               <img
                 src={filteredStills[lightboxIndex].image}
                 alt={filteredStills[lightboxIndex].alt}
-                className="max-h-[70vh] sm:max-h-[75vh] max-w-full object-contain rounded-xl shadow-2xl select-none"
+                className="max-h-[70vh] sm:max-h-[75vh] max-w-full object-contain rounded-xl select-none"
               />
 
               <button
@@ -1337,7 +1334,7 @@ function UniversalWorkCinemaPage({
                   setLightboxIndex((prev) => (prev === filteredStills.length - 1 ? 0 : (prev ?? 0) + 1))
                 }
                 aria-label="Next image"
-                className="absolute right-2 sm:right-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-2xl"
+                className="absolute right-2 sm:right-4 z-20 w-12 h-12 rounded-full bg-black/80 hover:bg-white hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
               >
                 <ChevronRight size={24} />
               </button>
@@ -1348,10 +1345,10 @@ function UniversalWorkCinemaPage({
               className="max-w-4xl mx-auto w-full text-center space-y-2 z-10"
               onClick={(e) => e.stopPropagation()}
             >
-              <p className="text-xs sm:text-sm text-white/70 font-light">
+              <p className="text-xs sm:text-sm text-white/80 font-portfolio-sans">
                 {filteredStills[lightboxIndex].description}
               </p>
-              <span className="text-[10px] font-mono text-white/40 block">
+              <span className="text-[10px] font-portfolio-sans text-white/50 block">
                 Use Left &amp; Right arrows to navigate • Press Esc to close
               </span>
             </div>
@@ -1359,27 +1356,24 @@ function UniversalWorkCinemaPage({
         )}
       </AnimatePresence>
 
-      {/* 5. OFFICIAL INSTAGRAM VERTICAL REELS SHOWCASE (when available) */}
+      {/* 5. OFFICIAL INSTAGRAM VERTICAL REELS SHOWCASE */}
       {reels.length > 0 && (
         <section
           id="instagram-reels"
-          className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-gradient-to-b from-[#070709] via-[#0d0910] to-[#070709] relative overflow-hidden"
+          className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#fbfaf8] relative overflow-hidden"
         >
-          <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-gradient-to-br from-[#833ab4]/15 via-[#fd1d1d]/10 to-transparent blur-3xl pointer-events-none rounded-full" />
-
           <div className="container mx-auto max-w-6xl relative z-10 space-y-10">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#e7e6e2] pb-6">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#833ab4]/20 via-[#fd1d1d]/20 to-[#fcb045]/20 border border-pink-500/30 text-xs font-mono text-pink-300 mb-2">
-                  <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 text-xs font-portfolio-sans text-[#0284c7] font-bold mb-2">
+                  <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-pulse" />
                   <span>OFFICIAL INSTAGRAM REELS // @VIYANA.PRODUCTIONS</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
-                  Vertical Motion Stories
-                  <span className="text-pink-500">.</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
+                  Vertical Motion Stories<span className="text-[#0284c7]">.</span>
                 </h2>
               </div>
-              <p className="text-sm font-mono text-white/60 max-w-md">
+              <p className="text-sm font-portfolio-sans text-[#686762] max-w-md">
                 High-retention 9:16 vertical cuts engineered specifically to stop thumbs on Instagram feeds and build deep audience connection.
               </p>
             </div>
@@ -1388,13 +1382,13 @@ function UniversalWorkCinemaPage({
               {/* Left: Reel Details & Selectors */}
               <div className="lg:col-span-6 space-y-6">
                 <div className="space-y-3">
-                  <span className="text-xs font-mono text-amber-400 uppercase tracking-widest block">
+                  <span className="text-xs font-portfolio-sans text-[#0284c7] uppercase tracking-widest block font-bold">
                     SELECTED VERTICAL CAMPAIGN
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-serif text-white font-medium leading-snug">
+                  <h3 className="text-2xl sm:text-3xl font-portfolio-serif font-normal text-[#20201e] leading-snug">
                     {reels[activeReelIdx]?.title || project.title}
                   </h3>
-                  <p className="text-sm text-white/70 leading-relaxed font-light">
+                  <p className="text-sm text-[#686762] font-portfolio-sans leading-relaxed">
                     Tailored specifically for social algorithms with crisp keyframe animation, tactile audio design, and cinematic grade that pops on OLED smartphone screens.
                   </p>
                 </div>
@@ -1402,7 +1396,7 @@ function UniversalWorkCinemaPage({
                 {/* Multi-Reel Selector Tabs */}
                 {reels.length > 1 && (
                   <div className="space-y-2">
-                    <span className="text-xs font-mono text-white/50 uppercase tracking-wider block">
+                    <span className="text-xs font-portfolio-sans text-[#8e8d88] uppercase tracking-wider block font-bold">
                       Available Reels:
                     </span>
                     <div className="flex flex-col gap-2">
@@ -1413,17 +1407,17 @@ function UniversalWorkCinemaPage({
                           onClick={() => setActiveReelIdx(rIdx)}
                           className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer w-full overflow-hidden ${
                             activeReelIdx === rIdx
-                              ? "bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-transparent border-pink-500/60 text-white shadow-lg"
-                              : "bg-white/[0.02] border-white/10 text-white/70 hover:bg-white/[0.05] hover:text-white"
+                              ? "bg-white border-[#0284c7] ring-1 ring-[#0284c7]/30 text-[#20201e]"
+                              : "bg-[#fbfaf8] border-[#e7e6e2] text-[#686762] hover:bg-white"
                           }`}
                         >
                           <div className="flex items-center gap-2.5 min-w-0 overflow-hidden pr-2">
-                            <span className="text-xs font-mono px-2 py-0.5 rounded bg-black/60 text-pink-300 font-bold shrink-0">
+                            <span className="text-xs font-portfolio-sans px-2 py-0.5 rounded bg-[#f0eee9] text-[#0284c7] font-bold shrink-0">
                               0{rIdx + 1}
                             </span>
-                            <span className="text-xs font-semibold truncate">{reel.title}</span>
+                            <span className="text-xs font-semibold truncate text-[#20201e]">{reel.title}</span>
                           </div>
-                          <span className="text-[10px] font-mono text-white/50 uppercase tracking-wider shrink-0 ml-2">
+                          <span className="text-[10px] font-portfolio-sans text-[#8e8d88] uppercase tracking-wider shrink-0 ml-2 font-semibold">
                             {reel.tag}
                           </span>
                         </button>
@@ -1437,7 +1431,7 @@ function UniversalWorkCinemaPage({
                     href={reels[activeReelIdx]?.url || "https://www.instagram.com/viyana.productions/reels/"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-95 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-transform active:scale-95 shadow-[0_10px_25px_rgba(253,29,29,0.3)]"
+                    className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#111827] hover:bg-[#0284c7] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold transition-all active:scale-95"
                   >
                     <InstagramIcon size={16} />
                     <span>Open Directly on Instagram</span>
@@ -1446,14 +1440,13 @@ function UniversalWorkCinemaPage({
                 </div>
               </div>
 
-              {/* Right: Instagram Reel Native Video Player with Authentic Reel UI */}
+              {/* Right: Instagram Reel Native Video Player */}
               <div className="lg:col-span-6 flex justify-center w-full">
-                <div className="w-full max-w-[340px] sm:max-w-[390px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-white/20 bg-[#0a0a0c] shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(253,29,29,0.18)] p-2 sm:p-2.5 relative group">
+                <div className="w-full max-w-[340px] sm:max-w-[390px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-[#e7e6e2] bg-white p-2 sm:p-2.5 relative group">
                   <div
                     onClick={toggleReelPlay}
                     className="relative w-full h-[520px] sm:h-[600px] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-black flex items-center justify-center cursor-pointer select-none"
                   >
-                    {/* Actual High-Res Video */}
                     <video
                       ref={reelVideoRef}
                       key={reels[activeReelIdx]?.videoSrc || activeReelIdx}
@@ -1473,17 +1466,17 @@ function UniversalWorkCinemaPage({
                     {/* Top Bar: Profile & Follow Badge */}
                     <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-9 h-9 rounded-full p-[2px] bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] shadow-md">
+                        <div className="w-9 h-9 rounded-full p-[2px] bg-gradient-to-tr from-[#0284c7] via-[#0ea5e9] to-[#38bdf8]">
                           <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden border border-black">
-                            <span className="font-display font-black text-[11px] text-white tracking-tighter">VP</span>
+                            <span className="font-portfolio-sans font-black text-[11px] text-white tracking-tighter">VP</span>
                           </div>
                         </div>
                         <div>
                           <div className="flex items-center gap-1.5">
                             <span className="text-xs font-semibold text-white tracking-tight">viyana.productions</span>
-                            <span className="w-3.5 h-3.5 rounded-full bg-[#0095f6] flex items-center justify-center text-[8px] text-white font-bold">✓</span>
+                            <span className="w-3.5 h-3.5 rounded-full bg-[#0284c7] flex items-center justify-center text-[8px] text-white font-bold">✓</span>
                           </div>
-                          <span className="text-[10px] text-white/70 font-mono block">Instagram Reel</span>
+                          <span className="text-[10px] text-white/70 font-portfolio-sans block">Instagram Reel</span>
                         </div>
                       </div>
 
@@ -1504,7 +1497,7 @@ function UniversalWorkCinemaPage({
                         !isReelPlaying ? "opacity-100 bg-black/40" : "opacity-0 group-hover:opacity-100"
                       }`}
                     >
-                      <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl">
+                      <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md border border-white/30 flex items-center justify-center text-white">
                         {!isReelPlaying ? (
                           <Play className="w-7 h-7 fill-current ml-1 text-white" />
                         ) : (
@@ -1523,11 +1516,11 @@ function UniversalWorkCinemaPage({
                         className="flex flex-col items-center gap-1 group/btn cursor-pointer"
                       >
                         <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover/btn:scale-110 transition-transform">
-                          <svg className="w-5 h-5 text-pink-500 fill-current" viewBox="0 0 24 24">
+                          <svg className="w-5 h-5 text-[#0ea5e9] fill-current" viewBox="0 0 24 24">
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                           </svg>
                         </div>
-                        <span className="text-[11px] font-mono font-medium drop-shadow">
+                        <span className="text-[11px] font-portfolio-sans font-medium">
                           18.4K
                         </span>
                       </button>
@@ -1545,7 +1538,7 @@ function UniversalWorkCinemaPage({
                             <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                           </svg>
                         </div>
-                        <span className="text-[11px] font-mono font-medium drop-shadow">
+                        <span className="text-[11px] font-portfolio-sans font-medium">
                           240
                         </span>
                       </button>
@@ -1561,7 +1554,7 @@ function UniversalWorkCinemaPage({
                         <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover/btn:scale-110 transition-transform">
                           {isReelMuted ? <VolumeX className="w-5 h-5 text-white" /> : <Volume2 className="w-5 h-5 text-white" />}
                         </div>
-                        <span className="text-[10px] font-mono uppercase tracking-wider drop-shadow">
+                        <span className="text-[10px] font-portfolio-sans uppercase tracking-wider">
                           {isReelMuted ? "Muted" : "Sound"}
                         </span>
                       </button>
@@ -1569,10 +1562,10 @@ function UniversalWorkCinemaPage({
 
                     {/* Bottom Caption & Audio Track */}
                     <div className="absolute left-4 right-16 bottom-4 z-20 text-white space-y-2 pointer-events-none text-left">
-                      <p className="text-xs text-white/95 line-clamp-2 leading-relaxed drop-shadow font-normal">
+                      <p className="text-xs text-white/95 line-clamp-2 leading-relaxed font-normal">
                         {reels[activeReelIdx]?.title || project.title}
                       </p>
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] font-mono text-white/90">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] font-portfolio-sans text-white/90">
                         <span>🎵</span>
                         <span className="truncate max-w-[170px]">Viyana Productions • Studio Cut</span>
                       </div>
@@ -1580,16 +1573,16 @@ function UniversalWorkCinemaPage({
                   </div>
 
                   {/* Direct External Link Pill Bar Below */}
-                  <div className="p-2 pt-3 flex items-center justify-between text-xs font-mono text-white/70">
-                    <div className="flex items-center gap-1.5 text-pink-400">
-                      <span className="w-2 h-2 rounded-full bg-pink-500 animate-ping" />
+                  <div className="p-2 pt-3 flex items-center justify-between text-xs font-portfolio-sans text-[#686762]">
+                    <div className="flex items-center gap-1.5 text-[#0284c7] font-semibold">
+                      <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-ping" />
                       <span>4K REEL PLAYING</span>
                     </div>
                     <a
                       href={reels[activeReelIdx]?.url || "https://www.instagram.com/viyana.productions/reels/"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-pink-300 transition-colors flex items-center gap-1 underline underline-offset-4"
+                      className="text-[#20201e] hover:text-[#0284c7] transition-colors flex items-center gap-1 underline underline-offset-4 font-bold"
                     >
                       <span>View on app</span>
                       <span>↗</span>
@@ -1603,22 +1596,22 @@ function UniversalWorkCinemaPage({
       )}
 
       {/* 6. CRAFT, METHODOLOGY & HIGH-CONVERSION INQUIRY BOOKING */}
-      <section id="book-shoot" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-[#060608] relative">
+      <section id="book-shoot" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#ffffff] relative">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left Column: Creative Narrative & Scope */}
             <div className="lg:col-span-7 space-y-10">
               <div className="space-y-3">
-                <span className="text-xs font-mono uppercase tracking-[0.3em] text-amber-400 block font-semibold">
+                <span className="text-xs font-portfolio-sans uppercase tracking-[0.3em] text-[#0284c7] block font-bold">
                   THE VIYANA METHODOLOGY
                 </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white leading-tight tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal text-[#20201e] leading-tight tracking-tight">
                   &ldquo;{project.tagline || "Clear, evocative, and attractive visuals that command desire."}&rdquo;
                 </h2>
               </div>
 
-              <div className="space-y-4 text-white/70 font-light text-base leading-relaxed border-t border-white/10 pt-6">
-                <p className="text-white/90">
+              <div className="space-y-4 text-[#686762] font-portfolio-sans text-base leading-relaxed border-t border-[#e7e6e2] pt-6">
+                <p className="text-[#20201e] font-medium">
                   {project.fullDescription || project.description}
                 </p>
                 <p>
@@ -1631,13 +1624,13 @@ function UniversalWorkCinemaPage({
                 {highlightCards.map((h, hIdx) => (
                   <div
                     key={hIdx}
-                    className="p-4 rounded-2xl bg-white/[0.03] border border-white/15 space-y-1.5"
+                    className="p-4 rounded-2xl bg-[#fbfaf8] border border-[#e7e6e2] space-y-1.5"
                   >
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                    <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#0284c7] flex items-center gap-1.5">
                       <CheckCircle2 size={14} />
                       <span>{h.title}</span>
                     </span>
-                    <p className="text-xs text-white/70 font-light leading-relaxed">
+                    <p className="text-xs text-[#686762] font-portfolio-sans leading-relaxed">
                       {h.description}
                     </p>
                   </div>
@@ -1645,19 +1638,19 @@ function UniversalWorkCinemaPage({
               </div>
             </div>
 
-            {/* Right Column: Inquiry / Booking Form (Luxury White Card) */}
+            {/* Right Column: Inquiry / Booking Form */}
             <div className="lg:col-span-5">
-              <div className="lg:sticky lg:top-28 p-7 sm:p-9 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-2xl relative overflow-hidden">
+              <div className="lg:sticky lg:top-28 p-7 sm:p-9 rounded-3xl bg-[#fbfaf8] text-[#20201e] border border-[#e7e6e2] relative overflow-hidden">
                 {inquirySubmitted ? (
                   <div className="py-10 text-center space-y-4">
-                    <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-2xl font-bold">
+                    <div className="w-14 h-14 rounded-full bg-[#0ea5e9]/10 text-[#0284c7] border border-[#0ea5e9]/30 flex items-center justify-center mx-auto text-2xl font-bold">
                       ✓
                     </div>
                     <div className="space-y-1.5">
-                      <h3 className="text-2xl font-display font-bold uppercase text-neutral-900">
+                      <h3 className="text-2xl font-portfolio-serif font-normal text-[#20201e]">
                         Inquiry Received
                       </h3>
-                      <p className="text-sm text-neutral-600 max-w-xs mx-auto">
+                      <p className="text-sm text-[#686762] font-portfolio-sans max-w-xs mx-auto">
                         Thank you, {inquiry.name}. Our production team will contact you within 24 hours.
                       </p>
                     </div>
@@ -1667,27 +1660,27 @@ function UniversalWorkCinemaPage({
                         setInquiry({ name: "", email: "", phone: "", message: "" });
                         setInquirySubmitted(false);
                       }}
-                      className="mt-3 text-xs font-mono uppercase tracking-wider text-neutral-500 hover:text-black underline cursor-pointer transition-colors"
+                      className="mt-3 text-xs font-portfolio-sans uppercase tracking-wider text-[#0284c7] hover:underline cursor-pointer transition-colors font-bold"
                     >
                       Send another message
                     </button>
                   </div>
                 ) : (
                   <form onSubmit={onInquirySubmit} className="space-y-4 relative z-10">
-                    <div className="space-y-1.5 border-b border-neutral-200 pb-4">
-                      <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-500 block font-semibold">
+                    <div className="space-y-1.5 border-b border-[#e7e6e2] pb-4">
+                      <span className="text-[11px] font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] block font-bold">
                         BOOK A {project.title}
                       </span>
-                      <h3 className="text-2xl font-display font-bold uppercase text-neutral-900">
+                      <h3 className="text-2xl font-portfolio-serif font-normal text-[#20201e]">
                         Start Your Campaign
                       </h3>
-                      <p className="text-xs text-neutral-600">
+                      <p className="text-xs text-[#686762] font-portfolio-sans">
                         Let us craft unforgettable stills and cinematic films for your brand.
                       </p>
                     </div>
 
                     <label className="block space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-700">
+                      <span className="text-[11px] font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
                         Name *
                       </span>
                       <input
@@ -1696,13 +1689,13 @@ function UniversalWorkCinemaPage({
                         value={inquiry.name}
                         onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })}
                         required
-                        className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
+                        className="w-full rounded-xl border border-[#dedbd4] bg-white px-4 py-3 text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:outline-none transition-all font-portfolio-sans"
                         placeholder="Your full name"
                       />
                     </label>
 
                     <label className="block space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-700">
+                      <span className="text-[11px] font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
                         Email Address *
                       </span>
                       <input
@@ -1711,13 +1704,13 @@ function UniversalWorkCinemaPage({
                         value={inquiry.email}
                         onChange={(e) => setInquiry({ ...inquiry, email: e.target.value })}
                         required
-                        className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
+                        className="w-full rounded-xl border border-[#dedbd4] bg-white px-4 py-3 text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:outline-none transition-all font-portfolio-sans"
                         placeholder="name@company.com"
                       />
                     </label>
 
                     <label className="block space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-700">
+                      <span className="text-[11px] font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
                         Phone Number *
                       </span>
                       <input
@@ -1726,13 +1719,13 @@ function UniversalWorkCinemaPage({
                         value={inquiry.phone}
                         onChange={(e) => setInquiry({ ...inquiry, phone: e.target.value })}
                         required
-                        className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
+                        className="w-full rounded-xl border border-[#dedbd4] bg-white px-4 py-3 text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:outline-none transition-all font-portfolio-sans"
                         placeholder="+91 98765 43210"
                       />
                     </label>
 
                     <label className="block space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-700">
+                      <span className="text-[11px] font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
                         Project Details *
                       </span>
                       <textarea
@@ -1741,7 +1734,7 @@ function UniversalWorkCinemaPage({
                         onChange={(e) => setInquiry({ ...inquiry, message: e.target.value })}
                         required
                         rows={4}
-                        className="w-full resize-y rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:bg-white focus:outline-none transition-all"
+                        className="w-full resize-y rounded-xl border border-[#dedbd4] bg-white px-4 py-3 text-sm text-[#20201e] placeholder:text-[#8e8d88] focus:border-[#0284c7] focus:outline-none transition-all font-portfolio-sans"
                         placeholder={`Tell us about your ${project.title.toLowerCase()} goals, timeline, and deliverables...`}
                       />
                     </label>
@@ -1749,7 +1742,7 @@ function UniversalWorkCinemaPage({
                     {inquiryError && (
                       <div
                         role="alert"
-                        className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs font-mono text-red-700 leading-relaxed flex items-start gap-2"
+                        className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs font-portfolio-sans text-red-700 leading-relaxed flex items-start gap-2"
                       >
                         <span className="text-red-500 font-bold">!</span>
                         <span>{inquiryError}</span>
@@ -1759,9 +1752,9 @@ function UniversalWorkCinemaPage({
                     <button
                       type="submit"
                       disabled={isSubmittingInquiry}
-                      className="w-full py-4 px-6 rounded-xl bg-neutral-900 hover:bg-black text-white font-mono text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 disabled:opacity-60 cursor-pointer"
+                      className="w-full py-4 px-6 rounded-xl bg-[#111827] hover:bg-[#0284c7] text-white font-portfolio-sans text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-60 cursor-pointer"
                     >
-                      {isSubmittingInquiry ? "PROCESSING INQUIRY..." : `SUBMIT ${project.title} INQUIRY →`}
+                      {isSubmittingInquiry ? "PROCESSING INQUIRY..." : `SUBMIT ${project.title.toUpperCase()} INQUIRY →`}
                     </button>
                   </form>
                 )}
@@ -1772,27 +1765,15 @@ function UniversalWorkCinemaPage({
       </section>
 
       {/* 7. NEXT PROJECT TEASER */}
-      <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/10 overflow-hidden bg-[#09090c] group/next">
-        <div className="absolute inset-0 z-0 opacity-25 group-hover/next:opacity-35 transition-opacity duration-700 pointer-events-none">
-          <img
-            src={nextProject.thumbnail}
-            alt={nextProject.title}
-            loading="lazy"
-            decoding="async"
-            className="object-cover w-full h-full absolute inset-0 filter brightness-75 contrast-110 scale-100 group-hover/next:scale-105 transition-transform duration-1000 ease-out"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#070709] via-[#070709]/85 to-[#070709]" />
-          <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:24px_24px] opacity-40" />
-        </div>
-
+      <section className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] overflow-hidden bg-[#fbfaf8] group/next">
         <div className="relative z-10 container mx-auto max-w-4xl text-center flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 mb-4 shadow-xl">
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/80">
-              NEXT DISCIPLINE // {String(categoryIndex % projects.length + 1).padStart(2, "0")} OF {String(projects.length).padStart(2, "0")}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#dedbd4] mb-4">
+            <span className="text-[10px] sm:text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] font-bold">
+              NEXT DISCIPLINE // {String((categoryIndex % projects.length) + 1).padStart(2, "0")} OF {String(projects.length).padStart(2, "0")}
             </span>
           </div>
 
-          <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-white/90 mb-3 font-semibold">
+          <span className="text-xs sm:text-sm font-portfolio-sans uppercase tracking-widest text-[#8e8d88] mb-3 font-semibold">
             {nextProject.category} • {nextProject.client}
           </span>
 
@@ -1800,18 +1781,18 @@ function UniversalWorkCinemaPage({
             to={`/work/${nextProject.slug}`}
             className="group/title block mb-6 max-w-2xl"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white group-hover/title:text-amber-300 transition-colors leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] group-hover/title:text-[#0284c7] transition-colors leading-tight">
               <span>{nextProject.title}</span>
             </h2>
           </Link>
 
-          <p className="text-xs font-mono text-white/60 uppercase tracking-wider mb-8 max-w-lg">
+          <p className="text-xs font-portfolio-sans text-[#686762] uppercase tracking-wider mb-8 max-w-lg">
             {nextProject.deliverableType}
           </p>
 
           <Link
             to={`/work/${nextProject.slug}`}
-            className="w-full sm:w-auto max-w-xs sm:max-w-none group/btn inline-flex items-center justify-center gap-3 px-7 sm:px-8 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-amber-300 hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(251,191,36,0.35)]"
+            className="w-full sm:w-auto max-w-xs sm:max-w-none group/btn inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-widest font-bold hover:bg-[#0284c7] active:scale-95 transition-all"
           >
             <span>EXPLORE {nextProject.category}</span>
             <span className="group-hover/btn:translate-x-1 transition-transform">→</span>

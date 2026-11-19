@@ -60,19 +60,20 @@
 .home-cinematic em {
   font-family: "Cormorant Garamond", "Times New Roman", serif;
   font-style: italic;
-  color: #ca8a04;
+  color: #0284c7;
 }
 
 .work-portfolio,
 .about-cinematic {
-  background-color: #050505;
+  background-color: #fbfaf8;
   background-image: none !important;
-  color: #f5f3ee;
+  color: #20201e;
+  font-family: "DM Sans", "Helvetica Neue", sans-serif;
 }
 
 .about-studio-backdrop,
 .work-studio-backdrop {
-  background-color: #08090d !important;
+  background-color: #fbfaf8 !important;
   background-image: none !important;
 }
 
@@ -449,29 +450,15 @@ video:-ms-fullscreen {
 }
 
 .work-portfolio > section {
-  background-color: #060606 !important;
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 18rem) !important;
+  background-color: #fbfaf8 !important;
+  background-image: none !important;
+  color: #20201e !important;
 }
 
 .work-portfolio > section:nth-of-type(even) {
-  background-color: #090909 !important;
-  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 42%) !important;
-}
-
-.work-portfolio [class*="bg-[#14110d]"],
-.work-portfolio [class*="bg-[#17130f]"],
-.work-portfolio [class*="bg-[#13100c]"],
-.work-portfolio [class*="bg-[#1a1611]"],
-.work-portfolio [class*="bg-[#221c14]"],
-.work-portfolio [class*="bg-[#1e1912]"] {
-  background-color: #111111 !important;
-}
-
-.work-portfolio [class*="from-[#17130f]"],
-.work-portfolio [class*="from-[#14110d]"],
-.work-portfolio [class*="from-[#1a1611]"],
-.work-portfolio [class*="from-[#1e1912]"] {
-  background-image: linear-gradient(145deg, #191919, #080808) !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #20201e !important;
 }
 
 .home-cinematic > section {
