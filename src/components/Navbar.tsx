@@ -70,6 +70,7 @@ export default function Navbar() {
   const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { pathname } = useLocation();
+  const isHomePage = pathname === "/";
   const navigate = useNavigate();
   const [prevPathname, setPrevPathname] = useState(pathname);
 
@@ -118,9 +119,13 @@ export default function Navbar() {
       {/* Cinematic Studio Edge-to-Edge Navigation */}
       <header
         className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 select-none ${
-          scrolled
-            ? "bg-[#050505]/85 backdrop-blur-2xl border-b border-white/[0.08] shadow-[0_12px_36px_rgba(0,0,0,0.85)] py-3 sm:py-3.5"
-            : "bg-gradient-to-b from-[#050505]/95 via-[#050505]/50 to-transparent py-4 sm:py-6 border-b border-transparent"
+          isHomePage
+            ? scrolled
+              ? "bg-[#ffffff]/92 backdrop-blur-2xl border-b border-[#e7e6e2] shadow-[0_4px_24px_rgba(0,0,0,0.04)] py-3 sm:py-3.5"
+              : "bg-gradient-to-b from-[#fbfaf8]/95 via-[#fbfaf8]/60 to-transparent py-4 sm:py-6 border-b border-transparent"
+            : scrolled
+              ? "bg-[#050505]/85 backdrop-blur-2xl border-b border-white/[0.08] shadow-[0_12px_36px_rgba(0,0,0,0.85)] py-3 sm:py-3.5"
+              : "bg-gradient-to-b from-[#050505]/95 via-[#050505]/50 to-transparent py-4 sm:py-6 border-b border-transparent"
         }`}
       >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 flex items-center justify-between">
@@ -134,7 +139,7 @@ export default function Navbar() {
               aria-label="Viyana Productions Home"
             >
               <img
-                src="/logo-white.png"
+                src={isHomePage && !mobileMenuOpen ? "/logo-black.png" : "/logo-white.png"}
                 alt="Viyana Productions"
                 width="140"
                 height="40"
@@ -148,7 +153,11 @@ export default function Navbar() {
           {/* Desktop Center Navigation (Floating Glass Pill Deck) */}
           <nav
             aria-label="Main Navigation"
-            className="hidden md:flex items-center gap-1 p-1.5 rounded-full bg-[#0a0a0a]/85 border border-white/[0.12] backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,255,255,0.12)]"
+            className={`hidden md:flex items-center gap-1 p-1.5 rounded-full transition-all duration-300 ${
+              isHomePage
+                ? "bg-[#ffffff]/92 border border-[#e7e6e2] backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
+                : "bg-[#0a0a0a]/85 border border-white/[0.12] backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,255,255,0.12)]"
+            }`}
           >
             {navLinks.map((link) => {
               const isActive =
@@ -168,8 +177,8 @@ export default function Navbar() {
                       to={link.path}
                       className={`relative px-4 py-2 rounded-full text-[12px] font-sans font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-all duration-200 z-10 ${
                         isActive
-                          ? "text-neutral-950 font-bold"
-                          : "text-white/70 hover:text-white hover:bg-white/[0.08]"
+                          ? isHomePage ? "text-white font-bold" : "text-neutral-950 font-bold"
+                          : isHomePage ? "text-[#555] hover:text-[#111] hover:bg-black/[0.04]" : "text-white/70 hover:text-white hover:bg-white/[0.08]"
                       }`}
                     >
                       <span className="relative z-10">{link.name}</span>
@@ -191,7 +200,11 @@ export default function Navbar() {
                       {isActive && (
                         <motion.div
                           layoutId="nav-active-pill"
-                          className="absolute inset-0 bg-white rounded-full shadow-[0_2px_14px_rgba(255,255,255,0.35)] z-0"
+                          className={`absolute inset-0 rounded-full z-0 ${
+                            isHomePage
+                              ? "bg-[#111827] shadow-[0_2px_14px_rgba(0,0,0,0.2)]"
+                              : "bg-white shadow-[0_2px_14px_rgba(255,255,255,0.35)]"
+                          }`}
                           transition={{ type: "spring", stiffness: 380, damping: 32 }}
                         />
                       )}
@@ -285,15 +298,19 @@ export default function Navbar() {
                   to={link.path}
                   className={`relative px-4 py-2 rounded-full text-[12px] font-sans font-semibold uppercase tracking-wider transition-all duration-200 z-10 ${
                     isActive
-                      ? "text-neutral-950 font-bold"
-                      : "text-white/70 hover:text-white hover:bg-white/[0.08]"
+                      ? isHomePage ? "text-white font-bold" : "text-neutral-950 font-bold"
+                      : isHomePage ? "text-[#555] hover:text-[#111] hover:bg-black/[0.04]" : "text-white/70 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
                   {isActive && (
                     <motion.div
                       layoutId="nav-active-pill"
-                      className="absolute inset-0 bg-white rounded-full shadow-[0_2px_14px_rgba(255,255,255,0.35)] z-0"
+                      className={`absolute inset-0 rounded-full z-0 ${
+                        isHomePage
+                          ? "bg-[#111827] shadow-[0_2px_14px_rgba(0,0,0,0.2)]"
+                          : "bg-white shadow-[0_2px_14px_rgba(255,255,255,0.35)]"
+                      }`}
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
@@ -309,7 +326,11 @@ export default function Navbar() {
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-neutral-950 font-sans text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:bg-neutral-100 hover:shadow-[0_0_28px_rgba(255,255,255,0.35)] active:scale-95"
+                  className={`group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-sans text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-95 ${
+                    isHomePage
+                      ? "bg-[#111827] text-white hover:bg-[#ca8a04] hover:shadow-[0_4px_20px_rgba(202,138,4,0.3)]"
+                      : "bg-white text-neutral-950 hover:bg-neutral-100 hover:shadow-[0_0_28px_rgba(255,255,255,0.35)]"
+                  }`}
                 >
                   <span>Start Project</span>
                   <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -324,7 +345,11 @@ export default function Navbar() {
                 setMobileMenuOpen(false);
                 navigate("/contact");
               }}
-              className="sm:hidden relative z-[101] px-3.5 py-1.5 rounded-full bg-white text-neutral-950 font-sans text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-[0_2px_14px_rgba(255,255,255,0.25)] border border-white/20 active:scale-95 transition-all cursor-pointer"
+              className={`sm:hidden relative z-[101] px-3.5 py-1.5 rounded-full font-sans text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 active:scale-95 transition-all cursor-pointer ${
+                isHomePage
+                  ? "bg-[#111827] text-white shadow-[0_2px_14px_rgba(0,0,0,0.18)]"
+                  : "bg-white text-neutral-950 shadow-[0_2px_14px_rgba(255,255,255,0.25)] border border-white/20"
+              }`}
               aria-label="Start Project"
             >
               <span>Start</span>
@@ -339,7 +364,9 @@ export default function Navbar() {
               type="button"
               className={`md:hidden relative z-[101] flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 cursor-pointer ${
                 mobileMenuOpen
-                  ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)]"
+                  ? "bg-[#111827] text-white shadow-[0_0_20px_rgba(0,0,0,0.3)]"
+                  : isHomePage
+                  ? "bg-black/[0.05] text-[#20201e] hover:bg-black/[0.1] border border-[#e7e6e2]"
                   : "bg-white/[0.08] text-white hover:bg-white/[0.15] border border-white/15"
               } active:scale-95`}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}

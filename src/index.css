@@ -11,6 +11,8 @@
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-syne: "Syne", "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-portfolio-serif: "Cormorant Garamond", "Times New Roman", serif;
+  --font-portfolio-sans: "DM Sans", "Helvetica Neue", sans-serif;
 }
 
 @layer base {
@@ -21,6 +23,13 @@
   :root {
     --background: var(--color-brand-black);
     --foreground: var(--color-brand-light);
+    --ink: #20201e;
+    --muted: #686762;
+    --line: #e7e6e2;
+    --paper: #ffffff;
+    --soft: #f7f6f3;
+    --gold: #ca8a04;
+    --gold-muted: #a68e67;
   }
 
   body {
@@ -41,7 +50,19 @@
   }
 }
 
-.home-cinematic,
+.home-cinematic {
+  background-color: #fbfaf8;
+  background-image: none !important;
+  color: #20201e;
+  font-family: "DM Sans", "Helvetica Neue", sans-serif;
+}
+
+.home-cinematic em {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  color: #ca8a04;
+}
+
 .work-portfolio,
 .about-cinematic {
   background-color: #050505;
@@ -50,9 +71,13 @@
 }
 
 .about-studio-backdrop,
-.home-studio-backdrop,
 .work-studio-backdrop {
   background-color: #08090d !important;
+  background-image: none !important;
+}
+
+.home-studio-backdrop {
+  background-color: #fbfaf8 !important;
   background-image: none !important;
 }
 
@@ -96,6 +121,14 @@
 
   .font-serif {
     font-family: "Instrument Serif", Georgia, serif !important;
+  }
+
+  .font-portfolio-serif {
+    font-family: "Cormorant Garamond", "Times New Roman", serif !important;
+  }
+
+  .font-portfolio-sans {
+    font-family: "DM Sans", "Helvetica Neue", sans-serif !important;
   }
 
   .font-sans {

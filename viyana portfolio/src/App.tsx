@@ -3303,11 +3303,13 @@ export default function App() {
     }
 
         const context = gsap.context(() => {
-      const isMobile = window.innerWidth <= 768
-      // Generous dynamic offset for prominent, unmistakable entrance from both sides
-      const xOffset = isMobile ? 55 : 125
+      const isSmallScreen = window.innerWidth <= 1024
+      // On mobile and tablet screens, disable horizontal translation offsets completely (xOffset = 0)
+      // to eliminate off-screen clipping and horizontal overflow, using smooth vertical fade-up
+      const xOffset = isSmallScreen ? 0 : 125
+      const yOffset = isSmallScreen ? 20 : 0
 
-      // 1. Headings: Eyebrow + Title glide prominently from LEFT, notes / action buttons glide from RIGHT
+      // 1. Headings: Eyebrow + Title glide from LEFT (desktop) or UP (mobile)
       gsap.utils.toArray<HTMLElement>('.model-shoot-heading, .product-shoot-heading, .branding-shoot-heading, .podcast-shoot-heading, .influencer-shoot-heading, .about-heading, .contact-heading, .section-intro').forEach((heading) => {
         const leftEl = heading.querySelector('div:first-child') || heading
         const rightEl = heading.querySelector('.section-note, .influencer-top-nav-btns, .podcast-top-nav-btns, p')
@@ -3315,6 +3317,7 @@ export default function App() {
         gsap.from(leftEl, {
           autoAlpha: 0,
           x: -xOffset,
+          y: yOffset,
           duration: 1.05,
           ease: 'power3.out',
           scrollTrigger: { trigger: heading, start: 'top 88%', once: true },
@@ -3324,6 +3327,7 @@ export default function App() {
           gsap.from(rightEl, {
             autoAlpha: 0,
             x: xOffset,
+            y: yOffset,
             duration: 1.05,
             ease: 'power3.out',
             scrollTrigger: { trigger: heading, start: 'top 88%', once: true },
@@ -3335,12 +3339,14 @@ export default function App() {
       gsap.from('.hero-content-side', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         duration: 1.15,
         ease: 'power3.out',
       })
       gsap.from('.hero-video-side', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.15,
         delay: 0.1,
         ease: 'power3.out',
@@ -3350,6 +3356,7 @@ export default function App() {
       gsap.from('.about-wheel-side', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         scale: 0.94,
         duration: 1.15,
         ease: 'power3.out',
@@ -3358,6 +3365,7 @@ export default function App() {
       gsap.from('.about-editorial-side', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.15,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.about-studio-layout', start: 'top 85%', once: true },
@@ -3367,6 +3375,7 @@ export default function App() {
       gsap.from('.model-film', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.model-shoot-layout', start: 'top 85%', once: true },
@@ -3374,6 +3383,7 @@ export default function App() {
       gsap.from('.model-shoot-copy', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.model-shoot-layout', start: 'top 85%', once: true },
@@ -3381,6 +3391,7 @@ export default function App() {
       gsap.from('.model-stills-controls-bar', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         duration: 1.0,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.model-stills-section', start: 'top 88%', once: true },
@@ -3388,6 +3399,7 @@ export default function App() {
       gsap.from('.model-slider-wrapper', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.model-stills-section', start: 'top 88%', once: true },
@@ -3397,6 +3409,7 @@ export default function App() {
       gsap.from('.product-cinema-container', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.product-film-layout', start: 'top 85%', once: true },
@@ -3404,6 +3417,7 @@ export default function App() {
       gsap.from('.product-film-side', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.product-film-layout', start: 'top 85%', once: true },
@@ -3411,6 +3425,7 @@ export default function App() {
       gsap.from('.product-stills-section', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.product-stills-section', start: 'top 88%', once: true },
@@ -3420,6 +3435,7 @@ export default function App() {
       gsap.from('.branding-film', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.branding-film-layout', start: 'top 85%', once: true },
@@ -3427,6 +3443,7 @@ export default function App() {
       gsap.from('.branding-film-side', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.branding-film-layout', start: 'top 85%', once: true },
@@ -3434,6 +3451,7 @@ export default function App() {
       gsap.from('.branding-stills-controls-bar', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         duration: 1.0,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.branding-stills-section', start: 'top 88%', once: true },
@@ -3441,6 +3459,7 @@ export default function App() {
       gsap.from('.branding-slider-wrapper', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.branding-stills-section', start: 'top 88%', once: true },
@@ -3450,6 +3469,7 @@ export default function App() {
       gsap.from('.podcast-line-wrap:first-child', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.podcast-content-layout', start: 'top 85%', once: true },
@@ -3457,6 +3477,7 @@ export default function App() {
       gsap.from('.podcast-line-wrap:last-child', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.podcast-content-layout', start: 'top 80%', once: true },
@@ -3466,6 +3487,7 @@ export default function App() {
       gsap.from('.influencer-native-reel-card', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.influencer-slider-wrapper', start: 'top 86%', once: true },
@@ -3473,6 +3495,7 @@ export default function App() {
       gsap.from('.influencer-reel-card:not(.influencer-native-reel-card)', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.05,
         stagger: 0.08,
         ease: 'power3.out',
@@ -3483,6 +3506,7 @@ export default function App() {
       gsap.from('.services-filter-bar', {
         autoAlpha: 0,
         x: -xOffset,
+        y: yOffset,
         duration: 1.0,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.services-filter-bar', start: 'top 88%', once: true },
@@ -3490,6 +3514,7 @@ export default function App() {
       gsap.from('.services-marquee-wrapper, .services-grid', {
         autoAlpha: 0,
         x: xOffset,
+        y: yOffset,
         duration: 1.05,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.services-controls-bar', start: 'top 86%', once: true },
