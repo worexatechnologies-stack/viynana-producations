@@ -440,7 +440,7 @@ export default function ProductShootDetailPage({
   }, [lightboxIndex, filteredStills.length]);
 
   return (
-    <main className="bg-[#070709] text-white min-h-screen selection:bg-amber-400 selection:text-black overflow-x-hidden font-sans">
+    <main className="bg-[#fbfaf8] text-[#20201e] min-h-screen selection:bg-[#ca8a04] selection:text-white overflow-x-hidden font-portfolio-sans">
       <SEO
         title={project.seo?.metaTitle || "Product Photo Shoot in Bangalore | Viyana Productions"}
         description={
@@ -466,79 +466,79 @@ export default function ProductShootDetailPage({
       <Navbar />
 
       {/* 1. BESPOKE EDITORIAL HERO SECTION */}
-      <section className="relative pt-20 sm:pt-24 md:pt-28 pb-5 sm:pb-7 px-4 sm:px-6 lg:px-12 border-b border-white/[0.08] overflow-hidden">
-        {/* Ambient Golden / Violet Atmospheric Glow */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-amber-500/10 via-amber-700/5 to-transparent blur-[140px] pointer-events-none rounded-full" />
-        <div className="absolute top-1/3 left-10 w-[450px] h-[450px] bg-gradient-to-tr from-purple-500/8 via-transparent to-transparent blur-[120px] pointer-events-none rounded-full" />
+      <section className="relative pt-20 sm:pt-24 md:pt-28 pb-5 sm:pb-7 px-4 sm:px-6 lg:px-12 border-b border-[#e7e6e2] bg-[#ffffff] overflow-hidden">
+        {/* Ambient Golden Glow */}
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-amber-500/5 via-amber-700/5 to-transparent blur-[140px] pointer-events-none rounded-full" />
+        <div className="absolute top-1/3 left-10 w-[450px] h-[450px] bg-gradient-to-tr from-amber-500/5 via-transparent to-transparent blur-[120px] pointer-events-none rounded-full" />
 
         <div className="container mx-auto max-w-7xl relative z-10">
           {/* Eyebrow Breadcrumb */}
-          <div className="flex flex-wrap items-center gap-2.5 mb-3 sm:mb-4 text-xs font-mono uppercase tracking-[0.25em] text-white/50">
-            <Link to="/work" className="hover:text-white transition-colors">
+          <div className="flex flex-wrap items-center gap-2.5 mb-3 sm:mb-4 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#777671]">
+            <Link to="/work" className="hover:text-[#20201e] transition-colors">
               WORK ARCHIVE
             </Link>
             <span>/</span>
-            <span className="text-amber-400 font-semibold">CATEGORY 10</span>
+            <span className="text-[#ca8a04] font-semibold">CATEGORY 10</span>
             <span>/</span>
-            <span className="text-white/80">PRODUCT CINEMA &amp; MACRO STILLS</span>
+            <span className="text-[#20201e]">PRODUCT CINEMA &amp; MACRO STILLS</span>
           </div>
 
           {/* Hero Title with Balanced Responsive Typography (1-2 Lines Max) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-10 items-end mb-5 sm:mb-6">
             <div className="lg:col-span-8 xl:col-span-9 space-y-2.5 sm:space-y-3">
-              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-[2.65rem] xl:text-[3.15rem] font-display font-extrabold uppercase tracking-tight text-white leading-[1.1] sm:leading-[1.04] max-w-5xl">
-                Product Shoot<span className="text-amber-400">.</span>
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-[1.1] sm:leading-[1.04] max-w-5xl">
+                Product Shoot<span className="text-[#ca8a04]">.</span>
               </h1>
-              <p className="text-xs sm:text-base md:text-lg font-serif font-light text-white/80 leading-relaxed max-w-3xl">
+              <p className="text-xs sm:text-base md:text-lg font-portfolio-sans font-normal text-[#686762] leading-relaxed max-w-3xl">
                 Tactile macro lighting, fine jewellery metallurgy, and commercial motion engineered to make customers fall in love with your brand.
               </p>
             </div>
 
             {/* Quick Metrics Bar */}
             <div className="lg:col-span-4 xl:col-span-3 flex flex-col sm:flex-row lg:flex-col gap-3">
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
-                <div className="flex items-center justify-between text-xs font-mono text-white/50 mb-1">
+              <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2]">
+                <div className="flex items-center justify-between text-xs font-portfolio-sans text-[#777671] mb-1">
                   <span>PRODUCTION CATALOG</span>
-                  <span className="text-amber-400 font-bold">5 FILMS · 14+ STILLS</span>
+                  <span className="text-[#ca8a04] font-bold">5 FILMS · 14+ STILLS</span>
                 </div>
-                <span className="text-sm font-semibold text-white">Fine Jewellery, Skincare &amp; E-Commerce</span>
+                <span className="text-sm font-semibold text-[#20201e]">Fine Jewellery, Skincare &amp; E-Commerce</span>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
-                <div className="flex items-center justify-between text-xs font-mono text-white/50 mb-1">
+              <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2]">
+                <div className="flex items-center justify-between text-xs font-portfolio-sans text-[#777671] mb-1">
                   <span>STUDIO BASE</span>
-                  <span className="text-emerald-400 font-bold">BANGALORE HQ</span>
+                  <span className="text-[#ca8a04] font-bold">BANGALORE HQ</span>
                 </div>
-                <span className="text-sm font-semibold text-white">Macro Precision Stages &amp; Set Builds</span>
+                <span className="text-sm font-semibold text-[#20201e]">Macro Precision Stages &amp; Set Builds</span>
               </div>
             </div>
           </div>
 
           {/* Navigation Quick Anchors */}
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-3 sm:pt-4 border-t border-white/[0.08]">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-3 sm:pt-4 border-t border-[#e7e6e2]">
             <a
               href="#cinema-films"
-              className="px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-amber-300 transition-all shadow-lg flex items-center gap-2"
+              className="px-5 py-2.5 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold hover:bg-[#ca8a04] transition-all shadow-md flex items-center gap-2 cursor-pointer"
             >
               <Film size={14} />
               <span>Watch Commercial Films ({productVideos.length})</span>
             </a>
             <a
               href="#stills-catalog"
-              className="px-5 py-2.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-2"
+              className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-xs cursor-pointer"
             >
               <Camera size={14} />
               <span>Stills &amp; Jewellery Catalog ({productStills.length})</span>
             </a>
             <a
               href="#instagram-reels"
-              className="px-5 py-2.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-2"
+              className="px-5 py-2.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-xs cursor-pointer"
             >
               <InstagramIcon size={14} />
               <span>Instagram Reels</span>
             </a>
             <a
               href="#book-shoot"
-              className="px-5 py-2.5 rounded-full bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/40 text-amber-300 font-mono text-xs uppercase tracking-wider transition-all ml-auto flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-full bg-[#ca8a04]/10 hover:bg-[#ca8a04]/20 border border-[#ca8a04]/30 text-[#ca8a04] font-portfolio-sans text-xs uppercase tracking-wider transition-all ml-auto flex items-center gap-1.5 font-bold cursor-pointer"
             >
               <span>Book a Product Shoot</span>
               <ArrowRight size={13} />
@@ -548,30 +548,31 @@ export default function ProductShootDetailPage({
       </section>
 
       {/* 2. THEATER CINEMA PLAYER (FEATURED VIDEOS 01 TO 05) */}
-      <section id="cinema-films" className="py-8 sm:py-14 px-4 sm:px-6 lg:px-12 bg-black relative">
+      <section id="cinema-films" className="py-8 sm:py-14 px-4 sm:px-6 lg:px-12 bg-[#fbfaf8] border-t border-[#e7e6e2] relative">
         <div className="container mx-auto max-w-7xl space-y-6 sm:space-y-8">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-white/10 pb-4 sm:pb-5">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-[#e7e6e2] pb-4 sm:pb-5">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-amber-400 mb-2">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#ca8a04] mb-2 font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#ca8a04] animate-ping" />
                 <span>COMMERCIAL MOTION &amp; REELS</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
-                Commercial Product Cinema<span className="text-amber-400">.</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
+                Commercial Product Cinema<span className="text-[#ca8a04]">.</span>
               </h2>
             </div>
-            <p className="text-sm font-mono text-white/60 max-w-md">
+            <p className="text-sm font-portfolio-sans text-[#686762] max-w-md">
               From behind-the-scenes breakdown to 4K commercial broadcast masters, each film is shot with razor-sharp macro glass and cinematic lighting.
             </p>
           </div>
 
           {/* Main Cinema Screen Container */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-[#0a0a0c] shadow-[0_30px_90px_rgba(0,0,0,0.95)]">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white shadow-[0_12px_36px_rgba(0,0,0,0.06)]">
             {/* Viewport Box */}
             <div
               onClick={togglePlay}
-              className="relative w-full aspect-[9/14] sm:aspect-[16/9] max-h-[640px] bg-transparent flex items-center justify-center cursor-pointer group rounded-2xl overflow-hidden"
+              className="relative w-full aspect-[9/16] sm:aspect-[16/9] max-h-[640px] bg-transparent flex items-center justify-center cursor-pointer group rounded-2xl overflow-hidden"
+              style={{ backgroundColor: 'transparent' }}
             >
               <video
                 ref={videoRef}
@@ -584,11 +585,12 @@ export default function ProductShootDetailPage({
                 playsInline
                 preload="metadata"
                 className="w-full h-full object-cover sm:object-contain bg-transparent rounded-2xl"
+                style={{ backgroundColor: 'transparent', background: 'transparent' }}
               />
 
               {/* Top Film Badge */}
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#e7e6e2] text-xs font-portfolio-sans text-[#20201e] shadow-sm font-semibold">
+                <span className="w-2 h-2 rounded-full bg-[#ca8a04] animate-pulse" />
                 <span>{activeVideo.badge} · {activeVideo.category}</span>
               </div>
 
@@ -600,7 +602,7 @@ export default function ProductShootDetailPage({
                   handlePrevVideo();
                 }}
                 aria-label="Previous film"
-                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-white hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all active:scale-90 shadow-2xl cursor-pointer"
+                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all active:scale-90 shadow-lg cursor-pointer"
               >
                 <ChevronLeft size={24} />
               </button>
@@ -612,7 +614,7 @@ export default function ProductShootDetailPage({
                   handleNextVideo();
                 }}
                 aria-label="Next film"
-                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-white hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all active:scale-90 shadow-2xl cursor-pointer"
+                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all active:scale-90 shadow-lg cursor-pointer"
               >
                 <ChevronRight size={24} />
               </button>
@@ -620,14 +622,14 @@ export default function ProductShootDetailPage({
               {/* Center Play / Pause Indicator */}
               <div
                 className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-200 ${
-                  !isPlaying ? "opacity-100 bg-black/40" : "opacity-0 group-hover:opacity-100"
+                  !isPlaying ? "opacity-100 bg-black/20" : "opacity-0 group-hover:opacity-100"
                 }`}
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/80 backdrop-blur-md border border-white/40 flex items-center justify-center text-[#20201e] shadow-xl">
                   {!isPlaying ? (
-                    <Play className="w-8 h-8 fill-current ml-1 text-white" />
+                    <Play className="w-8 h-8 fill-current ml-1 text-[#20201e]" />
                   ) : (
-                    <Pause className="w-8 h-8 fill-current text-white" />
+                    <Pause className="w-8 h-8 fill-current text-[#20201e]" />
                   )}
                 </div>
               </div>
@@ -640,7 +642,7 @@ export default function ProductShootDetailPage({
                     e.stopPropagation();
                     toggleMute();
                   }}
-                  className="px-3.5 py-1.5 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 backdrop-blur-md text-xs font-mono flex items-center gap-2 transition-all cursor-pointer shadow-lg"
+                  className="px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md text-xs font-portfolio-sans flex items-center gap-2 transition-all cursor-pointer shadow-md font-semibold"
                 >
                   {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
                   <span>{isMuted ? "UNMUTE" : "MUTED"}</span>
@@ -658,7 +660,7 @@ export default function ProductShootDetailPage({
                       }
                     }
                   }}
-                  className="w-8 h-8 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer shadow-lg"
+                  className="w-8 h-8 rounded-full bg-white/90 hover:bg-[#111827] hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all cursor-pointer shadow-md"
                   title="Fullscreen"
                 >
                   <Maximize2 size={14} />
@@ -667,33 +669,33 @@ export default function ProductShootDetailPage({
             </div>
 
             {/* Bottom Meta Bar */}
-            <div className="p-5 sm:p-7 bg-[#0d0d11] border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="p-5 sm:p-7 bg-[#f7f6f3] border-t border-[#e7e6e2] flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-xs font-mono text-amber-400">
+                <div className="flex items-center gap-2 text-xs font-portfolio-sans text-[#ca8a04]">
                   <span className="font-bold">FILM 0{activeVideoIdx + 1} OF 0{productVideos.length}</span>
                   <span>•</span>
                   <span>{activeVideo.tag}</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-serif text-white font-medium">
+                <h3 className="text-xl sm:text-2xl font-portfolio-serif text-[#20201e] font-medium">
                   {activeVideo.title}
                 </h3>
-                <p className="text-sm text-white/70 font-light max-w-3xl">
+                <p className="text-sm text-[#686762] font-normal max-w-3xl">
                   {activeVideo.description}
                 </p>
               </div>
 
               {/* Film Switcher Pills */}
               <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-mono text-white/50 uppercase tracking-wider mr-1">Switch:</span>
+                <span className="text-xs font-portfolio-sans text-[#777671] uppercase tracking-wider mr-1">Switch:</span>
                 {productVideos.map((video, idx) => (
                   <button
                     key={video.id}
                     type="button"
                     onClick={() => setActiveVideoIdx(idx)}
-                    className={`w-9 h-9 rounded-full text-xs font-mono font-bold transition-all flex items-center justify-center cursor-pointer ${
+                    className={`w-9 h-9 rounded-full text-xs font-portfolio-sans font-bold transition-all flex items-center justify-center cursor-pointer ${
                       activeVideoIdx === idx
-                        ? "bg-amber-400 text-black shadow-[0_0_15px_rgba(251,191,36,0.5)] scale-105"
-                        : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+                        ? "bg-[#111827] text-white shadow-md scale-105"
+                        : "bg-white border border-[#dedbd4] text-[#686762] hover:border-[#111827] hover:text-[#20201e]"
                     }`}
                   >
                     0{idx + 1}
@@ -714,36 +716,36 @@ export default function ProductShootDetailPage({
                   onClick={() => setActiveVideoIdx(fIdx)}
                   className={`p-3.5 rounded-2xl text-left transition-all border cursor-pointer relative overflow-hidden group ${
                     isSelected
-                      ? "bg-white/[0.08] border-amber-400/80 shadow-[0_0_20px_rgba(251,191,36,0.2)] ring-1 ring-amber-400/40"
-                      : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20"
+                      ? "bg-white border-[#ca8a04] shadow-md ring-1 ring-[#ca8a04]"
+                      : "bg-white border-[#e7e6e2] hover:border-[#dedbd4]"
                   }`}
                 >
-                  <div className="aspect-video w-full rounded-xl overflow-hidden bg-black mb-3 relative">
+                  <div className="aspect-video w-full rounded-xl overflow-hidden bg-[#f7f6f3] mb-3 relative">
                     <img
                       src={film.poster}
                       alt={film.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                       <span
                         className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform ${
                           isSelected
-                            ? "bg-amber-400 text-black scale-110 shadow-lg"
-                            : "bg-white/30 text-white group-hover:scale-110"
+                            ? "bg-[#111827] text-white scale-110 shadow-lg"
+                            : "bg-white/80 text-[#20201e] group-hover:scale-110"
                         }`}
                       >
                         <Play size={13} className="fill-current ml-0.5" />
                       </span>
                     </div>
-                    <span className="absolute bottom-1.5 right-1.5 text-[9px] font-mono px-1.5 py-0.5 rounded bg-black/80 text-white">
+                    <span className="absolute bottom-1.5 right-1.5 text-[9px] font-portfolio-sans font-bold px-1.5 py-0.5 rounded bg-black/70 text-white">
                       0{fIdx + 1}
                     </span>
                   </div>
 
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 block mb-1">
+                  <span className="text-[10px] font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] block mb-1">
                     {film.tag}
                   </span>
-                  <h4 className="text-xs font-semibold text-white line-clamp-2 leading-snug">
+                  <h4 className="text-xs font-semibold text-[#20201e] line-clamp-2 leading-snug">
                     {film.title}
                   </h4>
                 </button>
@@ -754,19 +756,19 @@ export default function ProductShootDetailPage({
       </section>
 
       {/* 3. CURATED FINE JEWELLERY & SKINCARE STILLS CATALOG */}
-      <section id="stills-catalog" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-[#070709] relative">
+      <section id="stills-catalog" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#ffffff] relative">
         <div className="container mx-auto max-w-7xl space-y-10">
           {/* Header & Filter Controls */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-amber-400 mb-2">
+              <div className="inline-flex items-center gap-2 text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#ca8a04] mb-2 font-bold">
                 <Sparkles size={14} />
                 <span>HIGH-RESOLUTION CATALOG</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
-                Editorial Stills &amp; Jewellery Master<span className="text-amber-400">.</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
+                Editorial Stills &amp; Jewellery Master<span className="text-[#ca8a04]">.</span>
               </h2>
-              <p className="text-sm font-mono text-white/60 mt-1 max-w-xl">
+              <p className="text-sm font-portfolio-sans text-[#686762] mt-1 max-w-xl">
                 Pin-sharp macro glass, organic props, and color-accurate ACEScc workflow. Tap any photo to expand into the fullscreen craft viewer.
               </p>
             </div>
@@ -778,10 +780,10 @@ export default function ProductShootDetailPage({
                   key={cat}
                   type="button"
                   onClick={() => setActiveFilter(cat)}
-                  className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
+                  className={`px-4 py-2 rounded-full text-xs font-portfolio-sans uppercase tracking-wider transition-all cursor-pointer ${
                     activeFilter === cat
-                      ? "bg-white text-black font-bold shadow-lg scale-105"
-                      : "bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white"
+                      ? "bg-[#111827] text-white font-bold shadow-md scale-102"
+                      : "bg-white border border-[#dedbd4] text-[#686762] hover:border-[#111827] hover:text-[#20201e] font-medium"
                   }`}
                 >
                   {cat === "All" ? `All Works (${productStills.length})` : cat}
@@ -805,10 +807,10 @@ export default function ProductShootDetailPage({
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35, delay: idx * 0.03 }}
                   onClick={() => setLightboxIndex(idx)}
-                  className="group rounded-2xl overflow-hidden bg-white/[0.02] border border-white/10 hover:border-amber-400/60 transition-all duration-300 hover:shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(251,191,36,0.15)] flex flex-col cursor-pointer"
+                  className="group rounded-2xl overflow-hidden bg-white border border-[#e7e6e2] hover:border-[#ca8a04] transition-all duration-300 hover:shadow-[0_16px_36px_rgba(202,138,4,0.1)] flex flex-col cursor-pointer shadow-xs"
                 >
                   {/* Image Card Container */}
-                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/60 flex items-center justify-center p-3">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#fbfaf8] flex items-center justify-center p-3">
                     <img
                       src={still.image}
                       alt={still.alt}
@@ -817,27 +819,27 @@ export default function ProductShootDetailPage({
                     />
 
                     {/* Category Pill Tag */}
-                    <span className="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-white/90">
+                    <span className="absolute top-3 left-3 text-[10px] font-portfolio-sans font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#e7e6e2] text-[#20201e] shadow-xs">
                       {still.category}
                     </span>
 
                     {/* Zoom Icon Hover Overlay */}
-                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/80 group-hover:bg-amber-400 group-hover:text-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-lg">
+                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 group-hover:bg-[#111827] group-hover:text-white text-[#20201e] border border-[#e7e6e2] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-md">
                       <ArrowUpRight size={16} />
                     </span>
                   </div>
 
                   {/* Caption Meta */}
-                  <div className="p-4 space-y-1 bg-[#0c0c10] border-t border-white/10 flex-1 flex flex-col justify-between">
+                  <div className="p-4 space-y-1 bg-white border-t border-[#e7e6e2] flex-1 flex flex-col justify-between">
                     <div>
-                      <span className="text-[10px] font-mono text-amber-400/90 uppercase tracking-wider block">
+                      <span className="text-[10px] font-portfolio-sans font-bold text-[#ca8a04] uppercase tracking-wider block">
                         {still.tag}
                       </span>
-                      <h3 className="text-sm font-semibold text-white line-clamp-1 group-hover:text-amber-300 transition-colors">
+                      <h3 className="text-sm font-semibold text-[#20201e] line-clamp-1 group-hover:text-[#ca8a04] transition-colors">
                         {still.title}
                       </h3>
                     </div>
-                    <p className="text-[11px] text-white/50 line-clamp-2 font-light pt-1">
+                    <p className="text-[11px] text-[#686762] line-clamp-2 font-normal pt-1">
                       {still.description}
                     </p>
                   </div>
@@ -933,21 +935,21 @@ export default function ProductShootDetailPage({
       </AnimatePresence>
 
       {/* 5. OFFICIAL INSTAGRAM VERTICAL REELS SHOWCASE */}
-      <section id="instagram-reels" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-gradient-to-b from-[#070709] via-[#0d0910] to-[#070709] relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-gradient-to-br from-[#833ab4]/15 via-[#fd1d1d]/10 to-transparent blur-3xl pointer-events-none rounded-full" />
+      <section id="instagram-reels" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#fbfaf8] relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-gradient-to-br from-[#833ab4]/5 via-[#fd1d1d]/5 to-transparent blur-3xl pointer-events-none rounded-full" />
         
         <div className="container mx-auto max-w-6xl relative z-10 space-y-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#e7e6e2] pb-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#833ab4]/20 via-[#fd1d1d]/20 to-[#fcb045]/20 border border-pink-500/30 text-xs font-mono text-pink-300 mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#833ab4]/10 via-[#fd1d1d]/10 to-[#fcb045]/10 border border-pink-500/30 text-xs font-portfolio-sans text-pink-600 mb-2 font-bold">
                 <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
                 <span>OFFICIAL INSTAGRAM REELS // @VIYANA.PRODUCTIONS</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
                 Vertical Motion Stories<span className="text-pink-500">.</span>
               </h2>
             </div>
-            <p className="text-sm font-mono text-white/60 max-w-md">
+            <p className="text-sm font-portfolio-sans text-[#686762] max-w-md">
               High-retention 9:16 vertical cuts engineered specifically to stop thumbs on Instagram feeds and convert followers into buyers.
             </p>
           </div>
@@ -956,20 +958,20 @@ export default function ProductShootDetailPage({
             {/* Left: Reel Details & Selectors */}
             <div className="lg:col-span-6 space-y-6">
               <div className="space-y-3">
-                <span className="text-xs font-mono text-amber-400 uppercase tracking-widest block">
+                <span className="text-xs font-portfolio-sans text-[#ca8a04] uppercase tracking-widest block font-bold">
                   SELECTED VERTICAL CAMPAIGN
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-serif text-white font-medium leading-snug">
+                <h3 className="text-2xl sm:text-3xl font-portfolio-serif text-[#20201e] font-medium leading-snug">
                   {instagramReels[activeReelIdx].title}
                 </h3>
-                <p className="text-sm text-white/70 leading-relaxed font-light">
+                <p className="text-sm text-[#686762] leading-relaxed font-normal">
                   Tailored specifically for social algorithms with crisp keyframe animation, tactile audio design, and cinematic grade that pops on OLED smartphone screens.
                 </p>
               </div>
 
               {/* Selector Tabs for the 3 Reels */}
               <div className="space-y-2">
-                <span className="text-xs font-mono text-white/50 uppercase tracking-wider block">
+                <span className="text-xs font-portfolio-sans text-[#777671] uppercase tracking-wider block">
                   Available Reels:
                 </span>
                 <div className="flex flex-col gap-2">
@@ -980,17 +982,17 @@ export default function ProductShootDetailPage({
                       onClick={() => setActiveReelIdx(rIdx)}
                       className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer w-full overflow-hidden ${
                         activeReelIdx === rIdx
-                          ? "bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-transparent border-pink-500/60 text-white shadow-lg"
-                          : "bg-white/[0.02] border-white/10 text-white/70 hover:bg-white/[0.05] hover:text-white"
+                          ? "bg-white border-pink-500 text-[#20201e] shadow-md ring-1 ring-pink-500/30"
+                          : "bg-white border-[#e7e6e2] text-[#686762] hover:border-[#dedbd4] hover:text-[#20201e]"
                       }`}
                     >
                       <div className="flex items-center gap-2.5 min-w-0 overflow-hidden pr-2">
-                        <span className="text-xs font-mono px-2 py-0.5 rounded bg-black/60 text-pink-300 font-bold shrink-0">
+                        <span className="text-xs font-portfolio-sans px-2 py-0.5 rounded bg-pink-100 text-pink-700 font-bold shrink-0">
                           0{rIdx + 1}
                         </span>
                         <span className="text-xs font-semibold truncate">{reel.title}</span>
                       </div>
-                      <span className="text-[10px] font-mono text-white/50 uppercase tracking-wider shrink-0 ml-2">
+                      <span className="text-[10px] font-portfolio-sans text-[#777671] uppercase tracking-wider shrink-0 ml-2">
                         {reel.tag}
                       </span>
                     </button>
@@ -1003,7 +1005,7 @@ export default function ProductShootDetailPage({
                   href={instagramReels[activeReelIdx].url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-95 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-transform active:scale-95 shadow-[0_10px_25px_rgba(253,29,29,0.3)]"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-95 text-white font-portfolio-sans text-xs uppercase tracking-wider font-semibold transition-transform active:scale-95 shadow-[0_10px_25px_rgba(253,29,29,0.25)]"
                 >
                   <InstagramIcon size={16} />
                   <span>Open Directly on Instagram</span>
@@ -1014,10 +1016,10 @@ export default function ProductShootDetailPage({
 
             {/* Right: Instagram Reel Native Video Player with Authentic Reel UI */}
             <div className="lg:col-span-6 flex justify-center w-full">
-              <div className="w-full max-w-[340px] sm:max-w-[390px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-white/20 bg-[#0a0a0c] shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(253,29,29,0.18)] p-2 sm:p-2.5 relative group">
+              <div className="w-full max-w-[340px] sm:max-w-[390px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-[#e7e6e2] bg-white shadow-[0_16px_45px_rgba(0,0,0,0.08)] p-2 sm:p-2.5 relative group">
                 <div
                   onClick={toggleReelPlay}
-                  className="relative w-full h-[520px] sm:h-[600px] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-black flex items-center justify-center cursor-pointer select-none"
+                  className="relative w-full h-[520px] sm:h-[600px] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-[#f7f6f3] flex items-center justify-center cursor-pointer select-none"
                 >
                   {/* Actual High-Res Video */}
                   <video
@@ -1168,23 +1170,23 @@ export default function ProductShootDetailPage({
       </section>
 
       {/* 6. CRAFT, METHODOLOGY & HIGH-CONVERSION INQUIRY BOOKING */}
-      <section id="book-shoot" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-[#060608] relative">
+      <section id="book-shoot" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#ffffff] relative">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
             {/* Left Column: Creative Narrative & Scope */}
             <div className="lg:col-span-7 space-y-10">
               <div className="space-y-3">
-                <span className="text-xs font-mono uppercase tracking-[0.3em] text-amber-400 block font-semibold">
+                <span className="text-xs font-portfolio-sans uppercase tracking-[0.3em] text-[#ca8a04] block font-bold">
                   THE VIYANA METHODOLOGY
                 </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white leading-tight tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-portfolio-serif text-[#20201e] leading-tight tracking-tight">
                   &ldquo;Clear, evocative, and attractive visuals that command desire.&rdquo;
                 </h2>
               </div>
 
-              <div className="space-y-4 text-white/70 font-light text-base leading-relaxed border-t border-white/10 pt-6">
-                <p className="text-white/90">
+              <div className="space-y-4 text-[#686762] font-normal text-base leading-relaxed border-t border-[#e7e6e2] pt-6 font-portfolio-sans">
+                <p className="text-[#20201e]">
                   {project.fullDescription ||
                     "Specializing in high-end cosmetic, beauty, skincare, and luxury fine jewellery photography and commercial video production."}
                 </p>
@@ -1195,42 +1197,42 @@ export default function ProductShootDetailPage({
 
               {/* Highlights 4-Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/15 space-y-1.5">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2] space-y-1.5">
+                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] flex items-center gap-1.5">
                     <CheckCircle2 size={14} />
                     <span>MACRO PRECISION</span>
                   </span>
-                  <p className="text-xs text-white/70 font-light leading-relaxed">
+                  <p className="text-xs text-[#686762] font-normal leading-relaxed">
                     Pin-sharp focus on intricate typography, textures, and luxury bottle finishes.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/15 space-y-1.5">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2] space-y-1.5">
+                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] flex items-center gap-1.5">
                     <CheckCircle2 size={14} />
                     <span>EDITORIAL STYLING</span>
                   </span>
-                  <p className="text-xs text-white/70 font-light leading-relaxed">
+                  <p className="text-xs text-[#686762] font-normal leading-relaxed">
                     Creative backdrops, chessboards, organic straw nests, and paper-tear sets.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/15 space-y-1.5">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2] space-y-1.5">
+                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] flex items-center gap-1.5">
                     <CheckCircle2 size={14} />
                     <span>STROBE SCIENCE</span>
                   </span>
-                  <p className="text-xs text-white/70 font-light leading-relaxed">
+                  <p className="text-xs text-[#686762] font-normal leading-relaxed">
                     Color-accurate Profoto strobe lighting capturing true gold metallurgy and packaging foil.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/15 space-y-1.5">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                <div className="p-4 rounded-2xl bg-[#f7f6f3] border border-[#e7e6e2] space-y-1.5">
+                  <span className="text-xs font-portfolio-sans font-bold uppercase tracking-wider text-[#ca8a04] flex items-center gap-1.5">
                     <CheckCircle2 size={14} />
                     <span>COMMERCIAL REELS</span>
                   </span>
-                  <p className="text-xs text-white/70 font-light leading-relaxed">
+                  <p className="text-xs text-[#686762] font-normal leading-relaxed">
                     High-retention 9:16 vertical reels and 16:9 4K commercials optimized for high-conversion ads.
                   </p>
                 </div>

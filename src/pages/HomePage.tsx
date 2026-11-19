@@ -1704,10 +1704,10 @@ export default function HomePage() {
                       ],
                     }}
                     transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-[#0c0a0f] border-2 border-white/25 p-4 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden group"
+                    className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-white border-2 border-[#e7e6e2] p-4 flex flex-col items-center justify-center text-center shadow-[0_12px_36px_rgba(0,0,0,0.06)] relative overflow-hidden group"
                   >
                     {/* Subtle inner radial ambient shine */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(245,158,11,0.2)_0%,rgba(168,85,247,0.18)_50%,transparent_80%)] pointer-events-none" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(202,138,4,0.08)_0%,transparent_80%)] pointer-events-none" />
 
                     {/* Golden stylized filmstrip "V" icon */}
                     <svg className="w-12 h-12 xl:w-14 xl:h-14 relative z-10 drop-shadow-[0_4px_14px_rgba(234,179,8,0.55)] group-hover:scale-105 transition-transform duration-300" viewBox="0 0 64 64" fill="none">
@@ -1739,10 +1739,10 @@ export default function HomePage() {
                     </svg>
 
                     {/* Brand Typography */}
-                    <span className="font-display font-extrabold text-white text-base xl:text-lg tracking-tight uppercase leading-none mt-2 relative z-10">
+                    <span className="font-portfolio-serif font-bold text-[#20201e] text-lg xl:text-xl tracking-tight uppercase leading-none mt-2 relative z-10">
                       VIYANA
                     </span>
-                    <span className="font-mono font-semibold text-white/70 text-[8.5px] xl:text-[9.5px] tracking-[0.28em] uppercase mt-1 relative z-10">
+                    <span className="font-portfolio-sans font-semibold text-[#686762] text-[8.5px] xl:text-[9.5px] tracking-[0.28em] uppercase mt-1 relative z-10">
                       PRODUCTIONS
                     </span>
                   </motion.div>
@@ -1757,17 +1757,17 @@ export default function HomePage() {
                 transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
                 className="lg:hidden flex justify-center py-6"
               >
-                <div className="w-36 h-36 rounded-full bg-[#0c0a0f] border-2 border-white/20 p-3 flex flex-col items-center justify-center text-center shadow-[0_0_40px_rgba(168,85,247,0.35)] relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(245,158,11,0.15)_0%,transparent_70%)] pointer-events-none" />
-                  <svg className="w-9 h-9 relative z-10 drop-shadow-[0_2px_8px_rgba(234,179,8,0.5)]" viewBox="0 0 64 64" fill="none">
+                <div className="w-36 h-36 rounded-full bg-white border-2 border-[#e7e6e2] p-3 flex flex-col items-center justify-center text-center shadow-[0_8px_24px_rgba(0,0,0,0.06)] relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(202,138,4,0.08)_0%,transparent_70%)] pointer-events-none" />
+                  <svg className="w-9 h-9 relative z-10 drop-shadow-sm" viewBox="0 0 64 64" fill="none">
                     <path d="M14 12 L28 52 L36 52 L22 12 Z" fill="#eab308" />
                     <path d="M50 12 L36 52 L28 52 L42 12 Z" fill="#ca8a04" />
                     <circle cx="47" cy="18" r="3" fill="#fef08a" />
                   </svg>
-                  <span className="font-display font-extrabold text-white text-sm tracking-tight uppercase leading-none mt-1.5">
+                  <span className="font-portfolio-serif font-bold text-[#20201e] text-base tracking-tight uppercase leading-none mt-1.5">
                     VIYANA
                   </span>
-                  <span className="font-mono font-medium text-white/70 text-[7.5px] tracking-[0.24em] uppercase mt-0.5">
+                  <span className="font-portfolio-sans font-medium text-[#686762] text-[7.5px] tracking-[0.24em] uppercase mt-0.5">
                     PRODUCTIONS
                   </span>
                 </div>
@@ -1776,18 +1776,18 @@ export default function HomePage() {
           </div>
 
           {/* Bottom CTA Banner */}
-          <div className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-[#1a1611]/95 via-[#13100c]/85 to-[#0a0907] backdrop-blur-3xl p-8 sm:p-14 lg:p-16 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.12)]">
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
+          <div className="relative rounded-3xl border border-[#e7e6e2] bg-[#ffffff] p-8 sm:p-14 lg:p-16 overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.04)]">
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[radial-gradient(circle,rgba(202,138,4,0.08)_0%,transparent_70%)] pointer-events-none blur-3xl" />
             
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
               <div className="max-w-2xl space-y-3">
-                <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/70 block font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
+                <span className="text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#ca8a04] block font-bold px-3 py-1 rounded-full bg-[#ca8a04]/10 border border-[#ca8a04]/20 w-fit">
                   GET STARTED
                 </span>
-                <h3 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-                  HAVE A STORY TO TELL?
+                <h3 className="text-2xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
+                  Have a Story to <em>Tell?</em>
                 </h3>
-                <p className="text-sm sm:text-base text-[#fbf7ee]/80 font-normal leading-relaxed">
+                <p className="text-sm sm:text-base text-[#686762] font-normal leading-relaxed">
                   Let’s turn your idea into something people remember.
                 </p>
               </div>
@@ -1795,7 +1795,7 @@ export default function HomePage() {
               <div className="shrink-0">
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] cursor-pointer"
+                  className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-[#111827] text-white hover:bg-[#ca8a04] font-portfolio-sans text-xs uppercase tracking-wider font-bold shadow-md hover:shadow-lg active:scale-95 transition-all cursor-pointer"
                 >
                   <span>START A PROJECT</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

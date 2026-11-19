@@ -1219,8 +1219,8 @@ function ProductShoot() {
 
       {/* Commercial Product Cinema Video Player with Previous & Next Controls */}
       <div className="product-film-layout" data-reveal>
-        <figure className="product-film">
-          <div className="product-cinema-container">
+        <figure className="product-film" style={{ backgroundColor: 'transparent', background: 'transparent' }}>
+          <div className="product-cinema-container" style={{ backgroundColor: 'transparent', background: 'transparent', border: 'none', boxShadow: 'none' }}>
             <video
               aria-label={activeProductVideo.title}
               autoPlay
@@ -1233,6 +1233,7 @@ function ProductShoot() {
               preload="metadata"
               ref={productVideoRef}
               src={activeProductVideo.src}
+              style={{ backgroundColor: 'transparent', background: 'transparent', objectFit: 'cover' }}
             />
 
             <div className="product-film-tag">
