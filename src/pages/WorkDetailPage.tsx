@@ -33,7 +33,7 @@ interface CinemaFilmItem {
   description: string;
 }
 
-interface CinemaStillItem {
+export interface CinemaStillItem {
   id: string;
   title: string;
   category: string;
@@ -110,42 +110,42 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
     return [
       {
         id: "influencer-master",
-        title: "Luxury Influencer & Creator Commercial Campaign",
-        tag: "Creator Master",
-        category: "Influencer Cinema",
+        title: "Featured Influencer Film · 4K Edition",
+        tag: "Creator Showcase",
+        category: "Influencer Shoot",
         src: "/final-output.mp4",
         poster: "/reel-01-poster.jpg",
-        badge: "01 / Influencer Film",
+        badge: "01 / Featured Reel",
         description:
-          "High-engagement commercial motion engineered for digital creator brands, luxury apparel, and lifestyle partnerships.",
+          "High-retention 9:16 vertical cuts and cinematic 4K creator storytelling engineered to capture attention on Instagram feeds.",
       },
       {
         id: "influencer-render",
         title: "Influencer Lifestyle Editorial Motion Master",
         tag: "Lifestyle Motion",
-        category: "Lifestyle Cinema",
+        category: "Influencer Shoot",
         src: "/final-render-video-volpue.mp4",
         poster: "/reel-02-poster.jpg",
-        badge: "02 / Lifestyle Cinema",
+        badge: "02 / Creator Cinema",
         description:
           "Trend-conscious color grading and visual rhythm engineered to captivate social feeds and maximize audience retention.",
       },
       {
         id: "influencer-commercial-reel",
-        title: "Model & Creator Fashion Commercial Reel",
+        title: "Model & Brand Fashion Reel",
         tag: "Fashion Reel",
-        category: "Fashion Motion",
+        category: "Influencer Shoot",
         src: "/viyana-commercial-reel.mp4",
         poster: "/images/model-shoot/01-emerald-saree-model.jpg",
-        badge: "03 / Fashion Reel",
+        badge: "03 / Brand Collab",
         description:
           "Dynamic model movement and sculpted lighting for viral creator content and brand campaigns.",
       },
       {
         id: "influencer-production-final",
-        title: "High-Fashion Creator & Comp-Card Motion",
+        title: "Style Motion & High-Fashion Aesthetics Cut",
         tag: "Viral Style",
-        category: "Creator Cinema",
+        category: "Influencer Shoot",
         src: "/viyana-production-final-video.mp4",
         poster: "/images/model-shoot/02-black-sequin-saree.jpg",
         badge: "04 / Viral Style",
@@ -154,9 +154,9 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
       },
       {
         id: "influencer-editorial-runway",
-        title: "Creator Runway & Editorial Studio Pacing",
+        title: "Editorial Model Portrait & Comp-Card Reel",
         tag: "Editorial Cut",
-        category: "Editorial Motion",
+        category: "Influencer Shoot",
         src: "/2.mp4",
         poster: "/images/model-shoot/03-temple-heritage-pose.jpg",
         badge: "05 / Runway Cut",
@@ -357,12 +357,12 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
     project.videos.forEach((vSrc, idx) => {
       films.push({
         id: `${project.slug}-vid-${idx + 1}`,
-        title: `${project.title} — Production Reel ${String(idx + 1).padStart(2, "0")}`,
+        title: `${project.title} — Reel ${String(idx + 1).padStart(2, "0")}`,
         tag: project.deliverableType || "Commercial Film",
         category: project.category,
         src: vSrc,
         poster: project.gallery[idx] || defaultPoster,
-        badge: `0${idx + 1} / Cinema Reel`,
+        badge: `0${idx + 1} / Reel`,
         description: project.description,
       });
     });
@@ -393,7 +393,199 @@ function getProjectCinemaFilms(project: Project): CinemaFilmItem[] {
   return films;
 }
 
-function getProjectCinemaStills(project: Project): CinemaStillItem[] {
+export function getProjectCinemaStills(project: Project): CinemaStillItem[] {
+  if (project.slug === "product-shoot") {
+    return [
+      {
+        id: "01",
+        title: "Antique Temple Gold Necklace — Chessboard Study",
+        category: "Jewellery",
+        tag: "Fine Jewellery · Antique Gold",
+        image: "/images/product-shoot/07-antique-gold-necklace-chess.jpg",
+        alt: "Handcrafted antique gold necklace and jhumkas on wooden chessboard",
+        description:
+          "Rich warm temple gold with handcrafted filigree and ruby bead accents, staged across a rustic chessboard with royal chess pieces.",
+      },
+      {
+        id: "02",
+        title: "Artisanal Gold Filigree Jhumkas with Sapphire Beads",
+        category: "Jewellery",
+        tag: "Earrings · Bridal & Festive",
+        image: "/images/product-shoot/08-filigree-jhumkas-blue-beads.jpg",
+        alt: "Gold filigree jhumka earrings with deep blue droplet beads suspended against architectural lattice",
+        description:
+          "Intricate jaali dome work adorned with royal blue droplet beads, highlighting delicate gold metallurgy against clean architectural contrast.",
+      },
+      {
+        id: "03",
+        title: "Peacock Motif Antique Gold Studs — Parisian Accent",
+        category: "Jewellery",
+        tag: "Earrings · Heritage Craft",
+        image: "/images/product-shoot/09-peacock-gold-earrings-eiffel.jpg",
+        alt: "Peacock motif antique gold stud earrings with ruby stones mounted on bronze Eiffel tower",
+        description:
+          "Traditional Mayura peacock carvings with ruby eyes mounted on a Parisian bronze spire, blending heritage craftsmanship with contemporary concept.",
+      },
+      {
+        id: "04",
+        title: "Sculptural Antique Gold Bangles — Contrast Composition",
+        category: "Jewellery",
+        tag: "Bangles · Luxury Editorial",
+        image: "/images/product-shoot/10-antique-gold-bangles-sculptural.jpg",
+        alt: "Antique gold bangles displayed on matte black mannequin hands breaking through white paper",
+        description:
+          "High-contrast studio editorial featuring antique gold floral kadas held by matte black sculptural hands emerging from torn white paper.",
+      },
+      {
+        id: "05",
+        title: "Pearl Butterfly Fine Gold Chain — Nest Installation",
+        category: "Jewellery",
+        tag: "Neckwear · Minimalist Luxury",
+        image: "/images/product-shoot/11-pearl-butterfly-gold-chain-nest.jpg",
+        alt: "Delicate gold link chain with sculpted pearl butterflies draped over porcelain egg in straw nest",
+        description:
+          "Organic conceptual still life featuring iridescent mother-of-pearl butterflies on a fine gold chain, delicately draped over an egg in a natural twig nest.",
+      },
+      {
+        id: "06",
+        title: "Dermera Melanex Face & Body Serum",
+        category: "Skincare",
+        tag: "Serum · 100 ml",
+        image: "/images/product-shoot/01-melanex-serum.jpg",
+        alt: "Dermera Melanex face and body serum bottle",
+        description:
+          "Clean studio strobe highlighting pure white glass bottle, precision pump, and minimalist luxury typography.",
+      },
+      {
+        id: "07",
+        title: "Genex Advanced PDRN+ Revitalizing Serum",
+        category: "Skincare",
+        tag: "Serum · 30 ml",
+        image: "/images/product-shoot/06-genex-serum.jpg",
+        alt: "Dermera Genex Advanced PDRN+ Revitalizing face serum bottle",
+        description:
+          "Frosted matte finish with delicate pastel amber gradient, showcasing precision dispenser typography.",
+      },
+      {
+        id: "08",
+        title: "Luminex Luminous Face Wash & Packaging",
+        category: "Skincare",
+        tag: "Cleanser · 100 ml",
+        image: "/images/product-shoot/02-luminex-face-wash.jpg",
+        alt: "Dermera Luminex luminous face wash tube and packaging box",
+        description:
+          "High-contrast studio lighting capturing the rich metallic gold foil and deep charcoal black luxury carton.",
+      },
+      {
+        id: "09",
+        title: "Dewexa Dermal Bio Cloud Cream",
+        category: "Skincare",
+        tag: "Moisturizer · 50 g",
+        image: "/images/product-shoot/03-dewexa-cloud-cream.jpg",
+        alt: "Dermera Dewexa Dermal Bio Cloud Cream jar and crimson box",
+        description:
+          "Polished gold metallic lid paired with crimson red textured box, angled with razor-sharp reflection.",
+      },
+      {
+        id: "10",
+        title: "Spiculex Advanced Bio Micro Needle Serum",
+        category: "Skincare",
+        tag: "Micro Needle Serum · 30 ml",
+        image: "/images/product-shoot/04-spiculex-serum.jpg",
+        alt: "Dermera Spiculex Advanced Bio micro needle serum bottle and box",
+        description:
+          "Amber glass bottle paired with artisanal textured box, highlighting micro-needle bio formulation details.",
+      },
+      {
+        id: "11",
+        title: "Dewexa Bio Cloud Cream — Angle View",
+        category: "Skincare",
+        tag: "Packaging & Perspective Study · 50 g",
+        image: "/images/product-shoot/05-dewexa-detail.jpg",
+        alt: "Dermera Dewexa Bio Cloud Cream studio perspective view",
+        description:
+          "Perspective 3D angle composition showcasing gold metallic reflection, box typography, and glass jar depth.",
+      },
+      {
+        id: "12",
+        title: "Studio Product Editorial — E-Commerce Packshot 01",
+        category: "Commercial",
+        tag: "E-Commerce · Studio Lighting",
+        image: "/images/product-shoot-1.jpg",
+        alt: "Studio lighting product editorial packshot",
+        description: "Studio strobe setup with reflection control.",
+      },
+      {
+        id: "13",
+        title: "Studio Product Editorial — E-Commerce Packshot 02",
+        category: "Commercial",
+        tag: "E-Commerce · High Key",
+        image: "/images/product-shoot-2.jpg",
+        alt: "Studio product photography with crisp shadows",
+        description: "High-key studio product lighting on clean pedestal.",
+      },
+      {
+        id: "14",
+        title: "Studio Product Editorial — E-Commerce Packshot 03",
+        category: "Commercial",
+        tag: "E-Commerce · Dark Editorial",
+        image: "/images/product-shoot-3.jpg",
+        alt: "Luxury editorial product composition with directional light",
+        description: "Dark, moody luxury editorial product setup.",
+      },
+    ];
+  }
+
+  if (project.slug === "influencer-shoot") {
+    return [
+      {
+        id: "01",
+        title: "Featured Influencer Film · 4K Edition",
+        category: "Creator Showcase",
+        tag: "Creator Showcase",
+        image: "/reel-01-poster.jpg",
+        alt: "Featured Influencer Film · 4K Edition",
+        description: "Editorial portrait and high-engagement creator storytelling shot in Bangalore.",
+      },
+      {
+        id: "02",
+        title: "Influencer Lifestyle Editorial Motion Master",
+        category: "Lifestyle Motion",
+        tag: "Lifestyle Motion",
+        image: "/reel-02-poster.jpg",
+        alt: "Influencer Lifestyle Editorial Motion Master",
+        description: "Lifestyle creator motion master with calibrated natural light.",
+      },
+      {
+        id: "03",
+        title: "Model & Brand Fashion Reel",
+        category: "Fashion Reel",
+        tag: "Fashion Reel",
+        image: "/images/model-shoot/01-emerald-saree-model.jpg",
+        alt: "Model & Brand Fashion Reel",
+        description: "High-fashion apparel editorial and brand collaboration.",
+      },
+      {
+        id: "04",
+        title: "Style Motion & High-Fashion Aesthetics Cut",
+        category: "Viral Style",
+        tag: "Viral Style",
+        image: "/images/model-shoot/02-black-sequin-saree.jpg",
+        alt: "Style Motion & High-Fashion Aesthetics Cut",
+        description: "Black sequin saree styling with sculpted rim lighting.",
+      },
+      {
+        id: "05",
+        title: "Editorial Model Portrait & Comp-Card Reel",
+        category: "Editorial Motion",
+        tag: "Editorial Cut",
+        image: "/images/model-shoot/03-temple-heritage-pose.jpg",
+        alt: "Editorial Model Portrait & Comp-Card Reel",
+        description: "Temple heritage architectural pose and talent comp card master.",
+      },
+    ];
+  }
+
   const images =
     Array.isArray(project.gallery) && project.gallery.length > 0
       ? project.gallery

@@ -419,22 +419,27 @@
 .product-cinema-container {
   position: relative;
   overflow: hidden;
-  background: #000000;
-  border-radius: 12px;
-  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.32);
+  background: transparent !important;
+  background-color: transparent !important;
+  border-radius: 16px;
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e7e2d7;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(340px, 40vw, 480px);
-  max-height: 480px;
+  aspect-ratio: 9 / 16;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
 }
 .product-cinema-video {
   width: 100%;
   height: 100%;
-  max-height: 480px;
   display: block;
-  object-fit: contain;
-  background: #000000;
+  object-fit: cover !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-radius: 16px;
 }
 .product-film-tag {
   position: absolute;
@@ -3939,8 +3944,8 @@
   .hero-ref-video-wrap { height: clamp(340px, 68vw, 480px); }
   .product-shoot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 16px; }
   .product-film-layout { grid-template-columns: 1fr; gap: 24px; }
-  .product-cinema-container { min-height: clamp(320px, 44vw, 440px); max-height: 440px; }
-  .product-cinema-video { height: 100%; max-height: clamp(320px, 44vw, 440px); object-fit: contain; }
+  .product-cinema-container { aspect-ratio: 9 / 16 !important; width: 100% !important; max-width: 360px !important; margin: 0 auto !important; min-height: unset !important; max-height: unset !important; height: auto !important; background: transparent !important; box-shadow: none !important; border: none !important; }
+  .product-cinema-video { width: 100% !important; height: 100% !important; object-fit: cover !important; background: transparent !important; }
   .product-film-side { padding-left: 0; border-left: 0; border-top: 1px solid #dedbd4; padding-top: 20px; }
   .product-shot:nth-child(3n + 2) { margin-top: 0; }
   .product-shot:nth-child(even) { margin-top: 24px; }
@@ -4054,12 +4059,12 @@
     box-shadow: none !important;
     border: none !important;
     width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
     min-height: unset !important;
-    max-height: 520px !important;
+    max-height: unset !important;
     height: auto !important;
-    aspect-ratio: 9 / 14 !important;
+    aspect-ratio: 9 / 16 !important;
     border-radius: 16px !important;
     overflow: hidden !important;
     display: block !important;
@@ -4070,7 +4075,7 @@
     width: 100% !important;
     height: 100% !important;
     min-height: unset !important;
-    max-height: 520px !important;
+    max-height: unset !important;
     background: transparent !important;
     background-color: transparent !important;
     object-fit: cover !important;
@@ -4125,20 +4130,23 @@
     border-top: none !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     margin: 0 !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
+    overflow: hidden !important;
   }
   .product-side-card {
     text-align: left !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     box-sizing: border-box !important;
     background: #ffffff !important;
     border-radius: 16px !important;
     border: 1px solid #e2ded5 !important;
-    padding: 18px 14px !important;
+    padding: 16px 14px !important;
     margin: 0 !important;
     overflow: hidden !important;
   }
@@ -5727,12 +5735,12 @@
     box-shadow: none !important;
     border: none !important;
     width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
     min-height: unset !important;
-    max-height: 520px !important;
+    max-height: unset !important;
     height: auto !important;
-    aspect-ratio: 9 / 14 !important;
+    aspect-ratio: 9 / 16 !important;
     border-radius: 16px !important;
     overflow: hidden !important;
     display: block !important;
@@ -5744,7 +5752,7 @@
     width: 100% !important;
     height: 100% !important;
     min-height: unset !important;
-    max-height: 520px !important;
+    max-height: unset !important;
     background: transparent !important;
     background-color: transparent !important;
     object-fit: cover !important;
@@ -5803,21 +5811,24 @@
     border-top: none !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     margin: 0 !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
+    overflow: hidden !important;
   }
 
   .product-side-card {
     text-align: left !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     box-sizing: border-box !important;
     background: #ffffff !important;
     border-radius: 16px !important;
     border: 1px solid #e2ded5 !important;
-    padding: 18px 14px !important;
+    padding: 16px 14px !important;
     margin: 0 !important;
     overflow: hidden !important;
   }

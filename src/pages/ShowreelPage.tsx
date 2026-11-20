@@ -136,27 +136,24 @@ function ReelItem({
     <article
       id={reel.id}
       ref={containerRef}
-      className="scroll-mt-28 relative rounded-3xl border border-white/10 bg-gradient-to-b from-[#0e0e0e] to-[#070707] p-5 sm:p-8 lg:p-12 overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.85)]"
+      className="scroll-mt-28 relative rounded-3xl border border-[#e7e6e2] bg-white p-5 sm:p-8 lg:p-12 overflow-hidden"
     >
-      {/* Subtle Background Glow matching cinema mood */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/[0.03] rounded-full blur-[140px] pointer-events-none" />
-
       {/* Reel Header Strip */}
-      <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 pb-6 sm:pb-8 border-b border-white/10 mb-6 sm:mb-8">
+      <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 pb-6 sm:pb-8 border-b border-[#e7e6e2] mb-6 sm:mb-8">
         <div className="flex items-center gap-3">
-          <span className="px-3 py-1 rounded-full bg-white/10 text-white font-mono text-xs font-bold uppercase tracking-wider">
+          <span className="px-3.5 py-1 rounded-full bg-[#fbfaf8] border border-[#e7e6e2] text-[#20201e] font-portfolio-sans text-xs font-bold uppercase tracking-wider">
             REEL {reel.number} / {String(total).padStart(2, "0")}
           </span>
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-emerald-400 font-semibold">
+          <span className="text-xs font-portfolio-sans uppercase tracking-[0.2em] text-[#0284c7] font-bold">
             {reel.category}
           </span>
         </div>
 
-        <div className="flex items-center gap-2 text-[11px] font-mono text-white/60">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>PLAYING NOW</span>
-          <span className="text-white/30">•</span>
-          <span className="text-white/80 uppercase">{reel.duration || "4K MASTER"}</span>
+        <div className="flex items-center gap-2 text-xs font-portfolio-sans text-[#686762]">
+          <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
+          <span className="font-semibold text-[#20201e]">PLAYING NOW</span>
+          <span className="text-[#dedbd4]">•</span>
+          <span className="text-[#686762] uppercase font-medium">{reel.duration || "4K MASTER"}</span>
         </div>
       </div>
 
@@ -167,7 +164,7 @@ function ReelItem({
           {/* 16:9 Cinema Player with clean video and sound mute icon only */}
           <div
             onClick={() => onToggleSound(reel.id)}
-            className="group relative w-full aspect-video rounded-2xl sm:rounded-3xl overflow-hidden bg-black border border-white/15 shadow-[0_20px_70px_rgba(0,0,0,0.9)] cursor-pointer"
+            className="group relative w-full aspect-video rounded-2xl sm:rounded-3xl overflow-hidden bg-black border border-[#e7e6e2] cursor-pointer"
           >
             <video
               ref={videoRef}
@@ -191,7 +188,7 @@ function ReelItem({
                 onClick={handleFullScreen}
                 aria-label="View reel in full screen"
                 title="View reel in full screen"
-                className="group/fs w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/20 hover:border-white/40 flex items-center justify-center transition-all duration-300 cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md active:scale-95 hover:scale-110"
+                className="group/fs w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/20 hover:border-white/40 flex items-center justify-center transition-all duration-300 cursor-pointer backdrop-blur-md active:scale-95 hover:scale-110"
               >
                 <Maximize2 className="w-5 h-5 transition-transform group-hover/fs:scale-110 text-white/90" />
               </button>
@@ -207,15 +204,15 @@ function ReelItem({
                 }}
                 aria-label={isMuted ? "Unmute audio" : "Mute audio"}
                 title={isMuted ? "Click to unmute sound" : "Click to mute sound"}
-                className={`group/sound relative w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md active:scale-95 ${
+                className={`group/sound relative w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer backdrop-blur-md active:scale-95 ${
                   !isMuted
-                    ? "bg-emerald-500 text-black border border-emerald-300 shadow-[0_0_25px_rgba(16,185,129,0.5)] hover:bg-emerald-400 hover:scale-110"
+                    ? "bg-[#0284c7] text-white border border-[#38bdf8] hover:scale-110"
                     : "bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/20 hover:border-white/40 hover:scale-110"
                 }`}
               >
                 {!isMuted ? (
                   <>
-                    <span className="absolute inset-0 rounded-full bg-emerald-400/40 animate-ping pointer-events-none" />
+                    <span className="absolute inset-0 rounded-full bg-[#0ea5e9]/40 animate-ping pointer-events-none" />
                     <Volume2 className="w-5 h-5 relative z-10 transition-transform group-hover/sound:scale-110" />
                   </>
                 ) : (
@@ -228,23 +225,23 @@ function ReelItem({
           {/* Reel Editorial Details Strip */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-2">
             <div className="lg:col-span-8 space-y-3">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold uppercase tracking-tight text-white">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-portfolio-serif font-normal tracking-tight text-[#20201e]">
                 {reel.title}
               </h2>
-              <p className="text-sm sm:text-base text-white/70 font-light leading-relaxed max-w-3xl">
+              <p className="text-sm sm:text-base text-[#686762] font-portfolio-sans font-normal leading-relaxed max-w-3xl">
                 {reel.description}
               </p>
             </div>
 
             <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end lg:items-end">
-              <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-xs font-mono space-y-1 w-full lg:max-w-xs">
-                <span className="text-white/40 block">TECHNICAL SPECS</span>
-                <span className="text-emerald-400 font-semibold block leading-tight">{reel.specs}</span>
+              <div className="p-4 rounded-2xl bg-[#fbfaf8] border border-[#e7e6e2] text-xs font-portfolio-sans space-y-1 w-full lg:max-w-xs">
+                <span className="text-[#8e8d88] font-bold block uppercase tracking-wider">TECHNICAL SPECS</span>
+                <span className="text-[#0284c7] font-bold block leading-tight">{reel.specs}</span>
               </div>
               <div className="flex flex-wrap items-center gap-2.5 w-full justify-end">
                 <Link
                   to="/contact"
-                  className="px-6 py-3 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-neutral-200 active:scale-95 transition-all text-center flex items-center justify-center gap-2 shadow-lg"
+                  className="px-6 py-3 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold hover:bg-[#0284c7] active:scale-95 transition-all text-center flex items-center justify-center gap-2"
                 >
                   <span>BOOK THIS PRODUCTION</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -252,9 +249,9 @@ function ReelItem({
                 <button
                   type="button"
                   onClick={handleFullScreen}
-                  className="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 border border-white/20 hover:border-white/40 text-white font-mono text-xs uppercase tracking-wider font-medium transition-all inline-flex items-center gap-2 cursor-pointer backdrop-blur-md shadow-lg group/fsbtn"
+                  className="px-5 py-3 rounded-full bg-white hover:bg-[#f7f6f3] active:scale-95 border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider font-semibold transition-all inline-flex items-center gap-2 cursor-pointer group/fsbtn"
                 >
-                  <Maximize2 className="w-3.5 h-3.5 text-emerald-400 transition-transform group-hover/fsbtn:scale-110" />
+                  <Maximize2 className="w-3.5 h-3.5 text-[#0284c7] transition-transform group-hover/fsbtn:scale-110" />
                   <span>FULL VIEW</span>
                 </button>
               </div>
@@ -272,7 +269,7 @@ function ReelItem({
           <div className="lg:col-span-5 flex justify-center">
             <div
               onClick={() => onToggleSound(reel.id)}
-              className="group relative aspect-[9/16] w-full max-w-[340px] sm:max-w-[380px] rounded-3xl overflow-hidden bg-black border border-white/15 shadow-[0_25px_80px_rgba(0,0,0,0.95)] cursor-pointer"
+              className="group relative aspect-[9/16] w-full max-w-[340px] sm:max-w-[380px] rounded-3xl overflow-hidden bg-black border border-[#e7e6e2] cursor-pointer"
             >
               <video
                 ref={videoRef}
@@ -296,7 +293,7 @@ function ReelItem({
                   onClick={handleFullScreen}
                   aria-label="View reel in full screen"
                   title="View reel in full screen"
-                  className="group/fs w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/20 hover:border-white/40 flex items-center justify-center transition-all duration-300 cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md active:scale-95 hover:scale-110"
+                  className="group/fs w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/20 hover:border-white/40 flex items-center justify-center transition-all duration-300 cursor-pointer backdrop-blur-md active:scale-95 hover:scale-110"
                 >
                   <Maximize2 className="w-5 h-5 transition-transform group-hover/fs:scale-110 text-white/90" />
                 </button>
@@ -312,15 +309,15 @@ function ReelItem({
                   }}
                   aria-label={isMuted ? "Unmute audio" : "Mute audio"}
                   title={isMuted ? "Click to unmute sound" : "Click to mute sound"}
-                  className={`group/sound relative w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md active:scale-95 ${
+                  className={`group/sound relative w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer backdrop-blur-md active:scale-95 ${
                     !isMuted
-                      ? "bg-emerald-500 text-black border border-emerald-300 shadow-[0_0_25px_rgba(16,185,129,0.5)] hover:bg-emerald-400 hover:scale-110"
+                      ? "bg-[#0284c7] text-white border border-[#38bdf8] hover:scale-110"
                       : "bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/20 hover:border-white/40 hover:scale-110"
                   }`}
                 >
                   {!isMuted ? (
                     <>
-                      <span className="absolute inset-0 rounded-full bg-emerald-400/40 animate-ping pointer-events-none" />
+                      <span className="absolute inset-0 rounded-full bg-[#0ea5e9]/40 animate-ping pointer-events-none" />
                       <Volume2 className="w-5 h-5 relative z-10 transition-transform group-hover/sound:scale-110" />
                     </>
                   ) : (
@@ -334,24 +331,24 @@ function ReelItem({
           {/* Editorial Story Column */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-emerald-400 font-semibold block">
+              <span className="text-xs font-portfolio-sans uppercase tracking-[0.2em] text-[#0284c7] font-bold block">
                 {reel.subtitle}
               </span>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
                 {reel.title}
               </h2>
-              <p className="text-sm sm:text-base text-white/75 font-light leading-relaxed">
+              <p className="text-sm sm:text-base text-[#686762] font-portfolio-sans font-normal leading-relaxed">
                 {reel.description}
               </p>
             </div>
 
             {/* Production Specifications Block */}
-            <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
-              <div className="flex items-center gap-2 text-white/50 text-xs font-mono uppercase tracking-wider">
-                <Sliders className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="p-5 rounded-2xl bg-[#fbfaf8] border border-[#e7e6e2] space-y-2">
+              <div className="flex items-center gap-2 text-[#8e8d88] text-xs font-portfolio-sans uppercase tracking-wider font-bold">
+                <Sliders className="w-3.5 h-3.5 text-[#0284c7]" />
                 <span>TECHNICAL MASTER SPECIFICATIONS</span>
               </div>
-              <p className="text-xs sm:text-sm font-mono text-emerald-300 font-semibold">
+              <p className="text-xs sm:text-sm font-portfolio-sans text-[#0284c7] font-bold">
                 {reel.specs}
               </p>
             </div>
@@ -360,7 +357,7 @@ function ReelItem({
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <Link
                 to="/contact"
-                className="px-7 py-3 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-neutral-200 active:scale-95 transition-all shadow-xl inline-flex items-center gap-2"
+                className="px-7 py-3.5 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold hover:bg-[#0284c7] active:scale-95 transition-all inline-flex items-center gap-2"
               >
                 <span>COMMISSION A REEL LIKE THIS</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -369,9 +366,9 @@ function ReelItem({
               <button
                 type="button"
                 onClick={handleFullScreen}
-                className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 border border-white/20 hover:border-white/40 text-white font-mono text-xs uppercase tracking-wider font-medium transition-all inline-flex items-center gap-2.5 cursor-pointer backdrop-blur-md shadow-lg group/fsbtn"
+                className="px-6 py-3 rounded-full bg-white hover:bg-[#f7f6f3] active:scale-95 border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider font-semibold transition-all inline-flex items-center gap-2.5 cursor-pointer group/fsbtn"
               >
-                <Maximize2 className="w-4 h-4 text-emerald-400 transition-transform group-hover/fsbtn:scale-110" />
+                <Maximize2 className="w-4 h-4 text-[#0284c7] transition-transform group-hover/fsbtn:scale-110" />
                 <span>FULL VIEW</span>
               </button>
             </div>
@@ -439,7 +436,7 @@ export default function ShowreelPage() {
   }, [isHeroMuted]);
 
   return (
-    <main className="min-h-screen bg-[#050505] text-[#f3f3ef] select-none">
+    <main className="min-h-screen bg-[#fbfaf8] text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans select-none pb-24 md:pb-0">
       <SEO
         title="Video Production Company in Bangalore | Viyana Productions"
         description="Looking for a video production company in Bangalore? Viyana Productions creates high-quality films, commercial ads, and engaging visual content for brands."
@@ -490,25 +487,22 @@ export default function ShowreelPage() {
           </video>
 
           {/* Cinematic lighting gradients */}
-          {/* Top gradient for Navbar legibility */}
           <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/85 via-black/35 to-transparent pointer-events-none" />
-          {/* Bottom gradient for CTA legibility */}
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-          {/* Radial center vignette */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_45%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
         </div>
 
         {/* Top spacer & badges (under Navbar) */}
         <div className="relative z-10 pt-24 sm:pt-28 px-4 sm:px-8 lg:px-16 container mx-auto max-w-7xl flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/20 backdrop-blur-md shadow-xl text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-white">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/20 backdrop-blur-md text-[10px] sm:text-xs font-portfolio-sans uppercase tracking-[0.2em] text-white font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
             <span>REEL {heroReel.number} // {heroReel.category}</span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-[11px] font-mono text-white/70 bg-black/50 px-3.5 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
+          <div className="hidden sm:flex items-center gap-2 text-xs font-portfolio-sans text-white/70 bg-black/50 px-3.5 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
             <span>4K UHD 60FPS</span>
             <span className="text-white/30">•</span>
-            <span className="text-emerald-400">ACES GRADED</span>
+            <span className="text-[#38bdf8] font-semibold">ACES GRADED</span>
           </div>
         </div>
 
@@ -523,25 +517,25 @@ export default function ShowreelPage() {
               <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                 <Link
                   to="/contact"
-                  className="px-6 sm:px-8 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-neutral-200 active:scale-95 transition-all shadow-[0_10px_30px_rgba(255,255,255,0.2)] inline-flex items-center gap-2"
+                  className="px-6 sm:px-8 py-3.5 rounded-full bg-white text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider font-bold hover:bg-[#f7f6f3] active:scale-95 transition-all inline-flex items-center gap-2"
                 >
                   <span>START A PROJECT</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#0284c7]" />
                 </Link>
 
                 <button
                   type="button"
                   onClick={handleHeroFullScreen}
-                  className="px-5 sm:px-6 py-3.5 rounded-full bg-black/50 hover:bg-black/75 active:scale-95 border border-white/25 hover:border-white/50 text-white font-mono text-xs uppercase tracking-wider font-medium transition-all inline-flex items-center gap-2 backdrop-blur-md cursor-pointer shadow-lg"
+                  className="px-5 sm:px-6 py-3.5 rounded-full bg-black/50 hover:bg-black/75 active:scale-95 border border-white/25 hover:border-white/50 text-white font-portfolio-sans text-xs uppercase tracking-wider font-semibold transition-all inline-flex items-center gap-2 backdrop-blur-md cursor-pointer"
                 >
-                  <Maximize2 className="w-4 h-4 text-emerald-400" />
+                  <Maximize2 className="w-4 h-4 text-[#38bdf8]" />
                   <span>FULL SCREEN</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={handleHeroPlayToggle}
-                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-black/75 active:scale-95 border border-white/25 hover:border-white/50 text-white flex items-center justify-center transition-all backdrop-blur-md cursor-pointer shadow-lg"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-black/75 active:scale-95 border border-white/25 hover:border-white/50 text-white flex items-center justify-center transition-all backdrop-blur-md cursor-pointer"
                   aria-label={heroPlaying ? "Pause video" : "Play video"}
                   title={heroPlaying ? "Pause video" : "Play video"}
                 >
@@ -560,10 +554,10 @@ export default function ShowreelPage() {
                   onClick={handleHeroSoundToggle}
                   aria-label={isHeroMuted ? "Unmute master soundtrack" : "Mute audio"}
                   title={isHeroMuted ? "Unmute master soundtrack" : "Mute audio"}
-                  className={`relative flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-full transition-all duration-300 cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md active:scale-95 font-mono text-xs uppercase tracking-wider ${
+                  className={`relative flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-full transition-all duration-300 cursor-pointer backdrop-blur-md active:scale-95 font-portfolio-sans text-xs uppercase tracking-wider ${
                     !isHeroMuted
-                      ? "bg-emerald-500 text-black border border-emerald-300 shadow-[0_0_25px_rgba(16,185,129,0.5)] font-bold hover:bg-emerald-400"
-                      : "bg-black/60 hover:bg-black/85 text-white border border-white/25 hover:border-white/50"
+                      ? "bg-[#0284c7] text-white border border-[#38bdf8] font-bold"
+                      : "bg-black/60 hover:bg-black/85 text-white border border-white/25 hover:border-white/50 font-semibold"
                   }`}
                 >
                   {!isHeroMuted ? (
@@ -602,17 +596,17 @@ export default function ShowreelPage() {
         className="py-16 sm:py-24 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto space-y-12 sm:space-y-16"
       >
         {/* Archive Section Header & Navigation */}
-        <div className="space-y-6 pb-6 border-b border-white/10">
+        <div className="space-y-6 pb-6 border-b border-[#e7e6e2]">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-emerald-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 text-[10px] sm:text-xs font-portfolio-sans uppercase tracking-[0.2em] text-[#0284c7] font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] animate-pulse" />
                 <span>COMPLETE DIRECTORIAL ARCHIVE</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-white">
-                FLAGSHIP &amp; CULTURAL REELS
+              <h2 className="text-3xl sm:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e]">
+                FLAGSHIP &amp; <em className="italic text-[#0284c7] font-normal">CULTURAL REELS</em>
               </h2>
-              <p className="text-sm sm:text-base text-white/70 font-light max-w-2xl leading-relaxed">
+              <p className="text-sm sm:text-base text-[#686762] font-portfolio-sans font-normal max-w-2xl leading-relaxed">
                 Explore our full spectrum of directional cuts, vertical mobile series, and cinematic cultural productions. Each master reel plays automatically as you scroll.
               </p>
             </div>
@@ -623,13 +617,13 @@ export default function ShowreelPage() {
                 <a
                   key={reel.id}
                   href={`#${reel.id}`}
-                  className="px-3 sm:px-3.5 py-2 rounded-full bg-white/[0.04] hover:bg-white hover:text-black border border-white/10 hover:border-white text-[10px] sm:text-xs font-mono uppercase tracking-wider text-white/80 transition-all active:scale-95 flex items-center gap-2 group shadow-md"
+                  className="px-3 sm:px-3.5 py-2 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] hover:border-[#0ea5e9] text-[10px] sm:text-xs font-portfolio-sans uppercase tracking-wider text-[#20201e] transition-all active:scale-95 flex items-center gap-2 group"
                 >
-                  <span className="text-emerald-400 group-hover:text-black font-bold">
+                  <span className="text-[#0284c7] font-bold">
                     REEL {reel.number}
                   </span>
-                  <span className="text-white/30 group-hover:text-black/50">•</span>
-                  <span className="font-medium">{reel.title.replace("Viyana ", "")}</span>
+                  <span className="text-[#dedbd4]">•</span>
+                  <span className="font-medium text-[#686762] group-hover:text-[#20201e]">{reel.title.replace("Viyana ", "")}</span>
                 </a>
               ))}
             </div>
@@ -654,12 +648,12 @@ export default function ShowreelPage() {
       {/* ======================================================== */}
       {/* 3. TECHNICAL CAMERA INFRASTRUCTURE & POST PIPELINE       */}
       {/* ======================================================== */}
-      <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-16 border-t border-white/10 bg-[#070707]">
+      <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-16 border-t border-[#e7e6e2] bg-[#fbfaf8]">
         <div className="max-w-7xl mx-auto space-y-12">
-          <div className="rounded-3xl border border-white/15 bg-gradient-to-br from-white/[0.04] to-transparent p-6 sm:p-10 backdrop-blur-xl space-y-6">
+          <div className="rounded-3xl border border-[#e7e6e2] bg-white p-6 sm:p-10 space-y-6">
             <div className="flex items-center gap-2">
-              <Film className="w-4 h-4 text-white/60" />
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/60 font-semibold">
+              <Film className="w-4 h-4 text-[#0284c7]" />
+              <span className="text-xs font-portfolio-sans uppercase tracking-[0.25em] text-[#0284c7] font-bold">
                 MASTER SPECIFICATIONS &amp; CAMERA INFRASTRUCTURE
               </span>
             </div>
@@ -671,12 +665,12 @@ export default function ShowreelPage() {
                 { title: "AUDIO DIRECTION", desc: "Immersive 5.1 Surround & Spatial Stereo Master Sound Design" },
                 { title: "LOCATION READINESS", desc: "Rapid Multi-Crew Deployment across Bengaluru & Pan-India" },
               ].map((spec) => (
-                <div key={spec.title} className="space-y-1.5 border-l-2 border-white/20 pl-4">
-                  <div className="flex items-center gap-1.5 text-emerald-400">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span className="text-xs font-mono font-bold tracking-wider">{spec.title}</span>
+                <div key={spec.title} className="space-y-1.5 border-l-2 border-[#0284c7] pl-4">
+                  <div className="flex items-center gap-1.5 text-[#0284c7]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#0284c7]" />
+                    <span className="text-xs font-portfolio-sans font-bold tracking-wider text-[#20201e]">{spec.title}</span>
                   </div>
-                  <p className="text-xs text-white/60 leading-relaxed font-light">{spec.desc}</p>
+                  <p className="text-xs text-[#686762] leading-relaxed font-portfolio-sans">{spec.desc}</p>
                 </div>
               ))}
             </div>
@@ -684,22 +678,22 @@ export default function ShowreelPage() {
 
           {/* Bottom CTA Banner */}
           <div className="text-center py-8 space-y-5">
-            <h3 className="text-2xl sm:text-4xl font-display font-extrabold text-white uppercase tracking-tight">
-              HAVE A COMMERCIAL OR FILM TO PRODUCE?
+            <h3 className="text-3xl sm:text-5xl font-portfolio-serif font-normal text-[#20201e] tracking-tight">
+              HAVE A COMMERCIAL OR FILM TO <em className="italic text-[#0284c7] font-normal">PRODUCE?</em>
             </h3>
-            <p className="text-sm sm:text-base text-white/70 max-w-xl mx-auto font-light">
+            <p className="text-sm sm:text-base text-[#686762] font-portfolio-sans max-w-xl mx-auto leading-relaxed">
               Let&apos;s collaborate to craft visual storytelling with the same production caliber and cinematic precision.
             </p>
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 to="/contact"
-                className="px-8 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-neutral-200 active:scale-95 transition-all shadow-xl"
+                className="px-8 py-3.5 rounded-full bg-[#111827] text-white font-portfolio-sans text-xs uppercase tracking-wider font-bold hover:bg-[#0284c7] active:scale-95 transition-all"
               >
                 START A PROJECT →
               </Link>
               <Link
                 to="/services"
-                className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono text-xs uppercase tracking-wider font-medium active:scale-95 transition-all"
+                className="px-8 py-3.5 rounded-full bg-white hover:bg-[#f7f6f3] border border-[#dedbd4] text-[#20201e] font-portfolio-sans text-xs uppercase tracking-wider font-semibold active:scale-95 transition-all"
               >
                 EXPLORE SERVICES
               </Link>

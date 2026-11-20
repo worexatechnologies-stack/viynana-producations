@@ -660,7 +660,7 @@ export default function HomePage() {
   return (
     <main
       ref={containerRef}
-      className="home-cinematic relative w-full bg-brand-black text-[#fbf7ee] min-h-screen overflow-x-hidden selection:bg-white text-black selection:text-brand-black font-sans"
+      className="home-cinematic relative w-full bg-[#fbfaf8] text-[#20201e] min-h-screen overflow-x-hidden selection:bg-[#111827] selection:text-white font-portfolio-sans pb-24 md:pb-0"
     >
       <SEO
         title="Video Production Company in Bangalore | Viyana Productions"
@@ -715,13 +715,13 @@ export default function HomePage() {
         <div className="relative z-10 w-full h-2 pointer-events-none" />
 
         {/* Central Brand Showcase: Directly ON THE VIDEO (Clean Logo, Tagline & Action Buttons) */}
-        <div className="relative z-20 flex flex-col items-center justify-center text-center my-auto px-5 py-7 sm:px-10 sm:py-9 max-w-4xl mx-auto rounded-3xl border border-white/20 bg-black/35 backdrop-blur-sm shadow-[0_24px_80px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.08)]">
+        <div className="relative z-20 flex flex-col items-center justify-center text-center my-auto px-4 max-w-4xl mx-auto">
           {/* Clean White Official Logo */}
           <div className="mb-2.5 sm:mb-3.5">
             <img
               src="/logo-white.png"
               alt="Viyana Productions"
-              className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)] filter brightness-110"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain filter brightness-110 drop-shadow-md"
             />
           </div>
 
@@ -769,10 +769,10 @@ export default function HomePage() {
               onClick={toggleHeroMute}
               aria-label={isHeroMuted ? "Unmute video sound" : "Mute video sound"}
               title={isHeroMuted ? "Unmute sound" : "Mute sound"}
-              className={`group/sound relative w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.8)] backdrop-blur-md active:scale-95 hover:scale-105 ${
+              className={`group/sound relative w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer backdrop-blur-md active:scale-95 hover:scale-105 ${
                 !isHeroMuted
-                  ? "bg-white text-black hover:bg-neutral-200 border border-white/40 shadow-[0_0_25px_rgba(255,255,255,0.15)]"
-                  : "bg-black/60 hover:bg-black/80 text-[#fbf7ee] border border-white/20"
+                  ? "bg-white text-black hover:bg-neutral-200 border border-white/40 "
+                  : "bg-black/60 hover:bg-black/80 text-white border border-white/20"
               }`}
             >
               {!isHeroMuted ? (
@@ -791,7 +791,7 @@ export default function HomePage() {
               onClick={toggleHeroPlay}
               aria-label={isPlaying ? "Pause ambient video" : "Play ambient video"}
               title={isPlaying ? "Pause ambient video" : "Play ambient video"}
-              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
             >
               {isPlaying ? (
                 <Pause className="w-4 h-4 text-white" />
@@ -803,14 +803,12 @@ export default function HomePage() {
         </div>
       </header>
 
-
-
       {/* 3. COMPANY IMPACT BAND & 4-COLUMN STATS GRID (VE-BAND) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/25 overflow-hidden">
-        {/* Advanced Ambient Glow Mesh */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.15)_50%,transparent_80%)] pointer-events-none blur-2xl" />
+      <section className="relative w-full py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-16 border-t border-[#e7e6e2] bg-[#fbfaf8] overflow-hidden">
+        {/* Subtle Ambient Paper Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.06)_0%,transparent_75%)] pointer-events-none blur-2xl" />
 
-        <div className="relative z-10 max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12">
+        <div className="relative z-10 max-w-7xl mx-auto space-y-8 sm:space-y-12 lg:space-y-14">
           {/* Two-Column Section Head */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-end">
             <div className="lg:col-span-7 space-y-2">
@@ -835,25 +833,22 @@ export default function HomePage() {
           </div>
 
           {/* 4-Column Stat Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-5">
             {[
-              { stat: "1+", label: "YEAR OF CREATIVE EXPERIENCE" },
-              { stat: "10+", label: "PROJECTS COMPLETED" },
-              { stat: "15+", label: "VIDEOS PRODUCED" },
-              { stat: "BENGALURU", label: "BASED PRODUCTION STUDIO" },
+              { stat: "1+", label: "Year of Creative Experience" },
+              { stat: "10+", label: "Projects Completed" },
+              { stat: "15+", label: "Videos Produced" },
+              { stat: "Bengaluru", label: "Based Production Studio" },
             ].map((item) => (
               <div
                 key={item.stat}
-                className="group relative p-4 min-[380px]:p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl bg-[#14110d]/80 backdrop-blur-2xl border border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:border-white/40/55 hover:shadow-[0_25px_60px_rgba(255,255,255,0.15)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[130px] sm:min-h-[155px] lg:min-h-[180px] overflow-hidden"
+                className="group relative p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl bg-white border border-[#e7e6e2] hover:border-[#0ea5e9] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[130px] sm:min-h-[155px] lg:min-h-[180px] overflow-hidden"
               >
-                {/* Subtle top-right specular rim light on hover */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-white/10 to-transparent rounded-bl-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
                 <strong
                   className={`font-serif font-normal text-[#f3f3ef] tracking-tight block leading-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] ${
                     item.stat.length > 5
-                      ? "text-base min-[360px]:text-[1.1rem] min-[400px]:text-xl sm:text-2xl md:text-lg lg:text-2xl xl:text-3xl"
-                      : "text-2xl min-[360px]:text-3xl sm:text-4xl md:text-4xl lg:text-5xl"
+                      ? "text-xl sm:text-2xl lg:text-3xl"
+                      : "text-3xl sm:text-5xl lg:text-6xl"
                   }`}
                 >
                   {item.stat}
@@ -871,7 +866,7 @@ export default function HomePage() {
               to="/work"
               className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-sans text-xs uppercase tracking-wider font-semibold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] cursor-pointer"
             >
-              <span>OUR WORK</span>
+              <span>Our Work</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
 
@@ -879,29 +874,19 @@ export default function HomePage() {
               to="/contact"
               className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 hover:border-white/40 text-[#fbf7ee] font-sans text-xs uppercase tracking-wider font-medium hover:bg-white/15 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
             >
-              <span>START A PROJECT</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-white" />
+              <span>Start a Project</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-[#0284c7]" />
             </Link>
           </div>
-
         </div>
       </section>
 
       <section
         ref={selectedWorkSectionRef}
         id="selected-work"
-        className="relative w-full py-6 sm:py-10 border-t border-white/15 bg-black/20 overflow-hidden"
+        className="relative w-full py-12 sm:py-16 border-t border-[#e7e6e2] bg-[#ffffff] overflow-hidden"
       >
-        {/* Ambient Radial Spotlight Mesh */}
-        <div
-          className="absolute top-1/4 right-1/4 w-[850px] h-[500px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.15)_55%,transparent_80%)] rounded-full blur-3xl pointer-events-none"
-          style={{ contain: "strict", transform: "translateZ(0)" }}
-        />
-        <div
-          className="absolute bottom-10 left-10 w-[500px] h-[300px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,transparent_70%)] rounded-full blur-3xl pointer-events-none"
-        />
-
-        <div className="w-full space-y-4 sm:space-y-5 relative z-10">
+        <div className="w-full space-y-6 sm:space-y-8 relative z-10">
           {/* Top Header Bar */}
           <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-2 max-w-2xl">
@@ -927,8 +912,8 @@ export default function HomePage() {
                   title="Horizontal Moving View"
                   className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-sans font-semibold transition-all cursor-pointer ${
                     viewMode === "carousel"
-                      ? "bg-white text-black hover:bg-neutral-200 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
-                      : "text-[#fbf7ee]/70 hover:text-white"
+                      ? "bg-[#111827] text-white "
+                      : "text-[#777671] hover:text-[#20201e]"
                   }`}
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5" />
@@ -941,8 +926,8 @@ export default function HomePage() {
                   title="Grid View"
                   className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-sans font-semibold transition-all cursor-pointer ${
                     viewMode === "grid"
-                      ? "bg-white text-black hover:bg-neutral-200 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
-                      : "text-[#fbf7ee]/70 hover:text-white"
+                      ? "bg-[#111827] text-white "
+                      : "text-[#777671] hover:text-[#20201e]"
                   }`}
                 >
                   <LayoutGrid className="w-3.5 h-3.5" />
@@ -987,8 +972,8 @@ export default function HomePage() {
           {viewMode === "carousel" ? (
             <div className="relative w-full overflow-hidden py-3 sm:py-5 select-none">
               {/* Edge Gradient Vignettes so cards gracefully glide in and out */}
-              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-r from-[#080706] via-[#080706]/75 to-transparent" />
-              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-l from-[#080706] via-[#080706]/75 to-transparent" />
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-r from-white via-white/80 to-transparent" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-l from-white via-white/80 to-transparent" />
 
               {/* Clean Horizontal Moving Stage (Straight zero-rotation flow) */}
               <div className="space-y-4 sm:space-y-6 my-1">
@@ -1002,20 +987,20 @@ export default function HomePage() {
                           to={`/work/${project.slug}`}
                           key={`r1-${project.slug}-${idx}`}
                           draggable={false}
-                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-[#14110d] shadow-[0_18px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:border-white/50 hover:shadow-[0_24px_65px_rgba(255,255,255,0.18)] transition-all duration-500 select-none mx-2 sm:mx-3"
+                          className="group relative flex flex-col w-[250px] sm:w-[330px] md:w-[380px] aspect-[16/10] shrink-0 rounded-2xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500 select-none mx-2 sm:mx-2.5"
                           aria-label={`View ${project.title} - ${project.category}`}
                         >
                           <img
                             src={heroImg}
                             alt={`${project.title} - ${project.category}`}
                             loading="lazy"
-                            width="460"
-                            height="290"
+                            width="380"
+                            height="240"
                             decoding="async"
                             draggable={false}
-                            className="object-cover w-full h-full absolute inset-0 filter contrast-[1.08] brightness-[0.88] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
+                            className="object-cover w-full h-full absolute inset-0 filter contrast-[1.04] brightness-[0.92] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />
 
                           <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
                             <span className="px-3 py-1 bg-[#080706]/80 backdrop-blur-xl text-[10.5px] sm:text-[11.5px] font-sans font-medium tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
@@ -1027,8 +1012,8 @@ export default function HomePage() {
                           </div>
 
                           <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-black hover:bg-neutral-200 flex items-center justify-center shadow-[0_0_35px_rgba(255,255,255,0.25)] scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
-                              <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current text-[#080706] ml-0.5" />
+                            <div className="w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                              <Play className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 fill-current ml-0.5" />
                             </div>
                           </div>
 
@@ -1047,7 +1032,7 @@ export default function HomePage() {
                               </span>
                               <span className="text-white font-medium group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5 text-xs">
                                 <span>CASE STUDY</span>
-                                <ArrowRight className="w-3.5 h-3.5" />
+                                <ArrowRight className="w-3 h-3" />
                               </span>
                             </div>
                           </div>
@@ -1067,20 +1052,20 @@ export default function HomePage() {
                           to={`/work/${project.slug}`}
                           key={`r2-${project.slug}-${idx}`}
                           draggable={false}
-                          className="group relative flex flex-col w-[290px] sm:w-[400px] md:w-[460px] aspect-[16/10] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-[#14110d] shadow-[0_18px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:border-white/50 hover:shadow-[0_24px_65px_rgba(255,255,255,0.18)] transition-all duration-500 select-none mx-2 sm:mx-3"
+                          className="group relative flex flex-col w-[250px] sm:w-[330px] md:w-[380px] aspect-[16/10] shrink-0 rounded-2xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500 select-none mx-2 sm:mx-2.5"
                           aria-label={`View ${project.title} - ${project.category}`}
                         >
                           <img
                             src={heroImg}
                             alt={`${project.title} - ${project.category}`}
                             loading="lazy"
-                            width="460"
-                            height="290"
+                            width="380"
+                            height="240"
                             decoding="async"
                             draggable={false}
-                            className="object-cover w-full h-full absolute inset-0 filter contrast-[1.08] brightness-[0.88] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
+                            className="object-cover w-full h-full absolute inset-0 filter contrast-[1.04] brightness-[0.92] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />
 
                           <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
                             <span className="px-3 py-1 bg-[#080706]/80 backdrop-blur-xl text-[10.5px] sm:text-[11.5px] font-sans font-medium tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
@@ -1092,8 +1077,8 @@ export default function HomePage() {
                           </div>
 
                           <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                            <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-white text-black hover:bg-neutral-200 flex items-center justify-center shadow-[0_0_35px_rgba(255,255,255,0.25)] scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
-                              <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current text-[#080706] ml-0.5" />
+                            <div className="w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                              <Play className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 fill-current ml-0.5" />
                             </div>
                           </div>
 
@@ -1112,7 +1097,7 @@ export default function HomePage() {
                               </span>
                               <span className="text-white font-medium group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5 text-xs">
                                 <span>CASE STUDY</span>
-                                <ArrowRight className="w-3.5 h-3.5" />
+                                <ArrowRight className="w-3 h-3" />
                               </span>
                             </div>
                           </div>
@@ -1130,8 +1115,8 @@ export default function HomePage() {
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                     <span>CONTINUOUS HORIZONTAL FLOW</span>
                   </span>
-                  <span className="hidden md:inline text-white/30">•</span>
-                  <span className="hidden md:inline text-white/70">
+                  <span className="hidden md:inline text-[#dedbd4]">•</span>
+                  <span className="hidden md:inline text-[#686762]">
                     ROW 1: RIGHT &rarr; LEFT &nbsp;|&nbsp; ROW 2: LEFT &rarr; RIGHT
                   </span>
                 </div>
@@ -1161,7 +1146,7 @@ export default function HomePage() {
                   <Link
                     to={`/work/${project.slug}`}
                     key={project.slug}
-                    className="group relative flex flex-col aspect-[16/11] rounded-3xl overflow-hidden border border-white/15 bg-[#14110d] shadow-[0_20px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:border-white/40/60 hover:shadow-[0_25px_65px_rgba(255,255,255,0.15)] transition-all duration-500"
+                    className="group relative flex flex-col aspect-[16/11] rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white hover:border-[#0ea5e9] transition-all duration-500"
                     aria-label={`View ${project.title} service`}
                   >
                     <img
@@ -1171,9 +1156,9 @@ export default function HomePage() {
                       width="540"
                       height="370"
                       decoding="async"
-                      className="object-cover w-full h-full absolute inset-0 filter contrast-[1.08] brightness-[0.88] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                      className="object-cover w-full h-full absolute inset-0 filter contrast-[1.04] brightness-[0.92] group-hover:brightness-105 group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />
 
                     <div className="relative z-10 p-4 sm:p-5 flex items-center justify-between gap-3">
                       <span className="px-3.5 py-1.5 bg-[#080706]/75 backdrop-blur-xl text-[10.5px] sm:text-[11.5px] font-sans font-medium tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[75%]">
@@ -1185,8 +1170,8 @@ export default function HomePage() {
                     </div>
 
                     <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                      <div className="w-14 h-14 rounded-full bg-white text-black hover:bg-neutral-200 flex items-center justify-center shadow-[0_0_35px_rgba(255,255,255,0.15)] scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
-                        <Play className="w-5 h-5 fill-current text-[#080706] ml-0.5" />
+                      <div className="w-14 h-14 rounded-full bg-white text-[#111827] hover:bg-[#0284c7] hover:text-white flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
+                        <Play className="w-5 h-5 fill-current ml-0.5" />
                       </div>
                     </div>
 
@@ -1215,12 +1200,12 @@ export default function HomePage() {
                 );
               })}
 
-              <div className="aspect-[16/11] flex items-center justify-center p-6 border border-white/20 rounded-3xl bg-gradient-to-br from-[#17130f]/90 via-[#14110d]/90 to-[#0a0907]/90 backdrop-blur-2xl hover:border-white/40/70 hover:shadow-[0_25px_60px_rgba(255,255,255,0.15)] transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
+              <div className="aspect-[16/11] flex items-center justify-center p-6 border border-[#e7e6e2] rounded-3xl bg-white hover:border-[#0ea5e9] transition-all duration-300 ">
                 <Link
                   to="/work"
                   className="text-center group flex flex-col items-center justify-center gap-3.5 w-full h-full"
                 >
-                  <div className="w-14 h-14 rounded-full bg-white text-black hover:bg-neutral-200 flex items-center justify-center transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.15)] group-hover:scale-110">
+                  <div className="w-14 h-14 rounded-full bg-[#111827] text-white hover:bg-[#0284c7] flex items-center justify-center transition-all duration-300 group-hover:scale-110">
                     <ArrowRight className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
                   </div>
                   <span className="text-xs font-sans uppercase tracking-[0.2em] text-[#c5a880] font-medium">
@@ -1239,13 +1224,7 @@ export default function HomePage() {
       </section>
 
       {/* MODELS & PORTFOLIO DIRECTION (WHERE CHARACTER MEETS CINEMATIC LIGHT) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/60 backdrop-blur-md text-[#fbf7ee] overflow-hidden">
-        {/* Subtle Ambient Radial Glow Mesh */}
-        <div
-          className="absolute top-1/3 right-1/4 w-[750px] h-[450px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,rgba(212,160,54,0.15)_60%,transparent_80%)] blur-3xl pointer-events-none rounded-full"
-          style={{ contain: "strict", transform: "translateZ(0)" }}
-        />
-
+      <section className="relative w-full py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-16 border-t border-[#e7e6e2] bg-[#fbfaf8] text-[#20201e] overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             
@@ -1289,10 +1268,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Column: Model Image with Luxury Dual-Border Halo */}
+            {/* Right Column: Model Image with Clean Luxury Border */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] rounded-3xl p-1 bg-gradient-to-br from-white/30 via-white/10 to-white/20 shadow-[0_25px_80px_rgba(0,0,0,0.95)] group">
-                <div className="w-full h-full rounded-[22px] overflow-hidden bg-[#14110d] relative">
+              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] rounded-3xl p-1.5 bg-white border border-[#e7e6e2] group">
+                <div className="w-full h-full rounded-[22px] overflow-hidden bg-[#f7f6f3] relative">
                   <img
                     src="/images/models-portfolio-saree.jpg"
                     alt="Viyana Productions Models Portfolio Shoot"
@@ -1300,7 +1279,7 @@ export default function HomePage() {
                     decoding="async"
                     width="480"
                     height="600"
-                    className="w-full h-full object-cover object-[center_top] filter contrast-[1.05] brightness-95 group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover object-[center_top] filter contrast-[1.03] group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
@@ -1329,12 +1308,12 @@ export default function HomePage() {
         </div>
 
         {/* Automatic Smooth Continuous Scrolling Track */}
-        <div className="relative w-full mt-6 sm:mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_4%,black_96%,transparent)]">
+        <div className="relative w-full mt-6 sm:mt-10 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_4%,black_96%,transparent)]">
           <div className="ve-testimonial-track py-3">
             {[...testimonials, ...testimonials].map((item, idx) => (
               <article
                 key={`${item.id}-${idx}`}
-                className="group shrink-0 w-[84vw] sm:w-[460px] md:w-[500px] mx-3 sm:mx-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#1a1611]/95 via-[#14110d]/90 to-[#0a0907]/95 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.1)] hover:border-white/40/55 transition-all duration-300 flex flex-col justify-between select-none"
+                className="group shrink-0 w-[84vw] sm:w-[460px] md:w-[500px] mx-3 sm:mx-4 p-6 sm:p-8 rounded-3xl bg-white border border-[#e7e6e2] hover:border-[#0ea5e9] transition-all duration-300 flex flex-col justify-between select-none"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -1367,7 +1346,7 @@ export default function HomePage() {
                   <cite className="text-xs sm:text-sm font-sans uppercase tracking-wider text-white font-medium not-italic">
                     — {item.client}
                   </cite>
-                  <div className="flex items-center gap-0.5 text-white text-xs tracking-widest select-none drop-shadow-[0_0_6px_rgba(255,255,255,0.15)]" aria-label="5 stars rating">
+                  <div className="flex items-center gap-0.5 text-[#0284c7] text-xs tracking-widest select-none" aria-label="5 stars rating">
                     ★★★★★
                   </div>
                 </div>
@@ -1401,7 +1380,7 @@ export default function HomePage() {
             {[...clientMarqueeCards, ...clientMarqueeCards, ...clientMarqueeCards, ...clientMarqueeCards].map((card, idx) => (
               <div
                 key={`${card.id}-${idx}`}
-                className={`group shrink-0 w-[240px] sm:w-[270px] md:w-[290px] h-[115px] sm:h-[130px] rounded-[28px] mx-2.5 sm:mx-3 px-6 py-4 flex items-center justify-center transition-all duration-300 select-none cursor-pointer hover:scale-[1.04] ${card.bgClass} ${card.glowClass || ""}`}
+                className="group shrink-0 w-[240px] sm:w-[270px] md:w-[290px] h-[115px] sm:h-[130px] rounded-[28px] mx-2.5 sm:mx-3 px-6 py-4 flex items-center justify-center transition-all duration-300 select-none cursor-pointer hover:scale-[1.04] bg-white border border-[#e7e6e2] hover:border-[#0ea5e9] "
               >
                 <img
                   src={card.logo}
@@ -1417,13 +1396,7 @@ export default function HomePage() {
       </section>
 
       {/* 6. BUILT FOR BRANDS WITH BIG IDEAS (WHAT WE CREATE + BOTTOM CTA) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
-        {/* Subtle background ambient glow mesh */}
-        <div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[750px] h-[400px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.15)_50%,transparent_80%)] rounded-full blur-3xl pointer-events-none"
-          style={{ contain: "strict", transform: "translateZ(0)" }}
-        />
-
+      <section className="relative w-full py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-16 border-t border-[#e7e6e2] bg-[#ffffff] overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto space-y-8 sm:space-y-10">
           {/* Top Section Header */}
           <div className="max-w-3xl space-y-2">
@@ -1439,238 +1412,104 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* ORBITAL HUB & SPOKE SHOWCASE (WHAT WE CREATE) */}
-          <div className="relative w-full max-w-6xl mx-auto py-8 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-12 rounded-[32px] sm:rounded-[44px] bg-gradient-to-b from-[#fcfcfd] via-[#f8fafc] to-[#ffffff] border border-white/80 shadow-[0_30px_90px_rgba(0,0,0,0.5),inset_0_1px_2px_rgba(255,255,255,0.95)] overflow-hidden">
-            {/* Ambient Multi-spectrum Glow Canvas */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-[radial-gradient(circle,rgba(168,85,247,0.18)_0%,rgba(59,130,246,0.1)_35%,transparent_70%)] blur-3xl pointer-events-none" />
+          {/* 4 CREATIVE DISCIPLINES SHOWCASE (WHAT WE CREATE) */}
+          {(() => {
+            const disciplines = [
+              {
+                id: "corporate",
+                title: "Corporate",
+                description: "Professional films that showcase your company, people, and vision.",
+                icon: Building2,
+                iconColor: "text-[#0284c7]",
+                iconBg: "bg-[#0ea5e9]/10 border border-[#0ea5e9]/25",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+                link: "/work/corporate-film",
+                position: "top-left",
+                initialX: 180,
+                initialY: 130,
+                entryDelay: 0.15,
+                floatY: -8, duration: 5, delay: 0,
+              },
+              {
+                id: "product",
+                title: "Product",
+                description: "Visual content that makes your products stand out.",
+                icon: Box,
+                iconColor: "text-[#0284c7]",
+                iconBg: "bg-[#0ea5e9]/10 border border-[#0ea5e9]/25",
+                image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+                link: "/work/product-shoot",
+                position: "top-right",
+                initialX: -180,
+                initialY: 130,
+                entryDelay: 0.22,
+                floatY: 8, duration: 5.4, delay: 0.4,
+              },
+              {
+                id: "brand-stories",
+                title: "Brand Stories",
+                description: "Creative storytelling that builds brand identity and connection.",
+                icon: Clapperboard,
+                iconColor: "text-[#059669]",
+                iconBg: "bg-emerald-500/10 border border-emerald-500/25",
+                image: "https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?q=80&w=800&auto=format&fit=crop",
+                link: "/work/commercial-video-production",
+                position: "bottom-left",
+                initialX: 180,
+                initialY: -130,
+                entryDelay: 0.28,
+                floatY: -7, duration: 5.8, delay: 0.8,
+              },
+              {
+                id: "digital-content",
+                title: "Digital Content",
+                description: "Engaging videos designed for websites, social media, and campaigns.",
+                icon: Play,
+                iconColor: "text-[#2563eb]",
+                iconBg: "bg-blue-500/10 border border-blue-500/25",
+                image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop",
+                link: "/work/social-media-content",
+                position: "bottom-right",
+                initialX: -180,
+                initialY: -130,
+                entryDelay: 0.35,
+                floatY: 7, duration: 5.2, delay: 1.2,
+              },
+            ];
 
-            <div className="relative">
-              {/* Concentric Animated Radar & Orbital Rings (Emerges from Center on Scroll) */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 flex items-center justify-center"
-              >
-                {/* Expanding Radar Wave Ring 1 */}
-                <motion.div
-                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-purple-500/20"
-                  animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.65, 0.25, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
-                />
-                {/* Expanding Radar Wave Ring 2 (delayed) */}
-                <motion.div
-                  className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-blue-500/15"
-                  animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.55, 0.2, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 2 }}
-                />
-                {/* Slow Rotating Outer Dashed Orbit Ring */}
-                <motion.div
-                  className="absolute w-[290px] h-[290px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] rounded-full border border-dashed border-purple-400/25"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-                />
-                {/* Middle Delicate Orbital Ring */}
-                <div className="absolute w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border border-purple-500/25" />
-                {/* Inner Glow Aura Ring */}
-                <div className="absolute w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border border-purple-400/35 shadow-[0_0_25px_rgba(168,85,247,0.3)]" />
-              </motion.div>
+            return (
+              <>
+                {/* ── MOBILE / TABLET VIEW (< lg): CLEAN, BEAUTIFUL & PERFECTLY ALIGNED ── */}
+                <div className="block lg:hidden w-full max-w-xl mx-auto space-y-3.5">
+                  {/* Branded Header Pod */}
+                  <div className="flex items-center justify-between p-4 rounded-2xl bg-white border border-[#e7e6e2]">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-12 h-12 rounded-full bg-[#fbfaf8] border border-[#e7e6e2] p-2 flex items-center justify-center shrink-0">
+                        <img src="/logo-black.png" alt="Viyana Productions" className="w-8 h-auto object-contain" />
+                      </div>
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-portfolio-sans uppercase tracking-[0.2em] text-[#0284c7] font-bold block">
+                          CORE DISCIPLINES
+                        </span>
+                        <h3 className="text-base sm:text-lg font-portfolio-serif font-normal text-[#20201e] tracking-tight truncate">
+                          What We <em>Create.</em>
+                        </h3>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-portfolio-sans text-[#777671] uppercase tracking-wider font-semibold px-2.5 py-1 rounded-full bg-[#f7f6f3] border border-[#dedbd4] shrink-0">
+                      4 SERVICES
+                    </span>
+                  </div>
 
-              {/* SVG Connecting Diagonal Beams with Flowing Light Particles (Desktop lg+) */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 hidden lg:block" viewBox="0 0 1000 620" preserveAspectRatio="none">
-                <defs>
-                  <filter id="hubNodeGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3.5" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-
-                {/* Line 1: Center to Top-Left (Corporate) - Draws outward from center */}
-                <motion.line
-                  x1="480" y1="285" x2="380" y2="195"
-                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 0.65 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-                />
-                <motion.circle
-                  r="4"
-                  fill="#e9d5ff"
-                  filter="url(#hubNodeGlow)"
-                  animate={{ cx: [480, 380, 480], cy: [285, 195, 285] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                />
-                <circle cx="380" cy="195" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-                <circle cx="380" cy="195" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
-                <circle cx="480" cy="285" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-
-                {/* Line 2: Center to Top-Right (Product) - Draws outward from center */}
-                <motion.line
-                  x1="520" y1="285" x2="620" y2="195"
-                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 0.65 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-                />
-                <motion.circle
-                  r="4"
-                  fill="#e9d5ff"
-                  filter="url(#hubNodeGlow)"
-                  animate={{ cx: [520, 620, 520], cy: [285, 195, 285] }}
-                  transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                />
-                <circle cx="620" cy="195" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-                <circle cx="620" cy="195" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
-                <circle cx="520" cy="285" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-
-                {/* Line 3: Center to Bottom-Left (Brand Stories) - Draws outward from center */}
-                <motion.line
-                  x1="480" y1="335" x2="380" y2="425"
-                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 0.65 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-                />
-                <motion.circle
-                  r="4"
-                  fill="#e9d5ff"
-                  filter="url(#hubNodeGlow)"
-                  animate={{ cx: [480, 380, 480], cy: [335, 425, 335] }}
-                  transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
-                />
-                <circle cx="380" cy="425" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-                <circle cx="380" cy="425" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
-                <circle cx="480" cy="335" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-
-                {/* Line 4: Center to Bottom-Right (Digital Content) - Draws outward from center */}
-                <motion.line
-                  x1="520" y1="335" x2="620" y2="425"
-                  stroke="#a855f7" strokeWidth="2.2" strokeDasharray="5 7"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 0.65 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-                />
-                <motion.circle
-                  r="4"
-                  fill="#e9d5ff"
-                  filter="url(#hubNodeGlow)"
-                  animate={{ cx: [520, 620, 520], cy: [335, 425, 335] }}
-                  transition={{ duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
-                />
-                <circle cx="620" cy="425" r="5.5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-                <circle cx="620" cy="425" r="10" fill="none" stroke="#c084fc" strokeWidth="1.5" opacity="0.8" />
-                <circle cx="520" cy="335" r="5" fill="#a855f7" filter="url(#hubNodeGlow)" />
-              </svg>
-
-              {/* 4 Satellite Cards (2x2 Grid) - Expanding outward from center on scroll */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-x-28 lg:gap-y-10 xl:gap-x-32 xl:gap-y-12 relative z-10">
-                {[
-                  {
-                    id: "corporate",
-                    title: "Corporate",
-                    description: "Professional films that showcase your company, people, and vision.",
-                    icon: Building2,
-                    iconColor: "text-[#d97706]",
-                    iconBg: "bg-amber-500/10 border border-amber-500/25",
-                    accentShadow: "hover:shadow-[0_25px_60px_rgba(245,158,11,0.28),0_10px_25px_rgba(0,0,0,0.15)]",
-                    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
-                    link: "/work/corporate-film",
-                    position: "top-left",
-                    initialX: 180,
-                    initialY: 130,
-                    entryDelay: 0.15,
-                    floatY: -8, duration: 5, delay: 0,
-                  },
-                  {
-                    id: "product",
-                    title: "Product",
-                    description: "Visual content that makes your products stand out.",
-                    icon: Box,
-                    iconColor: "text-[#7c3aed]",
-                    iconBg: "bg-purple-500/10 border border-purple-500/25",
-                    accentShadow: "hover:shadow-[0_25px_60px_rgba(168,85,247,0.3),0_10px_25px_rgba(0,0,0,0.15)]",
-                    image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
-                    link: "/work/product-shoot",
-                    position: "top-right",
-                    initialX: -180,
-                    initialY: 130,
-                    entryDelay: 0.22,
-                    floatY: 8, duration: 5.4, delay: 0.4,
-                  },
-                  {
-                    id: "brand-stories",
-                    title: "Brand Stories",
-                    description: "Creative storytelling that builds brand identity and connection.",
-                    icon: Clapperboard,
-                    iconColor: "text-[#059669]",
-                    iconBg: "bg-emerald-500/10 border border-emerald-500/25",
-                    accentShadow: "hover:shadow-[0_25px_60px_rgba(16,185,129,0.28),0_10px_25px_rgba(0,0,0,0.15)]",
-                    image: "https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?q=80&w=800&auto=format&fit=crop",
-                    link: "/work/commercial-video-production",
-                    position: "bottom-left",
-                    initialX: 180,
-                    initialY: -130,
-                    entryDelay: 0.28,
-                    floatY: -7, duration: 5.8, delay: 0.8,
-                  },
-                  {
-                    id: "digital-content",
-                    title: "Digital Content",
-                    description: "Engaging videos designed for websites, social media, and campaigns.",
-                    icon: Play,
-                    iconColor: "text-[#2563eb]",
-                    iconBg: "bg-blue-500/10 border border-blue-500/25",
-                    accentShadow: "hover:shadow-[0_25px_60px_rgba(59,130,246,0.28),0_10px_25px_rgba(0,0,0,0.15)]",
-                    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop",
-                    link: "/work/social-media-content",
-                    position: "bottom-right",
-                    initialX: -180,
-                    initialY: -130,
-                    entryDelay: 0.35,
-                    floatY: 7, duration: 5.2, delay: 1.2,
-                  },
-                ].map((card) => {
-                  const Icon = card.icon;
-                  return (
-                    <motion.div
-                      key={card.id}
-                      initial={{
-                        x: typeof window !== "undefined" && window.innerWidth < 1024 ? 0 : card.initialX,
-                        y: typeof window !== "undefined" && window.innerWidth < 1024 ? (card.position.includes("top") ? 35 : -35) : card.initialY,
-                        scale: 0.3,
-                        opacity: 0,
-                      }}
-                      whileInView={{
-                        x: 0,
-                        y: 0,
-                        scale: 1,
-                        opacity: 1,
-                      }}
-                      viewport={{ once: false, amount: 0.2 }}
-                      transition={{
-                        duration: 0.85,
-                        delay: card.entryDelay,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                      className="relative"
-                    >
-                      <motion.div
-                        animate={{ y: [0, card.floatY, 0] }}
-                        transition={{ duration: card.duration, repeat: Infinity, ease: "easeInOut", delay: card.delay }}
-                        whileHover={{ scale: 1.025, y: -6 }}
-                        className="relative"
-                      >
+                  {/* 4 Clean Mobile Service Cards */}
+                  <div className="space-y-3">
+                    {disciplines.map((card) => {
+                      const Icon = card.icon;
+                      return (
                         <Link
                           to={card.link}
-                          className={`group relative block w-full rounded-[26px] sm:rounded-[32px] bg-white text-neutral-900 border border-white/90 shadow-[0_15px_45px_rgba(0,0,0,0.14),0_3px_10px_rgba(0,0,0,0.06)] ${card.accentShadow} transition-all duration-500 overflow-hidden cursor-pointer`}
+                          key={`mob-${card.id}`}
+                          className="group flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white hover:bg-[#fbfaf8] border border-[#e7e6e2] hover:border-[#0ea5e9] active:scale-[0.99] transition-all duration-300"
                         >
                           <div className="relative flex items-center justify-between min-h-[145px] sm:min-h-[160px] p-5 sm:p-6 lg:p-7 z-10">
                             {/* Left text & icon (takes ~62% width) */}
@@ -1694,128 +1533,269 @@ export default function HomePage() {
                                 src={card.image}
                                 alt={card.title}
                                 loading="lazy"
-                                decoding="async"
-                                className="w-full h-full object-cover object-center filter contrast-[1.05] brightness-95 group-hover:scale-110 group-hover:brightness-105 transition-all duration-700 ease-out"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
-                              {/* Smooth gradient mask to pure white */}
-                              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/20" />
+                            </div>
+                            <div className="min-w-0 space-y-1">
+                              <div className="flex items-center gap-2">
+                                <div className={`w-6 h-6 rounded-md flex items-center justify-center shrink-0 ${card.iconBg}`}>
+                                  <Icon className={`w-3.5 h-3.5 ${card.iconColor}`} />
+                                </div>
+                                <h4 className="text-base sm:text-lg font-portfolio-serif font-bold text-[#20201e] group-hover:text-[#0284c7] transition-colors truncate">
+                                  {card.title}
+                                </h4>
+                              </div>
+                              <p className="text-xs font-portfolio-sans text-[#686762] leading-relaxed line-clamp-2">
+                                {card.description}
+                              </p>
                             </div>
                           </div>
-
-                          {/* Corner glowing node dot on card (matching the reference image) */}
-                          <div
-                            className={`hidden lg:block absolute w-3 h-3 rounded-full bg-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.95)] z-20 ${
-                              card.position === "top-left"
-                                ? "bottom-3 right-3"
-                                : card.position === "top-right"
-                                ? "bottom-3 left-3"
-                                : card.position === "bottom-left"
-                                ? "top-3 right-3"
-                                : "top-3 left-3"
-                            }`}
-                          >
-                            <span className="absolute inset-0 rounded-full bg-purple-400 animate-ping opacity-75" />
+                          <div className="w-8 h-8 rounded-full bg-[#f7f6f3] border border-[#dedbd4] group-hover:border-[#0ea5e9] group-hover:bg-[#0284c7] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
+                            <ArrowRight className="w-3.5 h-3.5" />
                           </div>
                         </Link>
-                      </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* ── DESKTOP VIEW (lg+): CINEMATIC ORBITAL HUB & SPOKE SHOWCASE ── */}
+                <div className="hidden lg:block relative w-full max-w-6xl mx-auto py-12 lg:py-16 px-8 lg:px-12 rounded-[44px] bg-[#ffffff] border border-[#e7e6e2] overflow-hidden">
+                  {/* Ambient Subtle Blue Glow */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-[radial-gradient(circle,rgba(14,165,233,0.08)_0%,rgba(14,165,233,0.02)_40%,transparent_70%)] blur-2xl pointer-events-none" />
+
+                  <div className="relative">
+                    {/* Concentric Animated Radar & Orbital Rings */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: false, amount: 0.2 }}
+                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 flex items-center justify-center"
+                    >
+                      {/* Expanding Radar Wave Ring 1 */}
+                      <motion.div
+                        className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#0ea5e9]/20"
+                        animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.65, 0.25, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
+                      />
+                      {/* Expanding Radar Wave Ring 2 (delayed) */}
+                      <motion.div
+                        className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] lg:w-[560px] lg:h-[560px] rounded-full border border-[#0ea5e9]/15"
+                        animate={{ scale: [0.92, 1.15, 1.35], opacity: [0.55, 0.2, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 2 }}
+                      />
+                      {/* Slow Rotating Outer Dashed Orbit Ring */}
+                      <motion.div
+                        className="absolute w-[290px] h-[290px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] rounded-full border border-dashed border-[#dedbd4]"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                      />
+                      {/* Middle Delicate Orbital Ring */}
+                      <div className="absolute w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border border-[#e7e6e2]" />
+                      {/* Inner Glow Aura Ring */}
+                      <div className="absolute w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border border-[#0ea5e9]/25" />
                     </motion.div>
-                  );
-                })}
-              </div>
 
-              {/* Central VIYANA PRODUCTIONS Hub (Desktop: pops outward from middle on scroll) */}
-              <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none items-center justify-center">
-                <motion.div
-                  initial={{ scale: 0, opacity: 0, rotate: -25 }}
-                  whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative flex items-center justify-center pointer-events-auto"
-                >
-                  <motion.div
-                    animate={{
-                      boxShadow: [
-                        "0 0 35px rgba(168, 85, 247, 0.35), 0 0 70px rgba(59, 130, 246, 0.2)",
-                        "0 0 55px rgba(168, 85, 247, 0.6), 0 0 95px rgba(59, 130, 246, 0.35)",
-                        "0 0 35px rgba(168, 85, 247, 0.35), 0 0 70px rgba(59, 130, 246, 0.2)",
-                      ],
-                    }}
-                    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-[#0c0a0f] border-2 border-white/25 p-4 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden group"
-                  >
-                    {/* Subtle inner radial ambient shine */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(245,158,11,0.2)_0%,rgba(168,85,247,0.18)_50%,transparent_80%)] pointer-events-none" />
+                    {/* SVG Connecting Diagonal Beams with Flowing Light Particles */}
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 1000 620" preserveAspectRatio="none">
+                      {/* Line 1: Center to Top-Left (Corporate) */}
+                      <motion.line
+                        x1="480" y1="285" x2="380" y2="195"
+                        stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.65 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+                      />
+                      <motion.circle
+                        r="3.5"
+                        fill="#0ea5e9"
+                        animate={{ cx: [480, 380, 480], cy: [285, 195, 285] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                      />
+                      <circle cx="380" cy="195" r="4.5" fill="#0ea5e9" />
+                      <circle cx="380" cy="195" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                      <circle cx="480" cy="285" r="4.5" fill="#0ea5e9" />
 
-                    {/* Golden stylized filmstrip "V" icon */}
-                    <svg className="w-12 h-12 xl:w-14 xl:h-14 relative z-10 drop-shadow-[0_4px_14px_rgba(234,179,8,0.55)] group-hover:scale-105 transition-transform duration-300" viewBox="0 0 64 64" fill="none">
-                      <defs>
-                        <linearGradient id="hubGoldFilmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#fef08a" />
-                          <stop offset="30%" stopColor="#eab308" />
-                          <stop offset="70%" stopColor="#ca8a04" />
-                          <stop offset="100%" stopColor="#a16207" />
-                        </linearGradient>
-                        <linearGradient id="hubGoldBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#ffffff" />
-                          <stop offset="50%" stopColor="#facc15" />
-                          <stop offset="100%" stopColor="#854d0e" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M14 12 L28 52 L36 52 L22 12 Z" fill="url(#hubGoldFilmGrad)" stroke="url(#hubGoldBorderGrad)" strokeWidth="1.2" strokeLinejoin="round" />
-                      <path d="M50 12 L36 52 L28 52 L42 12 Z" fill="url(#hubGoldFilmGrad)" stroke="url(#hubGoldBorderGrad)" strokeWidth="1.2" strokeLinejoin="round" />
-                      <rect x="17" y="16" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 17 16)" />
-                      <rect x="20.5" y="24" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 20.5 24)" />
-                      <rect x="24" y="32" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 24 32)" />
-                      <rect x="27.5" y="40" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(-18 27.5 40)" />
-                      <rect x="43.5" y="16" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 43.5 16)" />
-                      <rect x="40" y="24" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 40 24)" />
-                      <rect x="36.5" y="32" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 36.5 32)" />
-                      <rect x="33" y="40" width="3.5" height="3" rx="0.8" fill="#0c0a0f" transform="rotate(18 33 40)" />
-                      <circle cx="47" cy="18" r="3.5" fill="#fef08a" stroke="#ca8a04" strokeWidth="1" />
-                      <circle cx="47" cy="18" r="1.5" fill="#0c0a0f" />
+                      {/* Line 2: Center to Top-Right (Product) */}
+                      <motion.line
+                        x1="520" y1="285" x2="620" y2="195"
+                        stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.65 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                      />
+                      <motion.circle
+                        r="3.5"
+                        fill="#0ea5e9"
+                        animate={{ cx: [520, 620, 520], cy: [285, 195, 285] }}
+                        transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                      />
+                      <circle cx="620" cy="195" r="4.5" fill="#0ea5e9" />
+                      <circle cx="620" cy="195" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                      <circle cx="520" cy="285" r="4.5" fill="#0ea5e9" />
+
+                      {/* Line 3: Center to Bottom-Left (Brand Stories) */}
+                      <motion.line
+                        x1="480" y1="335" x2="380" y2="425"
+                        stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.65 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+                      />
+                      <motion.circle
+                        r="3.5"
+                        fill="#0ea5e9"
+                        animate={{ cx: [480, 380, 480], cy: [335, 425, 335] }}
+                        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+                      />
+                      <circle cx="380" cy="425" r="4.5" fill="#0ea5e9" />
+                      <circle cx="380" cy="425" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                      <circle cx="480" cy="335" r="4.5" fill="#0ea5e9" />
+
+                      {/* Line 4: Center to Bottom-Right (Digital Content) */}
+                      <motion.line
+                        x1="520" y1="335" x2="620" y2="425"
+                        stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="5 7" strokeOpacity="0.45"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.65 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+                      />
+                      <motion.circle
+                        r="3.5"
+                        fill="#0ea5e9"
+                        animate={{ cx: [520, 620, 520], cy: [335, 425, 335] }}
+                        transition={{ duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
+                      />
+                      <circle cx="620" cy="425" r="4.5" fill="#0ea5e9" />
+                      <circle cx="620" cy="425" r="8.5" fill="none" stroke="#0ea5e9" strokeWidth="1.2" opacity="0.6" />
+                      <circle cx="520" cy="335" r="4.5" fill="#0ea5e9" />
                     </svg>
 
-                    {/* Brand Typography */}
-                    <span className="font-display font-extrabold text-white text-base xl:text-lg tracking-tight uppercase leading-none mt-2 relative z-10">
-                      VIYANA
-                    </span>
-                    <span className="font-mono font-semibold text-white/70 text-[8.5px] xl:text-[9.5px] tracking-[0.28em] uppercase mt-1 relative z-10">
-                      PRODUCTIONS
-                    </span>
-                  </motion.div>
-                </motion.div>
-              </div>
+                    {/* 4 Satellite Cards (2x2 Grid) */}
+                    <div className="grid grid-cols-2 gap-x-28 gap-y-10 xl:gap-x-32 xl:gap-y-12 relative z-10">
+                      {disciplines.map((card) => {
+                        const Icon = card.icon;
+                        return (
+                          <motion.div
+                            key={card.id}
+                            initial={{
+                              x: card.initialX,
+                              y: card.initialY,
+                              scale: 0.3,
+                              opacity: 0,
+                            }}
+                            whileInView={{
+                              x: 0,
+                              y: 0,
+                              scale: 1,
+                              opacity: 1,
+                            }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            transition={{
+                              duration: 0.85,
+                              delay: card.entryDelay,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
+                            className="relative"
+                          >
+                            <motion.div
+                              animate={{ y: [0, card.floatY, 0] }}
+                              transition={{ duration: card.duration, repeat: Infinity, ease: "easeInOut", delay: card.delay }}
+                              whileHover={{ scale: 1.025, y: -6 }}
+                              className="relative"
+                            >
+                              <Link
+                                to={card.link}
+                                className="group relative block w-full rounded-[32px] bg-white text-neutral-900 border border-[#e7e6e2] hover:border-[#0ea5e9] transition-all duration-500 overflow-hidden cursor-pointer"
+                              >
+                                <div className="relative flex items-center justify-between min-h-[160px] p-6 lg:p-7 z-10">
+                                  {/* Left text & icon (takes ~60% width) */}
+                                  <div className="flex-1 pr-4 z-10 max-w-[62%]">
+                                    <div className="flex items-center gap-3 mb-2.5">
+                                      <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${card.iconBg}`}>
+                                        <Icon className={`w-5 h-5 ${card.iconColor}`} />
+                                      </div>
+                                      <h3 className="text-xl sm:text-2xl font-display font-extrabold text-neutral-900 tracking-tight leading-none">
+                                        {card.title}
+                                      </h3>
+                                    </div>
+                                    <p className="text-[13px] text-neutral-600 font-normal leading-relaxed">
+                                      {card.description}
+                                    </p>
+                                  </div>
 
-              {/* Mobile / Tablet Center Emblem Display (Emerges from Middle on Scroll) */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:hidden flex justify-center py-6"
-              >
-                <div className="w-36 h-36 rounded-full bg-[#0c0a0f] border-2 border-white/20 p-3 flex flex-col items-center justify-center text-center shadow-[0_0_40px_rgba(168,85,247,0.35)] relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(245,158,11,0.15)_0%,transparent_70%)] pointer-events-none" />
-                  <svg className="w-9 h-9 relative z-10 drop-shadow-[0_2px_8px_rgba(234,179,8,0.5)]" viewBox="0 0 64 64" fill="none">
-                    <path d="M14 12 L28 52 L36 52 L22 12 Z" fill="#eab308" />
-                    <path d="M50 12 L36 52 L28 52 L42 12 Z" fill="#ca8a04" />
-                    <circle cx="47" cy="18" r="3" fill="#fef08a" />
-                  </svg>
-                  <span className="font-display font-extrabold text-white text-sm tracking-tight uppercase leading-none mt-1.5">
-                    VIYANA
-                  </span>
-                  <span className="font-mono font-medium text-white/70 text-[7.5px] tracking-[0.24em] uppercase mt-0.5">
-                    PRODUCTIONS
-                  </span>
+                                  {/* Right image with seamless horizontal fade into white card */}
+                                  <div className="absolute right-0 top-0 bottom-0 w-[42%] overflow-hidden pointer-events-none">
+                                    <img
+                                      src={card.image}
+                                      alt={card.title}
+                                      loading="lazy"
+                                      decoding="async"
+                                      className="w-full h-full object-cover object-center filter contrast-[1.05] brightness-95 group-hover:scale-110 group-hover:brightness-105 transition-all duration-700 ease-out"
+                                    />
+                                    {/* Smooth gradient mask to pure white */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/20" />
+                                  </div>
+                                </div>
+
+                                {/* Corner glowing node dot on card */}
+                                <div
+                                  className={`absolute w-2.5 h-2.5 rounded-full bg-[#0ea5e9] z-20 ${
+                                    card.position === "top-left"
+                                      ? "bottom-3 right-3"
+                                      : card.position === "top-right"
+                                      ? "bottom-3 left-3"
+                                      : card.position === "bottom-left"
+                                      ? "top-3 right-3"
+                                      : "top-3 left-3"
+                                  }`}
+                                >
+                                  <span className="absolute inset-0 rounded-full bg-[#0ea5e9] animate-ping opacity-60" />
+                                </div>
+                              </Link>
+                            </motion.div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Central VIYANA PRODUCTIONS Hub Medallion */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none flex items-center justify-center">
+                      <motion.div
+                        initial={{ scale: 0, opacity: 0, rotate: -15 }}
+                        whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative flex items-center justify-center pointer-events-auto"
+                      >
+                        <div className="w-44 h-44 xl:w-52 xl:h-52 rounded-full bg-white border-2 border-[#e7e6e2] p-5 flex flex-col items-center justify-center text-center relative overflow-hidden group">
+                          {/* Subtle inner radial ambient shine */}
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(14,165,233,0.08)_0%,transparent_80%)] pointer-events-none" />
+
+                          {/* Official Viyana Productions Logo Design */}
+                          <img
+                            src="/logo-black.png"
+                            alt="Viyana Productions"
+                            className="w-28 sm:w-32 xl:w-36 h-auto object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
+                          />
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
-            </div>
-          </div>
+              </>
+            );
+          })()}
 
           {/* Bottom CTA Banner */}
-          <div className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-[#1a1611]/95 via-[#13100c]/85 to-[#0a0907] backdrop-blur-3xl p-8 sm:p-14 lg:p-16 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.12)]">
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
+          <div className="relative rounded-3xl border border-[#e7e6e2] bg-[#ffffff] p-8 sm:p-14 lg:p-16 overflow-hidden ">
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[radial-gradient(circle,rgba(14,165,233,0.08)_0%,transparent_70%)] pointer-events-none blur-3xl" />
             
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
               <div className="max-w-2xl space-y-2">
@@ -1846,10 +1826,7 @@ export default function HomePage() {
       </section>
 
       {/* 6. LATEST WORK SHOWCASE GRID (VE-WORK-GRID) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/25 overflow-hidden">
-        {/* Ambient Top Glow */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
-
+      <section className="relative w-full py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-16 border-t border-[#e7e6e2] bg-[#fbfaf8] overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
@@ -1877,7 +1854,7 @@ export default function HomePage() {
               <Link
                 key={project.slug}
                 to={`/work/${project.slug}`}
-                className="group relative min-h-[380px] sm:min-h-[420px] rounded-2xl overflow-hidden border border-white/15 bg-[#14110d] shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.08)] flex flex-col justify-end p-6 sm:p-8 transition-all duration-500 hover:border-white/40/55 hover:shadow-[0_25px_60px_rgba(255,255,255,0.15)]"
+                className="group relative min-h-[380px] sm:min-h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white flex flex-col justify-end p-6 sm:p-8 transition-all duration-500 hover:border-[#0ea5e9] "
               >
                 <img
                   src={project.thumbnail}
@@ -1888,7 +1865,7 @@ export default function HomePage() {
                   height="420"
                   className="absolute inset-0 w-full h-full object-cover filter brightness-[0.75] contrast-[1.05] transition-transform duration-700 ease-out group-hover:scale-108"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
 
                 {/* Card Tags & Details */}
                 <div className="relative z-10 space-y-2">
@@ -1921,10 +1898,7 @@ export default function HomePage() {
       </section>
 
       {/* 7. PRODUCTION WORKFLOW PROCESS CARD (VE-PROCESS-CARD) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/20 overflow-hidden">
-        {/* Ambient Glow */}
-        <div className="absolute bottom-0 left-1/3 w-[700px] h-[350px] bg-[radial-gradient(ellipse_at_bottom,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
-
+      <section className="relative w-full py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-16 border-t border-[#e7e6e2] bg-[#ffffff] overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="max-w-3xl space-y-2">
@@ -1949,7 +1923,7 @@ export default function HomePage() {
               <span className="text-xs font-sans text-white/60 font-medium">5 PHASES • 100% TRANSPARENCY</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4">
               {[
                 {
                   step: "01",
@@ -1979,13 +1953,13 @@ export default function HomePage() {
               ].map((item, idx) => (
                 <div
                   key={item.step}
-                  className="relative p-5 sm:p-6 rounded-2xl bg-[#1a1611]/70 border border-white/15 hover:border-white/40/55 hover:bg-[#221c14]/85 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.05)] flex flex-col justify-between min-h-[160px] group"
+                  className="relative p-5 sm:p-6 rounded-2xl bg-white border border-[#dedbd4] hover:border-[#0ea5e9] transition-all duration-300 flex flex-col justify-between min-h-[160px] group"
                 >
                   <div className="flex items-center justify-between text-xs font-sans mb-4">
                     <span className="font-semibold text-white px-2.5 py-1 rounded-full bg-white/10 border border-white/20">
                       {item.step}
                     </span>
-                    {idx < 4 && <span className="hidden lg:inline text-white/50 font-bold group-hover:translate-x-0.5 transition-transform">→</span>}
+                    {idx < 4 && <span className="hidden lg:inline text-[#0284c7] font-bold group-hover:translate-x-0.5 transition-transform">→</span>}
                   </div>
                   <div>
                     <strong className="text-sm font-serif font-normal text-white block uppercase tracking-tight mb-2">
@@ -2003,10 +1977,7 @@ export default function HomePage() {
       </section>
 
       {/* 8. VIDEO PRODUCTION FAQ ACCORDION (VE-FAQ) */}
-      <section className="relative w-full py-10 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-16 border-t border-white/15 bg-black/25 overflow-hidden">
-        {/* Ambient Top Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
-
+      <section className="relative w-full py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-16 border-t border-[#e7e6e2] bg-[#fbfaf8] overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="text-center max-w-2xl mx-auto space-y-2">
@@ -2031,8 +2002,8 @@ export default function HomePage() {
                     key={faq.question}
                     className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                       isOpen
-                        ? "border-l-4 border-l-white border-white/30 bg-gradient-to-r from-[#1e1912]/95 to-[#16120e]/95 shadow-[0_12px_36px_rgba(0,0,0,0.6),0_0_25px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.08)]"
-                        : "border-white/10 bg-[#13100c]/60 hover:border-white/20 hover:bg-[#1a1611]/70 shadow-[0_6px_20px_rgba(0,0,0,0.3)]"
+                        ? "border-l-4 border-l-[#0ea5e9] border-[#dedbd4] bg-white "
+                        : "border-[#e7e6e2] bg-white hover:border-[#dedbd4] "
                     }`}
                   >
                     <button
@@ -2049,11 +2020,11 @@ export default function HomePage() {
                         </span>
                       </div>
                       <div className={`p-1.5 rounded-full border shrink-0 transition-colors duration-300 mt-0.5 ml-2 ${
-                        isOpen ? "bg-white/15 border-white/30 text-white" : "bg-white/5 border-white/10 text-white/60"
+                        isOpen ? "bg-[#0ea5e9]/10 border-[#0ea5e9]/30 text-[#0284c7]" : "bg-[#f7f6f3] border-[#e7e6e2] text-[#777671]"
                       }`}>
                         <ChevronDown
                           className={`w-4 h-4 transition-transform duration-300 ${
-                            isOpen ? "rotate-180 text-white" : ""
+                            isOpen ? "rotate-180" : ""
                           }`}
                         />
                       </div>
@@ -2068,8 +2039,8 @@ export default function HomePage() {
                           transition={{ duration: 0.25, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="bg-white text-neutral-900 px-5 py-4 sm:px-6 sm:py-5 text-xs sm:text-sm leading-relaxed border-t border-neutral-200">
-                            <p className="text-neutral-800 font-normal leading-relaxed pl-7 sm:pl-9">
+                          <div className="bg-[#fbfaf8] text-[#686762] px-5 py-4 sm:px-6 sm:py-5 text-xs sm:text-sm leading-relaxed border-t border-[#e7e6e2] font-portfolio-sans">
+                            <p className="font-normal leading-relaxed pl-7 sm:pl-9">
                               {faq.answer}
                             </p>
                           </div>
@@ -2091,8 +2062,8 @@ export default function HomePage() {
                     key={faq.question}
                     className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                       isOpen
-                        ? "border-l-4 border-l-white border-white/30 bg-gradient-to-r from-[#1e1912]/95 to-[#16120e]/95 shadow-[0_12px_36px_rgba(0,0,0,0.6),0_0_25px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.08)]"
-                        : "border-white/10 bg-[#13100c]/60 hover:border-white/20 hover:bg-[#1a1611]/70 shadow-[0_6px_20px_rgba(0,0,0,0.3)]"
+                        ? "border-l-4 border-l-[#0ea5e9] border-[#dedbd4] bg-white "
+                        : "border-[#e7e6e2] bg-white hover:border-[#dedbd4] "
                     }`}
                   >
                     <button
@@ -2109,11 +2080,11 @@ export default function HomePage() {
                         </span>
                       </div>
                       <div className={`p-1.5 rounded-full border shrink-0 transition-colors duration-300 mt-0.5 ml-2 ${
-                        isOpen ? "bg-white/15 border-white/30 text-white" : "bg-white/5 border-white/10 text-white/60"
+                        isOpen ? "bg-[#0ea5e9]/10 border-[#0ea5e9]/30 text-[#0284c7]" : "bg-[#f7f6f3] border-[#e7e6e2] text-[#777671]"
                       }`}>
                         <ChevronDown
                           className={`w-4 h-4 transition-transform duration-300 ${
-                            isOpen ? "rotate-180 text-white" : ""
+                            isOpen ? "rotate-180" : ""
                           }`}
                         />
                       </div>
@@ -2128,8 +2099,8 @@ export default function HomePage() {
                           transition={{ duration: 0.25, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="bg-white text-neutral-900 px-5 py-4 sm:px-6 sm:py-5 text-xs sm:text-sm leading-relaxed border-t border-neutral-200">
-                            <p className="text-neutral-800 font-normal leading-relaxed pl-7 sm:pl-9">
+                          <div className="bg-[#fbfaf8] text-[#686762] px-5 py-4 sm:px-6 sm:py-5 text-xs sm:text-sm leading-relaxed border-t border-[#e7e6e2] font-portfolio-sans">
+                            <p className="font-normal leading-relaxed pl-7 sm:pl-9">
                               {faq.answer}
                             </p>
                           </div>

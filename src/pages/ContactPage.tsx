@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -64,10 +63,6 @@ export default function ContactPage() {
         setCopiedEmail((prev) => (prev === email ? null : prev));
       }, 2500);
     }
-  };
-
-  const copyEmail = () => {
-    handleEmailAction("info.viyanaproductions@gmail.com");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -182,7 +177,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-brand-black text-brand-light selection:bg-white selection:text-black relative overflow-x-hidden">
+    <main className="min-h-screen bg-white text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans relative overflow-x-hidden pb-24 md:pb-0">
       <SEO
         title="Contact Viyana Productions | Discuss Your Next Project"
         description="Contact Viyana Productions to discuss your next film, commercial ad, photoshoot, or creative project. Connect with our team to bring your ideas to life."
@@ -206,7 +201,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Header Section */}
-      <section className="pt-24 sm:pt-40 pb-8 sm:pb-16 px-4 sm:px-10 lg:px-16 border-b border-white/10">
+      <section className="pt-24 sm:pt-36 pb-8 sm:pb-14 px-4 sm:px-8 lg:px-12 border-b border-[#e7e6e2] bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -228,7 +223,7 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content: Clean 2-Column Layout */}
-      <section className="py-10 sm:py-24 px-4 sm:px-10 lg:px-16">
+      <section className="py-10 sm:py-16 px-4 sm:px-8 lg:px-12 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
             
@@ -237,21 +232,21 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="order-2 lg:order-1 lg:col-span-5 space-y-8 sm:space-y-10 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/10"
+              className="order-2 lg:order-1 lg:col-span-5 space-y-8 sm:space-y-10 pt-6 lg:pt-0 border-t lg:border-t-0 border-[#e7e6e2]"
             >
               {/* Mobile-only section label */}
-              <div className="lg:hidden flex items-center gap-2.5 text-xs font-mono uppercase tracking-widest text-white/50 pb-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+              <div className="lg:hidden flex items-center gap-2.5 text-xs font-portfolio-sans uppercase tracking-widest text-[#0284c7] font-bold pb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7]" />
                 <span>DIRECT STUDIO DESKS &amp; DETAILS</span>
               </div>
 
               {/* Email */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
+                  <span className="text-[11px] font-portfolio-sans uppercase tracking-widest text-[#8e8d88] font-bold block">
                     Direct Email Desks
                   </span>
-                  <span className="text-[9px] font-mono text-white/40 lowercase">
+                  <span className="text-[10px] font-portfolio-sans text-[#8e8d88] lowercase">
                     click to email &amp; copy
                   </span>
                 </div>
@@ -264,7 +259,7 @@ export default function ContactPage() {
                   ].map((item) => (
                     <div
                       key={item.email}
-                      className="group flex items-center justify-between p-2.5 sm:p-3 -mx-2.5 sm:-mx-3 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-white/15 transition-all"
+                      className="group flex items-center justify-between p-3 sm:p-3.5 rounded-xl bg-white hover:bg-[#fafafa] border border-[#e7e6e2] hover:border-[#0284c7] transition-all"
                     >
                       <a
                         href={`mailto:${item.email}`}
@@ -272,18 +267,18 @@ export default function ContactPage() {
                         className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 cursor-pointer"
                         title={`Click to email ${item.email} (auto-copies address)`}
                       >
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-white/40 w-20 sm:w-22 shrink-0">
+                        <span className="text-[10px] font-portfolio-sans uppercase tracking-widest text-[#8e8d88] font-bold w-16 sm:w-20 shrink-0">
                           {item.label}
                         </span>
-                        <span className="text-xs sm:text-sm font-mono text-white group-hover:text-brand-light group-hover:underline underline-offset-4 transition-colors truncate">
+                        <span className="text-xs sm:text-sm font-portfolio-sans text-[#20201e] group-hover:text-[#0284c7] font-medium transition-colors truncate">
                           {item.email}
                         </span>
                       </a>
 
                       <div className="flex items-center gap-1.5 shrink-0 ml-2">
                         {copiedEmail === item.email ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-medium animate-in fade-in">
-                            <Check className="w-3 h-3 text-emerald-400 stroke-[2.5]" />
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#0ea5e9]/10 text-[#0284c7] border border-[#0ea5e9]/20 text-[10px] font-portfolio-sans font-bold">
+                            <Check className="w-3 h-3 text-[#0284c7] stroke-[2.5]" />
                             <span>COPIED!</span>
                           </span>
                         ) : (
@@ -294,7 +289,7 @@ export default function ContactPage() {
                                 e.stopPropagation();
                                 handleEmailAction(item.email);
                               }}
-                              className="p-1.5 rounded-lg hover:bg-white/10 text-white/30 hover:text-white transition-colors cursor-pointer"
+                              className="p-1.5 rounded-lg hover:bg-black/[0.04] text-[#8e8d88] hover:text-[#20201e] transition-colors cursor-pointer"
                               title="Copy email address"
                             >
                               <Copy className="w-3.5 h-3.5" />
@@ -302,7 +297,7 @@ export default function ContactPage() {
                             <a
                               href={`mailto:${item.email}`}
                               onClick={() => handleEmailAction(item.email)}
-                              className="p-1.5 rounded-lg hover:bg-white/10 text-white/30 hover:text-white transition-colors cursor-pointer"
+                              className="p-1.5 rounded-lg hover:bg-black/[0.04] text-[#8e8d88] hover:text-[#20201e] transition-colors cursor-pointer"
                               title="Send email via default client"
                             >
                               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -311,7 +306,7 @@ export default function ContactPage() {
                               href={`https://mail.google.com/mail/?view=cm&fs=1&to=${item.email}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="hidden sm:inline-flex text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-white/5 hover:bg-white/15 text-white/50 hover:text-white transition-colors"
+                              className="hidden sm:inline-flex text-[10px] font-portfolio-sans uppercase px-2 py-0.5 rounded bg-white hover:bg-[#fafafa] text-[#686762] hover:text-[#20201e] border border-[#dedbd4] transition-colors font-bold"
                               title="Compose in Gmail Web"
                             >
                               GMAIL
@@ -327,28 +322,28 @@ export default function ContactPage() {
               {/* Phone & WhatsApp */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
+                  <span className="text-[11px] font-portfolio-sans uppercase tracking-widest text-[#8e8d88] font-bold block">
                     Phone / WhatsApp
                   </span>
-                  <span className="text-[9px] font-mono text-white/40 lowercase">
+                  <span className="text-[10px] font-portfolio-sans text-[#8e8d88] lowercase">
                     click to call / chat / copy
                   </span>
                 </div>
                 
-                <div className="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-white/15 transition-all">
+                <div className="flex items-center justify-between p-3.5 rounded-xl bg-white hover:bg-[#fafafa] border border-[#e7e6e2] hover:border-[#0284c7] transition-all">
                   <a
                     href="tel:+919187233615"
-                    className="flex items-center gap-2.5 text-lg sm:text-xl font-mono text-white hover:text-brand-light transition-colors cursor-pointer group"
+                    className="flex items-center gap-2.5 text-base sm:text-lg font-portfolio-sans font-semibold text-[#20201e] hover:text-[#0284c7] transition-colors cursor-pointer group"
                     title="Click to call +91 91872 33615"
                   >
-                    <Phone className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
-                    <span className="group-hover:underline underline-offset-4">+91 91872 33615</span>
+                    <Phone className="w-4 h-4 text-[#0284c7]" />
+                    <span>+91 91872 33615</span>
                   </a>
 
                   <div className="flex items-center gap-1.5 shrink-0 ml-2">
                     {copiedPhone ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-medium animate-in fade-in">
-                        <Check className="w-3 h-3 text-emerald-400 stroke-[2.5]" />
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#0ea5e9]/10 text-[#0284c7] border border-[#0ea5e9]/20 text-[10px] font-portfolio-sans font-bold">
+                        <Check className="w-3 h-3 text-[#0284c7] stroke-[2.5]" />
                         <span>COPIED!</span>
                       </span>
                     ) : (
@@ -361,7 +356,7 @@ export default function ContactPage() {
                             setTimeout(() => setCopiedPhone(false), 2000);
                           }
                         }}
-                        className="p-1.5 rounded-lg hover:bg-white/10 text-white/40 hover:text-white transition-colors cursor-pointer"
+                        className="p-1.5 rounded-lg hover:bg-black/[0.04] text-[#8e8d88] hover:text-[#20201e] transition-colors cursor-pointer"
                         title="Copy phone number"
                       >
                         <Copy className="w-3.5 h-3.5" />
@@ -370,10 +365,10 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="pt-1 flex flex-wrap gap-2.5">
+                <div className="pt-1 flex flex-col sm:flex-row gap-2.5">
                   <a
                     href="tel:+919187233615"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white border border-white/20 text-xs font-mono uppercase tracking-wider transition-colors"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#111827] hover:bg-[#0284c7] active:scale-95 text-white text-xs font-portfolio-sans uppercase tracking-wider font-bold transition-all"
                   >
                     <Phone className="w-3.5 h-3.5" />
                     <span>Call Now</span>
@@ -384,7 +379,7 @@ export default function ContactPage() {
                     href="https://wa.me/919187233615?text=Hello%20Viyana%20Productions,%20I'd%20like%20to%20discuss%20a%20project."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 active:scale-95 text-emerald-400 hover:text-emerald-300 border border-emerald-500/30 text-xs font-mono uppercase tracking-wider transition-colors"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0ea5e9]/10 hover:bg-[#0ea5e9]/20 active:scale-95 text-[#0284c7] border border-[#0ea5e9]/30 text-xs font-portfolio-sans uppercase tracking-wider font-bold transition-all"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
                     <span>Chat on WhatsApp</span>
@@ -394,14 +389,14 @@ export default function ContactPage() {
               </div>
 
               {/* Studio Location - Clickable Google Maps Link */}
-              <div className="space-y-3 pt-6 border-t border-white/10">
+              <div className="space-y-3 pt-6 border-t border-[#e7e6e2]">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
+                  <span className="text-[11px] font-portfolio-sans uppercase tracking-widest text-[#8e8d88] font-bold block">
                     Studio Location
                   </span>
                   <div className="flex items-center gap-2">
                     {copiedAddress ? (
-                      <span className="text-[10px] font-mono text-emerald-400">Address Copied!</span>
+                      <span className="text-[10px] font-portfolio-sans text-[#0284c7] font-bold">Address Copied!</span>
                     ) : (
                       <button
                         type="button"
@@ -414,13 +409,13 @@ export default function ContactPage() {
                             setTimeout(() => setCopiedAddress(false), 2000);
                           }
                         }}
-                        className="text-[10px] font-mono text-white/40 hover:text-white transition-colors cursor-pointer"
+                        className="text-[10px] font-portfolio-sans text-[#8e8d88] hover:text-[#0284c7] transition-colors cursor-pointer"
                         title="Copy Studio Address"
                       >
                         [copy address]
                       </button>
                     )}
-                    <span className="text-[10px] font-mono text-white/40 lowercase">click for map</span>
+                    <span className="text-[10px] font-portfolio-sans text-[#8e8d88] lowercase">click for map</span>
                   </div>
                 </div>
 
@@ -428,22 +423,22 @@ export default function ContactPage() {
                   href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block p-4 sm:p-5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/10 hover:border-white/30 transition-all cursor-pointer shadow-sm"
+                  className="group block p-4 sm:p-5 rounded-2xl bg-white hover:bg-[#fafafa] border border-[#e7e6e2] hover:border-[#0284c7] transition-all cursor-pointer"
                   title="Open Bengaluru Studio on Google Maps"
                 >
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-white/60 group-hover:text-white transition-colors" />
-                      <h3 className="text-sm font-serif uppercase text-white group-hover:text-white transition-colors">
+                      <MapPin className="w-4 h-4 text-[#0284c7]" />
+                      <h3 className="text-sm font-portfolio-serif font-bold uppercase text-[#20201e]">
                         Bengaluru Studio
                       </h3>
                     </div>
-                    <div className="flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-white/40 group-hover:text-white transition-colors">
+                    <div className="flex items-center gap-1 text-[11px] font-portfolio-sans uppercase tracking-wider text-[#8e8d88] group-hover:text-[#0284c7] transition-colors font-bold">
                       <span>Google Maps</span>
                       <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>
-                  <p className="text-xs text-brand-grey group-hover:text-white/80 leading-relaxed transition-colors">
+                  <p className="text-xs text-[#686762] group-hover:text-[#20201e] leading-relaxed transition-colors font-portfolio-sans">
                     4th Floor, Gopalan Workspace,<br />
                     Kathriguppe Main Rd, 3rd Phase,<br />
                     Banashankari 3rd Stage, Banashankari,<br />
@@ -453,8 +448,8 @@ export default function ContactPage() {
               </div>
 
               {/* Socials */}
-              <div className="space-y-3 pt-4 border-t border-white/10">
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/50 block">
+              <div className="space-y-3 pt-4 border-t border-[#e7e6e2]">
+                <span className="text-[11px] font-portfolio-sans uppercase tracking-widest text-[#8e8d88] font-bold block">
                   Follow Us
                 </span>
                 <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
@@ -468,33 +463,30 @@ export default function ContactPage() {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[11px] sm:text-xs font-mono uppercase px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 active:bg-white/20 text-white/80 hover:text-white border border-white/10 transition-colors inline-flex items-center justify-between gap-1"
+                      className="text-xs font-portfolio-sans uppercase px-3.5 py-2 rounded-xl bg-white hover:bg-[#fafafa] text-[#20201e] border border-[#dedbd4] hover:border-[#0284c7] transition-colors inline-flex items-center justify-between gap-1.5 font-bold"
                     >
                       <span>{s.name}</span>
-                      <ArrowUpRight className="w-3 h-3 opacity-60" />
+                      <ArrowUpRight className="w-3.5 h-3.5 text-[#8e8d88]" />
                     </a>
                   ))}
                 </div>
               </div>
             </motion.div>
 
-            {/* Right Column: Contact Form (High-Impact White Luxury Editorial Card) */}
+            {/* Right Column: Contact Form */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="order-1 lg:order-2 lg:col-span-7 bg-white text-neutral-900 p-6 sm:p-9 md:p-11 rounded-2xl sm:rounded-3xl border border-white shadow-[0_25px_70px_rgba(0,0,0,0.65),0_0_50px_rgba(255,255,255,0.08)] relative overflow-hidden selection:bg-black selection:text-white"
+              className="order-1 lg:order-2 lg:col-span-7 bg-white text-[#20201e] p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border border-[#e7e6e2] shadow-sm relative overflow-hidden"
             >
-              {/* Subtle luxury dot pattern for tactile depth */}
-              <div className="absolute inset-0 bg-[radial-gradient(#0000000a_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
-
               {submitted ? (
                 <div className="py-12 text-center space-y-4 relative z-10">
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-600 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(16,185,129,0.25)]">
+                  <div className="w-16 h-16 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 text-[#0284c7] flex items-center justify-center mx-auto">
                     <Check className="w-8 h-8 stroke-[2.5]" />
                   </div>
-                  <h3 className="text-3xl font-display font-bold uppercase tracking-tight text-neutral-900">Message Sent!</h3>
-                  <p className="text-sm text-neutral-600 max-w-md mx-auto leading-relaxed">
+                  <h3 className="text-3xl font-portfolio-serif font-normal tracking-tight text-[#20201e]">Message Sent!</h3>
+                  <p className="text-sm text-[#686762] font-portfolio-sans max-w-md mx-auto leading-relaxed">
                     Thank you, {formData.name || "there"}. We have received your project brief and will get back to you within 24 hours.
                   </p>
                   <div className="pt-4">
@@ -505,7 +497,7 @@ export default function ContactPage() {
                         setFormData({ name: "", email: "", phone: "", message: "" });
                         setErrorMessage(null);
                       }}
-                      className="px-8 py-3 rounded-full bg-black hover:bg-neutral-800 active:scale-95 text-white text-xs font-mono uppercase tracking-widest font-bold transition-all cursor-pointer shadow-lg"
+                      className="px-8 py-3 rounded-full bg-[#111827] hover:bg-[#0284c7] active:scale-95 text-white text-xs font-portfolio-sans uppercase tracking-widest font-bold transition-all cursor-pointer"
                     >
                       Send Another Message
                     </button>
@@ -513,25 +505,25 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 relative z-10">
-                  {/* Form Header indicator for clarity on mobile & desktop */}
-                  <div className="flex items-center justify-between pb-4 sm:pb-5 border-b border-neutral-200">
+                  {/* Form Header indicator */}
+                  <div className="flex items-center justify-between pb-4 sm:pb-5 border-b border-[#e7e6e2]">
                     <div className="flex items-center gap-2.5">
                       <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-black" />
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0284c7] opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0284c7]" />
                       </span>
-                      <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] text-neutral-900 font-bold">
+                      <span className="text-xs font-portfolio-sans uppercase tracking-[0.2em] text-[#20201e] font-bold">
                         PROJECT BRIEF FORM
                       </span>
                     </div>
-                    <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/5 border border-black/10 text-neutral-600 font-medium">
+                    <span className="text-[10px] font-portfolio-sans uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 text-[#0284c7] font-bold">
                       DIRECT INQUIRY
                     </span>
                   </div>
 
                   {/* Custom Service Selection Dropdown */}
                   <div className="space-y-1.5 sm:space-y-2 relative" ref={dropdownRef}>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 font-semibold">
+                    <label className="block text-xs font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
                       I&apos;m interested in *
                     </label>
                     <input type="hidden" name="service" value={selectedService} />
@@ -540,26 +532,26 @@ export default function ContactPage() {
                     <button
                       type="button"
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className={`w-full bg-neutral-50 hover:bg-neutral-100/90 border rounded-xl px-4 sm:px-5 py-3.5 text-xs sm:text-sm font-mono uppercase tracking-wider text-left flex items-center justify-between transition-all cursor-pointer shadow-sm font-medium ${
+                      className={`w-full bg-white hover:bg-[#fafafa] border rounded-xl px-4 sm:px-5 py-3.5 text-xs sm:text-sm font-portfolio-sans uppercase tracking-wider text-left flex items-center justify-between transition-all cursor-pointer font-medium ${
                         isDropdownOpen
-                          ? "border-black ring-2 ring-black/10 bg-white"
-                          : "border-neutral-300"
+                          ? "border-[#0284c7] ring-1 ring-[#0284c7]/20 bg-white"
+                          : "border-[#dedbd4]"
                       }`}
                       aria-haspopup="listbox"
                       aria-expanded={isDropdownOpen}
                     >
                       <div className="flex items-center gap-2.5 truncate">
-                        <span className="text-[11px] font-mono text-neutral-500 font-bold shrink-0">
+                        <span className="text-[11px] font-portfolio-sans text-[#0284c7] font-bold shrink-0">
                           {String(services.indexOf(selectedService) + 1).padStart(2, "0")}
                         </span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />
-                        <span className="text-neutral-900 truncate font-semibold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] shrink-0" />
+                        <span className="text-[#20201e] truncate font-semibold">
                           {selectedService}
                         </span>
                       </div>
                       <ChevronDown
-                        className={`w-4 h-4 stroke-[2.5] text-neutral-500 transition-transform duration-200 shrink-0 ${
-                          isDropdownOpen ? "rotate-180 text-black" : ""
+                        className={`w-4 h-4 stroke-[2.5] text-[#8e8d88] transition-transform duration-200 shrink-0 ${
+                          isDropdownOpen ? "rotate-180 text-[#0284c7]" : ""
                         }`}
                       />
                     </button>
@@ -573,7 +565,7 @@ export default function ContactPage() {
                           exit={{ opacity: 0, y: -6, scale: 0.98 }}
                           transition={{ duration: 0.16, ease: "easeOut" }}
                           data-lenis-prevent
-                          className="absolute top-full left-0 right-0 mt-2 z-50 bg-white border border-neutral-200 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.2),0_4px_16px_rgba(0,0,0,0.06)] overflow-hidden overscroll-contain"
+                          className="absolute top-full left-0 right-0 mt-2 z-50 bg-white border border-[#dedbd4] rounded-2xl overflow-hidden overscroll-contain"
                         >
                           <div className="p-1.5 max-h-64 sm:max-h-72 overflow-y-auto no-scrollbar space-y-1">
                             {services.map((service, index) => {
@@ -586,25 +578,25 @@ export default function ContactPage() {
                                     setSelectedService(service);
                                     setIsDropdownOpen(false);
                                   }}
-                                  className={`w-full px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-mono uppercase tracking-wider flex items-center justify-between transition-colors cursor-pointer ${
+                                  className={`w-full px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-portfolio-sans uppercase tracking-wider flex items-center justify-between transition-colors cursor-pointer ${
                                     isSelected
-                                      ? "bg-black text-white font-bold shadow-sm"
-                                      : "text-neutral-800 hover:bg-neutral-100 hover:text-black font-medium"
+                                      ? "bg-[#111827] text-white font-bold"
+                                      : "text-[#20201e] hover:bg-[#f7f6f3] font-medium"
                                   }`}
                                   role="option"
                                   aria-selected={isSelected}
                                 >
                                   <div className="flex items-center gap-2.5 truncate">
                                     <span
-                                      className={`text-[10px] font-mono shrink-0 ${
-                                        isSelected ? "text-white/60 font-normal" : "text-neutral-400"
+                                      className={`text-[10px] font-portfolio-sans shrink-0 ${
+                                        isSelected ? "text-white/60 font-normal" : "text-[#8e8d88]"
                                       }`}
                                     >
                                       {String(index + 1).padStart(2, "0")}
                                     </span>
                                     <span
                                       className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                                        isSelected ? "bg-white" : "bg-neutral-300"
+                                        isSelected ? "bg-white" : "bg-[#dedbd4]"
                                       }`}
                                     />
                                     <span className="truncate">{service}</span>
@@ -622,10 +614,10 @@ export default function ContactPage() {
                     </AnimatePresence>
                   </div>
 
-                  {/* Name & Email (text-base prevents iOS auto-zoom on focus) */}
+                  {/* Name & Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div className="space-y-1.5 sm:space-y-2">
-                      <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 font-semibold">
+                      <label className="block text-xs font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
                         Your Name *
                       </label>
                       <input
@@ -637,12 +629,12 @@ export default function ContactPage() {
                           setFormData({ ...formData, name: e.target.value });
                           if (errorMessage) setErrorMessage(null);
                         }}
-                        className="w-full bg-neutral-50 hover:bg-neutral-100/90 border border-neutral-300 rounded-xl px-4 py-3 text-base sm:text-sm text-neutral-900 focus:outline-none focus:border-black focus:ring-2 focus:ring-black/10 transition-all disabled:opacity-50 shadow-sm"
+                        className="w-full bg-white hover:bg-white border border-[#dedbd4] rounded-xl px-4 py-3 text-base sm:text-sm text-[#20201e] focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7]/20 transition-all disabled:opacity-50 font-portfolio-sans"
                       />
                     </div>
 
                     <div className="space-y-1.5 sm:space-y-2">
-                      <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 font-semibold">
+                      <label className="block text-xs font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
                         Your Email *
                       </label>
                       <input
@@ -654,14 +646,14 @@ export default function ContactPage() {
                           setFormData({ ...formData, email: e.target.value });
                           if (errorMessage) setErrorMessage(null);
                         }}
-                        className="w-full bg-neutral-50 hover:bg-neutral-100/90 border border-neutral-300 rounded-xl px-4 py-3 text-base sm:text-sm text-neutral-900 focus:outline-none focus:border-black focus:ring-2 focus:ring-black/10 transition-all disabled:opacity-50 shadow-sm"
+                        className="w-full bg-white hover:bg-white border border-[#dedbd4] rounded-xl px-4 py-3 text-base sm:text-sm text-[#20201e] focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7]/20 transition-all disabled:opacity-50 font-portfolio-sans"
                       />
                     </div>
                   </div>
 
                   {/* Phone */}
                   <div className="space-y-1.5 sm:space-y-2">
-                    <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 font-semibold">
+                    <label className="block text-xs font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
                       Phone Number *
                     </label>
                     <input
@@ -673,13 +665,13 @@ export default function ContactPage() {
                         setFormData({ ...formData, phone: e.target.value });
                         if (errorMessage) setErrorMessage(null);
                       }}
-                      className="w-full bg-neutral-50 hover:bg-neutral-100/90 border border-neutral-300 rounded-xl px-4 py-3 text-base sm:text-sm text-neutral-900 focus:outline-none focus:border-black focus:ring-2 focus:ring-black/10 transition-all disabled:opacity-50 shadow-sm"
+                      className="w-full bg-white hover:bg-white border border-[#dedbd4] rounded-xl px-4 py-3 text-base sm:text-sm text-[#20201e] focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7]/20 transition-all disabled:opacity-50 font-portfolio-sans"
                     />
                   </div>
 
                   {/* Message */}
                   <div className="space-y-1.5 sm:space-y-2">
-                    <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 font-semibold">
+                    <label className="block text-xs font-portfolio-sans uppercase tracking-wider text-[#686762] font-semibold">
                       Your Message *
                     </label>
                     <textarea
@@ -691,7 +683,7 @@ export default function ContactPage() {
                         setFormData({ ...formData, message: e.target.value });
                         if (errorMessage) setErrorMessage(null);
                       }}
-                      className="w-full bg-neutral-50 hover:bg-neutral-100/90 border border-neutral-300 rounded-xl p-4 text-base sm:text-sm text-neutral-900 focus:outline-none focus:border-black focus:ring-2 focus:ring-black/10 transition-all resize-none leading-relaxed disabled:opacity-50 shadow-sm"
+                      className="w-full bg-white hover:bg-white border border-[#dedbd4] rounded-xl p-4 text-base sm:text-sm text-[#20201e] focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7]/20 transition-all resize-none leading-relaxed disabled:opacity-50 font-portfolio-sans"
                     />
                   </div>
 
@@ -713,7 +705,7 @@ export default function ContactPage() {
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="shrink-0 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-[11px] font-semibold flex items-center gap-1.5 transition-colors shadow"
+                        className="shrink-0 px-3.5 py-1.5 rounded-lg bg-[#0284c7] hover:bg-[#0ea5e9] text-white font-portfolio-sans text-[11px] font-bold flex items-center gap-1.5 transition-colors"
                       >
                         <MessageSquare className="w-3.5 h-3.5" />
                         Send via WhatsApp →
@@ -723,14 +715,14 @@ export default function ContactPage() {
 
                   {/* Submit Button */}
                   <div className="pt-2 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
-                    <span className="text-xs text-neutral-500 font-sans text-center sm:text-left font-medium">
+                    <span className="text-xs text-[#8e8d88] font-portfolio-sans text-center sm:text-left font-medium">
                       We usually reply within 24 hours.
                     </span>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full sm:w-auto px-9 py-4 rounded-full bg-black text-white text-xs font-mono uppercase tracking-widest font-bold hover:bg-neutral-800 active:scale-95 transition-all cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-black/25 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+                      className="w-full sm:w-auto px-9 py-4 rounded-full bg-[#111827] text-white text-xs font-portfolio-sans uppercase tracking-widest font-bold hover:bg-[#0284c7] active:scale-95 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
                     >
                       {isSubmitting ? (
                         <>
@@ -751,32 +743,35 @@ export default function ContactPage() {
       </section>
 
       {/* 3. Studio Map & Location Section */}
-      <section className="py-12 sm:py-24 px-4 sm:px-10 lg:px-16 border-t border-white/10 bg-brand-dark/40">
+      <section className="py-12 sm:py-20 px-4 sm:px-8 lg:px-12 border-t border-[#e7e6e2] bg-white">
         <div className="container mx-auto max-w-6xl">
           {/* Section Header */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 sm:mb-12 gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 sm:mb-10 gap-3 sm:gap-4">
             <div>
-              <span className="text-[10px] sm:text-xs font-sans uppercase tracking-[0.25em] text-white/50 block mb-1.5 sm:mb-2 font-medium">
-                STUDIO HEADQUARTERS // BENGALURU
-              </span>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-tight">
-                Find Our Studio.
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0ea5e9]/20 bg-[#0ea5e9]/10 text-[#0284c7] mb-2 sm:mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7]" />
+                <span className="text-[10px] sm:text-xs font-portfolio-sans uppercase tracking-[0.2em] font-bold text-[#0284c7]">
+                  STUDIO HEADQUARTERS // BENGALURU
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-portfolio-serif font-normal text-[#20201e] tracking-tight">
+                Find Our <em className="italic text-[#0284c7] font-normal">Studio.</em>
               </h2>
             </div>
             <a
               href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white hover:text-black active:scale-95 text-white text-xs font-sans uppercase tracking-widest font-semibold border border-white/20 transition-all shadow-md w-full sm:w-auto justify-center"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-[#f7f6f3] active:scale-95 text-[#20201e] text-xs font-portfolio-sans uppercase tracking-widest font-bold border border-[#dedbd4] hover:border-[#0ea5e9] transition-all w-full sm:w-auto justify-center"
             >
               <span>Get Directions</span>
-              <span>↗</span>
+              <span className="text-[#0284c7]">↗</span>
             </a>
           </div>
 
-          {/* Interactive Map Frame with Studio Info on mobile cleanly stacked */}
+          {/* Interactive Map Frame with Studio Info */}
           <div className="space-y-4">
-            <div className="relative w-full h-[320px] sm:h-[500px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-brand-dark">
+            <div className="relative w-full h-[320px] sm:h-[500px] rounded-2xl sm:rounded-3xl overflow-hidden border border-[#e7e6e2] bg-white">
               {/* Embedded Google Map */}
               <iframe
                 title="Viyana Productions Studio Location"
@@ -787,25 +782,25 @@ export default function ContactPage() {
                 allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"
-                className="w-full h-full filter contrast-[1.05] brightness-[0.88] grayscale-[30%] hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full filter contrast-[1.02] brightness-[0.98] transition-all duration-700"
               />
 
               {/* Floating Studio Info Card (Desktop only overlay) */}
-              <div className="hidden sm:block absolute bottom-6 left-6 z-10 max-w-sm p-5 rounded-2xl bg-black/85 backdrop-blur-xl border border-white/20 shadow-2xl font-sans">
+              <div className="hidden sm:block absolute bottom-6 left-6 z-10 max-w-sm p-6 rounded-2xl bg-white/95 backdrop-blur-xl border border-[#dedbd4] font-portfolio-sans">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                  <span className="text-[11px] font-sans uppercase tracking-[0.2em] text-white/60 font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-pulse" />
+                  <span className="text-[10px] font-portfolio-sans uppercase tracking-[0.2em] text-[#0284c7] font-bold">
                     MAIN PRODUCTION FACILITY
                   </span>
                 </div>
-                <h3 className="text-base sm:text-lg font-serif text-white uppercase tracking-tight mb-1">
+                <h3 className="text-lg font-portfolio-serif font-normal text-[#20201e] tracking-tight mb-1">
                   Viyana Productions
                 </h3>
                 <a
                   href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-xs text-brand-grey hover:text-white leading-relaxed mb-3 transition-colors group/addr"
+                  className="block text-xs text-[#686762] hover:text-[#0284c7] leading-relaxed mb-3 transition-colors"
                   title="Open in Google Maps"
                 >
                   4th Floor, Gopalan Workspace,<br />
@@ -813,13 +808,13 @@ export default function ContactPage() {
                   Banashankari 3rd Stage, Banashankari,<br />
                   Bengaluru, Karnataka 560085
                 </a>
-                <div className="flex items-center justify-between pt-2.5 border-t border-white/10 text-[11px] text-white/70">
+                <div className="flex items-center justify-between pt-2.5 border-t border-[#e7e6e2] text-xs text-[#686762]">
                   <span>Mon – Sat: 9:30 AM – 9:00 PM</span>
                   <a
                     href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:underline font-medium"
+                    className="text-[#0284c7] hover:underline font-bold"
                   >
                     Open Maps ↗
                   </a>
@@ -828,32 +823,32 @@ export default function ContactPage() {
             </div>
 
             {/* Mobile Studio Info Card (Stacked below map for full interactive map view) */}
-            <div className="sm:hidden p-4 rounded-2xl bg-brand-dark border border-white/15 shadow-xl font-sans">
+            <div className="sm:hidden p-5 rounded-2xl bg-white border border-[#e7e6e2] font-portfolio-sans">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                <span className="text-[10px] font-sans uppercase tracking-[0.2em] text-white/70 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-pulse" />
+                <span className="text-[10px] font-portfolio-sans uppercase tracking-[0.2em] text-[#0284c7] font-bold">
                   MAIN PRODUCTION FACILITY
                 </span>
               </div>
-              <h3 className="text-base font-serif text-white uppercase tracking-tight mb-1">
+              <h3 className="text-lg font-portfolio-serif font-normal text-[#20201e] tracking-tight mb-1">
                 Viyana Productions
               </h3>
               <a
                 href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-xs text-brand-grey hover:text-white leading-relaxed mb-3 transition-colors"
+                className="block text-xs text-[#686762] hover:text-[#0284c7] leading-relaxed mb-3 transition-colors"
                 title="Open in Google Maps"
               >
                 4th Floor, Gopalan Workspace, Kathriguppe Main Rd, 3rd Phase, Banashankari 3rd Stage, Banashankari, Bengaluru, Karnataka 560085
               </a>
-              <div className="flex items-center justify-between pt-2.5 border-t border-white/10 text-xs text-white/80">
+              <div className="flex items-center justify-between pt-2.5 border-t border-[#e7e6e2] text-xs text-[#686762]">
                 <span>Mon – Sat: 9:30 AM – 9:00 PM</span>
                 <a
                   href="https://www.google.com/maps?cid=13843918391266491417&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white font-mono font-medium underline underline-offset-2"
+                  className="text-[#0284c7] font-bold underline underline-offset-2"
                 >
                   Open Maps ↗
                 </a>
@@ -863,7 +858,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <Footer />
+      <Footer variant="light" hideCtaBanner={true} />
     </main>
   );
 }

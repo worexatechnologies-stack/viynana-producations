@@ -77,7 +77,7 @@ export default function App() {
     <BrowserRouter>
       <div
         className={clsx(
-          "antialiased bg-brand-black text-brand-light selection:bg-brand-light selection:text-brand-black font-sans"
+          "antialiased bg-[#fbfaf8] text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans"
         )}
       >
         <AppRoutes />
