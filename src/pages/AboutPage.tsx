@@ -255,15 +255,9 @@ export default function AboutPage() {
           >
             {/* Live Studio Status Pill */}
             <div className="mb-6 sm:mb-8">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.8)]" />
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/90 font-medium">
-                  STUDIO PROFILE
-                </span>
-                <span className="text-white/25">•</span>
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-white/60">
-                  BANGALORE, INDIA
-                </span>
+              <div className="eyebrow">
+                <span className="eyebrow-bullet" />
+                <span>STUDIO PROFILE · BANGALORE, INDIA</span>
               </div>
             </div>
 

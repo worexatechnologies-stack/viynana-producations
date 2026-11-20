@@ -7,10 +7,13 @@
   --color-brand-white: #ffffff;
   --color-brand-grey: #888888;
 
-  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-syne: "Syne", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-display: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-syne: "DM Sans", "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-portfolio-sans: "DM Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-portfolio-serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
 }
 
 @layer base {
@@ -26,7 +29,9 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font-sans);
+    font-family: var(--font-portfolio-sans), "DM Sans", sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -36,8 +41,8 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  h2 {
-    letter-spacing: -0.02em;
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
   }
 }
 
@@ -47,6 +52,53 @@
   background-color: #050505;
   background-image: none !important;
   color: #f5f3ee;
+}
+
+/* Global Portfolio Typography (DM Sans + Cormorant Garamond across all pages) */
+.eyebrow {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #c5a880;
+  font-family: var(--font-portfolio-sans), "DM Sans", sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+.eyebrow-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ca8a04;
+  flex: 0 0 6px;
+}
+
+.section-title {
+  font-family: var(--font-portfolio-serif), "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 450;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: #fbfaf8;
+}
+
+.section-title em {
+  font-family: var(--font-portfolio-serif), "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  color: #c5a880;
+  font-weight: 400;
+  font-size: 1.05em;
+}
+
+.section-note {
+  font-family: var(--font-portfolio-sans), "DM Sans", sans-serif;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14.5px;
+  line-height: 1.75;
+  font-weight: 400;
 }
 
 .about-studio-backdrop,
@@ -86,20 +138,20 @@
   }
 
   .font-display {
-    font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    letter-spacing: -0.03em;
+    font-family: var(--font-portfolio-serif), "Cormorant Garamond", Georgia, serif !important;
+    letter-spacing: -0.035em;
   }
 
   .font-syne {
-    font-family: "Syne", "Outfit", sans-serif !important;
+    font-family: var(--font-portfolio-sans), "DM Sans", sans-serif !important;
   }
 
   .font-serif {
-    font-family: "Instrument Serif", Georgia, serif !important;
+    font-family: var(--font-portfolio-serif), "Cormorant Garamond", Georgia, serif !important;
   }
 
   .font-sans {
-    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-family: var(--font-portfolio-sans), "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   }
 
   .font-mono {
@@ -443,8 +495,8 @@ video:-ms-fullscreen {
   background-image: linear-gradient(145deg, #191919, #080808) !important;
 }
 
-/* Dual Diagonal Moving Tracks for Selected Work */
-@keyframes diagonalMarqueeLeft {
+/* Horizontal Moving Tracks for Selected Work (Zero tilt, smooth horizontal flow) */
+@keyframes horizontalMarqueeLeft {
   0% {
     transform: translate3d(0, 0, 0);
   }
@@ -453,7 +505,7 @@ video:-ms-fullscreen {
   }
 }
 
-@keyframes diagonalMarqueeRight {
+@keyframes horizontalMarqueeRight {
   0% {
     transform: translate3d(-50%, 0, 0);
   }
@@ -462,32 +514,38 @@ video:-ms-fullscreen {
   }
 }
 
+.horizontal-track-left,
 .diagonal-track-left {
   display: flex;
   align-items: stretch;
   width: max-content;
   will-change: transform;
-  animation: diagonalMarqueeLeft 42s linear infinite;
+  animation: horizontalMarqueeLeft 40s linear infinite;
 }
 
+.horizontal-track-right,
 .diagonal-track-right {
   display: flex;
   align-items: stretch;
   width: max-content;
   will-change: transform;
-  animation: diagonalMarqueeRight 42s linear infinite;
+  animation: horizontalMarqueeRight 40s linear infinite;
 }
 
+.horizontal-track-left:hover,
+.horizontal-track-right:hover,
 .diagonal-track-left:hover,
 .diagonal-track-right:hover {
   animation-play-state: paused;
 }
 
 @media (max-width: 640px) {
+  .horizontal-track-left,
   .diagonal-track-left {
-    animation-duration: 32s;
+    animation-duration: 30s;
   }
+  .horizontal-track-right,
   .diagonal-track-right {
-    animation-duration: 32s;
+    animation-duration: 30s;
   }
 }

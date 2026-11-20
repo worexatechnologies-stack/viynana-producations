@@ -213,13 +213,14 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/50 block mb-3 sm:mb-4">
-              CONTACT US
-            </span>
-            <h1 className="text-3xl sm:text-6xl md:text-7xl font-display font-extrabold text-white uppercase tracking-tight leading-tight mb-4 sm:mb-6">
-              Let&apos;s Work Together.
+            <div className="eyebrow mb-3 sm:mb-4">
+              <span className="eyebrow-bullet" />
+              <span>CONTACT US</span>
+            </div>
+            <h1 className="section-title text-4xl sm:text-6xl md:text-7xl font-normal leading-tight mb-4 sm:mb-6">
+              Let&apos;s Work <em>Together.</em>
             </h1>
-            <p className="text-xs sm:text-base md:text-xl text-brand-grey max-w-2xl font-light leading-relaxed">
+            <p className="section-note text-base sm:text-lg max-w-2xl leading-relaxed">
               Have an upcoming project, commercial film, or creative idea? Reach out to us directly or send a message below.
             </p>
           </motion.div>

@@ -9,7 +9,22 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  esbuild: {
+    target: 'es2022',
+    supported: {
+      destructuring: true,
+    },
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      target: 'es2022',
+      supported: {
+        destructuring: true,
+      },
+    },
+  },
   build: {
+    target: 'es2022',
     outDir: '../public/portfolio',
     emptyOutDir: true,
     rollupOptions: {

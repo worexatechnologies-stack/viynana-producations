@@ -84,6 +84,20 @@ export default defineConfig({
     allowedHosts: true,
   },
   base: "/",
+  esbuild: {
+    target: "es2022",
+    supported: {
+      destructuring: true,
+    },
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      target: "es2022",
+      supported: {
+        destructuring: true,
+      },
+    },
+  },
   environments: {
     client: {
       build: {

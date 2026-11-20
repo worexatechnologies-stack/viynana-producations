@@ -726,7 +726,7 @@ export default function HomePage() {
           </div>
 
           {/* Cinema Tagline */}
-          <p className="text-[11px] sm:text-xs md:text-sm font-mono uppercase tracking-[0.25em] text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-sm sm:max-w-none">
+          <p className="text-[11px] sm:text-xs md:text-sm font-sans uppercase tracking-[0.2em] text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-sm sm:max-w-none">
             CINEMATIC VISUAL CONTENT &bull; PRODUCTION HOUSE &bull; BENGALURU
           </p>
 
@@ -735,7 +735,7 @@ export default function HomePage() {
             <button
               type="button"
               onClick={openSignatureShowreelModal}
-              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/30 hover:border-white/60 text-white font-mono text-xs uppercase tracking-wider font-semibold shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/30 hover:border-white/60 text-white font-sans text-xs uppercase tracking-wider font-semibold shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
               <Play className="w-3.5 h-3.5 fill-current text-white" />
               <span>WATCH REELS</span>
@@ -744,7 +744,7 @@ export default function HomePage() {
               href="/portfolio/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_30px_rgba(255,255,255,0.35)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              className="group flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-black hover:bg-neutral-200 font-sans text-xs uppercase tracking-wider font-bold shadow-[0_0_30px_rgba(255,255,255,0.35)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
               title="Open Viyana Portfolio"
             >
               <span>VIYANA PORTFOLIO</span>
@@ -756,7 +756,7 @@ export default function HomePage() {
         {/* Bottom Ambient Controls (Floating along the bottom of viewport) */}
         <div className="relative z-20 flex items-center justify-between w-full">
           {/* Production Reel Status Badge */}
-          <div className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-[10px] sm:text-xs font-mono tracking-widest text-white uppercase shadow-lg">
+          <div className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-[10px] sm:text-xs font-sans tracking-widest text-white uppercase shadow-lg">
             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white text-black animate-pulse" />
             <span>VIYANA PRODUCTIONS</span>
           </div>
@@ -813,17 +813,21 @@ export default function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12">
           {/* Two-Column Section Head */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-end">
-            <div className="lg:col-span-7">
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-[1.12] sm:leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-                VIDEO PRODUCTION THAT MOVES <br className="sm:hidden" />
-                PEOPLE &amp; BRANDS
+            <div className="lg:col-span-7 space-y-2">
+              <p className="eyebrow">
+                <span className="eyebrow-bullet" />
+                01 / Creative Video Studio
+              </p>
+              <h2 className="section-title">
+                Video Production That Moves <br className="hidden sm:inline" />
+                <em>People &amp; Brands.</em>
               </h2>
             </div>
-            <div className="lg:col-span-5 text-sm sm:text-base text-white font-medium leading-relaxed space-y-2.5 sm:space-y-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-              <p>
+            <div className="lg:col-span-5 space-y-2.5 sm:space-y-3">
+              <p className="section-note">
                 From the first idea to the final frame, Viyana Productions creates cinematic visual content that helps brands tell their story, showcase their products, and connect with their audience.
               </p>
-              <p className="text-[10px] sm:text-xs md:text-sm font-mono uppercase tracking-wider text-white/70 leading-relaxed">
+              <p className="text-[11.5px] sm:text-xs font-sans uppercase tracking-wider text-[#c5a880] font-medium leading-relaxed">
                 CORPORATE FILMS • PRODUCT VIDEOS • INDUSTRIAL FILMS • <br className="sm:hidden" />
                 BRAND FILMS • DOCUMENTARIES • COMMERCIALS
               </p>
@@ -846,7 +850,7 @@ export default function HomePage() {
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-white/10 to-transparent rounded-bl-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <strong
-                  className={`font-display font-extrabold text-[#f3f3ef] tracking-tight block leading-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] ${
+                  className={`font-serif font-normal text-[#f3f3ef] tracking-tight block leading-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] ${
                     item.stat.length > 5
                       ? "text-base min-[360px]:text-[1.1rem] min-[400px]:text-xl sm:text-2xl md:text-lg lg:text-2xl xl:text-3xl"
                       : "text-2xl min-[360px]:text-3xl sm:text-4xl md:text-4xl lg:text-5xl"
@@ -854,7 +858,7 @@ export default function HomePage() {
                 >
                   {item.stat}
                 </strong>
-                <span className="text-[10px] sm:text-xs md:text-sm text-[#fbf7ee]/65 font-normal mt-2.5 sm:mt-3 block leading-relaxed uppercase tracking-wider font-mono">
+                <span className="text-[10px] sm:text-xs md:text-sm text-[#fbf7ee]/65 font-medium mt-2.5 sm:mt-3 block leading-relaxed uppercase tracking-wider font-sans">
                   {item.label}
                 </span>
               </div>
@@ -865,7 +869,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-1 sm:pt-2">
             <Link
               to="/work"
-              className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] cursor-pointer"
+              className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-sans text-xs uppercase tracking-wider font-semibold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] cursor-pointer"
             >
               <span>OUR WORK</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -873,7 +877,7 @@ export default function HomePage() {
 
             <Link
               to="/contact"
-              className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 hover:border-white/40 text-[#fbf7ee] font-mono text-xs uppercase tracking-wider font-medium hover:bg-white/15 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+              className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 hover:border-white/40 text-[#fbf7ee] font-sans text-xs uppercase tracking-wider font-medium hover:bg-white/15 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
             >
               <span>START A PROJECT</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-white" />
@@ -900,46 +904,42 @@ export default function HomePage() {
         <div className="w-full space-y-4 sm:space-y-5 relative z-10">
           {/* Top Header Bar */}
           <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div className="space-y-1 max-w-2xl">
-              <div className="flex items-center gap-3">
-                <span className="text-xs sm:text-sm font-mono text-white tracking-widest font-bold px-3 py-1 rounded-full bg-white/10 border border-white/20">
-                  [ 02 / SELECTED WORK ]
-                </span>
-                <span className="hidden sm:inline-block text-xs font-mono text-white/60 uppercase tracking-widest font-semibold">
-                  CINEMA ARCHIVE
-                </span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-[#f3f3ef] uppercase drop-shadow-[0_2px_14px_rgba(0,0,0,0.8)]">
-                SELECTED WORK
+            <div className="space-y-2 max-w-2xl">
+              <p className="eyebrow">
+                <span className="eyebrow-bullet" />
+                02 / Selected Work &bull; Cinema Archive
+              </p>
+              <h2 className="section-title">
+                Selected <em>Work.</em>
               </h2>
-              <p className="text-sm sm:text-base text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+              <p className="section-note">
                 Commercials, brand films, and cinema productions crafted for broadcast &amp; digital impact.
               </p>
             </div>
 
             <div className="flex items-center gap-3 sm:gap-4 shrink-0 flex-wrap">
-              {/* View Mode Toggle: Diagonal vs Grid */}
+              {/* View Mode Toggle: Horizontal vs Grid */}
               <div className="flex items-center p-1 rounded-full bg-[#13100c]/90 border border-white/20 shadow-md">
                 <button
                   type="button"
                   onClick={() => setViewMode("carousel")}
-                  aria-label="Diagonal Moving View"
-                  title="Diagonal Moving View"
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
+                  aria-label="Horizontal Moving View"
+                  title="Horizontal Moving View"
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-sans font-semibold transition-all cursor-pointer ${
                     viewMode === "carousel"
                       ? "bg-white text-black hover:bg-neutral-200 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
                       : "text-[#fbf7ee]/70 hover:text-white"
                   }`}
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">DIAGONAL</span>
+                  <span className="hidden sm:inline">HORIZONTAL</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setViewMode("grid")}
                   aria-label="Grid View"
                   title="Grid View"
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-sans font-semibold transition-all cursor-pointer ${
                     viewMode === "grid"
                       ? "bg-white text-black hover:bg-neutral-200 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
                       : "text-[#fbf7ee]/70 hover:text-white"
@@ -952,7 +952,7 @@ export default function HomePage() {
 
               <Link
                 to="/work"
-                className="px-5 py-2.5 border border-white/20 hover:border-white/40 bg-[#14110d]/80 backdrop-blur-md rounded-full text-xs font-mono tracking-wider uppercase text-white hover:bg-white text-black hover:text-[#080706] transition-all flex items-center gap-2 group shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] font-bold"
+                className="px-5 py-2.5 border border-white/20 hover:border-white/40 bg-[#14110d]/80 backdrop-blur-md rounded-full text-xs font-sans tracking-wider uppercase text-white hover:bg-white text-black hover:text-[#080706] transition-all flex items-center gap-2 group shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] font-semibold"
               >
                 <span>VIEW ALL ({String(projects.length).padStart(2, "0")})</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -970,10 +970,10 @@ export default function HomePage() {
                     key={tab.id}
                     type="button"
                     onClick={() => handleFilterChange(tab.id)}
-                    className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+                    className={`px-4 py-2 rounded-full text-xs font-sans tracking-wider uppercase transition-all duration-300 cursor-pointer ${
                       isActive
-                        ? "bg-white text-black hover:bg-neutral-200 font-bold shadow-[0_4px_20px_rgba(255,255,255,0.15)] scale-102"
-                        : "bg-[#14110d]/75 border border-white/15 text-[#fbf7ee]/75 hover:border-white/40/60 hover:text-white hover:bg-[#1a1611]/80 font-medium"
+                        ? "bg-white text-black hover:bg-neutral-200 font-semibold shadow-[0_4px_20px_rgba(255,255,255,0.15)] scale-102"
+                        : "bg-[#14110d]/75 border border-white/15 text-[#fbf7ee]/75 hover:border-white/40/60 hover:text-white hover:bg-[#1a1611]/80 font-normal"
                     }`}
                   >
                     {tab.label}
@@ -983,18 +983,18 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* View Mode 1: Dual Continuous Diagonal Moving Tracks */}
+          {/* View Mode 1: Dual Continuous Horizontal Moving Tracks */}
           {viewMode === "carousel" ? (
-            <div className="relative w-full overflow-hidden py-2 sm:py-4 select-none">
+            <div className="relative w-full overflow-hidden py-3 sm:py-5 select-none">
               {/* Edge Gradient Vignettes so cards gracefully glide in and out */}
               <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-r from-[#080706] via-[#080706]/75 to-transparent" />
               <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 z-20 bg-gradient-to-l from-[#080706] via-[#080706]/75 to-transparent" />
 
-              {/* Slanted Stage: -rotate-2 / -rotate-3 for the authentic diagonal flow */}
-              <div className="transform -rotate-2 sm:-rotate-3 scale-[1.02] space-y-2.5 sm:space-y-3.5 -my-2 sm:-my-3">
-                {/* ── DIAGONAL ROW 1: RIGHT TO LEFT AUTOMATIC CONTINUOUS MOVEMENT ── */}
+              {/* Clean Horizontal Moving Stage (Straight zero-rotation flow) */}
+              <div className="space-y-4 sm:space-y-6 my-1">
+                {/* ── HORIZONTAL ROW 1: RIGHT TO LEFT AUTOMATIC CONTINUOUS MOVEMENT ── */}
                 <div className="flex overflow-hidden py-1">
-                  <div className="diagonal-track-left">
+                  <div className="horizontal-track-left">
                     {row1Projects.map((project, idx) => {
                       const heroImg = project.thumbnail || project.gallery[0];
                       return (
@@ -1018,10 +1018,10 @@ export default function HomePage() {
                           <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
 
                           <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
-                            <span className="px-3 py-1 bg-[#080706]/80 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-mono font-bold tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
+                            <span className="px-3 py-1 bg-[#080706]/80 backdrop-blur-xl text-[10.5px] sm:text-[11.5px] font-sans font-medium tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
                               {project.category}
                             </span>
-                            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-white/90 bg-[#080706]/80 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
+                            <span className="text-[10px] sm:text-[11px] font-sans font-medium tracking-wider text-white/90 bg-[#080706]/80 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
                               {project.year}
                             </span>
                           </div>
@@ -1033,19 +1033,19 @@ export default function HomePage() {
                           </div>
 
                           <div className="relative z-10 p-4 sm:p-6 mt-auto space-y-1.5 sm:space-y-2">
-                            <div className="flex items-center gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-white/80 tracking-widest uppercase font-semibold">
+                            <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-sans text-white/80 tracking-wider uppercase font-medium">
                               <span>VIYANA PRODUCTIONS</span>
                               <span>•</span>
                               <span className="truncate">{project.client}</span>
                             </div>
-                            <h3 className="text-lg sm:text-2xl font-display font-extrabold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 uppercase drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                            <h3 className="text-xl sm:text-2xl font-serif font-normal text-white tracking-tight leading-snug group-hover:text-[#c5a880] transition-colors line-clamp-1">
                               {project.title}
                             </h3>
-                            <div className="flex items-center justify-between text-[10.5px] sm:text-xs font-mono text-white/75 pt-1.5 sm:pt-2 border-t border-white/15">
-                              <span className="truncate max-w-[65%] font-medium text-[#fbf7ee]/70">
+                            <div className="flex items-center justify-between text-[11.5px] sm:text-xs font-sans text-white/75 pt-1.5 sm:pt-2 border-t border-white/15">
+                              <span className="truncate max-w-[65%] font-normal text-[#fbf7ee]/75">
                                 {project.deliverableType}
                               </span>
-                              <span className="text-white font-bold group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5">
+                              <span className="text-white font-medium group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5 text-xs">
                                 <span>CASE STUDY</span>
                                 <ArrowRight className="w-3.5 h-3.5" />
                               </span>
@@ -1057,9 +1057,9 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* ── DIAGONAL ROW 2: LEFT TO RIGHT AUTOMATIC CONTINUOUS MOVEMENT ── */}
+                {/* ── HORIZONTAL ROW 2: LEFT TO RIGHT AUTOMATIC CONTINUOUS MOVEMENT ── */}
                 <div className="flex overflow-hidden py-1">
-                  <div className="diagonal-track-right">
+                  <div className="horizontal-track-right">
                     {row2Projects.map((project, idx) => {
                       const heroImg = project.thumbnail || project.gallery[0];
                       return (
@@ -1083,10 +1083,10 @@ export default function HomePage() {
                           <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
 
                           <div className="relative z-10 p-3.5 sm:p-5 flex items-center justify-between gap-2.5">
-                            <span className="px-3 py-1 bg-[#080706]/80 backdrop-blur-xl text-[9.5px] sm:text-[11px] font-mono font-bold tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
+                            <span className="px-3 py-1 bg-[#080706]/80 backdrop-blur-xl text-[10.5px] sm:text-[11.5px] font-sans font-medium tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[80%]">
                               {project.category}
                             </span>
-                            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-white/90 bg-[#080706]/80 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
+                            <span className="text-[10px] sm:text-[11px] font-sans font-medium tracking-wider text-white/90 bg-[#080706]/80 px-2.5 py-1 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
                               {project.year}
                             </span>
                           </div>
@@ -1098,19 +1098,19 @@ export default function HomePage() {
                           </div>
 
                           <div className="relative z-10 p-4 sm:p-6 mt-auto space-y-1.5 sm:space-y-2">
-                            <div className="flex items-center gap-2 text-[9.5px] sm:text-[10.5px] font-mono text-white/80 tracking-widest uppercase font-semibold">
+                            <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-sans text-white/80 tracking-wider uppercase font-medium">
                               <span>VIYANA PRODUCTIONS</span>
                               <span>•</span>
                               <span className="truncate">{project.client}</span>
                             </div>
-                            <h3 className="text-lg sm:text-2xl font-display font-extrabold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 uppercase drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                            <h3 className="text-xl sm:text-2xl font-serif font-normal text-white tracking-tight leading-snug group-hover:text-[#c5a880] transition-colors line-clamp-1">
                               {project.title}
                             </h3>
-                            <div className="flex items-center justify-between text-[10.5px] sm:text-xs font-mono text-white/75 pt-1.5 sm:pt-2 border-t border-white/15">
-                              <span className="truncate max-w-[65%] font-medium text-[#fbf7ee]/70">
+                            <div className="flex items-center justify-between text-[11.5px] sm:text-xs font-sans text-white/75 pt-1.5 sm:pt-2 border-t border-white/15">
+                              <span className="truncate max-w-[65%] font-normal text-[#fbf7ee]/75">
                                 {project.deliverableType}
                               </span>
-                              <span className="text-white font-bold group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5">
+                              <span className="text-white font-medium group-hover:translate-x-1.5 transition-transform shrink-0 ml-2 flex items-center gap-1.5 text-xs">
                                 <span>CASE STUDY</span>
                                 <ArrowRight className="w-3.5 h-3.5" />
                               </span>
@@ -1124,11 +1124,11 @@ export default function HomePage() {
               </div>
 
               {/* Status and instruction cue bar */}
-              <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-wrap items-center justify-between gap-3 text-[11px] sm:text-xs font-mono text-white/60 z-20 pt-4 sm:pt-6">
+              <div className="w-full px-5 sm:px-8 lg:px-16 flex flex-wrap items-center justify-between gap-3 text-xs font-sans text-white/70 z-20 pt-4 sm:pt-6">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white font-semibold">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white font-medium">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    <span>DUAL DIAGONAL CONTINUOUS FLOW</span>
+                    <span>CONTINUOUS HORIZONTAL FLOW</span>
                   </span>
                   <span className="hidden md:inline text-white/30">•</span>
                   <span className="hidden md:inline text-white/70">
@@ -1136,13 +1136,13 @@ export default function HomePage() {
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-white/70">
-                  <span className="text-[10.5px] tracking-wider uppercase font-semibold">
+                  <span className="text-[11px] tracking-wider uppercase font-medium">
                     HOVER ANY CARD TO PAUSE &amp; EXPLORE
                   </span>
                   <span>•</span>
                   <Link
                     to="/work"
-                    className="text-white hover:text-amber-300 transition-colors font-bold flex items-center gap-1"
+                    className="text-white hover:text-amber-300 transition-colors font-semibold flex items-center gap-1"
                   >
                     <span>FULL ARCHIVE ({projects.length})</span>
                     <ArrowRight className="w-3 h-3" />
@@ -1176,10 +1176,10 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080706] via-[#080706]/55 to-transparent pointer-events-none" />
 
                     <div className="relative z-10 p-4 sm:p-5 flex items-center justify-between gap-3">
-                      <span className="px-3.5 py-1.5 bg-[#080706]/75 backdrop-blur-xl text-[10px] sm:text-[11px] font-mono font-bold tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[75%]">
+                      <span className="px-3.5 py-1.5 bg-[#080706]/75 backdrop-blur-xl text-[10.5px] sm:text-[11.5px] font-sans font-medium tracking-wider uppercase text-white rounded-full border border-white/20 shadow-md truncate max-w-[75%]">
                         {project.category}
                       </span>
-                      <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest text-white bg-[#080706]/75 px-3 py-1.5 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
+                      <span className="text-[11px] sm:text-xs font-sans font-medium tracking-wider text-white bg-[#080706]/75 px-3 py-1.5 rounded-xl border border-white/20 backdrop-blur-xl shadow-md shrink-0">
                         {displayNumber}
                       </span>
                     </div>
@@ -1191,21 +1191,21 @@ export default function HomePage() {
                     </div>
 
                     <div className="relative z-10 p-5 sm:p-6 mt-auto space-y-1.5">
-                      <div className="flex items-center gap-2 text-[10px] font-mono text-white/80 tracking-widest uppercase font-semibold">
+                      <div className="flex items-center gap-2 text-[10.5px] font-sans text-white/80 tracking-wider uppercase font-medium">
                         <span>VIYANA</span>
                         <span>•</span>
                         <span>{project.year}</span>
                         <span>•</span>
                         <span className="truncate">{project.client}</span>
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-display font-extrabold text-white tracking-tight leading-tight group-hover:text-white transition-all line-clamp-1 uppercase">
+                      <h3 className="text-xl sm:text-2xl font-serif font-normal text-white tracking-tight leading-snug group-hover:text-[#c5a880] transition-colors line-clamp-1">
                         {project.title}
                       </h3>
-                      <div className="flex items-center justify-between text-xs font-mono text-white/75 pt-2 border-t border-white/15">
-                        <span className="truncate max-w-[65%] font-medium text-[#fbf7ee]/70">
+                      <div className="flex items-center justify-between text-xs font-sans text-white/75 pt-2 border-t border-white/15">
+                        <span className="truncate max-w-[65%] font-normal text-[#fbf7ee]/70">
                           {project.deliverableType}
                         </span>
-                        <span className="text-white font-bold group-hover:translate-x-1 transition-transform shrink-0 ml-2 flex items-center gap-1">
+                        <span className="text-white font-medium group-hover:translate-x-1 transition-transform shrink-0 ml-2 flex items-center gap-1">
                           <span>CASE STUDY</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </span>
@@ -1223,11 +1223,11 @@ export default function HomePage() {
                   <div className="w-14 h-14 rounded-full bg-white text-black hover:bg-neutral-200 flex items-center justify-center transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.15)] group-hover:scale-110">
                     <ArrowRight className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
                   </div>
-                  <span className="text-xs font-mono uppercase tracking-[0.25em] text-white font-bold">
+                  <span className="text-xs font-sans uppercase tracking-[0.2em] text-[#c5a880] font-medium">
                     FULL ARCHIVE
                   </span>
-                  <span className="text-xl sm:text-2xl font-display font-extrabold uppercase tracking-tight text-white group-hover:text-white transition-colors leading-tight">
-                    EXPLORE ALL 13 PRODUCTIONS
+                  <span className="text-xl sm:text-2xl font-serif font-normal tracking-tight text-white group-hover:text-white transition-colors leading-tight">
+                    Explore All 13 Productions
                   </span>
                 </Link>
               </div>
@@ -1251,16 +1251,22 @@ export default function HomePage() {
             
             {/* Left Column: Content */}
             <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase text-[#f3f3ef] tracking-tight leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-                WHERE CHARACTER MEETS <br className="hidden sm:inline" />
-                <span className="text-[#fbf7ee]/60">CINEMATIC LIGHT.</span>
-              </h2>
+              <div className="space-y-2">
+                <p className="eyebrow">
+                  <span className="eyebrow-bullet" />
+                  Model Shoot &bull; Portraits &amp; Movement
+                </p>
+                <h2 className="section-title">
+                  Where Character Meets <br className="hidden sm:inline" />
+                  <em>Cinematic Light.</em>
+                </h2>
+              </div>
 
-              <div className="space-y-4 text-base sm:text-lg text-white font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-                <p>
+              <div className="space-y-4">
+                <p className="section-note">
                   Beyond traditional portraiture, Viyana Productions approaches model portfolios and commercial fashion shoots with the rigor of a cinema set. Every frame is composed with intentional lighting, authentic cultural presence, and high-fashion aesthetics that capture both vulnerability and undeniable strength.
                 </p>
-                <p>
+                <p className="section-note">
                   From traditional Indian haute couture and saree editorials to modern commercial brand portfolios, we curate the entire visual atmosphere—mastering key-to-fill ratios, jewelry and textile illumination, and character-driven movement.
                 </p>
               </div>
@@ -1269,14 +1275,14 @@ export default function HomePage() {
               <div className="pt-2 flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto">
                 <Link
                   to="/work/models-portfolio-shoots"
-                  className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] inline-flex items-center justify-center gap-2.5 cursor-pointer"
+                  className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-sans text-xs uppercase tracking-wider font-semibold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] inline-flex items-center justify-center gap-2.5 cursor-pointer"
                 >
                   <span>VIEW MODEL PORTFOLIOS</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   to="/contact"
-                  className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white/5 hover:bg-white/15 border border-white/20 hover:border-white/40 text-[#fbf7ee] font-mono text-xs uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2.5 active:scale-95 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+                  className="group w-full sm:w-auto text-center px-8 py-4 rounded-full bg-white/5 hover:bg-white/15 border border-white/20 hover:border-white/40 text-[#fbf7ee] font-sans text-xs uppercase tracking-wider font-medium transition-all inline-flex items-center justify-center gap-2.5 active:scale-95 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
                 >
                   <span>BOOK A PORTFOLIO SHOOT</span>
                 </Link>
@@ -1306,16 +1312,17 @@ export default function HomePage() {
 
       {/* 4. CLIENT STORIES VIDEO TESTIMONIALS (AUTOMATIC RUNNING MARQUEE) */}
       <section className="relative w-full py-10 sm:py-16 lg:py-20 border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 space-y-6">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 space-y-3">
           {/* Header without arrow buttons */}
-          <div className="max-w-3xl">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/70 block mb-3 font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
-              03 / CLIENT PERSPECTIVES
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-              Client stories, not just client logos.
+          <div className="max-w-3xl space-y-2">
+            <p className="eyebrow">
+              <span className="eyebrow-bullet" />
+              03 / Client Perspectives
+            </p>
+            <h2 className="section-title">
+              Client Stories, <em>Not Just Client Logos.</em>
             </h2>
-            <p className="text-base sm:text-lg text-white font-medium leading-relaxed mt-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+            <p className="section-note">
               Real client feedback that shows how brands and creators experience Viyana Productions&apos; planning, production, and delivery on shoots, films, and visual content.
             </p>
           </div>
@@ -1331,7 +1338,7 @@ export default function HomePage() {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-white/70 font-medium px-2.5 py-1 rounded-full bg-white/5 border border-white/15">
+                    <span className="text-[10.5px] sm:text-[11.5px] font-sans uppercase tracking-wider text-white/75 font-medium px-2.5 py-1 rounded-full bg-white/5 border border-white/15">
                       {item.label}
                     </span>
                     <button
@@ -1344,20 +1351,20 @@ export default function HomePage() {
                       }
                       type="button"
                       aria-label={`Play testimonial from ${item.client}`}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white text-black text-white hover:text-[#080706] border border-white/20 text-[10px] font-mono uppercase tracking-wider transition-all active:scale-95 cursor-pointer shadow-sm"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white text-black text-white hover:text-[#080706] border border-white/20 text-[11px] font-sans uppercase tracking-wider transition-all active:scale-95 cursor-pointer shadow-sm font-medium"
                     >
                       <Play className="w-2.5 h-2.5 fill-current" />
                       <span>Watch</span>
                     </button>
                   </div>
 
-                  <blockquote className="text-sm sm:text-base md:text-lg font-display font-medium text-[#fbf7ee] leading-relaxed italic">
+                  <blockquote className="text-base sm:text-lg md:text-xl font-serif font-normal text-[#fbf7ee] leading-relaxed italic">
                     &ldquo;{item.quote}&rdquo;
                   </blockquote>
                 </div>
 
                 <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
-                  <cite className="text-xs sm:text-sm font-mono uppercase tracking-wider text-white font-semibold not-italic">
+                  <cite className="text-xs sm:text-sm font-sans uppercase tracking-wider text-white font-medium not-italic">
                     — {item.client}
                   </cite>
                   <div className="flex items-center gap-0.5 text-white text-xs tracking-widest select-none drop-shadow-[0_0_6px_rgba(255,255,255,0.15)]" aria-label="5 stars rating">
@@ -1378,9 +1385,13 @@ export default function HomePage() {
           style={{ contain: "strict", transform: "translateZ(0)" }}
         />
 
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 text-center mb-4 sm:mb-6 relative z-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-            CLIENT LOGOS
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 text-center mb-4 sm:mb-6 relative z-10 space-y-2">
+          <p className="eyebrow mx-auto justify-center">
+            <span className="eyebrow-bullet" />
+            Trusted Partnerships
+          </p>
+          <h2 className="section-title text-2xl sm:text-3xl md:text-4xl">
+            Brands We Have <em>Collaborated With.</em>
           </h2>
         </div>
 
@@ -1415,14 +1426,15 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto space-y-8 sm:space-y-10">
           {/* Top Section Header */}
-          <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/70 block font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
-              WHAT WE CREATE
-            </span>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-[1.08] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-              BUILT FOR BRANDS WITH BIG IDEAS
+          <div className="max-w-3xl space-y-2">
+            <p className="eyebrow">
+              <span className="eyebrow-bullet" />
+              04 / Creative Disciplines
+            </p>
+            <h2 className="section-title">
+              Built For Brands With <em>Big Ideas.</em>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-white font-medium leading-relaxed pt-1 max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+            <p className="section-note">
               From startups and growing businesses to established brands, Viyana Productions creates impactful visual content that brings ideas to life and helps businesses connect with their audience.
             </p>
           </div>
@@ -1667,7 +1679,7 @@ export default function HomePage() {
                                 <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${card.iconBg}`}>
                                   <Icon className={`w-5 h-5 ${card.iconColor}`} />
                                 </div>
-                                <h3 className="text-xl sm:text-2xl font-display font-extrabold text-neutral-900 tracking-tight leading-none">
+                                <h3 className="text-xl sm:text-2xl font-serif font-normal text-neutral-900 tracking-tight leading-none">
                                   {card.title}
                                 </h3>
                               </div>
@@ -1806,14 +1818,15 @@ export default function HomePage() {
             <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none blur-3xl" />
             
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-              <div className="max-w-2xl space-y-3">
-                <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/70 block font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
-                  GET STARTED
-                </span>
-                <h3 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-                  HAVE A STORY TO TELL?
+              <div className="max-w-2xl space-y-2">
+                <p className="eyebrow">
+                  <span className="eyebrow-bullet" />
+                  Get Started
+                </p>
+                <h3 className="section-title text-2xl sm:text-4xl md:text-5xl">
+                  Have A Story <em>To Tell?</em>
                 </h3>
-                <p className="text-sm sm:text-base text-[#fbf7ee]/80 font-normal leading-relaxed">
+                <p className="section-note">
                   Let’s turn your idea into something people remember.
                 </p>
               </div>
@@ -1821,7 +1834,7 @@ export default function HomePage() {
               <div className="shrink-0">
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider font-bold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] cursor-pointer"
+                  className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-white text-black hover:bg-neutral-200 font-sans text-xs uppercase tracking-wider font-semibold hover:shadow-[0_15px_45px_rgba(255,255,255,0.15)] hover:brightness-105 active:scale-95 transition-all shadow-[0_10px_35px_rgba(255,255,255,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] cursor-pointer"
                 >
                   <span>START A PROJECT</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -1840,17 +1853,18 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/80 block mb-3 font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
-                03 / SELECTED FILM ARCHIVE
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-                Latest corporate, product, and industrial video work.
+            <div className="space-y-2">
+              <p className="eyebrow">
+                <span className="eyebrow-bullet" />
+                05 / Selected Film Archive
+              </p>
+              <h2 className="section-title">
+                Latest Corporate, Product &amp; <em>Industrial Films.</em>
               </h2>
             </div>
             <Link
               to="/work"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 hover:bg-white text-black hover:text-[#080706] text-white font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-[0_4px_20px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:shadow-[0_10px_30px_rgba(255,255,255,0.15)] shrink-0 w-fit"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 hover:bg-white text-black hover:text-[#080706] text-white font-sans text-xs uppercase tracking-wider font-semibold transition-all shadow-[0_4px_20px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.08)] hover:shadow-[0_10px_30px_rgba(255,255,255,0.15)] shrink-0 w-fit"
             >
               <span>VIEW ALL WORK (13)</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -1878,24 +1892,24 @@ export default function HomePage() {
 
                 {/* Card Tags & Details */}
                 <div className="relative z-10 space-y-2">
-                  <div className="flex items-center justify-between text-[10px] font-mono">
-                    <span className="bg-black/20 px-3.5 py-1 rounded-full border border-white/20 uppercase tracking-wider text-white font-semibold shadow-sm">
+                  <div className="flex items-center justify-between text-[11px] font-sans">
+                    <span className="bg-black/40 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/20 uppercase tracking-wider text-white font-medium shadow-sm">
                       {project.category}
                     </span>
-                    <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-full bg-white/10 border border-white/20 text-white">
+                    <span className="font-sans text-xs font-semibold px-2 py-0.5 rounded-full bg-white/10 border border-white/20 text-white">
                       0{idx + 1}
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-display font-bold text-white group-hover:text-white transition-colors uppercase tracking-tight pt-1 drop-shadow-md">
+                  <h3 className="text-xl sm:text-2xl font-serif font-normal text-white group-hover:text-[#c5a880] transition-colors tracking-tight pt-1 drop-shadow-md">
                     {project.title}
                   </h3>
 
-                  <p className="text-xs font-mono uppercase tracking-wider text-[#fbf7ee]/65">
+                  <p className="text-xs font-sans uppercase tracking-wider text-[#fbf7ee]/75">
                     {project.client} • {project.year}
                   </p>
 
-                  <div className="pt-3 flex items-center text-xs font-mono font-semibold text-white group-hover:text-white transition-colors">
+                  <div className="pt-3 flex items-center text-xs font-sans font-semibold text-white group-hover:text-white transition-colors">
                     <span>VIEW CASE STUDY</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform group-hover:translate-x-1" />
                   </div>
@@ -1913,14 +1927,15 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
-          <div className="max-w-3xl">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/80 block mb-3 font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/15 w-fit">
-              04 / PRODUCTION ARCHITECTURE
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-              One team from first idea to final film.
+          <div className="max-w-3xl space-y-2">
+            <p className="eyebrow">
+              <span className="eyebrow-bullet" />
+              06 / Production Architecture
+            </p>
+            <h2 className="section-title">
+              One Team From First Idea To <em>Final Film.</em>
             </h2>
-            <p className="text-base sm:text-lg text-white font-medium leading-relaxed mt-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+            <p className="section-note">
               A disciplined 5-stage production pipeline designed for creative clarity, transparent collaboration, and broadcast-grade finishing.
             </p>
           </div>
@@ -1928,10 +1943,10 @@ export default function HomePage() {
           {/* 5-Step Process Flow */}
           <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-[#14110d]/90 to-[#0d0b09]/90 border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.08)] backdrop-blur-2xl space-y-8">
             <div className="border-b border-white/15 pb-5 flex items-center justify-between">
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-white font-bold">
+              <span className="text-xs font-sans uppercase tracking-[0.2em] text-white font-semibold">
                 END-TO-END WORKFLOW PIPELINE
               </span>
-              <span className="text-xs font-mono text-white/60 font-semibold">5 PHASES • 100% TRANSPARENCY</span>
+              <span className="text-xs font-sans text-white/60 font-medium">5 PHASES • 100% TRANSPARENCY</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
@@ -1966,17 +1981,17 @@ export default function HomePage() {
                   key={item.step}
                   className="relative p-5 sm:p-6 rounded-2xl bg-[#1a1611]/70 border border-white/15 hover:border-white/40/55 hover:bg-[#221c14]/85 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.05)] flex flex-col justify-between min-h-[160px] group"
                 >
-                  <div className="flex items-center justify-between text-xs font-mono mb-4">
-                    <span className="font-bold text-white px-2.5 py-1 rounded-full bg-white/10 border border-white/20">
+                  <div className="flex items-center justify-between text-xs font-sans mb-4">
+                    <span className="font-semibold text-white px-2.5 py-1 rounded-full bg-white/10 border border-white/20">
                       {item.step}
                     </span>
                     {idx < 4 && <span className="hidden lg:inline text-white/50 font-bold group-hover:translate-x-0.5 transition-transform">→</span>}
                   </div>
                   <div>
-                    <strong className="text-sm font-display font-bold text-white block uppercase tracking-tight mb-2">
+                    <strong className="text-sm font-serif font-normal text-white block uppercase tracking-tight mb-2">
                       {item.title}
                     </strong>
-                    <p className="text-xs text-neutral-200 leading-relaxed font-normal">
+                    <p className="text-xs text-neutral-300 leading-relaxed font-normal font-sans">
                       {item.desc}
                     </p>
                   </div>
@@ -1994,12 +2009,13 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
           {/* Section Head */}
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/80 block mb-3 font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/15 w-fit mx-auto">
-              FAQ
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight text-[#f3f3ef] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-              Frequently Asked Questions
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <p className="eyebrow mx-auto justify-center">
+              <span className="eyebrow-bullet" />
+              Common Inquiries
+            </p>
+            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">
+              Frequently Asked <em>Questions.</em>
             </h2>
           </div>
 
@@ -2025,10 +2041,10 @@ export default function HomePage() {
                       className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 cursor-pointer"
                     >
                       <div className="flex items-start gap-3 sm:gap-4">
-                        <span className="font-mono text-xs text-white font-bold px-2 py-0.5 rounded bg-white/5 border border-white/15 pt-0.5 shrink-0">
+                        <span className="font-sans text-xs text-[#c5a880] font-medium px-2 py-0.5 rounded bg-white/5 border border-white/15 pt-0.5 shrink-0">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="text-sm sm:text-base font-semibold text-white tracking-tight leading-snug">
+                        <span className="text-sm sm:text-base font-sans font-medium text-white tracking-normal leading-snug">
                           {faq.question}
                         </span>
                       </div>
@@ -2085,10 +2101,10 @@ export default function HomePage() {
                       className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 cursor-pointer"
                     >
                       <div className="flex items-start gap-3 sm:gap-4">
-                        <span className="font-mono text-xs text-white font-bold px-2 py-0.5 rounded bg-white/5 border border-white/15 pt-0.5 shrink-0">
+                        <span className="font-sans text-xs text-[#c5a880] font-medium px-2 py-0.5 rounded bg-white/5 border border-white/15 pt-0.5 shrink-0">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="text-sm sm:text-base font-semibold text-white tracking-tight leading-snug">
+                        <span className="text-sm sm:text-base font-sans font-medium text-white tracking-normal leading-snug">
                           {faq.question}
                         </span>
                       </div>

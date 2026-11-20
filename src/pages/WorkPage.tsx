@@ -103,24 +103,20 @@ export default function WorkPage() {
 
             {/* Monumental Headline: SELECTED WORK. */}
             <div className="mb-4 sm:mb-6">
-              <span className="text-[9px] sm:text-[11px] font-mono tracking-[0.2em] sm:tracking-[0.3em] uppercase block mb-1.5 sm:mb-2 text-white/40">
-                [ 01 // PORTFOLIO ARCHIVE ]
-              </span>
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight uppercase text-white leading-[1.02]">
-                SELECTED{" "}
-                <span className="text-white/40 hover:text-white transition-colors duration-500">
-                  WORK.
-                </span>
+              <div className="eyebrow mb-2 sm:mb-3">
+                <span className="eyebrow-bullet" />
+                <span>PORTFOLIO ARCHIVE</span>
+              </div>
+              <h1 className="section-title text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-tight">
+                Selected <em>Works.</em>
               </h1>
             </div>
 
             {/* Headline Subtitle & Core Capabilities Deck */}
             <div className="space-y-3 sm:space-y-4 pt-1 pb-5 border-b border-white/10">
-              <div className="border-l-2 border-white/60 pl-3 sm:pl-6 py-0.5">
-                <p className="text-sm sm:text-lg md:text-xl font-light max-w-3xl leading-relaxed text-white/90">
-                  We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
-                </p>
-              </div>
+              <p className="section-note text-sm sm:text-base md:text-lg max-w-3xl leading-relaxed">
+                We create cinematic campaigns, commercial films, and distinctive visual experiences that help ambitious brands get noticed and remembered.
+              </p>
 
               {/* Core Capabilities Pills */}
               <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-1">
