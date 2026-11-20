@@ -793,12 +793,12 @@ function ModelShoot() {
 
 const productShootImages = [
   {
-    name: 'Melanex Pigment Architecture Face Serum',
-    type: 'Serum · 30 ml',
-    category: 'Serum',
-    image: '/images/product-shoot/01-melanex-serum.jpg',
-    alt: 'Dermera Melanex Pigment Architecture face serum bottle',
-    description: 'Tranexamic acid and licorice formulation captured with studio mirror reflections and sharp macro detail.',
+    name: 'Dewexa Dermal Bio Cloud Cream — Podium & Packaging',
+    type: 'Moisturizer · 50 g',
+    category: 'Cream',
+    image: '/images/product-shoot/dewexa-biocloud-cream-podium.jpg',
+    alt: 'Dermera Dewexa Dermal Bio Cloud Cream jar with crimson luxury box on studio podium',
+    description: 'Polished gold metallic lid paired with textured crimson red carton on studio pedestal.',
   },
   {
     name: 'Heritage Temple Gold Necklace & Chessboard Study',
@@ -812,9 +812,9 @@ const productShootImages = [
     name: 'Genex Advanced PDRN+ Revitalizing Serum',
     type: 'Serum · 30 ml',
     category: 'Serum',
-    image: '/images/product-shoot/06-genex-serum.jpg',
-    alt: 'Dermera Genex Advanced PDRN+ Revitalizing face serum bottle',
-    description: 'Frosted matte finish with delicate pastel amber gradient, showcasing precision dispenser typography.',
+    image: '/images/product-shoot/genex-pdrn-serum-ribbons.jpg',
+    alt: 'Dermera Genex Advanced PDRN+ Revitalizing face serum bottle with pink liquid ribbons',
+    description: 'Frosted glass dispenser enveloped in dynamic swirling pink serum ribbons and ambient droplets.',
   },
   {
     name: 'Artisanal Gold Filigree Jhumkas with Sapphire Beads',
@@ -825,12 +825,12 @@ const productShootImages = [
     description: 'Intricate jaali dome work adorned with royal blue droplet beads, highlighting delicate gold metallurgy against clean architectural contrast.',
   },
   {
-    name: 'Luminex Luminous Face Wash',
+    name: 'Luminex Luminous Face Wash — Foaming Lather In-Hand',
     type: 'Cleanser · 100 ml',
     category: 'Cleanser',
-    image: '/images/product-shoot/02-luminex-face-wash.jpg',
-    alt: 'Dermera Luminex luminous face wash tube and packaging box',
-    description: 'High-contrast studio lighting capturing the rich metallic gold foil and deep charcoal black luxury carton.',
+    image: '/images/product-shoot/luminex-facewash-foam-hand.jpg',
+    alt: 'Dermera Luminex luminous face wash tube in hand with rich cleansing lather',
+    description: 'Matte black tube nestled in rich cloud-like cleansing lather against a fresh studio backdrop.',
   },
   {
     name: 'Peacock Motif Antique Gold Studs — Parisian Accent',
@@ -841,12 +841,12 @@ const productShootImages = [
     description: 'Traditional Mayura peacock carvings with ruby eyes mounted on a Parisian bronze spire, blending heritage craftsmanship with contemporary concept.',
   },
   {
-    name: 'Dewexa Dermal Bio Cloud Cream',
+    name: 'Dewexa Dermal Bio Cloud Cream — Zero-Gravity Bubbles',
     type: 'Moisturizer · 50 g',
     category: 'Cream',
-    image: '/images/product-shoot/03-dewexa-cloud-cream.jpg',
-    alt: 'Dermera Dewexa Dermal Bio Cloud Cream jar and crimson box',
-    description: 'Polished gold metallic lid paired with crimson red textured box, angled with razor-sharp reflection.',
+    image: '/images/product-shoot/dewexa-biocloud-cream-bubbles.jpg',
+    alt: 'Dermera Dewexa Dermal Bio Cloud Cream floating with crystalline bubbles on soft azure blue',
+    description: 'Weightless zero-gravity suspension surrounded by crystalline water spheres on soft azure blue backdrop.',
   },
   {
     name: 'Sculptural Antique Gold Bangles — Contrast Composition',
@@ -857,12 +857,12 @@ const productShootImages = [
     description: 'High-contrast studio editorial featuring antique gold floral kadas held by matte black sculptural hands emerging from torn white paper.',
   },
   {
-    name: 'Spiculex Advanced Bio Micro Needle Serum',
-    type: 'Micro Needle Serum · 30 ml',
+    name: 'Primex Dermal Repair Toner Cum Face Serum — Silhouette Study',
+    type: 'Serum · 30 ml',
     category: 'Serum',
-    image: '/images/product-shoot/04-spiculex-serum.jpg',
-    alt: 'Dermera Spiculex Advanced Bio micro needle serum bottle and box',
-    description: 'Amber glass bottle paired with artisanal textured box, highlighting micro-needle bio formulation details.',
+    image: '/images/product-shoot/primex-toner-serum-silhouette.jpg',
+    alt: 'Dermera Primex Dermal Repair Toner Serum floating with silhouette hands behind scrim',
+    description: 'Conceptual editorial installation with floating golden elixir surrounded by ethereal shadowy hands behind diffused silk scrim.',
   },
   {
     name: 'Pearl Butterfly Fine Gold Chain — Nest Installation',
@@ -873,12 +873,20 @@ const productShootImages = [
     description: 'Organic conceptual still life featuring iridescent mother-of-pearl butterflies on a fine gold chain, delicately draped over an egg in a natural twig nest.',
   },
   {
-    name: 'Dewexa Bio Cloud Cream — Angle View',
-    type: 'Packaging & Perspective Study · 50 g',
-    category: 'Cream',
-    image: '/images/product-shoot/05-dewexa-detail.jpg',
-    alt: 'Dermera Dewexa Bio Cloud Cream studio perspective view',
-    description: 'Perspective 3D angle composition showcasing gold metallic reflection, box typography, and glass jar depth.',
+    name: 'Luminex Luminous Face Wash — Botanical Moisture & Dewdrop',
+    type: 'Cleanser · 100 ml',
+    category: 'Cleanser',
+    image: '/images/product-shoot/luminex-facewash-botanical-dew.jpg',
+    alt: 'Dermera Luminex face wash tube resting on foam with fresh green leaves and dew drops',
+    description: 'Resting on dense white cleansing foam framed by dew-kissed betel leaves on organic green set.',
+  },
+  {
+    name: 'Luminex Luminous Face Wash — Golden Gel Texture Pour',
+    type: 'Cleanser · 100 ml',
+    category: 'Cleanser',
+    image: '/images/product-shoot/luminex-facewash-gel-pour.jpg',
+    alt: 'Dermera Luminex face wash dispensing viscous golden cleansing gel into hand',
+    description: 'Sensorial dispensing action capturing golden amber cleansing gel streaming into open palm on peach backdrop.',
   },
 ]
 
@@ -1280,6 +1288,21 @@ function ProductShoot() {
                 <span>{isProductVideoPlaying ? 'Pause' : 'Play'}</span>
               </button>
             </div>
+          </div>
+
+          {/* Mobile Only: Numbered video selectors 1 2 3 4 5 directly below video player */}
+          <div className="product-mobile-numbers-bar" aria-label="Select product video">
+            {productShootVideos.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setActiveProductVideoIndex(idx)}
+                className={`product-mobile-num-btn ${activeProductVideoIndex === idx ? 'active' : ''}`}
+                aria-label={`Video ${idx + 1}`}
+              >
+                {idx + 1}
+              </button>
+            ))}
           </div>
 
           <figcaption>
@@ -2398,58 +2421,58 @@ function About() {
       badge: '03 / Cultural Grace',
     },
     {
-      id: 'melanex-serum',
+      id: 'luminex-botanical',
       type: 'image',
-      title: 'Melanex Pigment Architecture Face Serum',
-      subtitle: 'Product Shoot · 30 ML Studio Master',
-      image: '/images/product-shoot/01-melanex-serum.jpg',
-      alt: 'Melanex Face Serum bottle with studio mirror reflection',
-      badge: '04 / Macro Cosmetics',
+      title: 'Luminex Luminous Face Wash & Botanical Leaves',
+      subtitle: 'Product Shoot · Foam & Dewdrop Study',
+      image: '/images/product-shoot/luminex-facewash-botanical-dew.jpg',
+      alt: 'Luminex Face Wash on foam with fresh green leaves and water drops',
+      badge: '04 / Botanical Cosmetics',
     },
     {
-      id: 'luminex-cleanser',
+      id: 'luminex-foam-hand',
       type: 'image',
-      title: 'Luminex Luminous Face Wash & Luxury Carton',
-      subtitle: 'Product Shoot · Gold Foil Packaging Study',
-      image: '/images/product-shoot/02-luminex-face-wash.jpg',
-      alt: 'Luminex face wash tube and charcoal luxury carton',
-      badge: '05 / Luxury Packaging',
+      title: 'Luminex Luminous Face Wash In-Hand',
+      subtitle: 'Product Shoot · Foaming Lather Study',
+      image: '/images/product-shoot/luminex-facewash-foam-hand.jpg',
+      alt: 'Luminex face wash tube held in hand with rich lather',
+      badge: '05 / Sensorial Skincare',
     },
     {
-      id: 'dewexa-cream',
+      id: 'dewexa-podium',
       type: 'image',
-      title: 'Dewexa Dermal Bio Cloud Cream',
+      title: 'Dewexa Dermal Bio Cloud Cream Podium',
       subtitle: 'Product Shoot · Luxury Packaging & Texture',
-      image: '/images/product-shoot/03-dewexa-cloud-cream.jpg',
-      alt: 'Dewexa Cloud Cream jar and textured packaging',
+      image: '/images/product-shoot/dewexa-biocloud-cream-podium.jpg',
+      alt: 'Dewexa Cloud Cream jar and crimson packaging box on pedestal',
       badge: '06 / Tactile Packaging',
     },
     {
-      id: 'spiculex-bottle',
+      id: 'primex-silhouette',
       type: 'image',
-      title: 'Spiculex Advanced Bio Micro Needle Serum',
-      subtitle: 'Product Shoot · Amber Glass Studio Study',
-      image: '/images/product-shoot/04-spiculex-serum.jpg',
-      alt: 'Spiculex Advanced Bio micro needle serum bottle',
-      badge: '07 / Glass & Optics',
+      title: 'Primex Dermal Repair Toner Cum Face Serum',
+      subtitle: 'Product Shoot · Shadow Silhouette Installation',
+      image: '/images/product-shoot/primex-toner-serum-silhouette.jpg',
+      alt: 'Primex Dermal Repair Toner Serum floating with silhouette hands behind scrim',
+      badge: '07 / Conceptual Optics',
     },
     {
-      id: 'dewexa-detail',
+      id: 'dewexa-bubbles',
       type: 'image',
-      title: 'Dewexa Packaging Perspective & 3D Depth Study',
-      subtitle: 'Product Shoot · Angle & Depth',
-      image: '/images/product-shoot/05-dewexa-detail.jpg',
-      alt: 'Dewexa Bio Cloud Cream studio perspective view',
-      badge: '08 / Perspective Study',
+      title: 'Dewexa Bio Cloud Cream Floating in Bubbles',
+      subtitle: 'Product Shoot · Zero-Gravity Levitation',
+      image: '/images/product-shoot/dewexa-biocloud-cream-bubbles.jpg',
+      alt: 'Dewexa Bio Cloud Cream floating with crystalline bubbles',
+      badge: '08 / Levitation Study',
     },
     {
-      id: 'genex-serum',
+      id: 'genex-ribbons',
       type: 'image',
       title: 'Genex Advanced PDRN+ Revitalizing Serum',
-      subtitle: 'Product Shoot · Frosted Matte & Amber Gradient',
-      image: '/images/product-shoot/06-genex-serum.jpg',
-      alt: 'Genex Advanced PDRN+ Revitalizing face serum bottle',
-      badge: '09 / Precision Dispenser',
+      subtitle: 'Product Shoot · Swirling Pink Liquid Ribbons',
+      image: '/images/product-shoot/genex-pdrn-serum-ribbons.jpg',
+      alt: 'Genex Advanced PDRN+ Revitalizing face serum bottle with pink liquid ribbons',
+      badge: '09 / Liquid Motion',
     },
   ]
 

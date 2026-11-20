@@ -59,7 +59,7 @@ const studioLinks = [
 ];
 
 export default function Footer({
-  variant = "dark",
+  variant = "light",
   hideCtaBanner = false,
 }: {
   variant?: "dark" | "light";

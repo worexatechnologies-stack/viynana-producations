@@ -1,6 +1,13 @@
+# Prevent directory listings
+Options -Indexes
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Block hidden files and folders (.git, .env, etc.) except .well-known
+  RewriteRule "(^|/)\.(?!well-known)" - [F]
+
   RewriteRule ^index\.html$ - [L]
   RewriteRule ^api/contact/?$ /api/contact.php [L,QSA]
 
@@ -78,7 +85,7 @@
   </FilesMatch>
 
   # Block access to sensitive files
-  <FilesMatch "(\.env.*|\.log|inquiries\.json|\.git.*|package\.json|package-lock\.json|tsconfig\.json)$">
+  <FilesMatch "(\.env.*|\.log|inquiries\.json|\.git.*|package\.json|package-lock\.json|tsconfig\.json|composer\..*|\.htaccess|\.htpasswd|\.ini|\.sql|\.bak|\.swp)$">
     <IfModule mod_authz_core.c>
       Require all denied
     </IfModule>
@@ -94,4 +101,6 @@
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header set X-XSS-Protection "1; mode=block"
+  Header set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
 </IfModule>

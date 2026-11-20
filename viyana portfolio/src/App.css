@@ -441,6 +441,9 @@
   background-color: transparent !important;
   border-radius: 16px;
 }
+.product-mobile-numbers-bar {
+  display: none;
+}
 .product-film-tag {
   position: absolute;
   top: 18px;
@@ -4124,18 +4127,42 @@
     width: 100% !important;
     justify-content: space-between !important;
   }
-  .product-film-side {
-    padding: 0 !important;
-    border-left: none !important;
-    border-top: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
+  .product-mobile-numbers-bar {
     display: flex !important;
-    flex-direction: column !important;
-    overflow: hidden !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin: 14px auto 8px auto !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    box-sizing: border-box !important;
+  }
+  .product-mobile-num-btn {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    border: 1.5px solid #dcd7ce !important;
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    padding: 0 !important;
+  }
+  .product-mobile-num-btn.active {
+    background: #111111 !important;
+    color: #ffffff !important;
+    border-color: #111111 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28) !important;
+    transform: scale(1.08) !important;
+  }
+  .product-film-side {
+    display: none !important;
   }
   .product-side-card {
     text-align: left !important;
@@ -5805,18 +5832,43 @@
     justify-content: space-between !important;
   }
 
-  .product-film-side {
-    padding: 0 !important;
-    border-left: none !important;
-    border-top: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
+  .product-mobile-numbers-bar {
     display: flex !important;
-    flex-direction: column !important;
-    overflow: hidden !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin: 14px auto 8px auto !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    box-sizing: border-box !important;
+  }
+  .product-mobile-num-btn {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    border: 1.5px solid #dcd7ce !important;
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    padding: 0 !important;
+  }
+  .product-mobile-num-btn.active {
+    background: #111111 !important;
+    color: #ffffff !important;
+    border-color: #111111 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28) !important;
+    transform: scale(1.08) !important;
+  }
+
+  .product-film-side {
+    display: none !important;
   }
 
   .product-side-card {

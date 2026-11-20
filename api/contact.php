@@ -3,8 +3,10 @@
 error_reporting(0);
 ini_set('display_errors', '0');
 
-// 1. Never cache API responses (instruct Hostinger CDN and browser)
+// 1. Security & Cache-Control Headers
 header('Content-Type: application/json; charset=UTF-8');
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: SAMEORIGIN');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
@@ -35,7 +37,39 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// 4. Extract and sanitize input
+// 4. Payload Size Limit (Max 64KB to prevent buffer/memory exhaustion)
+if (isset($_SERVER['CONTENT_LENGTH']) && (int)$_SERVER['CONTENT_LENGTH'] > 65536) {
+    http_response_code(413);
+    echo json_encode(['success' => false, 'error' => 'Payload too large']);
+    exit;
+}
+
+// 5. Rate Limiting Protection (Max 5 requests per 60 seconds per IP)
+$clientIp = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+$clientIp = explode(',', $clientIp)[0];
+$clientIp = preg_replace('/[^0-9a-fA-F:.]/', '', trim($clientIp));
+
+$rateLimitDir = sys_get_temp_dir() . '/vp_ratelimit';
+if (!is_dir($rateLimitDir)) {
+    @mkdir($rateLimitDir, 0700, true);
+}
+$rateFile = $rateLimitDir . '/' . md5($clientIp) . '.json';
+$now = time();
+$requests = [];
+if (file_exists($rateFile)) {
+    $raw = @file_get_contents($rateFile);
+    $requests = json_decode($raw, true) ?: [];
+    $requests = array_filter($requests, function($t) use ($now) { return ($now - $t) < 60; });
+}
+if (count($requests) >= 5) {
+    http_response_code(429);
+    echo json_encode(['success' => false, 'error' => 'Too many requests. Please wait a moment before trying again.']);
+    exit;
+}
+$requests[] = $now;
+@file_put_contents($rateFile, json_encode($requests), LOCK_EX);
+
+// 6. Extract input
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
@@ -43,12 +77,27 @@ if (!$data) {
     $data = $_POST;
 }
 
-$name = htmlspecialchars(trim($data['name'] ?? ''), ENT_QUOTES, 'UTF-8');
-$rawEmail = trim($data['email'] ?? '');
-$email = !empty($rawEmail) ? filter_var($rawEmail, FILTER_SANITIZE_EMAIL) : '';
-$phone = htmlspecialchars(trim($data['phone'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
-$service = htmlspecialchars(trim($data['service'] ?? 'General Inquiry'), ENT_QUOTES, 'UTF-8');
-$message = htmlspecialchars(trim($data['message'] ?? ''), ENT_QUOTES, 'UTF-8');
+// 7. Honeypot check (silently drop bot submissions without sending email)
+if (!empty($data['website']) || !empty($data['company_url']) || !empty($data['hp_field'])) {
+    echo json_encode([
+        'success' => true,
+        'message' => 'Thank you! Your message has been sent successfully.'
+    ]);
+    exit;
+}
+
+// 8. Sanitize & Prevent Email Header Injection (strip newlines from header fields)
+$cleanHeader = function($val, $maxLen = 120) {
+    $val = str_replace(["\r", "\n", "%0a", "%0d"], '', trim($val));
+    return mb_substr($val, 0, $maxLen, 'UTF-8');
+};
+
+$name = htmlspecialchars($cleanHeader($data['name'] ?? '', 120), ENT_QUOTES, 'UTF-8');
+$rawEmail = $cleanHeader($data['email'] ?? '', 120);
+$email = filter_var($rawEmail, FILTER_VALIDATE_EMAIL) ? $rawEmail : '';
+$phone = htmlspecialchars($cleanHeader($data['phone'] ?? 'N/A', 40), ENT_QUOTES, 'UTF-8');
+$service = htmlspecialchars($cleanHeader($data['service'] ?? 'General Inquiry', 100), ENT_QUOTES, 'UTF-8');
+$message = htmlspecialchars(mb_substr(trim($data['message'] ?? ''), 0, 5000, 'UTF-8'), ENT_QUOTES, 'UTF-8');
 
 if (empty($name) || empty($message) || (empty($email) && empty($phone))) {
     http_response_code(400);
@@ -59,9 +108,9 @@ if (empty($name) || empty($message) || (empty($email) && empty($phone))) {
     exit;
 }
 
-$to = 'info.viyanaproductions@gmail.com';
-$smtpUser = 'info.viyanaproductions@gmail.com';
-$smtpPass = 'rterfgoevjnrqztg';
+$to = getenv('CONTACT_EMAIL_TO') ?: 'info.viyanaproductions@gmail.com';
+$smtpUser = getenv('SMTP_USER') ?: 'info.viyanaproductions@gmail.com';
+$smtpPass = getenv('SMTP_PASS') ?: getenv('GMAIL_APP_PASSWORD') ?: 'rterfgoevjnrqztg';
 $fromName = 'Viyana Productions Web';
 $effectiveEmail = !empty($email) ? $email : 'info.viyanaproductions@gmail.com';
 
