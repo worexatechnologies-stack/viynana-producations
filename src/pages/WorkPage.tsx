@@ -8,9 +8,22 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import {
+  Tv,
+  Video,
+  Camera,
+  Clapperboard,
+  Palette,
   ArrowRight,
   ArrowUpRight,
 } from "lucide-react";
+
+const coreCapabilities = [
+  { name: "Advertisement & management", icon: Tv },
+  { name: "Production and shoot", icon: Video },
+  { name: "Photo & video shoot", icon: Camera },
+  { name: "Production house", icon: Clapperboard },
+  { name: "Branding", icon: Palette },
+];
 
 export default function WorkPage() {
   const headerRef = useRef<HTMLDivElement>(null);
