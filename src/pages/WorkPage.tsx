@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { projects } from "@/data/projects";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -14,7 +15,7 @@ import {
   Clapperboard,
   Palette,
   ArrowRight,
-  ArrowUpRight,
+  ArrowUpRight
 } from "lucide-react";
 
 const coreCapabilities = [
@@ -44,7 +45,7 @@ export default function WorkPage() {
     : "https://viyana.productions/work";
 
   return (
-    <main className="min-h-screen bg-[#fbfaf8] text-[#20201e] selection:bg-[#111827] selection:text-white font-portfolio-sans relative overflow-x-hidden pb-24 md:pb-0">
+    <main className="work-portfolio min-h-screen bg-brand-black text-brand-light relative overflow-x-hidden selection:bg-white selection:text-black">
       <SEO
         title={metaTitle}
         description={metaDescription}
@@ -67,18 +68,25 @@ export default function WorkPage() {
 
       <Navbar />
 
-      {/* 1. HERO HEADER */}
+      {/* 1. HERO HEADER (CINEMATIC ARCHITECTURE MATCHING ABOUT PAGE) */}
       <section
         ref={headerRef}
-        className="relative pt-24 sm:pt-32 md:pt-36 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-12 border-b border-[#e7e6e2] bg-[#fbfaf8] overflow-hidden"
+        className="work-studio-backdrop relative pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-12 border-b border-white/10 overflow-hidden bg-[#050505]"
       >
+        {/* Cinematic Ambient Flare Glows (Matching About Page) */}
+        <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[700px] h-[380px] bg-[radial-gradient(circle,rgba(245,158,11,0.06)_0%,rgba(168,85,247,0.04)_45%,transparent_70%)] rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/3 right-4 w-[600px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none rounded-full blur-[120px]" />
+        
+        {/* Tactical Director's Optical Dot Grid (Matching About Page) */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0d_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-50" />
+
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="flex flex-col">
             
             {/* Top Brand & Discipline Status Strip */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
               <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md w-fit">
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                 <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] font-semibold text-white">
                   VIYANA PRODUCTIONS
                 </span>
@@ -119,7 +127,7 @@ export default function WorkPage() {
                       key={cap.name}
                       className="inline-flex items-center gap-2 px-3 sm:gap-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/10 hover:border-white/30 bg-white/[0.035] hover:bg-white/[0.08] text-white text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-sm hover:scale-[1.02]"
                     >
-                      <Icon className="w-3.5 h-3.5 text-amber-400/90" />
+                      <Icon className="w-3.5 h-3.5 text-white/80" />
                       <span>{cap.name}</span>
                     </span>
                   );
@@ -215,35 +223,36 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* 2. THE 13 SERVICES GRID & SHOWCASE */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-12 relative bg-[#fbfaf8] border-b border-[#e7e6e2]">
+      {/* 2. THE 13 SERVICES GRID & SHOWCASE (MATCHING ABOUT PAGE BACKDROP) */}
+      <section className="work-studio-backdrop py-8 sm:py-14 px-4 sm:px-6 lg:px-12 relative bg-brand-black border-b border-white/10 overflow-hidden">
+        {/* Subtle Ambient Radial Glow (Matching About Page) */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[400px] bg-white/[0.015] blur-[150px] pointer-events-none rounded-full" />
+
         <div className="container mx-auto max-w-7xl relative z-10">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-10">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0ea5e9]/20 bg-[#0ea5e9]/10 text-[#0284c7] mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] animate-pulse" />
-                <span className="text-[11px] font-portfolio-sans uppercase tracking-[0.2em] font-bold text-[#0284c7]">
-                  OUR 13 SERVICES
-                </span>
+              <div className="eyebrow mb-2">
+                <span className="eyebrow-bullet" />
+                <span>OUR 13 SERVICES</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e]">
-                THE 13 <em className="italic text-[#0284c7] font-normal">SERVICES.</em>
+              <h2 className="section-title text-2xl sm:text-4xl lg:text-5xl">
+                The 13 <em>Services.</em>
               </h2>
-              <p className="text-sm sm:text-base font-portfolio-sans text-[#686762] mt-3 max-w-2xl leading-relaxed">
+              <p className="section-note text-xs sm:text-sm mt-3 max-w-2xl leading-relaxed">
                 Click any of our 13 services to inspect the full explanation, deliverables, specifications, and complete case study.
               </p>
             </div>
 
-            <div className="flex items-center gap-3 font-portfolio-sans text-xs shrink-0">
-              <span className="px-4 py-2 rounded-full border border-[#dedbd4] bg-white text-[#20201e] font-bold tracking-wider uppercase">
+            <div className="flex items-center gap-3 font-mono text-xs shrink-0 text-white/60">
+              <span className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white font-semibold">
                 13 DISCIPLINES
               </span>
             </div>
           </div>
 
           {/* 13 Services Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
             {projects.map((service, index) => {
               const heroImg = service.thumbnail || service.gallery[0];
 
@@ -258,11 +267,11 @@ export default function WorkPage() {
                 >
                   <Link
                     to={`/work/${service.slug}`}
-                    className="group relative h-full rounded-2xl sm:rounded-3xl border border-[#e7e6e2] hover:border-[#0ea5e9] bg-white transition-all duration-300 hover:-translate-y-1 cursor-pointer overflow-hidden flex flex-col justify-between block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+                    className="group relative h-full rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/40 shadow-lg hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(255,255,255,0.08)] bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 hover:-translate-y-1.5 cursor-pointer overflow-hidden flex flex-col justify-between block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
                     aria-label={`View full explanation and case study for ${service.title}`}
                   >
                     {/* Top Thumbnail Image */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#f0eee9]">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden">
                       <img
                         src={heroImg}
                         alt={service.title}
@@ -270,47 +279,47 @@ export default function WorkPage() {
                         decoding="async"
                         width="600"
                         height="375"
-                        className="w-full h-full transition-all duration-700 ease-out object-cover group-hover:scale-105"
+                        className="w-full h-full transition-all duration-700 ease-out object-cover filter brightness-90 contrast-105 group-hover:scale-105 group-hover:brightness-105"
                       />
-                      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/90 via-black/30 to-black/10" />
 
                       {/* Badge & Number */}
-                      <div className="absolute top-3 left-3 right-3 flex justify-between items-center text-xs font-portfolio-sans pointer-events-none">
-                        <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#dedbd4] text-[#20201e] font-bold text-[10px] tracking-wider">
+                      <div className="absolute top-3 left-3 right-3 flex justify-between items-center text-xs font-mono pointer-events-none">
+                        <span className="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white font-bold text-[10px] tracking-wider">
                           [ {String(index + 1).padStart(2, "0")} ]
                         </span>
-                        <span className="px-2.5 py-0.5 rounded-full bg-white/95 backdrop-blur-md border border-[#dedbd4] text-[#686762] text-[10px] tracking-widest uppercase font-semibold">
+                        <span className="px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/80 text-[10px] tracking-widest uppercase">
                           {service.year}
                         </span>
                       </div>
 
                       {/* Hover Prompt */}
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
-                        <span className="px-4 py-2 rounded-full bg-[#111827] text-white font-portfolio-sans text-[11px] uppercase tracking-widest font-bold flex items-center gap-1.5 transform group-hover:scale-105 transition-transform">
+                        <span className="px-4 py-2 rounded-full bg-white text-black font-mono text-[11px] uppercase tracking-widest font-bold shadow-xl flex items-center gap-1.5 transform group-hover:scale-105 transition-transform">
                           <span>FULL EXPLANATION</span>
-                          <ArrowRight className="w-3.5 h-3.5 text-[#0ea5e9]" />
+                          <ArrowRight className="w-3.5 h-3.5" />
                         </span>
                       </div>
 
                       {/* Bottom Deliverable Tag */}
-                      <div className="absolute bottom-2.5 left-3 right-3 pointer-events-none text-[11px] font-portfolio-sans text-white font-medium drop-shadow-sm truncate">
+                      <div className="absolute bottom-2.5 left-3 right-3 pointer-events-none text-[10px] font-mono text-white/80 truncate">
                         {service.deliverableType}
                       </div>
                     </div>
 
                     {/* Card Content */}
-                    <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 gap-4 bg-white">
+                    <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 gap-4">
                       <div>
                         <div className="flex items-center justify-between gap-2 mb-1.5">
-                          <span className="text-[10px] font-portfolio-sans uppercase tracking-[0.2em] text-[#0284c7] font-bold">
+                          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/50">
                             {service.category}
                           </span>
-                          <ArrowUpRight className="w-4 h-4 text-[#8e8d88] group-hover:text-[#0284c7] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                          <ArrowUpRight className="w-3.5 h-3.5 text-white/30 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                         </div>
-                        <h3 className="text-xl sm:text-2xl font-portfolio-serif font-bold text-[#20201e] group-hover:text-[#0284c7] transition-colors tracking-tight line-clamp-1">
+                        <h3 className="text-lg sm:text-xl font-display font-bold uppercase text-white group-hover:text-brand-light transition-colors tracking-tight line-clamp-1">
                           {service.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-[#686762] font-portfolio-sans line-clamp-2 mt-2 leading-relaxed">
+                        <p className="text-xs text-brand-grey font-light line-clamp-2 mt-1.5 leading-relaxed">
                           {service.description}
                         </p>
                       </div>
@@ -321,13 +330,13 @@ export default function WorkPage() {
                           {service.scope.slice(0, 3).map((item, i) => (
                             <span
                               key={i}
-                              className="text-[10px] font-portfolio-sans px-2.5 py-1 rounded-full bg-[#fbfaf8] text-[#686762] border border-[#e7e6e2] truncate max-w-full font-medium"
+                              className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-white/80 border border-white/10 truncate max-w-full"
                             >
                               {item}
                             </span>
                           ))}
                           {service.scope.length > 3 && (
-                            <span className="text-[10px] font-portfolio-sans px-2 py-1 text-[#8e8d88] font-medium">
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 text-white/40">
                               +{service.scope.length - 3} more
                             </span>
                           )}
@@ -342,23 +351,27 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* 3. ABOUT VIYANA - IDEAS INTO VISUAL STORIES */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-[#e7e6e2] bg-[#fbfaf8] relative overflow-hidden">
+      {/* 3. ABOUT VIYANA - IDEAS INTO VISUAL STORIES (MATCHING DIRECTORS PAGE) */}
+      <section className="work-studio-backdrop py-16 sm:py-24 px-4 sm:px-6 lg:px-12 border-t border-white/10 bg-[#050505] relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none rounded-full" />
         <div className="container mx-auto max-w-6xl relative z-10">
-          {/* Floating Luxury Paper Card */}
-          <div className="p-8 sm:p-14 rounded-3xl bg-white text-[#20201e] border border-[#e7e6e2] grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center relative overflow-hidden">
+          {/* Floating Dark Luxury Card */}
+          <div className="p-8 sm:p-14 rounded-3xl bg-brand-dark text-brand-light border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.85)] grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center relative overflow-hidden selection:bg-white selection:text-black">
+            {/* Subtle tactile dot pattern inside card */}
+            <div className="absolute inset-0 bg-[radial-gradient(#ffffff0d_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
             <div className="lg:col-span-5 space-y-4 relative z-10">
-              <span className="text-xs font-portfolio-sans uppercase tracking-[0.2em] text-[#0284c7] block font-bold">
+              <span className="text-xs font-mono uppercase tracking-[0.25em] text-white/60 block font-semibold">
                 ABOUT VIYANA
               </span>
-              <h2 className="text-3xl sm:text-5xl font-portfolio-serif font-normal tracking-tight text-[#20201e] leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
                 IDEAS INTO <br />
-                <em className="italic text-[#0284c7] font-normal">VISUAL STORIES.</em>
+                <span className="font-extrabold text-white">VISUAL STORIES.</span>
               </h2>
               <div className="pt-2">
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#111827] text-white hover:bg-[#0284c7] font-portfolio-sans text-xs uppercase tracking-wider font-bold transition-all active:scale-95"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-neutral-200 active:scale-95 transition-all shadow-xl hover:scale-[1.02]"
                 >
                   <span>MORE ABOUT VIYANA</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -366,11 +379,11 @@ export default function WorkPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-7 space-y-4 text-sm sm:text-base text-[#686762] font-portfolio-sans font-normal leading-relaxed border-t lg:border-t-0 lg:border-l border-[#e7e6e2] pt-6 lg:pt-0 lg:pl-10 relative z-10">
+            <div className="lg:col-span-7 space-y-4 text-xs sm:text-sm md:text-base text-brand-grey font-light leading-relaxed border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-10 relative z-10">
               <p>
                 From commercial advertising and cinema shoots to mobile-first vertical series and full-scale film productions, Viyana Productions operates at the intersection of creative strategy, technical craft, and modern cultural relevance.
               </p>
-              <p className="text-[#20201e] font-medium">
+              <p className="text-white/90 font-medium">
                 Every project is directed and finished to international master standards — combining large format sensors, precision cinema lighting, and industry-grade DaVinci Resolve ACES color pipelines.
               </p>
             </div>

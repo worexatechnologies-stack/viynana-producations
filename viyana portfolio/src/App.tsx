@@ -3191,7 +3191,7 @@ function Footer() {
           <a
             className="footer-loc-address"
             href="https://www.google.com/maps/search/?api=1&query=4th+Floor,+Gopalan+Workspace,+Kathriguppe+Main+Rd,+3rd+Phase,+Banashankari+3rd+Stage,+Banashankari,+Bengaluru,+Karnataka+560085"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             target="_blank"
             title="Open studio location in Google Maps"
           >
@@ -3213,10 +3213,10 @@ function Footer() {
 
         <div className="footer-column">
           <span className="footer-label">Follow along</span>
-          <a href="https://www.instagram.com/viyana.productions?utm_source=qr&xtok=bWR1eTBxZHVpOGp3" rel="noreferrer" target="_blank">
+          <a href="https://www.instagram.com/viyana.productions?utm_source=qr&xtok=bWR1eTBxZHVpOGp3" rel="noopener noreferrer" target="_blank">
             Instagram <ArrowUpRight size={13} />
           </a>
-          <a href="https://www.linkedin.com/company/viyana-production/" rel="noreferrer" target="_blank">
+          <a href="https://www.linkedin.com/company/viyana-production/" rel="noopener noreferrer" target="_blank">
             LinkedIn <ArrowUpRight size={13} />
           </a>
         </div>

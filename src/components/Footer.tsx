@@ -59,7 +59,7 @@ const studioLinks = [
 ];
 
 export default function Footer({
-  variant = "light",
+  variant = "dark",
   hideCtaBanner = false,
 }: {
   variant?: "dark" | "light";
@@ -181,7 +181,7 @@ export default function Footer({
       )}
 
       {/* Main Luxury 4-Column Grid */}
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 pt-12 sm:pt-16 pb-8 sm:pb-10">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 pt-12 sm:pt-16 pb-24 md:pb-10">
         <div
           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-10 border-b ${
             isLight ? "border-neutral-200" : "border-white/10"

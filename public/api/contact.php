@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo json_encode([
         'status' => 'ok',
         'service' => 'Viyana Productions Contact API',
-        'server' => 'PHP ' . PHP_VERSION,
         'timestamp' => gmdate('Y-m-d\TH:i:s\Z')
     ]);
     exit;
